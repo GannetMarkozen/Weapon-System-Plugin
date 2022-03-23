@@ -1,0 +1,51 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.WeaponSystemPlugin.cpp.obj": [
+			"WeaponSystemPlugin.cpp.obj",
+			"WeaponSystemAnimInstance.cpp.obj",
+			"TrueFPSCharacterBase.cpp.obj",
+			"CharacterInventoryComponent.cpp.obj",
+			"InventoryComponent.cpp.obj",
+			"ReplicatedObject.cpp.obj",
+			"WeaponSystemFunctionLibrary.cpp.obj",
+			"ForegripAttachment.cpp.obj",
+			"PoseableHandComponent.cpp.obj",
+			"SightsAttachment.cpp.obj",
+			"VisualizationSceneComponent.cpp.obj",
+			"WeaponAttachmentBase.cpp.obj",
+			"WeaponAttachmentPoint.cpp.obj",
+			"AimingScript.cpp.obj",
+			"CycleSightsScript.cpp.obj",
+			"HitscanScriptBase.cpp.obj",
+			"Weapon.cpp.obj",
+			"WeaponBase.cpp.obj",
+			"WeaponScript.cpp.obj",
+			"WeaponScriptBase.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.1_of_2.cpp.obj": [
+			"AimingScript.gen.cpp.obj",
+			"CharacterInventoryComponent.gen.cpp.obj",
+			"CycleSightsScript.gen.cpp.obj",
+			"ForegripAttachment.gen.cpp.obj",
+			"HitscanScriptBase.gen.cpp.obj",
+			"InventoryComponent.gen.cpp.obj",
+			"PoseableHandComponent.gen.cpp.obj",
+			"ReplicatedObject.gen.cpp.obj",
+			"SightsAttachment.gen.cpp.obj",
+			"TrueFPSCharacterBase.gen.cpp.obj",
+			"VisualizationSceneComponent.gen.cpp.obj",
+			"Weapon.gen.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.2_of_2.cpp.obj": [
+			"WeaponAttachmentBase.gen.cpp.obj",
+			"WeaponAttachmentPoint.gen.cpp.obj",
+			"WeaponBase.gen.cpp.obj",
+			"WeaponScript.gen.cpp.obj",
+			"WeaponScriptBase.gen.cpp.obj",
+			"WeaponSystemAnimInstance.gen.cpp.obj",
+			"WeaponSystemFunctionLibrary.gen.cpp.obj",
+			"WeaponSystemPlugin.init.gen.cpp.obj"
+		]
+	}
+}

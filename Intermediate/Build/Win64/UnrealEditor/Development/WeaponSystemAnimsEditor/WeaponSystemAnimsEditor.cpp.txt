@@ -1,0 +1,2 @@
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsEditor\Definitions.WeaponSystemAnimsEditor.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemAnimsEditor\Public\WeaponSystemAnimsEditor.h

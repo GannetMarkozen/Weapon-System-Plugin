@@ -1,0 +1,17 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.WeaponSystemAnimsRuntime.cpp.obj": [
+			"AnimNode_ProceduralAimOffset.cpp.obj",
+			"AnimNode_TrueFPSArmsIK.cpp.obj",
+			"AnimNode_TrueFPSRig.cpp.obj",
+			"WeaponSystemAnimsRuntime.cpp.obj"
+		],
+		"Module.WeaponSystemAnimsRuntime.gen.cpp.obj": [
+			"AnimNode_ProceduralAimOffset.gen.cpp.obj",
+			"AnimNode_TrueFPSArmsIK.gen.cpp.obj",
+			"AnimNode_TrueFPSRig.gen.cpp.obj",
+			"WeaponSystemAnimsRuntime.init.gen.cpp.obj"
+		]
+	}
+}

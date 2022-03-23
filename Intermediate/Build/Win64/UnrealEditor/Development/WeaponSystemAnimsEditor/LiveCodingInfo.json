@@ -1,0 +1,13 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.WeaponSystemAnimsEditor.cpp.obj": [
+			"AnimGraphNode_ProceduralAimOffset.cpp.obj",
+			"WeaponSystemAnimsEditor.cpp.obj"
+		],
+		"Module.WeaponSystemAnimsEditor.gen.cpp.obj": [
+			"AnimGraphNode_ProceduralAimOffset.gen.cpp.obj",
+			"WeaponSystemAnimsEditor.init.gen.cpp.obj"
+		]
+	}
+}

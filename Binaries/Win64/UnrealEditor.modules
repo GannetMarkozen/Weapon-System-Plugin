@@ -1,0 +1,11 @@
+{
+	"BuildId": "16433597",
+	"Modules": 
+	{
+		"WeaponSystemAnimsEditor": "UnrealEditor-WeaponSystemAnimsEditor.dll",
+		"WeaponSystemAnimsRuntime": "UnrealEditor-WeaponSystemAnimsRuntime.dll",
+		"WeaponSystemAnimsUncooked": "UnrealEditor-WeaponSystemAnimsUncooked.dll",
+		"WeaponSystemEditor": "UnrealEditor-WeaponSystemEditor.dll",
+		"WeaponSystemPlugin": "UnrealEditor-WeaponSystemPlugin.dll"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.WeaponSystemAnimsUncooked.cpp.obj": [
+			"AnimGraphNode_ProceduralAimOffset.cpp.obj",
+			"AnimGraphNode_TrueFPSArmsIK.cpp.obj",
+			"AnimGraphNode_TrueFPSRig.cpp.obj",
+			"WeaponSystemAnimsUncooked.cpp.obj"
+		],
+		"Module.WeaponSystemAnimsUncooked.gen.cpp.obj": [
+			"AnimGraphNode_ProceduralAimOffset.gen.cpp.obj",
+			"AnimGraphNode_TrueFPSArmsIK.gen.cpp.obj",
+			"AnimGraphNode_TrueFPSRig.gen.cpp.obj",
+			"WeaponSystemAnimsUncooked.init.gen.cpp.obj"
+		]
+	}
+}
