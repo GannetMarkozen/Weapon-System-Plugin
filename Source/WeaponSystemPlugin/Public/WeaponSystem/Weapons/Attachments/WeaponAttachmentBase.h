@@ -6,11 +6,13 @@
 #include "GameFramework/Actor.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "WeaponSystem/Weapons/WeaponBase.h"
+#include "WeaponSystem/Weapons/Interfaces.h"
 #include "WeaponAttachmentBase.generated.h"
 
 
+
 UCLASS(Abstract)
-class WEAPONSYSTEMPLUGIN_API AWeaponAttachmentBase : public AActor
+class WEAPONSYSTEMPLUGIN_API AWeaponAttachmentBase : public AActor, public IItemInterface
 {
 	GENERATED_BODY()
 public:
@@ -20,12 +22,20 @@ public:
 protected:
 	virtual void Destroyed() override;
 
+	// The weapon that owns this attachment
+	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Attachment")
+	class AWeaponBase* OwningWeapon;
+
+	// Item Interface
+	virtual FORCEINLINE FText GetDisplayName_Implementation() const override { return FText::FromString(FString("Weapon Attachment")); }
+	virtual FORCEINLINE FText GetDescription_Implementation() const override { return FText::FromString(FString("A generic weapon attachment")); }
+
 	// Spawns weapon attachment and attaches it to the attachment point. Only call on server. If set attachment point that will be where the weapon is spawned
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Meta = (AutoCreateRefTerm = "AttachmentClass", DeterminesOutputType = "AttachmentClass", DefaultToSelf = "AttachmentPoint"), Category = "Attachment")
 	static class AWeaponAttachmentBase* SpawnAttachment(const TSubclassOf<class AWeaponAttachmentBase>& AttachmentClass, class UWeaponAttachmentPoint* AttachmentPoint);
 
 	// Does nothing but spawn the weapon attachment
-	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Meta = (AutoCreateRefTerm = "AttachmentClass, WorldTransform", DeterminesOutputType = "AttachmentClass", DefaultToSelf = "WorldContextObject", HidePin = "WorldContextObject"), Category = "Attachment")
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Meta = (AutoCreateRefTerm = "AttachmentClass, WorldTransform", DeterminesOutputType = "AttachmentClass", WorldContextObject = "WorldContextObject", HidePin = "WorldContextObject"), Category = "Attachment")
 	static class AWeaponAttachmentBase* SpawnAttachmentUnattached(const class UObject* WorldContextObject, const TSubclassOf<class AWeaponAttachmentBase>& AttachmentClass, const FTransform& WorldTransform);
 
 	template<typename T>
@@ -41,44 +51,32 @@ protected:
 	// Equivalent to BeginPlay but is called after replication when the OwningWeapon is valid.
 	// OwningWeapon should always be valid unless the Weapon Attachment Point was placed on an
 	// actor that does not eventually have it's owner derive from WeaponBase (which you should never do).
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnAttached();
-
-	// The C++ parent implementation of On Attached
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Attached"), Category = "Attachment")
-	virtual void OnAttached_Implementation();
+	virtual void OnAttached();
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Attached"), Category = "Attachment")
+	void BP_OnAttached();
 
 	// Equivalent to OnDestroy but is called right beforehand
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnRemoved();
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Removed"), Category = "Attachment")
-	virtual FORCEINLINE void OnRemoved_Implementation();
-
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnEquipped();
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Equipped"), Category = "Attachment")
-	virtual FORCEINLINE void OnEquipped_Implementation() {}
-
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnUnequipped();
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Unequipped"), Category = "Attachment")
-	virtual FORCEINLINE void OnUnequipped_Implementation() {}
+	virtual void OnRemoved();
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Removed"), Category = "Attachment")
+	void BP_OnRemoved();
+	
+	virtual FORCEINLINE void OnEquipped() {}
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Equipped"), Category = "Attachment")
+	void BP_OnEquipped();
+	
+	virtual FORCEINLINE void OnUnequipped() {}
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Unequipped"), Category = "Attachment")
+	void BP_OnUnequipped();
 
 	// Called whenever the owning inventory of the owning weapon changes to a valid inventory
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnObtained(class UInventoryComponent* OwningInventory);
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Obtained"), Category = "Attachment")
-	virtual FORCEINLINE void OnObtained_Implementation(class UInventoryComponent* OwningInventory) {}
+	virtual FORCEINLINE void OnObtained(class UInventoryComponent* OwningInventory) {}
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Obtained"), Category = "Attachment")
+	void BP_OnObtained(class UInventoryComponent* OwningInventory);
 
 	// Called whenever the owning inventory of the owning weapon becomes invalid. Also called on destroyed
-	UFUNCTION(BlueprintNativeEvent, Category = "Attachment")
-	void OnUnobtained(class UInventoryComponent* OldInventory);
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Parent: On Unobtained"), Category = "Attachment")
-	virtual FORCEINLINE void OnUnobtained_Implementation(class UInventoryComponent* OldInventory) {}
-	
-	// The weapon that owns this attachment
-	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Attachment")
-	class AWeaponBase* OwningWeapon;
+	virtual FORCEINLINE void OnUnobtained(class UInventoryComponent* OldInventory) {}
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Unobtained"), Category = "Attachment")
+	void BP_OnUnobtained(class UInventoryComponent* OldInventory);
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
@@ -100,16 +98,18 @@ private:
 	{
 		OwningWeapon = InOwningWeapon;
 		OnAttached();
+		BP_OnAttached();
 	}
 	
 	FORCEINLINE void Internal_OnRemoved()
 	{
 		OnRemoved();
+		BP_OnRemoved();
 		OwningWeapon = nullptr;
 	}
 
-	UFUNCTION() FORCEINLINE void Internal_OnObtained(class AWeaponBase* W, class UInventoryComponent* InOwningInventory) { OnObtained(InOwningInventory); }
-	UFUNCTION() FORCEINLINE void Internal_OnUnobtained(class AWeaponBase* W, class UInventoryComponent* InOldInventory) { OnUnobtained(InOldInventory); }
-	UFUNCTION() FORCEINLINE void Internal_OnEquipped(class AWeaponBase* W) { OnEquipped(); }
-	UFUNCTION() FORCEINLINE void Internal_OnUnequipped(class AWeaponBase* W) { OnUnequipped(); }
+	UFUNCTION() FORCEINLINE void Internal_OnObtained(class AWeaponBase* W, class UInventoryComponent* InOwningInventory) { OnObtained(InOwningInventory); BP_OnObtained(InOwningInventory); }
+	UFUNCTION() FORCEINLINE void Internal_OnUnobtained(class AWeaponBase* W, class UInventoryComponent* InOldInventory) { OnUnobtained(InOldInventory); BP_OnUnobtained(InOldInventory); }
+	UFUNCTION() FORCEINLINE void Internal_OnEquipped(class AWeaponBase* W) { OnEquipped(); BP_OnEquipped(); }
+	UFUNCTION() FORCEINLINE void Internal_OnUnequipped(class AWeaponBase* W) { OnUnequipped(); BP_OnUnequipped(); }
 };

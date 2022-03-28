@@ -1,4 +1,19 @@
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Definitions.WeaponSystemPlugin.h
-C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemPlugin.init.gen.cpp
+C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemFunctionLibrary.gen.cpp
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin/Public/WeaponSystem/WeaponSystemFunctionLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\Animation/AnimInstanceProxy.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\Animation/AnimSync.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\AnimInstanceProxy.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Animation/PoseAsset.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\PoseAsset.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\Net/RepLayout.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Core\Public\Containers/StaticBitArray.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Net\Core\Public\Net/Core/PushModel/PushModel.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ReplicateUObject/RepChangedPropertyTracker.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponSystemFunctionLibrary.generated.h
+C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemPlugin.init.gen.cpp

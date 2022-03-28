@@ -7,6 +7,8 @@
 #include "Animation/AnimInstanceProxy.h"
 #include "Animation/PoseAsset.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Net/RepLayout.h"
+#include "ReplicateUObject/RepChangedPropertyTracker.h"
 #include "WeaponSystemFunctionLibrary.generated.h"
 
 
@@ -50,6 +52,8 @@ DECLARE_DYNAMIC_DELEGATE(FPlaceholderDelegate);
 
 ALLOW_PRIVATE_ACCESS(FAnimInstanceProxy, PoseSnapshots, TArray<FPoseSnapshot>);
 class UAnimInstanceAccessor : public UAnimInstance { friend class UWeaponSystemFunctionLibrary; };
+
+ALLOW_PRIVATE_ACCESS(FRepLayout, Parents, TArray<FRepParentCmd>);
 
 /**
  * 
@@ -226,10 +230,84 @@ public:
 		
 	}
 
+	// For replication stuff to avoid calling GetObjectClassRepLayout from the NetDriver which won't compile because it's not exported
+	static FORCEINLINE TSharedPtr<FRepLayout> GetObjectClassRepLayout(class UNetDriver* NetDriver, class UClass* Class)
+	{
+		if(!NetDriver) return nullptr;
+		auto& RepLayoutMap = NetDriver->RepLayoutMap;
+		TSharedPtr<FRepLayout>* RepLayoutPtr = RepLayoutMap.Find(Class);
+		if(!RepLayoutPtr)
+		{
+			const ECreateRepLayoutFlags Flags = NetDriver->MaySendProperties() ? ECreateRepLayoutFlags::MaySendProperties : ECreateRepLayoutFlags::None;
+			RepLayoutPtr = &RepLayoutMap.Add(Class, FRepLayout::CreateFromClass(Class, NetDriver->ServerConnection, Flags));
+		}
+		return *RepLayoutPtr;
+	}
+
+	static FORCEINLINE void InitChangedTracker(class FMyRepChangedPropertyTracker* ChangedTracker, const TSharedPtr<FRepLayout>& RepLayout)
+	{
+		const int32 NumParents = RepLayout.Get()->GetNumParents();
+		ChangedTracker->Parents.SetNum(NumParents);
+		for(int32 i = 0; i < NumParents; i++)
+			ChangedTracker->Parents[i].IsConditional = ((ACCESS_PRIVATE_MEMBER(*RepLayout.Get(), Parents)[i].Flags & ERepParentFlags::IsConditional) != ERepParentFlags::None) ? 1 : 0;
+	}
+
+	static FORCEINLINE TSharedPtr<FMyRepChangedPropertyTracker> FindOrCreatePropertyTracker(class UObject* Obj)
+	{
+		if(Obj) if(const UWorld* World = Obj->GetWorld())
+			return FindOrCreatePropertyTracker(World->GetNetDriver(), Obj);
+		return nullptr;
+	}
+
+	static FORCEINLINE TSharedPtr<FMyRepChangedPropertyTracker> FindOrCreatePropertyTracker(class UNetDriver* NetDriver, class UObject* Obj)
+	{
+		if(!Obj || !NetDriver) return nullptr;
+		
+		check(NetDriver->IsServer() || NetDriver->MaySendProperties());
+
+		UNetDriver::FRepChangedPropertyTrackerWrapper* GlobalPropertyTrackerPtr = NetDriver->RepChangedPropertyTrackerMap.Find(Obj);
+
+		// Obj can be a new object with a pointer that matches an old, no longer valid, object
+		if ( GlobalPropertyTrackerPtr != nullptr && !GlobalPropertyTrackerPtr->IsObjectValid() )
+		{
+			NetDriver->RepChangedPropertyTrackerMap.Remove(Obj);
+			GlobalPropertyTrackerPtr = nullptr;
+		}
+
+		if ( !GlobalPropertyTrackerPtr ) 
+		{
+			const UWorld* const LocalWorld = Obj->GetWorld();
+			const bool bIsReplay = LocalWorld != nullptr && static_cast<void*>(LocalWorld->GetDemoNetDriver()) == static_cast<void*>(NetDriver);
+			const bool bIsClientReplayRecording = LocalWorld != nullptr ? LocalWorld->IsRecordingClientReplay() : false;
+
+			FMyRepChangedPropertyTracker* Tracker = new FMyRepChangedPropertyTracker(bIsReplay, bIsClientReplayRecording);
+			//InitChangedTracker(NetDriver, Tracker);
+			const TSharedPtr<FRepLayout> RepLayout = UWeaponSystemFunctionLibrary::GetObjectClassRepLayout(NetDriver, Obj->GetClass());
+			UWeaponSystemFunctionLibrary::InitChangedTracker(Tracker, RepLayout);
+
+			//NetDriver->GetObjectClassRepLayout(GetClass())->InitChangedTracker((class FRepChangedPropertyTracker*)Tracker);
+		
+			TSharedPtr<FMyRepChangedPropertyTracker> Ptr = MakeShareable<FMyRepChangedPropertyTracker>(Tracker);
+			GlobalPropertyTrackerPtr = &NetDriver->RepChangedPropertyTrackerMap.Add( Obj, UNetDriver::FRepChangedPropertyTrackerWrapper(Obj, reinterpret_cast<TSharedPtr<class FRepChangedPropertyTracker>&>(Ptr)));
+		}
+
+		return reinterpret_cast<TSharedPtr<FMyRepChangedPropertyTracker>&>(GlobalPropertyTrackerPtr->RepChangedPropertyTracker);
+	}
 	
+	// Calls PreReplication on object and passes in required variables.
+	// Must have a function with the exact signature: public void PreReplication(IRepChangedPropertyTracker&)
+	template<typename UserClass>
+	static FORCEINLINE void CallPreReplication(UserClass* Object)
+	{
+		static_assert(TIsClass<UserClass>::Value, TEXT("UWeaponSystemFunctionLibrary::CallPreReplication UserClass is not a valid UCLASS"));
+		if(IsValid(Object)) Object->PreReplication(*FindOrCreatePropertyTracker(Object).Get());
+	}
 
 
 protected:
+	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Class", DeterminesOutputType = "Class", AllowPrivateAccess = "true"), Category = "Weapon System Function Library")
+	static FORCEINLINE class UObject* GetDefaultObject(const TSubclassOf<class UObject>& Class) { return Class ? Class->GetDefaultObject() : nullptr; }
+	
 	UFUNCTION(BlueprintCallable, CustomThunk, meta = (CustomStructureParam = "Delegate,Event", AllowPrivateAccess = "true"), Category = "Weapon System Function Library|Delegates")
 	static FORCEINLINE void BindDelegate(const int32& Delegate, const int32& Event);
 	static FORCEINLINE void execBindDelegate(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)

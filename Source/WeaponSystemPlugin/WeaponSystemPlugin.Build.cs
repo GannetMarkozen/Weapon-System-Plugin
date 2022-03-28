@@ -25,7 +25,7 @@ public class WeaponSystemPlugin : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "GameplayTags", "AnimationCore", "AnimGraphRuntime", "AnimGraph"
+				"Core", "InputCore", "AnimationCore", "AnimGraphRuntime", "AnimGraph"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -34,10 +34,12 @@ public class WeaponSystemPlugin : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
 				"Engine",
+				"CoreUObject",
 				"Slate",
 				"SlateCore",
+				"UMG"
+				//"Networking",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

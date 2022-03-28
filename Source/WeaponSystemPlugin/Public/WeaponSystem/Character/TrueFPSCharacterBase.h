@@ -132,10 +132,16 @@ public:
 	virtual FORCEINLINE FTransform GetOffHandTransform_Implementation() const {
 		return GetMesh()->GetSocketTransform(FName("hand_l"));
 	}
-	
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintPure, Category = "Character|Anim")
+	FTransform GetWeaponOffsetTransform() const;
+	virtual FORCEINLINE FTransform GetWeaponOffsetTransform_Implementation() const { return RecoilOffset * WeaponOffsetTransform; }
 
 	UPROPERTY(BlueprintReadWrite, Replicated, Category = "Character|Anim")
 	float ADSValue = 0.f;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Character|Anim")
+	FTransform WeaponOffsetTransform;
 	
 	UPROPERTY(BlueprintAssignable, Category = "Character|Delegates")
 	FOnLandedMultiDelegate LandedMultiDelegate;
@@ -158,7 +164,7 @@ public:
 	FORCEINLINE int32 GetNumRecoilInstances() const { return RecoilInstances.Num(); }
 
 	// The total offset from the accumulated recoil instances
-	UPROPERTY(BlueprintReadOnly, Category = "Character|Recoil")
+	UPROPERTY(BlueprintReadOnly, Category = "Weapon|Recoil")
 	FTransform RecoilOffset;
 
 	//

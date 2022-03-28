@@ -175,7 +175,7 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASightsAttachment, 2480744068);
+	IMPLEMENT_CLASS(ASightsAttachment, 1034175452);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ASightsAttachment>()
 	{
 		return ASightsAttachment::StaticClass();
@@ -297,7 +297,7 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USightsAttachmentPoint, 2187297999);
+	IMPLEMENT_CLASS(USightsAttachmentPoint, 1255576307);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USightsAttachmentPoint>()
 	{
 		return USightsAttachmentPoint::StaticClass();

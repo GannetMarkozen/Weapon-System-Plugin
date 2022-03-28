@@ -5,7 +5,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AnimNode_TrueFPSRig.h"
-
 #include "Animation/AnimInstanceProxy.h"
 #include "AnimationCore/Public/TwoBoneIK.h"
 
@@ -15,14 +14,13 @@ FAnimNode_TrueFPSRig::FAnimNode_TrueFPSRig()
 	LeftHand = FBoneReference(FName("hand_l"));
 	Head = FBoneReference(FName("head"));
 
-	RightUpperArm = FBoneReference(FName("upperarm_r"));
+	/*RightUpperArm = FBoneReference(FName("upperarm_r"));
 	RightLowerArm = FBoneReference(FName("lowerarm_r"));
 
 	LeftUpperArm = FBoneReference(FName("upperarm_l"));
-	LeftLowerArm = FBoneReference(FName("lowerarm_l"));
+	LeftLowerArm = FBoneReference(FName("lowerarm_l"));*/
 
-	StableBone = FBoneReference(FName("head"));
-	Pelvis = FBoneReference(FName("pelvis"));
+	StableBone = FBoneReference(FName("pelvis"));
 
 	constexpr float Weight = 1.f/5.f;
 	SpineBoneParams = { FBoneParams(FBoneReference(FName("spine_01")), Weight), FBoneParams(FBoneReference(FName("spine_02")), Weight),
@@ -37,18 +35,28 @@ void FAnimNode_TrueFPSRig::Initialize_AnyThread(const FAnimationInitializeContex
 	const FBoneContainer& RequiredBones = Context.AnimInstanceProxy->GetRequiredBones();
 	RightHand.Initialize(RequiredBones);
 	LeftHand.Initialize(RequiredBones);
-	RightUpperArm.Initialize(RequiredBones);
+	/*RightUpperArm.Initialize(RequiredBones);
 	LeftUpperArm.Initialize(RequiredBones);
 	RightLowerArm.Initialize(RequiredBones);
-	LeftLowerArm.Initialize(RequiredBones);
+	LeftLowerArm.Initialize(RequiredBones);*/
 	Head.Initialize(RequiredBones);
 	StableBone.Initialize(RequiredBones);
-	Pelvis.Initialize(RequiredBones);
 	for(FBoneParams& Bone : SpineBoneParams)
 		Bone.Bone.Initialize(RequiredBones);
 
-	if(RightUpperArm.IsValidToEvaluate()) CachedRightUpperArmParentBoneIndex = RequiredBones.GetReferenceSkeleton().GetParentIndex(RightUpperArm.BoneIndex);
-	if(LeftUpperArm.IsValidToEvaluate()) CachedLeftUpperArmParentBoneIndex = RequiredBones.GetReferenceSkeleton().GetParentIndex(LeftUpperArm.BoneIndex);
+	//if(RightUpperArm.IsValidToEvaluate()) CachedRightUpperArmParentBoneIndex = RequiredBones.GetReferenceSkeleton().GetParentIndex(RightUpperArm.BoneIndex);
+	//if(LeftUpperArm.IsValidToEvaluate()) CachedLeftUpperArmParentBoneIndex = RequiredBones.GetReferenceSkeleton().GetParentIndex(LeftUpperArm.BoneIndex);
+
+	const FReferenceSkeleton& RefSkel = RequiredBones.GetReferenceSkeleton();
+	
+	RightLowerArmIndex = RefSkel.GetParentIndex(RightHand.BoneIndex);
+	if(RightLowerArmIndex != INDEX_NONE) RightUpperArmIndex = RefSkel.GetParentIndex(RightLowerArmIndex);
+
+	LeftLowerArmIndex = RefSkel.GetParentIndex(LeftHand.BoneIndex);
+	if(LeftLowerArmIndex != INDEX_NONE) LeftUpperArmIndex = RefSkel.GetParentIndex(LeftLowerArmIndex);
+
+	if(RightUpperArmIndex != INDEX_NONE) CachedRightUpperArmParentBoneIndex = RefSkel.GetParentIndex(RightUpperArmIndex);
+	if(LeftUpperArmIndex != INDEX_NONE) CachedLeftUpperArmParentBoneIndex = RefSkel.GetParentIndex(LeftUpperArmIndex);
 }
 
 void FAnimNode_TrueFPSRig::CacheBones_AnyThread(const FAnimationCacheBonesContext& Context)
@@ -77,9 +85,11 @@ bool FAnimNode_TrueFPSRig::CanEvaluate() const
 	if(FMath::IsNearlyZero(Alpha))
 		return false;
 	
-	if(!RightHand.IsValidToEvaluate() || !RightLowerArm.IsValidToEvaluate() || !RightUpperArm.IsValidToEvaluate() ||
+	/*if(!RightHand.IsValidToEvaluate() || !RightLowerArm.IsValidToEvaluate() || !RightUpperArm.IsValidToEvaluate() ||
 		!LeftHand.IsValidToEvaluate() || !LeftLowerArm.IsValidToEvaluate() || !LeftUpperArm.IsValidToEvaluate() ||
-			!StableBone.IsValidToEvaluate() || !Pelvis.IsValidToEvaluate())
+			!StableBone.IsValidToEvaluate())*/
+	if(!RightHand.IsValidToEvaluate() || !LeftHand.IsValidToEvaluate() || RightLowerArmIndex == INDEX_NONE || LeftLowerArmIndex == INDEX_NONE ||
+		RightUpperArmIndex == INDEX_NONE || LeftUpperArmIndex == INDEX_NONE)
 	{
 		UE_LOG(LogTemp, Error, TEXT("True FPS Rig: Not all arm bones are valid"));
 		return false;
@@ -132,15 +142,16 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	TArray<FTransform>& BSBoneTransforms = *(TArray<FTransform>*)&Output.Pose.GetBones();
 
 	// Init arm transforms. Component-space.
-	const FTransform& CSInitRightHandTransform = CS_TRANSFORM(RightHand.BoneIndex);
-	const FTransform& CSInitLeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);
+	const FTransform CSInitRightHandTransform = CS_TRANSFORM(RightHand.BoneIndex);
+	const FTransform CSInitLeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);
 
-	const FTransform& CSInitRightJointTransform = CS_TRANSFORM(RightLowerArm.BoneIndex);
-	const FTransform& CSInitLeftJointTransform = CS_TRANSFORM(LeftLowerArm.BoneIndex);
+	//const FTransform CSInitRightJointTransform = CS_TRANSFORM(RightLowerArm.BoneIndex);
+	//const FTransform CSInitLeftJointTransform = CS_TRANSFORM(LeftLowerArm.BoneIndex);
+	const FTransform CSInitRightJointTransform = CS_TRANSFORM(RightLowerArmIndex);
+	const FTransform CSInitLeftJointTransform = CS_TRANSFORM(LeftLowerArmIndex);
 	
-	const FTransform& CSInitCameraTransform = FTransform(FRotator(0.f, MeshYawOffset, 0.f), (FTransform(CameraRelativeLocation) * CS_TRANSFORM(Head.BoneIndex)).GetLocation());
+	const FTransform CSInitCameraTransform = FTransform(FRotator(0.f, MeshYawOffset, 0.f), (FTransform(CameraRelativeLocation) * CS_TRANSFORM(Head.BoneIndex)).GetLocation());
 	FTransform CSInitWeaponTransform = OriginRelativeTransform * (bRightHanded ? CSInitRightHandTransform : CSInitLeftHandTransform);// Weapon relative transform is bone-space off of primary hand
-	//const FTransform& CSInitCameraToWeaponTransform = CSInitWeaponTransform.GetRelativeTransform(CSInitCameraTransform);
 
 	// Apply procedural aim offset
 	FQuat AccumulativeOffsetInverse;
@@ -161,13 +172,29 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	//
 
 	// Initialize arm transform vars
-	FTransform RightUpperArmTransform = CS_TRANSFORM(RightUpperArm.BoneIndex);
+	/*FTransform RightUpperArmTransform = CS_TRANSFORM(RightUpperArm.BoneIndex);
 	FTransform RightLowerArmTransform = CS_TRANSFORM(RightLowerArm.BoneIndex);
 	FTransform RightHandTransform = CS_TRANSFORM(RightHand.BoneIndex);
 
 	FTransform LeftUpperArmTransform = CS_TRANSFORM(LeftUpperArm.BoneIndex);
 	FTransform LeftLowerArmTransform = CS_TRANSFORM(LeftLowerArm.BoneIndex);
-	FTransform LeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);
+	FTransform LeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);*/
+
+	/*FTransform RightUpperArmTransform = CS_TRANSFORM(RightUpperArm.BoneIndex);
+	FTransform RightLowerArmTransform = BSBoneTransforms[RightLowerArm.BoneIndex] * RightUpperArmTransform;
+	FTransform RightHandTransform = BSBoneTransforms[RightHand.BoneIndex] * RightLowerArmTransform;
+
+	FTransform LeftUpperArmTransform = CS_TRANSFORM(LeftUpperArm.BoneIndex);
+	FTransform LeftLowerArmTransform = BSBoneTransforms[LeftLowerArm.BoneIndex] * LeftUpperArmTransform;
+	FTransform LeftHandTransform = BSBoneTransforms[LeftHand.BoneIndex] * LeftLowerArmTransform;*/
+
+	FTransform RightUpperArmTransform = CS_TRANSFORM(RightUpperArmIndex);
+	FTransform RightLowerArmTransform = BSBoneTransforms[RightLowerArmIndex] * RightUpperArmTransform;
+	FTransform RightHandTransform = BSBoneTransforms[RightHand.BoneIndex] * RightLowerArmTransform;
+
+	FTransform LeftUpperArmTransform = CS_TRANSFORM(LeftUpperArmIndex);
+	FTransform LeftLowerArmTransform = BSBoneTransforms[LeftLowerArmIndex] * LeftUpperArmTransform;
+	FTransform LeftHandTransform = BSBoneTransforms[LeftHand.BoneIndex] * LeftLowerArmTransform;
 
 	//
 	//	Calculate weapon transform in component-space
@@ -184,7 +211,7 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	FTransform CSWeaponTransform = CameraToWeaponTransform * CSCameraTransform;
 	
 	// Get aiming and non-aiming transforms
-	const FTransform& AimingTransform = /*FTransform(FVector(AimOffset, 0.f, 0.f)) * */OriginRelativeTransform.GetRelativeTransform(SightsRelativeTransform) * CSCameraTransform;
+	const FTransform& AimingTransform = OriginRelativeTransform.GetRelativeTransform(SightsRelativeTransform) * CSCameraTransform;
 	
 	FTransform NonAimingTransform = CustomWeaponOffsetTransform * CSWeaponTransform;
 	NonAimingTransform.SetRotation(FQuat::FastLerp(CSInitWeaponTransform.GetRotation(), NonAimingTransform.GetRotation(), WeaponRotationAlpha));
@@ -205,12 +232,14 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 		if(bRightHanded)
 		{// Calculate the projected hand transform
 			ReachDist = (LeftUpperArmTransform.GetLocation() - (CSInitLeftHandTransform.GetRelativeTransform(CSInitWeaponTransform) * CSWeaponTransform).GetLocation()).Size();
-			MaxReach = BSBoneTransforms[LeftLowerArm.BoneIndex].GetLocation().Size() + BSBoneTransforms[LeftHand.BoneIndex].GetLocation().Size();
+			//MaxReach = BSBoneTransforms[LeftLowerArm.BoneIndex].GetLocation().Size() + BSBoneTransforms[LeftHand.BoneIndex].GetLocation().Size();
+			MaxReach = BSBoneTransforms[LeftLowerArmIndex].GetLocation().Size() + BSBoneTransforms[LeftHand.BoneIndex].GetLocation().Size();
 		}
 		else
 		{
 			ReachDist = (RightUpperArmTransform.GetLocation() - (CSInitRightHandTransform.GetRelativeTransform(CSInitWeaponTransform) * CSWeaponTransform).GetLocation()).Size();
-			MaxReach = BSBoneTransforms[RightLowerArm.BoneIndex].GetLocation().Size() + BSBoneTransforms[RightHand.BoneIndex].GetLocation().Size();
+			//MaxReach = BSBoneTransforms[RightLowerArm.BoneIndex].GetLocation().Size() + BSBoneTransforms[RightHand.BoneIndex].GetLocation().Size();
+			MaxReach = BSBoneTransforms[RightLowerArmIndex].GetLocation().Size() + BSBoneTransforms[RightHand.BoneIndex].GetLocation().Size();
 		}
 
 		// Calculate the distance to pull the weapon back
@@ -233,12 +262,45 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	//
 	// Right Arm IK
 	//
-	
+
+	// The new right hand transform in component-space
 	const FTransform& RightEffectorTransform = CSInitRightHandTransform.GetRelativeTransform(CSInitWeaponTransform) * (RightHandAdditiveTransform * CSWeaponTransform);
 
 	// Removing the custom weapon offset from the weapon transform to get the original joint location without an offset then applying whatever offset specified
-	const FVector& RightJointLocation = (CSInitRightJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
-		FTransform(RightJointLocationOffset) * CustomWeaponOffsetTransform.Inverse() * (RightHandAdditiveTransform * JointInfluenceWeaponTransform)).GetLocation();
+	/*const FVector& RightJointLocation = (CSInitRightJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
+		FTransform(RightJointLocationOffset) * CustomWeaponOffsetTransform.Inverse() * (RightHandAdditiveTransform * JointInfluenceWeaponTransform)).GetLocation();*/
+
+	FTransform RightJointAdditiveTransform;
+	RightJointAdditiveTransform.BlendWith(RightHandAdditiveTransform, RightHandAdditiveJointInfluence);
+
+	// The target transform for the right joint in component-space
+	const FTransform RightJointTargetTransform = RightJointAdditiveTransform * CSInitRightJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
+		FTransform(RightJointLocationOffset) * CustomWeaponOffsetTransform.Inverse() * JointInfluenceWeaponTransform;
+
+	// Right joint location in component-space
+	FVector RightJointLocation;
+	if(RightJointClamp.IsClamping() && !FMath::IsNearlyZero(ArmsJointAlpha))
+	{
+		// The joint transform without any additives applied
+		const FTransform JointNoAdditiveTransform = RightJointAdditiveTransform * CSInitRightJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
+			FTransform(RightJointLocationOffset) * CameraToWeaponTransform * CSCameraTransform;// CameraToWeaponTransform * CSCameraTransform gets the weapon transform without additives
+
+		FTransform Offset = RightJointTargetTransform.GetRelativeTransform(JointNoAdditiveTransform);
+		const FQuat Orientation = CSInitRightJointTransform.GetRotation();
+		FVector OrientationOffsetLocation = Orientation.UnrotateVector(Offset.GetLocation());
+
+		// Clamp the orientation location offset between the ranges
+		ClampRange(OrientationOffsetLocation.Y, RightJointClamp.HorizontalRange);
+		ClampRange(OrientationOffsetLocation.Z, RightJointClamp.VerticalRange);
+		Offset.SetLocation(Orientation.RotateVector(OrientationOffsetLocation));
+		
+		// Set joint location by the clamped joint location blended by the target joint location
+		RightJointLocation = (Offset * JointNoAdditiveTransform).GetLocation() * ArmsJointAlpha + RightJointTargetTransform.GetLocation() * (1.f - ArmsJointAlpha);
+	}
+	else
+	{// Set to target location if no clamping is needed
+		RightJointLocation = RightJointTargetTransform.GetLocation();
+	}
 	
 	AnimationCore::SolveTwoBoneIK(RightUpperArmTransform, RightLowerArmTransform, RightHandTransform,
 		RightJointLocation, RightEffectorTransform.GetLocation(), false, 0.f, 0.f);
@@ -249,15 +311,41 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	// Left Arm IK
 	//
 
-	//const FTransform& LeftEffectorTransform = LeftHandAdditiveTransform * (CSInitLeftHandTransform.GetRelativeTransform(CSInitWeaponTransform) * CSWeaponTransform);
+	// The new left hand transform in component-space
 	const FTransform LeftEffectorTransform = LeftHandAdditiveTransform * (CSInitLeftHandTransform.GetRelativeTransform(CSInitWeaponTransform) * CSWeaponTransform);
 
 	FTransform LeftJointAdditiveTransform;
 	LeftJointAdditiveTransform.BlendWith(LeftHandAdditiveTransform, LeftHandAdditiveJointInfluence);
+
+	// Target transform for the left joint in component-space
+	const FTransform LeftJointTargetTransform = LeftJointAdditiveTransform * CSInitLeftJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
+			FTransform(LeftJointLocationOffset) * CustomWeaponOffsetTransform.Inverse() * JointInfluenceWeaponTransform;
+
+	// Left joint location in component-space
+	FVector LeftJointLocation;
+	if(LeftJointClamp.IsClamping() && !FMath::IsNearlyZero(ArmsJointAlpha))
+	{
+		// The joint transform without any additives applied
+		const FTransform JointNoAdditiveTransform = LeftJointAdditiveTransform * CSInitLeftJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
+			FTransform(LeftJointLocationOffset) * CameraToWeaponTransform * CSCameraTransform;// CameraToWeaponTransform * CSCameraTransform gets the weapon transform without additives
+
+		FTransform Offset = LeftJointTargetTransform.GetRelativeTransform(JointNoAdditiveTransform);
+		const FQuat Orientation = CSInitLeftJointTransform.GetRotation();
+		FVector OrientationOffsetLocation = Orientation.UnrotateVector(Offset.GetLocation());
+
+		// Clamp the orientation location offset between the ranges
+		ClampRange(OrientationOffsetLocation.Y, LeftJointClamp.HorizontalRange);
+		ClampRange(OrientationOffsetLocation.Z, LeftJointClamp.VerticalRange);
+		Offset.SetLocation(Orientation.RotateVector(OrientationOffsetLocation));
+
+		// Set joint location by the clamped joint location blended by the target joint location
+		LeftJointLocation = (Offset * JointNoAdditiveTransform).GetLocation() * ArmsJointAlpha + LeftJointTargetTransform.GetLocation() * (1.f - ArmsJointAlpha);
+	}
+	else
+	{// Set to target location if no clamping is needed
+		LeftJointLocation = LeftJointTargetTransform.GetLocation();
+	}
 	
-	// Removing the custom weapon offset from the weapon transform to get the original joint location without an offset then applying whatever offset specified
-	const FVector& LeftJointLocation = (LeftJointAdditiveTransform * CSInitLeftJointTransform.GetRelativeTransform(CSInitWeaponTransform) *
-		FTransform(LeftJointLocationOffset) * CustomWeaponOffsetTransform.Inverse() * JointInfluenceWeaponTransform).GetLocation();
 	
 	AnimationCore::SolveTwoBoneIK(LeftUpperArmTransform, LeftLowerArmTransform, LeftHandTransform,
 		LeftJointLocation, LeftEffectorTransform.GetLocation(), false, 0.f, 0.f);
@@ -267,14 +355,26 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	//
 	// Apply IKs
 	//
+
+	const float TotalArmsAlpha = Alpha * ArmsAlpha;
+	BSBoneTransforms[RightUpperArmIndex].BlendWith(RightUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(CachedRightUpperArmParentBoneIndex)), TotalArmsAlpha);
+	BSBoneTransforms[RightLowerArmIndex].BlendWith(RightLowerArmTransform.GetRelativeTransform(RightUpperArmTransform), TotalArmsAlpha);
+	BSBoneTransforms[RightHand.BoneIndex].BlendWith(RightHandTransform.GetRelativeTransform(RightLowerArmTransform), TotalArmsAlpha);
+
+	BSBoneTransforms[LeftUpperArmIndex].BlendWith(LeftUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(CachedLeftUpperArmParentBoneIndex)), TotalArmsAlpha);
+	BSBoneTransforms[LeftLowerArmIndex].BlendWith(LeftLowerArmTransform.GetRelativeTransform(LeftUpperArmTransform), TotalArmsAlpha);
+	BSBoneTransforms[LeftHand.BoneIndex].BlendWith(LeftHandTransform.GetRelativeTransform(LeftLowerArmTransform), TotalArmsAlpha);
 	
-	BSBoneTransforms[RightUpperArm.BoneIndex].BlendWith(RightUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(CachedRightUpperArmParentBoneIndex)), Alpha * ArmsAlpha);
+	/*BSBoneTransforms[RightUpperArm.BoneIndex].BlendWith(RightUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(CachedRightUpperArmParentBoneIndex)), Alpha * ArmsAlpha);
 	BSBoneTransforms[RightLowerArm.BoneIndex].BlendWith(RightLowerArmTransform.GetRelativeTransform(RightUpperArmTransform), Alpha * ArmsAlpha);
 	BSBoneTransforms[RightHand.BoneIndex].BlendWith(RightHandTransform.GetRelativeTransform(RightLowerArmTransform), Alpha * ArmsAlpha);
 
 	BSBoneTransforms[LeftUpperArm.BoneIndex].BlendWith(LeftUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(CachedLeftUpperArmParentBoneIndex)), Alpha * ArmsAlpha);
 	BSBoneTransforms[LeftLowerArm.BoneIndex].BlendWith(LeftLowerArmTransform.GetRelativeTransform(LeftUpperArmTransform), Alpha * ArmsAlpha);
-	BSBoneTransforms[LeftHand.BoneIndex].BlendWith(LeftHandTransform.GetRelativeTransform(LeftLowerArmTransform), Alpha * ArmsAlpha);
+	BSBoneTransforms[LeftHand.BoneIndex].BlendWith(LeftHandTransform.GetRelativeTransform(LeftLowerArmTransform), Alpha * ArmsAlpha);*/
+
+
+
 	
 	/*BSBoneTransforms[RightUpperArm.BoneIndex] = RightUpperArmTransform.GetRelativeTransform(CS_TRANSFORM(RefSkel.GetParentIndex(RightUpperArm.BoneIndex)));
 	BSBoneTransforms[RightLowerArm.BoneIndex] = RightLowerArmTransform.GetRelativeTransform(RightUpperArmTransform);
@@ -358,7 +458,7 @@ void FAnimNode_TrueFPSRig::ProceduralAimOffset(FPoseContext& Output, FQuat& Accu
 	OrientationCameraRot *= FQuat(-OrientationCameraRot.GetRightVector(), FMath::DegreesToRadians(TargetRot.Roll));// Apply Roll
 	OrientationCameraRot *= FQuat(OrientationCameraRot.GetUpVector().RotateAngleAxis(TargetRot.Roll * 2.f, FVector::RightVector), FMath::DegreesToRadians(TargetRot.Yaw));// Apply Yaw
 	OrientationCameraRot *= FQuat(OrientationCameraRot.GetForwardVector().RotateAngleAxis(TargetRot.Yaw, -FVector::UpVector).RotateAngleAxis(TargetRot.Roll * 2.f, FVector::RightVector), FMath::DegreesToRadians(TargetRot.Pitch));// Apply Pitch, rotated about target yaw
-	OrientationCameraRot *= AccumulativeOffsetInverse;// Apply pelvis offset inverse to correct ofr any additives to the Reference Pose
+	OrientationCameraRot *= AccumulativeOffsetInverse;// Apply accumulative offset inverse to correct for any additives to the Reference Pose
 
 	// For each bone
 	for(int32 i = 0; i < SpineBoneParams.Num(); i++)

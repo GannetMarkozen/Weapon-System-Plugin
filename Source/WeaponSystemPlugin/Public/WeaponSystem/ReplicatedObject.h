@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "WeaponSystemFunctionLibrary.h"
 #include "UObject/Object.h"
 #include "ReplicatedObject.generated.h"
 
@@ -22,6 +23,19 @@ public:
 		if(const UBlueprintGeneratedClass* BPClass = Cast<UBlueprintGeneratedClass>(GetClass()))
 			BPClass->GetLifetimeBlueprintReplicationList(OutLifetimeProps);
 	}
+
+	virtual void PreReplication(IRepChangedPropertyTracker& ChangedPropertyTracker)
+	{
+		if(const UBlueprintGeneratedClass* BPClass = Cast<UBlueprintGeneratedClass>(GetClass()))
+			BPClass->InstancePreReplication(this, ChangedPropertyTracker);
+	}
+
+	FORCEINLINE void CallPreReplication() { UWeaponSystemFunctionLibrary::CallPreReplication(this); }
+
+	//TSharedPtr<class FMyRepChangedPropertyTracker> FindOrCreatePropertyTracker(class UNetDriver* NetDriver);
+	//void InitChangedTracker(class UNetDriver* NetDriver, class FMyRepChangedPropertyTracker* ChangedTracker) const;
+
+	//void CallPreReplication(class UNetDriver* NetDriver);
 
 	virtual FORCEINLINE bool IsSupportedForNetworking() const override { return true; }
 	
@@ -84,7 +98,7 @@ public:
 	}
 
 protected:
-	virtual void OnDestroyed(){}
+	virtual FORCEINLINE void OnDestroyed() {}
 	
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Destroyed"))
 	void BP_OnDestroyed();

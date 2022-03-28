@@ -6,7 +6,7 @@
 /NAME:"UnrealEditor-WeaponSystemPlugin.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Slate\SharedPCH.Slate.ShadowErrors.h.obj"
 "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.cpp.obj"
 "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.gen.1_of_3.cpp.obj"
 "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj"

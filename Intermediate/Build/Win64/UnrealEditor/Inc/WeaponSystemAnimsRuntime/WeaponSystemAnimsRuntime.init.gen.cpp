@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimsRuntime_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x4EB0F915,
-				0x6C5F9AE8,
+				0x1D5C35F9,
+				0x842C8CB2,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

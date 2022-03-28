@@ -77,13 +77,15 @@ protected:
 	
 public:
 	// C++ getters
-	FORCEINLINE class ATrueFPSCharacterBase* GetOwningCharacter() const { return OwningCharacter; }
 	const FORCEINLINE FAnimProperties& GetAnimProps() const { return AnimProps; }
 	//const FORCEINLINE FTransform& GetOriginRelativeTransform() const { return OriginRelativeTransform; }
 	const FORCEINLINE FVector& GetRelativeLocationPlacement() const { return RelativeLocationPlacement; }
 	const FORCEINLINE FRotator& GetRelativeRotationPlacement() const { return RelativeRotationPlacement; }
 	FORCEINLINE class UAnimMontage* GetEquipMontage() const { return EquipMontage; }
 	FORCEINLINE class UAnimMontage* GetUnequipMontage() const { return UnequipMontage; }
+	FORCEINLINE class ATrueFPSCharacterBase* GetOwningCharacter() const { return OwningCharacter; }
+	template<typename T>
+	FORCEINLINE T* GetOwningCharacter() { return Cast<T>(OwningCharacter); }
 
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Get Animation Variables (On Equipped)"), Category = "Weapon|Anim")
 	FORCEINLINE void GetAnimationVariablesOnEquipped(class UAnimSequence*& OutAnimPose, float& OutWeightScale, FTransform& OutCustomOffsetTransform) const {
@@ -103,7 +105,8 @@ public:
 
 
 	
-
+	// Gets the relative transform of the default sights on the weapon. Default sights
+	// usually being a mesh socket but this can be overridden.
 	UFUNCTION(BlueprintNativeEvent, BlueprintPure, Category = "Weapon")
 	FTransform GetDefaultSightsRelativeTransform() const;
 	virtual FORCEINLINE FTransform GetDefaultSightsRelativeTransform_Implementation() const {
@@ -116,6 +119,7 @@ public:
 		return SightsRelativeTransform * GetActorTransform();
 	}
 
+	// Overridable function that returns the muzzle transform in world-space
 	UFUNCTION(BlueprintNativeEvent, BlueprintPure, Category = "Weapon")
 	FTransform GetMuzzleWorldTransform() const;
 	virtual FORCEINLINE FTransform GetMuzzleWorldTransform_Implementation() const {
@@ -130,6 +134,7 @@ public:
 		return FTransform(Rot, Rot.RotateVector(OriginRelativeTransform.GetLocation()), OriginRelativeTransform.GetScale3D());
 	}
 
+	// The origin transform in world-space
 	UFUNCTION(BlueprintPure, Category = "Weapon")
 	FORCEINLINE FTransform GetOriginWorldTransform() const {
 		return GetOriginRelativeTransform() * GetActorTransform();

@@ -28,6 +28,24 @@ struct FArmPullbackConfig
 	float ArmPullbackThreshold = 0.1f;
 };
 
+USTRUCT(BlueprintType, Meta = (DisplayName = "Arm Joint Clamping Configurations"))
+struct FJointClampConfig
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (DisplayName = "Joint Horizontal Clamp Range"))
+	FFloatRange HorizontalRange;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (DisplayName = "Joint Vertical Clamp Range"))
+	FFloatRange VerticalRange;
+
+	FORCEINLINE bool IsClamping() const
+	{
+		return HorizontalRange.GetLowerBound().IsClosed() || HorizontalRange.GetUpperBound().IsClosed() ||
+			VerticalRange.GetLowerBound().IsClosed() || VerticalRange.GetUpperBound().IsClosed();
+	}
+};
+
 /**
  * 
  */
@@ -43,6 +61,49 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
 	FPoseLink ReferencePose;
+
+	//
+	// Bone references
+	//
+
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference RightHand;
+
+	/*UPROPERTY(EditAnywhere, Category = "Right Arm")
+	FBoneReference RightLowerArm;
+
+	UPROPERTY(EditAnywhere, Category = "Right Arm")
+	FBoneReference RightUpperArm;*/
+	
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference LeftHand;
+
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference Head;
+
+	/*UPROPERTY(EditAnywhere, Category = "Left Arm")
+	FBoneReference LeftLowerArm;
+	
+	UPROPERTY(EditAnywhere, Category = "Left Arm")
+	FBoneReference LeftUpperArm;*/
+
+	// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head).
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference StableBone;
+
+	// Cached arm bones
+	int32 RightLowerArmIndex = INDEX_NONE;
+	int32 RightUpperArmIndex = INDEX_NONE;
+	
+	int32 LeftLowerArmIndex = INDEX_NONE;
+	int32 LeftUpperArmIndex = INDEX_NONE;
+
+	int32 CachedRightUpperArmParentBoneIndex = INDEX_NONE;
+	int32 CachedLeftUpperArmParentBoneIndex = INDEX_NONE;
+
+	//
+	// Configurations
+	//
 
 	// The aim rotation. The Zero-Rotator being forward
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault, DisplayName = "Aim Rotation"), Category = "Configurations")
@@ -68,6 +129,18 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	// position apply the same value to the RightJointLocationOffset and LeftJointLocationOffset pins).
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
 	FTransform CustomWeaponOffsetTransform;
+	
+	// Right joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value
+	// and outward horizontal displacement is affected by Max-Value). Specifying "Open" on a range-boundary means that
+	// range will not be clamped. "Inclusive" and "Exclusive" range-boundary specifiers have no difference.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Right Joint Offset Clamp"), Category = "Arms IK")
+	FJointClampConfig RightJointClamp;
+
+	// Left joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value
+	// and outward horizontal displacement is affected by Max-Value). Specifying "Open" on a range-boundary means that
+	// range will not be clamped. "Inclusive" and "Exclusive" range-boundary specifiers have no difference.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Left Joint Offset Clamp"), Category = "Arms IK")
+	FJointClampConfig LeftJointClamp;
 
 	// Applies an offset onto the right joint (elbow) in weapon space.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
@@ -109,10 +182,6 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0"), Category = "Aiming")
 	float AimingValue = 0.f;
 
-	// The distance between the sights and the camera when aiming.
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Aiming")
-	//float AimOffset = 18.f;
-
 	// The amount aiming offsets the joint positions. 1 making the joint moving one-to-one with the
 	// weapon when aiming and 0 making the joints as stationary as possible when aiming.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0", ClampMax = "1"), Category = "Aiming")
@@ -130,9 +199,13 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Weapon Rotation Alpha"), Category = "Alpha")
 	float WeaponRotationAlpha = 1.f;
 
-	// The arms blend weight.
+	// The arms blend-weight.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Arms IK Alpha", ClampMin = "0", ClampMax = "1"), Category = "Alpha")
 	float ArmsAlpha = 1.f;
+
+	// The joint clamping blend-weight. Can lower this to make the clamping less abrupt.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Arms Joint Clamping Alpha", ClampMin = "0", ClampMax = "1"), Category = "Alpha")
+	float ArmsJointAlpha = 1.f;
 
 	// The procedural aim offset spine-bending blend weight. This does not modify the accumulative offset correction and you will still be oriented
 	// by the reference pose regardless of this value.
@@ -170,36 +243,6 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 
 	UPROPERTY(EditAnywhere, Meta = (EditCondition = "MaxExtension < 1", DisplayName = "Arm Pull-Back Configuration"), Category = "Configurations")
 	FArmPullbackConfig ArmPullbackConfig;
-
-	UPROPERTY(EditAnywhere, Category = "Head")
-	FBoneReference Head;
-	
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightHand;
-
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightLowerArm;
-
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightUpperArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftHand;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftLowerArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftUpperArm;
-
-	UPROPERTY(EditAnywhere, Category = "Stability")
-	FBoneReference StableBone;
-
-	UPROPERTY(EditAnywhere, Category = "Stability")
-	FBoneReference Pelvis;
-
-	int32 CachedRightUpperArmParentBoneIndex = INDEX_NONE;
-	int32 CachedLeftUpperArmParentBoneIndex = INDEX_NONE;
 	
 
 	// FAnimNode_Base interface
@@ -214,6 +257,13 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	void ProceduralAimOffset(FPoseContext& Output, FQuat& AccumulativeOffsetInverse);
 
 	static void SortBones(TArray<FBoneTransform>& OutBoneTransforms);
+
+private:
+	static FORCEINLINE void ClampRange(float& InOutValue, const FFloatRange& Range)
+	{
+		InOutValue = FMath::Clamp<float>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
+			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
+	}
 };
 
 

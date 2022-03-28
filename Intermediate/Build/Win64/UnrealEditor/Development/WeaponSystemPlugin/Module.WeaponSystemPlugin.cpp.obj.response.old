@@ -1,14 +1,14 @@
 "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.cpp"
 /I .
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Private"
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
-/I Runtime
-/I Runtime\CoreUObject\Public
-/I Runtime\TraceLog\Public
-/I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
+/I Runtime
 /I Runtime\Engine\Classes
 /I Runtime\Engine\Public
+/I Runtime\TraceLog\Public
+/I Runtime\Core\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
+/I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NetCore
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
@@ -232,6 +232,8 @@
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController
 /I Developer\AnimationDataController\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AdvancedWidgets
+/I Runtime\AdvancedWidgets\Public
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin"
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source"
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public"
@@ -251,7 +253,7 @@
 /I ThirdParty\PhysX3\PhysX_3.4\Include\extensions
 /I ThirdParty\PhysX3\PhysX_3.4\Include\geometry
 /I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\INCLUDE"
-/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\include\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"

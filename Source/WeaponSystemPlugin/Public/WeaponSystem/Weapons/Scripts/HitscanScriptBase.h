@@ -134,7 +134,8 @@ protected:
 	
 	// Binds the input to fire
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "FiringInput"), Category = "Script|Hitscan")
-	FORCEINLINE void SetupActivationBinding(const FName& FiringInput, const EInputEvent InputEvent = IE_Pressed) {
+	FORCEINLINE void SetupActivationBinding(const FName& FiringInput, const EInputEvent InputEvent = IE_Pressed)
+	{
 		SetupBindingByInputName(this, &ThisClass::Fire, FiringInput, InputEvent);
 	}
 	

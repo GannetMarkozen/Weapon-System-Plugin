@@ -42,9 +42,6 @@ FTransform AWeapon::GetOrientationRelativeTransform_Implementation(const float A
 	if(AimingValue <= 0.f)
 		return GetOriginRelativeTransform();
 
-	if(AimingValue >= 1.f)
-		return SightsRelativeTransform;
-
 	// Get the OriginRelativeTransform value with it's origin-space
 	// Y location being equal to the sights origin-space Y location.
 	FTransform OriginCenteredTransform = GetOriginRelativeTransform();

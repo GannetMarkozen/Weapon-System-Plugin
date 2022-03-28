@@ -189,6 +189,7 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	virtual void Server_StopCrouching_Implementation(); \
 	virtual void Multi_StartCrouching_Implementation(); \
 	virtual void Server_StartCrouching_Implementation(); \
+	virtual FTransform GetWeaponOffsetTransform_Implementation() const; \
 	virtual FTransform GetOffHandTransform_Implementation() const; \
 	virtual FTransform GetDomHandTransform_Implementation() const; \
 	virtual void SetupMesh_Implementation(); \
@@ -206,6 +207,7 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	DECLARE_FUNCTION(execServer_StartCrouching); \
 	DECLARE_FUNCTION(execGetNumRecoilInstances); \
 	DECLARE_FUNCTION(execAddRecoilInstance); \
+	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \
 	DECLARE_FUNCTION(execGetOffHandTransform); \
 	DECLARE_FUNCTION(execGetDomHandTransform); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
@@ -228,6 +230,7 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	DECLARE_FUNCTION(execServer_StartCrouching); \
 	DECLARE_FUNCTION(execGetNumRecoilInstances); \
 	DECLARE_FUNCTION(execAddRecoilInstance); \
+	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \
 	DECLARE_FUNCTION(execGetOffHandTransform); \
 	DECLARE_FUNCTION(execGetDomHandTransform); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
@@ -241,6 +244,10 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 		FTransform ReturnValue; \
 	}; \
 	struct TrueFPSCharacterBase_eventGetOffHandTransform_Parms \
+	{ \
+		FTransform ReturnValue; \
+	}; \
+	struct TrueFPSCharacterBase_eventGetWeaponOffsetTransform_Parms \
 	{ \
 		FTransform ReturnValue; \
 	};

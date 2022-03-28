@@ -3,16 +3,16 @@
 
 #include "WeaponSystem/Weapons/WeaponBase.h"
 
-
-#include "Components/ArrowComponent.h"
-#include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
-#include "WeaponSystem/Inventories/CharacterInventoryComponent.h"
+#include "Engine/ActorChannel.h"
+
 #include "WeaponSystem/Inventories/InventoryComponent.h"
 #include "WeaponSystem/Weapons/WeaponScriptBase.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h"
 #include "WeaponSystem/Weapons/Attachments/WeaponAttachmentPoint.h"
+
+
 
 AWeaponBase::AWeaponBase()
 {
@@ -29,8 +29,10 @@ AWeaponBase::AWeaponBase()
 void AWeaponBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ThisClass, Scripts);
 	DOREPLIFETIME(ThisClass, OwningInventory);
 }
+
 
 bool AWeaponBase::ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags)
 {
@@ -39,19 +41,75 @@ bool AWeaponBase::ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, 
 	return bWroteSomething;
 }
 
+void AWeaponBase::PreReplication(IRepChangedPropertyTracker& ChangedPropertyTracker)
+{
+	Super::PreReplication(ChangedPropertyTracker);
+
+	// Call PreReplication on weapon scripts
+	for(UWeaponScriptBase* const Script : Scripts) UWeaponSystemFunctionLibrary::CallPreReplication(Script);
+	
+	DOREPLIFETIME_ACTIVE_OVERRIDE(ThisClass, Scripts, !DelayScriptsReplicationTimerHandle.IsValid());
+}
+
+
+
 void AWeaponBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	SetActorEnableCollision(false);
-	
-	for(UWeaponScriptBase* Script : Scripts)
+
+	// Initialize default scripts
+	for(int32 i = 0; i < Scripts.Num(); i++)
 	{
-		if(!IsValid(Script)) continue;
-		Script->OwningWeaponBase = this;
-		Script->BeginPlay();
+		if(!Scripts[i])
+		{
+			Scripts.RemoveAt(i--);
+			continue;
+		}
+		Internal_OnAddedScript(Scripts[i]);
+	}
+
+	// Delay scripts replication after begin play
+	// to avoid created scripts being initialized
+	// before default scripts
+	if(HasAuthority())
+	{
+		const auto& Invalidate = [&]()->void { if(IsValid(this)) DelayScriptsReplicationTimerHandle.Invalidate(); };
+		GetWorldTimerManager().SetTimer(DelayScriptsReplicationTimerHandle, Invalidate, 0.5f, false);
 	}
 }
+
+void AWeaponBase::OnRep_Scripts(const TArray<UWeaponScriptBase*>& OldScripts)
+{
+	// Check added scripts
+	for(UWeaponScriptBase* Script : Scripts)
+		if(IsValid(Script) && Script->OwningWeaponBase != this)
+			Internal_OnAddedScript(Script);
+
+	// Check removed scripts
+	for(UWeaponScriptBase* OldScript : OldScripts)
+		if(OldScript && Scripts.Find(OldScript) == INDEX_NONE)
+			Internal_OnRemovedScript(OldScript);
+}
+
+void AWeaponBase::Internal_OnAddedScript(UWeaponScriptBase* NewScript)
+{
+	OnAddedScript(NewScript);
+	BP_OnAddedScript(NewScript);
+	NewScript->OwningWeaponBase = this;
+	NewScript->BeginPlay();
+}
+
+void AWeaponBase::Internal_OnRemovedScript(UWeaponScriptBase* RemovedScript)
+{
+	OnRemovedScript(RemovedScript);
+	BP_OnRemovedScript(RemovedScript);
+	RemovedScript->EndPlay();
+}
+
+
+
+
+
 
 void AWeaponBase::OnRep_OwningInventory(const UInventoryComponent* OldInventory)
 {
@@ -60,6 +118,55 @@ void AWeaponBase::OnRep_OwningInventory(const UInventoryComponent* OldInventory)
 	if(OldInventory) OnUnobtained((UInventoryComponent*)OldInventory);
 	if(OwningInventory) OnObtained(OwningInventory);
 }
+
+
+template<typename T>
+T* AWeaponBase::CreateScript(const TSubclassOf<UWeaponScriptBase>& Class, const bool bCheckForExistingScriptOfClass)
+{
+	checkf(HasAuthority(), TEXT("AWeaponBase::SpawnScript can not spawn script without authority"));
+	if(!Class || (bCheckForExistingScriptOfClass && HasScript(Class))) return nullptr;
+	T* NewScript = NewObject<T>(this, Class);
+	AddScript(NewScript);
+	return NewScript;
+}
+
+
+void AWeaponBase::AddScript(UWeaponScriptBase* Script)
+{
+	checkf(HasAuthority(), TEXT("AWeaponBase::AddScript can not add script without authority"));
+	if(!IsValid(Script)) return;
+	Scripts.Add(Script);
+	Internal_OnAddedScript(Script);
+}
+
+void AWeaponBase::RemoveScript(UWeaponScriptBase* Script)
+{
+	checkf(HasAuthority(), TEXT("AWeaponBase::RemoveScript can not remove script without authority"));
+	if(!Script) return;
+	Internal_OnRemovedScript(Script);
+	Script->Destroy();
+	Scripts.Remove(Script);
+}
+
+
+bool AWeaponBase::RemoveScriptsByClass(const TSubclassOf<UWeaponScriptBase>& Class)
+{
+	checkf(HasAuthority(), TEXT("AWeaponBase::RemoveScriptsByClass can not remove script without authority"));
+	if(!Class) return false;
+	bool bRemovedAny = false;
+	for(int32 i = 0; i < Scripts.Num(); i++) {
+		if(IsValid(Scripts[i]) && Scripts[i]->IsA(Class)) {
+			Internal_OnRemovedScript(Scripts[i]);
+			Scripts[i]->Destroy();
+			Scripts.RemoveAt(i--);
+			bRemovedAny = true;
+		}
+	}
+	return bRemovedAny;
+}
+
+
+
 
 void AWeaponBase::OnEquipped()
 {
@@ -138,20 +245,59 @@ void AWeaponBase::GetAttachmentPoints(TArray<UWeaponAttachmentPoint*>& OutAttach
 	GetComponents<UWeaponAttachmentPoint>(OutAttachmentPoints);
 }
 
-void AWeaponBase::GetScriptsOfClass(TArray<UWeaponScriptBase*>& OutScripts, const TSubclassOf<UWeaponScriptBase>& Class) const
+TArray<UWeaponScriptBase*> AWeaponBase::GetScriptsOfClass(const TSubclassOf<UWeaponScriptBase>& Class) const
 {
+	TArray<UWeaponScriptBase*> OutScripts;
 	for(UWeaponScriptBase* Script : Scripts)
 		if(IsValid(Script) && Script->GetClass()->IsChildOf(Class))
 			OutScripts.Add(Script);
+	return OutScripts;
+}
+
+bool AWeaponBase::HasScript(const TSubclassOf<UWeaponScriptBase>& Class) const
+{
+	if(!Class) return false;
+	for(const UWeaponScriptBase* Script : Scripts)
+		if(Script && Script->IsA(Class))
+			return true;
+	return false;
+}
+
+UWeaponScriptBase* AWeaponBase::GetScriptOfClass(const TSubclassOf<UWeaponScriptBase>& Class) const
+{
+	if(!Class) return nullptr;
+	for(UWeaponScriptBase* Script : Scripts)
+		if(IsValid(Script) && Script->IsA(Class))
+			return Script;
+	return nullptr;
 }
 
 template <typename T>
-void AWeaponBase::GetScripts(TArray<T*>& OutScripts) const
+void AWeaponBase::GetScriptsOfClass(TArray<T*>& OutScripts) const
 {
 	for(UWeaponScriptBase* Script : Scripts)
 		if(T* TScript = Cast<T>(Script))
 			OutScripts.Add(TScript);
 }
+
+template<typename T>
+T* AWeaponBase::GetScriptOfClass() const
+{
+	for(UWeaponScriptBase* Script : Scripts)
+		if(T* TScript = Cast<T>(Script))
+			return TScript;
+	return nullptr;
+}
+
+void AWeaponBase::GetAttachedWidgets(TArray<UUserWidget*>& OutWidgets) const
+{
+	TArray<UWidgetComponent*> WidgetComps;
+	GetComponents(WidgetComps);
+	for(const UWidgetComponent* WidgetComp : WidgetComps)
+		if(UUserWidget* Widget = WidgetComp->GetWidget())
+			OutWidgets.Add(Widget);
+}
+
 
 
 

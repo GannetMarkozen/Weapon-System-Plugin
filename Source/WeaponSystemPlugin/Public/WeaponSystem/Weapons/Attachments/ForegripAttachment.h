@@ -15,16 +15,16 @@ public:
 	AForegripAttachment();
 
 protected:
-	virtual void OnRemoved_Implementation() override;
+	virtual void OnRemoved() override;
 	/*virtual FORCEINLINE void OnObtained_Implementation(class UInventoryComponent* OwningInventory) override
 	{
 		const auto& CallSetHandPlacement = [=]()->void{ if(IsValid(this)) SetHandPlacement(OwningInventory); };
 		GetWorldTimerManager().SetTimerForNextTick(CallSetHandPlacement);
 	}*/
 
-	virtual FORCEINLINE void OnEquipped_Implementation() override
+	virtual FORCEINLINE void OnEquipped() override
 	{// On equipped, set hand placement transform after a tick so that the AnimPose is being played during the update.
-		Super::OnEquipped_Implementation();
+		Super::OnEquipped();
 		SetHandPlacement();
 		//GetWorldTimerManager().SetTimerForNextTick(this, &ThisClass::SetHandPlacement);
 	}

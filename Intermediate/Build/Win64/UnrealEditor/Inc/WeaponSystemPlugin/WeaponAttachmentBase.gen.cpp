@@ -17,12 +17,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponAttachmentBase();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponAttachmentPoint_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UItemInterface_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execInternal_OnUnequipped)
 	{
@@ -66,94 +67,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		P_THIS->SetVisibility(Z_Param_bVisible);
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnUnobtained_Implementation)
-	{
-		P_GET_OBJECT(UInventoryComponent,Z_Param_OldInventory);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnUnobtained_Implementation(Z_Param_OldInventory);
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnUnobtained)
-	{
-		P_GET_OBJECT(UInventoryComponent,Z_Param_OldInventory);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnUnobtained_Implementation(Z_Param_OldInventory);
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnObtained_Implementation)
-	{
-		P_GET_OBJECT(UInventoryComponent,Z_Param_OwningInventory);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnObtained_Implementation(Z_Param_OwningInventory);
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnObtained)
-	{
-		P_GET_OBJECT(UInventoryComponent,Z_Param_OwningInventory);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnObtained_Implementation(Z_Param_OwningInventory);
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnUnequipped_Implementation)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnUnequipped_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnUnequipped)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnUnequipped_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnEquipped_Implementation)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnEquipped_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnEquipped)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnEquipped_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnRemoved_Implementation)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnRemoved_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnRemoved)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnRemoved_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnAttached_Implementation)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnAttached_Implementation();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(AWeaponAttachmentBase::execOnAttached)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->OnAttached_Implementation();
-		P_NATIVE_END;
-	}
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execSpawnAttachmentUnattached)
 	{
 		P_GET_OBJECT(UObject,Z_Param_WorldContextObject);
@@ -173,39 +86,39 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		*(AWeaponAttachmentBase**)Z_Param__Result=AWeaponAttachmentBase::SpawnAttachment(Z_Param_Out_AttachmentClass,Z_Param_AttachmentPoint);
 		P_NATIVE_END;
 	}
-	static FName NAME_AWeaponAttachmentBase_OnAttached = FName(TEXT("OnAttached"));
-	void AWeaponAttachmentBase::OnAttached()
+	static FName NAME_AWeaponAttachmentBase_BP_OnAttached = FName(TEXT("BP_OnAttached"));
+	void AWeaponAttachmentBase::BP_OnAttached()
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnAttached),NULL);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnAttached),NULL);
 	}
-	static FName NAME_AWeaponAttachmentBase_OnEquipped = FName(TEXT("OnEquipped"));
-	void AWeaponAttachmentBase::OnEquipped()
+	static FName NAME_AWeaponAttachmentBase_BP_OnEquipped = FName(TEXT("BP_OnEquipped"));
+	void AWeaponAttachmentBase::BP_OnEquipped()
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnEquipped),NULL);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnEquipped),NULL);
 	}
-	static FName NAME_AWeaponAttachmentBase_OnObtained = FName(TEXT("OnObtained"));
-	void AWeaponAttachmentBase::OnObtained(UInventoryComponent* OwningInventory)
+	static FName NAME_AWeaponAttachmentBase_BP_OnObtained = FName(TEXT("BP_OnObtained"));
+	void AWeaponAttachmentBase::BP_OnObtained(UInventoryComponent* OwningInventory)
 	{
-		WeaponAttachmentBase_eventOnObtained_Parms Parms;
+		WeaponAttachmentBase_eventBP_OnObtained_Parms Parms;
 		Parms.OwningInventory=OwningInventory;
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnObtained),&Parms);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnObtained),&Parms);
 	}
-	static FName NAME_AWeaponAttachmentBase_OnRemoved = FName(TEXT("OnRemoved"));
-	void AWeaponAttachmentBase::OnRemoved()
+	static FName NAME_AWeaponAttachmentBase_BP_OnRemoved = FName(TEXT("BP_OnRemoved"));
+	void AWeaponAttachmentBase::BP_OnRemoved()
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnRemoved),NULL);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnRemoved),NULL);
 	}
-	static FName NAME_AWeaponAttachmentBase_OnUnequipped = FName(TEXT("OnUnequipped"));
-	void AWeaponAttachmentBase::OnUnequipped()
+	static FName NAME_AWeaponAttachmentBase_BP_OnUnequipped = FName(TEXT("BP_OnUnequipped"));
+	void AWeaponAttachmentBase::BP_OnUnequipped()
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnUnequipped),NULL);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnUnequipped),NULL);
 	}
-	static FName NAME_AWeaponAttachmentBase_OnUnobtained = FName(TEXT("OnUnobtained"));
-	void AWeaponAttachmentBase::OnUnobtained(UInventoryComponent* OldInventory)
+	static FName NAME_AWeaponAttachmentBase_BP_OnUnobtained = FName(TEXT("BP_OnUnobtained"));
+	void AWeaponAttachmentBase::BP_OnUnobtained(UInventoryComponent* OldInventory)
 	{
-		WeaponAttachmentBase_eventOnUnobtained_Parms Parms;
+		WeaponAttachmentBase_eventBP_OnUnobtained_Parms Parms;
 		Parms.OldInventory=OldInventory;
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_OnUnobtained),&Parms);
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnUnobtained),&Parms);
 	}
 	void AWeaponAttachmentBase::StaticRegisterNativesAWeaponAttachmentBase()
 	{
@@ -215,23 +128,183 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 			{ "Internal_OnObtained", &AWeaponAttachmentBase::execInternal_OnObtained },
 			{ "Internal_OnUnequipped", &AWeaponAttachmentBase::execInternal_OnUnequipped },
 			{ "Internal_OnUnobtained", &AWeaponAttachmentBase::execInternal_OnUnobtained },
-			{ "OnAttached", &AWeaponAttachmentBase::execOnAttached },
-			{ "OnAttached_Implementation", &AWeaponAttachmentBase::execOnAttached_Implementation },
-			{ "OnEquipped", &AWeaponAttachmentBase::execOnEquipped },
-			{ "OnEquipped_Implementation", &AWeaponAttachmentBase::execOnEquipped_Implementation },
-			{ "OnObtained", &AWeaponAttachmentBase::execOnObtained },
-			{ "OnObtained_Implementation", &AWeaponAttachmentBase::execOnObtained_Implementation },
-			{ "OnRemoved", &AWeaponAttachmentBase::execOnRemoved },
-			{ "OnRemoved_Implementation", &AWeaponAttachmentBase::execOnRemoved_Implementation },
-			{ "OnUnequipped", &AWeaponAttachmentBase::execOnUnequipped },
-			{ "OnUnequipped_Implementation", &AWeaponAttachmentBase::execOnUnequipped_Implementation },
-			{ "OnUnobtained", &AWeaponAttachmentBase::execOnUnobtained },
-			{ "OnUnobtained_Implementation", &AWeaponAttachmentBase::execOnUnobtained_Implementation },
 			{ "SetVisibility", &AWeaponAttachmentBase::execSetVisibility },
 			{ "SpawnAttachment", &AWeaponAttachmentBase::execSpawnAttachment },
 			{ "SpawnAttachmentUnattached", &AWeaponAttachmentBase::execSpawnAttachmentUnattached },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Attached" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnAttached", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Equipped" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnEquipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningInventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningInventory;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::NewProp_OwningInventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::NewProp_OwningInventory = { "OwningInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventBP_OnObtained_Parms, OwningInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::NewProp_OwningInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::NewProp_OwningInventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::NewProp_OwningInventory,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Obtained" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnObtained", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventBP_OnObtained_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Removed" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnRemoved", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Unequipped" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnUnequipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldInventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldInventory;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::NewProp_OldInventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::NewProp_OldInventory = { "OldInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventBP_OnUnobtained_Parms, OldInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::NewProp_OldInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::NewProp_OldInventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::NewProp_OldInventory,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "DisplayName", "On Unobtained" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnUnobtained", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventBP_OnUnobtained_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics
 	{
@@ -382,362 +455,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnobtained_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "Comment", "// Equivalent to BeginPlay but is called after replication when the OwningWeapon is valid.\n// OwningWeapon should always be valid unless the Weapon Attachment Point was placed on an\n// actor that does not eventually have it's owner derive from WeaponBase (which you should never do).\n" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-		{ "ToolTip", "Equivalent to BeginPlay but is called after replication when the OwningWeapon is valid.\nOwningWeapon should always be valid unless the Weapon Attachment Point was placed on an\nactor that does not eventually have it's owner derive from WeaponBase (which you should never do)." },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnAttached", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "Comment", "// The C++ parent implementation of On Attached\n" },
-		{ "DisplayName", "Parent: On Attached" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-		{ "ToolTip", "The C++ parent implementation of On Attached" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnAttached_Implementation", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnEquipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "DisplayName", "Parent: On Equipped" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnEquipped_Implementation", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningInventory_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningInventory;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::NewProp_OwningInventory_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::NewProp_OwningInventory = { "OwningInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventOnObtained_Parms, OwningInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::NewProp_OwningInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::NewProp_OwningInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::NewProp_OwningInventory,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "Comment", "// Called whenever the owning inventory of the owning weapon changes to a valid inventory\n" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-		{ "ToolTip", "Called whenever the owning inventory of the owning weapon changes to a valid inventory" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnObtained", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventOnObtained_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics
-	{
-		struct WeaponAttachmentBase_eventOnObtained_Implementation_Parms
-		{
-			UInventoryComponent* OwningInventory;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningInventory_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningInventory;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::NewProp_OwningInventory_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::NewProp_OwningInventory = { "OwningInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventOnObtained_Implementation_Parms, OwningInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::NewProp_OwningInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::NewProp_OwningInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::NewProp_OwningInventory,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "DisplayName", "Parent: On Obtained" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnObtained_Implementation", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventOnObtained_Implementation_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "Comment", "// Equivalent to OnDestroy but is called right beforehand\n" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-		{ "ToolTip", "Equivalent to OnDestroy but is called right beforehand" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnRemoved", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "DisplayName", "Parent: On Removed" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnRemoved_Implementation", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnUnequipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "DisplayName", "Parent: On Unequipped" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnUnequipped_Implementation", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldInventory_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldInventory;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::NewProp_OldInventory_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::NewProp_OldInventory = { "OldInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventOnUnobtained_Parms, OldInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::NewProp_OldInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::NewProp_OldInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::NewProp_OldInventory,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "Comment", "// Called whenever the owning inventory of the owning weapon becomes invalid. Also called on destroyed\n" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-		{ "ToolTip", "Called whenever the owning inventory of the owning weapon becomes invalid. Also called on destroyed" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnUnobtained", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventOnUnobtained_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics
-	{
-		struct WeaponAttachmentBase_eventOnUnobtained_Implementation_Parms
-		{
-			UInventoryComponent* OldInventory;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldInventory_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldInventory;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::NewProp_OldInventory_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::NewProp_OldInventory = { "OldInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventOnUnobtained_Implementation_Parms, OldInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::NewProp_OldInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::NewProp_OldInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::NewProp_OldInventory,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::Function_MetaDataParams[] = {
-		{ "Category", "Attachment" },
-		{ "DisplayName", "Parent: On Unobtained" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "OnUnobtained_Implementation", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventOnUnobtained_Implementation_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -908,11 +625,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		{ "AutoCreateRefTerm", "AttachmentClass, WorldTransform" },
 		{ "Category", "Attachment" },
 		{ "Comment", "// Does nothing but spawn the weapon attachment\n" },
-		{ "DefaultToSelf", "WorldContextObject" },
 		{ "DeterminesOutputType", "AttachmentClass" },
 		{ "HidePin", "WorldContextObject" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
 		{ "ToolTip", "Does nothing but spawn the weapon attachment" },
+		{ "WorldContextObject", "WorldContextObject" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "SpawnAttachmentUnattached", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventSpawnAttachmentUnattached_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C82405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached_Statics::Function_MetaDataParams)) };
@@ -941,6 +658,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningWeapon;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -949,25 +667,19 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeaponAttachmentBase_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached, "BP_OnAttached" }, // 2813667319
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped, "BP_OnEquipped" }, // 493714038
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained, "BP_OnObtained" }, // 3306597908
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved, "BP_OnRemoved" }, // 2785620924
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped, "BP_OnUnequipped" }, // 2564796014
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained, "BP_OnUnobtained" }, // 177451846
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped, "Internal_OnEquipped" }, // 2351710582
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnObtained, "Internal_OnObtained" }, // 209923426
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped, "Internal_OnUnequipped" }, // 208843231
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnobtained, "Internal_OnUnobtained" }, // 1869058782
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached, "OnAttached" }, // 4280499806
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnAttached_Implementation, "OnAttached_Implementation" }, // 1190749316
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped, "OnEquipped" }, // 1871234610
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnEquipped_Implementation, "OnEquipped_Implementation" }, // 176001175
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained, "OnObtained" }, // 1772134365
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnObtained_Implementation, "OnObtained_Implementation" }, // 4154734617
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved, "OnRemoved" }, // 1689225397
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnRemoved_Implementation, "OnRemoved_Implementation" }, // 543293294
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped, "OnUnequipped" }, // 1938476075
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnUnequipped_Implementation, "OnUnequipped_Implementation" }, // 1759787237
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained, "OnUnobtained" }, // 3994249294
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_OnUnobtained_Implementation, "OnUnobtained_Implementation" }, // 8526938
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SetVisibility, "SetVisibility" }, // 125349569
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachment, "SpawnAttachment" }, // 3760523635
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached, "SpawnAttachmentUnattached" }, // 1544954123
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachmentUnattached, "SpawnAttachmentUnattached" }, // 3257673981
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponAttachmentBase_Statics::Class_MetaDataParams[] = {
@@ -988,6 +700,9 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWeaponAttachmentBase_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponAttachmentBase_Statics::NewProp_OwningWeapon,
 	};
+		const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_AWeaponAttachmentBase_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UItemInterface_NoRegister, (int32)VTABLE_OFFSET(AWeaponAttachmentBase, IItemInterface), false },
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AWeaponAttachmentBase_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AWeaponAttachmentBase>::IsAbstract,
 	};
@@ -998,11 +713,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		DependentSingletons,
 		FuncInfo,
 		Z_Construct_UClass_AWeaponAttachmentBase_Statics::PropPointers,
-		nullptr,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponAttachmentBase_Statics::PropPointers),
-		0,
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x009000A5u,
 		METADATA_PARAMS(Z_Construct_UClass_AWeaponAttachmentBase_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponAttachmentBase_Statics::Class_MetaDataParams))
 	};
@@ -1015,7 +730,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponAttachmentBase, 2401906604);
+	IMPLEMENT_CLASS(AWeaponAttachmentBase, 3594459440);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeaponAttachmentBase>()
 	{
 		return AWeaponAttachmentBase::StaticClass();

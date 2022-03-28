@@ -13,13 +13,20 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define WEAPONSYSTEMANIMSRUNTIME_AnimNode_TrueFPSRig_generated_h
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_37_GENERATED_BODY \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_55_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics; \
 	static class UScriptStruct* StaticStruct(); \
 	typedef FAnimNode_Base Super;
 
 
 template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FAnimNode_TrueFPSRig>();
+
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_34_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FJointClampConfig_Statics; \
+	WEAPONSYSTEMANIMSRUNTIME_API static class UScriptStruct* StaticStruct();
+
+
+template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FJointClampConfig>();
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_21_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FArmPullbackConfig_Statics; \

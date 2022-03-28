@@ -24,6 +24,8 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 	ENGINE_API UClass* Z_Construct_UClass_UAnimSequence_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UObject_NoRegister();
 // End Cross Module References
 	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_PlaceholderDelegate__DelegateSignature_Statics
 	{
@@ -103,6 +105,14 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		}
 		return ReturnEnum;
 	}
+	DEFINE_FUNCTION(UWeaponSystemFunctionLibrary::execGetDefaultObject)
+	{
+		P_GET_OBJECT_REF_NO_PTR(TSubclassOf<UObject> ,Z_Param_Out_Class);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(UObject**)Z_Param__Result=UWeaponSystemFunctionLibrary::GetDefaultObject(Z_Param_Out_Class);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UWeaponSystemFunctionLibrary::execGetAnimationSequenceAsPoseSnapshot)
 	{
 		P_GET_STRUCT_REF(FPoseSnapshot,Z_Param_Out_OutPoseSnapshot);
@@ -175,6 +185,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 			{ "GetAnimationSequenceAsPoseSnapshot", &UWeaponSystemFunctionLibrary::execGetAnimationSequenceAsPoseSnapshot },
 			{ "GetBoneTransformFromAnimationSequence", &UWeaponSystemFunctionLibrary::execGetBoneTransformFromAnimationSequence },
 			{ "GetCachedPoseSnapshot", &UWeaponSystemFunctionLibrary::execGetCachedPoseSnapshot },
+			{ "GetDefaultObject", &UWeaponSystemFunctionLibrary::execGetDefaultObject },
 			{ "IsDelegateBound", &UWeaponSystemFunctionLibrary::execIsDelegateBound },
 			{ "RemoveCachedPoseSnapshot", &UWeaponSystemFunctionLibrary::execRemoveCachedPoseSnapshot },
 			{ "UnbindDelegate", &UWeaponSystemFunctionLibrary::execUnbindDelegate },
@@ -702,6 +713,54 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics
+	{
+		struct WeaponSystemFunctionLibrary_eventGetDefaultObject_Parms
+		{
+			const TSubclassOf<UObject>  Class;
+			UObject* ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Class_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_Class;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_Class_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_Class = { "Class", nullptr, (EPropertyFlags)0x0014000008000182, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventGetDefaultObject_Parms, Class), Z_Construct_UClass_UObject_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_Class_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_Class_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventGetDefaultObject_Parms, ReturnValue), Z_Construct_UClass_UObject_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_Class,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::Function_MetaDataParams[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "AutoCreateRefTerm", "Class" },
+		{ "Category", "Weapon System Function Library" },
+		{ "DeterminesOutputType", "Class" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "GetDefaultObject", nullptr, nullptr, sizeof(WeaponSystemFunctionLibrary_eventGetDefaultObject_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics
 	{
 		struct WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms
@@ -883,6 +942,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetAnimationSequenceAsPoseSnapshot, "GetAnimationSequenceAsPoseSnapshot" }, // 701024180
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetBoneTransformFromAnimationSequence, "GetBoneTransformFromAnimationSequence" }, // 1962109986
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetCachedPoseSnapshot, "GetCachedPoseSnapshot" }, // 14111481
+		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject, "GetDefaultObject" }, // 4270706454
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound, "IsDelegateBound" }, // 2257935771
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_RemoveCachedPoseSnapshot, "RemoveCachedPoseSnapshot" }, // 2352147295
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate, "UnbindDelegate" }, // 3877321571
@@ -921,7 +981,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UWeaponSystemFunctionLibrary, 2698948252);
+	IMPLEMENT_CLASS(UWeaponSystemFunctionLibrary, 2524726633);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponSystemFunctionLibrary>()
 	{
 		return UWeaponSystemFunctionLibrary::StaticClass();

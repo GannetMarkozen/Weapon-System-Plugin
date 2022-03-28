@@ -548,7 +548,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHitscanScriptBase, 2616328979);
+	IMPLEMENT_CLASS(UHitscanScriptBase, 1498831628);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UHitscanScriptBase>()
 	{
 		return UHitscanScriptBase::StaticClass();
@@ -767,7 +767,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USemiAutoHitscanScriptBase, 2163909560);
+	IMPLEMENT_CLASS(USemiAutoHitscanScriptBase, 929352337);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USemiAutoHitscanScriptBase>()
 	{
 		return USemiAutoHitscanScriptBase::StaticClass();
@@ -1019,7 +1019,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UBurstFireHitscanScriptBase, 2625345391);
+	IMPLEMENT_CLASS(UBurstFireHitscanScriptBase, 578946614);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UBurstFireHitscanScriptBase>()
 	{
 		return UBurstFireHitscanScriptBase::StaticClass();

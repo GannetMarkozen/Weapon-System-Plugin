@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
+#include "WeaponSystem/Weapons/Interfaces.h"
 #include "VisualizationSceneComponent.h"
+#include "Components/WidgetComponent.h"
 #include "WeaponAttachmentPoint.generated.h"
 
 
@@ -16,7 +17,7 @@
  * 
  */
 UCLASS(BlueprintType, Blueprintable, ClassGroup = (Custom), Meta = (BlueprintSpawnableComponent))
-class WEAPONSYSTEMPLUGIN_API UWeaponAttachmentPoint : public UVisualizationSceneComponent//USceneComponent
+class WEAPONSYSTEMPLUGIN_API UWeaponAttachmentPoint : public UVisualizationSceneComponent, public IItemInterface
 {
 	GENERATED_BODY()
 public:
@@ -26,6 +27,10 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual void OnComponentDestroyed(bool bDestroyingHierarchy) override;
+
+	// IItemInterface
+	virtual FORCEINLINE FText GetDisplayName_Implementation() const override { return DisplayName; }
+	virtual FORCEINLINE FText GetDescription_Implementation() const override { return Description; }
 
 #if WITH_EDITORONLY_DATA
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
@@ -37,6 +42,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Configurations")
 	TArray<TSubclassOf<class AWeaponAttachmentBase>> AllowedAttachments;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Configurations|Item Interface")
+	FText DisplayName = FText::FromString(FString("Weapon Attachment"));
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Configurations|Item Interface")
+	FText Description = FText::FromString(FString("A generic weapon attachment slot"));
+
 	UPROPERTY(BlueprintReadWrite, ReplicatedUsing = "OnRep_Attachment", Meta = (AllowPrivateAccess = "true"), Category = "Attachment")
 	class AWeaponAttachmentBase* Attachment;
 
@@ -45,6 +56,7 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Attachment")
 	void AttachmentChanged();
+	
 public:
 	const FORCEINLINE TSubclassOf<class AWeaponAttachmentBase>& GetDefaultAttachment() const { return DefaultAttachment; }
 	const FORCEINLINE TArray<TSubclassOf<class AWeaponAttachmentBase>>& GetAllowedAttachments() const { return AllowedAttachments; }
@@ -70,6 +82,16 @@ public:
 		checkf(HasAuthority(), TEXT("Called %s without authority."), *FString(__FUNCTION__));
 		Attachment = NewAttachment;
 		OnRep_Attachment();
+	}
+
+	// May be invalid
+	UFUNCTION(BlueprintPure, Category = "Attachment")
+	FORCEINLINE class UUserWidget* GetAttachedWidget() const
+	{
+		for(const USceneComponent* Child : GetAttachChildren())
+			if(const UWidgetComponent* Widget = Cast<UWidgetComponent>(Child))
+				return Widget->GetWidget();
+		return nullptr;
 	}
 
 private:

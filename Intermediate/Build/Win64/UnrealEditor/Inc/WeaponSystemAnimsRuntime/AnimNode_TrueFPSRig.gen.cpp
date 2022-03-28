@@ -18,12 +18,14 @@ void EmptyLinkFunctionForGeneratedCodeAnimNode_TrueFPSRig() {}
 	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FAnimNode_Base();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FPoseLink();
+	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FBoneReference();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
+	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FBoneParams();
 	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FArmPullbackConfig();
-	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FBoneReference();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FFloatRange();
 // End Cross Module References
 	static UEnum* EArmPullbackConfig_StaticEnum()
 	{
@@ -124,6 +126,22 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_ReferencePose;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightHand_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_RightHand;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LeftHand_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_LeftHand;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Head_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Head;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StableBone_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_StableBone;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CameraRelativeRotation_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_CameraRelativeRotation;
@@ -143,6 +161,14 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CustomWeaponOffsetTransform_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_CustomWeaponOffsetTransform;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightJointClamp_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_RightJointClamp;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LeftJointClamp_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_LeftJointClamp;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightJointLocationOffset_MetaData[];
 #endif
@@ -188,6 +214,10 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ArmsAlpha;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmsJointAlpha_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ArmsJointAlpha;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpineAlpha_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_SpineAlpha;
@@ -221,42 +251,6 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmPullbackConfig_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_ArmPullbackConfig;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Head_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Head;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightHand_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_RightHand;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightLowerArm_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_RightLowerArm;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_RightUpperArm_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_RightUpperArm;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_LeftHand_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_LeftHand;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_LeftLowerArm_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_LeftLowerArm;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_LeftUpperArm_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_LeftUpperArm;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_StableBone_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_StableBone;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Pelvis_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Pelvis;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const UECodeGen_Private::FStructParams ReturnStructParams;
 	};
@@ -286,6 +280,40 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose = { "ReferencePose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ReferencePose), Z_Construct_UScriptStruct_FPoseLink, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData[] = {
+		{ "Category", "Bone References" },
+		{ "Comment", "//\n// Bone references\n//\n" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "ToolTip", "Bone references" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand = { "RightHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData[] = {
+		{ "Category", "Bone References" },
+		{ "Comment", "/*UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n\x09""FBoneReference RightLowerArm;\n\n\x09UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n\x09""FBoneReference RightUpperArm;*/" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightUpperArm;" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand = { "LeftHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData[] = {
+		{ "Category", "Bone References" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head = { "Head", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Head), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData[] = {
+		{ "Category", "Bone References" },
+		{ "Comment", "/*UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n\x09""FBoneReference LeftLowerArm;\n\x09\n\x09UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n\x09""FBoneReference LeftUpperArm;*/// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head).\n" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftUpperArm;// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)." },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone = { "StableBone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, StableBone), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CameraRelativeRotation_MetaData[] = {
 		{ "Category", "Configurations" },
@@ -339,6 +367,28 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CustomWeaponOffsetTransform = { "CustomWeaponOffsetTransform", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, CustomWeaponOffsetTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CustomWeaponOffsetTransform_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CustomWeaponOffsetTransform_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData[] = {
+		{ "Category", "Arms IK" },
+		{ "Comment", "// Right joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\n// and outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\n// range will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference.\n" },
+		{ "DisplayName", "Right Joint Offset Clamp" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "PinHiddenByDefault", "" },
+		{ "ToolTip", "Right joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\nand outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\nrange will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference." },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp = { "RightJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData[] = {
+		{ "Category", "Arms IK" },
+		{ "Comment", "// Left joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\n// and outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\n// range will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference.\n" },
+		{ "DisplayName", "Left Joint Offset Clamp" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "PinHiddenByDefault", "" },
+		{ "ToolTip", "Left joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\nand outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\nrange will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference." },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp = { "LeftJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointLocationOffset_MetaData[] = {
 		{ "Category", "Arms IK" },
@@ -453,14 +503,27 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "Category", "Alpha" },
 		{ "ClampMax", "1" },
 		{ "ClampMin", "0" },
-		{ "Comment", "// The arms blend weight.\n" },
+		{ "Comment", "// The arms blend-weight.\n" },
 		{ "DisplayName", "Arms IK Alpha" },
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
 		{ "PinHiddenByDefault", "" },
-		{ "ToolTip", "The arms blend weight." },
+		{ "ToolTip", "The arms blend-weight." },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsAlpha = { "ArmsAlpha", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ArmsAlpha), METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsAlpha_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsAlpha_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsJointAlpha_MetaData[] = {
+		{ "Category", "Alpha" },
+		{ "ClampMax", "1" },
+		{ "ClampMin", "0" },
+		{ "Comment", "// The joint clamping blend-weight. Can lower this to make the clamping less abrupt.\n" },
+		{ "DisplayName", "Arms Joint Clamping Alpha" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "PinHiddenByDefault", "" },
+		{ "ToolTip", "The joint clamping blend-weight. Can lower this to make the clamping less abrupt." },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsJointAlpha = { "ArmsJointAlpha", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ArmsJointAlpha), METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsJointAlpha_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsJointAlpha_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineAlpha_MetaData[] = {
 		{ "Category", "Alpha" },
@@ -553,77 +616,20 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig = { "ArmPullbackConfig", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ArmPullbackConfig), Z_Construct_UScriptStruct_FArmPullbackConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData[] = {
-		{ "Category", "Head" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head = { "Head", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Head), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData[] = {
-		{ "Category", "Right Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand = { "RightHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightLowerArm_MetaData[] = {
-		{ "Category", "Right Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightLowerArm = { "RightLowerArm", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightLowerArm), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightLowerArm_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightLowerArm_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightUpperArm_MetaData[] = {
-		{ "Category", "Right Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightUpperArm = { "RightUpperArm", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightUpperArm), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightUpperArm_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightUpperArm_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData[] = {
-		{ "Category", "Left Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand = { "LeftHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftLowerArm_MetaData[] = {
-		{ "Category", "Left Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftLowerArm = { "LeftLowerArm", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftLowerArm), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftLowerArm_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftLowerArm_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftUpperArm_MetaData[] = {
-		{ "Category", "Left Arm" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftUpperArm = { "LeftUpperArm", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftUpperArm), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftUpperArm_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftUpperArm_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData[] = {
-		{ "Category", "Stability" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone = { "StableBone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, StableBone), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Pelvis_MetaData[] = {
-		{ "Category", "Stability" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Pelvis = { "Pelvis", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Pelvis), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Pelvis_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Pelvis_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CameraRelativeRotation,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_OriginRelativeTransform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SightsRelativeTransform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_OffsetTransform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CustomWeaponOffsetTransform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointLocationOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointLocationOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHandAdditiveTransform,
@@ -635,6 +641,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_WeaponLocationAlpha,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_WeaponRotationAlpha,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsAlpha,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmsJointAlpha,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineAlpha,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Alpha,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_Inner,
@@ -644,15 +651,6 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_bRightHanded,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_MaxExtension,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightLowerArm,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightUpperArm,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftLowerArm,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftUpperArm,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Pelvis,
 	};
 	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::ReturnStructParams = {
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
@@ -682,7 +680,106 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		}
 		return ReturnStruct;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash() { return 483747371U; }
+	uint32 Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash() { return 1707714741U; }
+class UScriptStruct* FJointClampConfig::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern WEAPONSYSTEMANIMSRUNTIME_API uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FJointClampConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("JointClampConfig"), sizeof(FJointClampConfig), Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash());
+	}
+	return Singleton;
+}
+template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FJointClampConfig>()
+{
+	return FJointClampConfig::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FJointClampConfig(FJointClampConfig::StaticStruct, TEXT("/Script/WeaponSystemAnimsRuntime"), TEXT("JointClampConfig"), false, nullptr, nullptr);
+static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig
+{
+	FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig()
+	{
+		UScriptStruct::DeferCppStructOps(FName(TEXT("JointClampConfig")),new UScriptStruct::TCppStructOps<FJointClampConfig>);
+	}
+} ScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig;
+	struct Z_Construct_UScriptStruct_FJointClampConfig_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HorizontalRange_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HorizontalRange;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_VerticalRange_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_VerticalRange;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "Arm Joint Clamping Configurations" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FJointClampConfig>();
+	}
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData[] = {
+		{ "Category", "JointClampConfig" },
+		{ "DisplayName", "Joint Horizontal Clamp Range" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange = { "HorizontalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, HorizontalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData[] = {
+		{ "Category", "JointClampConfig" },
+		{ "DisplayName", "Joint Vertical Clamp Range" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange = { "VerticalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, VerticalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
+		nullptr,
+		&NewStructOps,
+		"JointClampConfig",
+		sizeof(FJointClampConfig),
+		alignof(FJointClampConfig),
+		Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("JointClampConfig"), sizeof(FJointClampConfig), Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash() { return 4229284973U; }
 class UScriptStruct* FArmPullbackConfig::StaticStruct()
 {
 	static class UScriptStruct* Singleton = NULL;

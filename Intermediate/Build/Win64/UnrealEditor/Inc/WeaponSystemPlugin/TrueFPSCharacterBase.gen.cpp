@@ -477,6 +477,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		P_THIS->AddRecoilInstance(Z_Param_Out_RecoilParams);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execGetWeaponOffsetTransform)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FTransform*)Z_Param__Result=P_THIS->GetWeaponOffsetTransform_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ATrueFPSCharacterBase::execGetOffHandTransform)
 	{
 		P_FINISH;
@@ -524,6 +531,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	{
 		TrueFPSCharacterBase_eventGetOffHandTransform_Parms Parms;
 		const_cast<ATrueFPSCharacterBase*>(this)->ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_GetOffHandTransform),&Parms);
+		return Parms.ReturnValue;
+	}
+	static FName NAME_ATrueFPSCharacterBase_GetWeaponOffsetTransform = FName(TEXT("GetWeaponOffsetTransform"));
+	FTransform ATrueFPSCharacterBase::GetWeaponOffsetTransform() const
+	{
+		TrueFPSCharacterBase_eventGetWeaponOffsetTransform_Parms Parms;
+		const_cast<ATrueFPSCharacterBase*>(this)->ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_GetWeaponOffsetTransform),&Parms);
 		return Parms.ReturnValue;
 	}
 	static FName NAME_ATrueFPSCharacterBase_Multi_LeanLeft = FName(TEXT("Multi_LeanLeft"));
@@ -591,6 +605,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 			{ "GetDomHandTransform", &ATrueFPSCharacterBase::execGetDomHandTransform },
 			{ "GetNumRecoilInstances", &ATrueFPSCharacterBase::execGetNumRecoilInstances },
 			{ "GetOffHandTransform", &ATrueFPSCharacterBase::execGetOffHandTransform },
+			{ "GetWeaponOffsetTransform", &ATrueFPSCharacterBase::execGetWeaponOffsetTransform },
 			{ "Internal_CurrentWeaponChanged", &ATrueFPSCharacterBase::execInternal_CurrentWeaponChanged },
 			{ "Multi_LeanLeft", &ATrueFPSCharacterBase::execMulti_LeanLeft },
 			{ "Multi_LeanRight", &ATrueFPSCharacterBase::execMulti_LeanRight },
@@ -811,6 +826,35 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics
+	{
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventGetWeaponOffsetTransform_Parms, ReturnValue), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Anim" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetWeaponOffsetTransform", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventGetWeaponOffsetTransform_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x5C820C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1121,6 +1165,10 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ADSValue;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_WeaponOffsetTransform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_WeaponOffsetTransform;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LandedMultiDelegate_MetaData[];
 #endif
 		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_LandedMultiDelegate;
@@ -1159,6 +1207,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform, "GetDomHandTransform" }, // 731370532
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances, "GetNumRecoilInstances" }, // 3268037751
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform, "GetOffHandTransform" }, // 2595666703
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform, "GetWeaponOffsetTransform" }, // 3173533193
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged, "Internal_CurrentWeaponChanged" }, // 414162967
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft, "Multi_LeanLeft" }, // 3637738802
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanRight, "Multi_LeanRight" }, // 3726311309
@@ -1215,6 +1264,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ADSValue = { "ADSValue", nullptr, (EPropertyFlags)0x0010000000000024, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, ADSValue), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ADSValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ADSValue_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_WeaponOffsetTransform_MetaData[] = {
+		{ "Category", "Character|Anim" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_WeaponOffsetTransform = { "WeaponOffsetTransform", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, WeaponOffsetTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_WeaponOffsetTransform_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_WeaponOffsetTransform_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate_MetaData[] = {
 		{ "Category", "Character|Delegates" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
@@ -1230,7 +1286,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate = { "CurrentWeaponChangedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentWeaponChangedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset_MetaData[] = {
-		{ "Category", "Character|Recoil" },
+		{ "Category", "Weapon|Recoil" },
 		{ "Comment", "// The total offset from the accumulated recoil instances\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 		{ "ToolTip", "The total offset from the accumulated recoil instances" },
@@ -1265,6 +1321,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ClientMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_Inventory,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ADSValue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_WeaponOffsetTransform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset,
@@ -1299,7 +1356,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATrueFPSCharacterBase, 615051806);
+	IMPLEMENT_CLASS(ATrueFPSCharacterBase, 863071127);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ATrueFPSCharacterBase>()
 	{
 		return ATrueFPSCharacterBase::StaticClass();

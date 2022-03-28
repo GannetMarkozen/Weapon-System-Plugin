@@ -127,10 +127,12 @@ void UWeaponSystemAnimInstance::SetVars_Implementation(const float DeltaTime)
 	 */
 
 	constexpr float AngleClamp = 4.5f * 60.f;
+	const float AngleClampDelta = AngleClamp * DeltaTime;
 	const FRotator& AddRotation = CameraRotation - LastCameraRotation;
-	FRotator AddRotationClamped = FRotator(FMath::ClampAngle(AddRotation.Pitch, -AngleClamp * DeltaTime, AngleClamp * DeltaTime) * 1.5f,
-		FMath::ClampAngle(AddRotation.Yaw, -AngleClamp * DeltaTime, AngleClamp * DeltaTime), 0.f);
-	AddRotationClamped.Roll = AddRotationClamped.Yaw * 0.7f;
+	FRotator AddRotationClamped = FRotator(FMath::ClampAngle(AddRotation.Pitch, -AngleClampDelta, AngleClampDelta) * 1.5f,
+		FMath::ClampAngle(AddRotation.Yaw, -AngleClampDelta, AngleClampDelta),
+			FMath::ClampAngle(AddRotation.Roll, -AngleClampDelta, AngleClampDelta));
+	AddRotationClamped.Roll += AddRotationClamped.Yaw * 0.7f;
 
 	AccumulativeRotation += AddRotationClamped;
 	AccumulativeRotation = UKismetMathLibrary::RInterpTo(AccumulativeRotation, FRotator::ZeroRotator, DeltaTime, AccumulativeRotationReturnInterpSpeed);
@@ -142,9 +144,9 @@ void UWeaponSystemAnimInstance::SetVars_Implementation(const float DeltaTime)
 	const FVector& Difference = Velocity - LastVelocity;
 	
 	VelocityTarget = UKismetMathLibrary::VInterpTo(VelocityTarget, Character->GetCharacterMovement()->Velocity, DeltaTime, VelocityInterpSpeed);
-	if(Difference.Size() > 400.f)
+	if(Difference.Size() * DeltaTime > 400.f / 60.f)
 	{
-		const FVector& OrientationDifference = UKismetMathLibrary::RotateAngleAxis(Velocity - LastVelocity * 10.f, Character->GetControlRotation().Yaw, FVector(0.f, 0.f, 1.f));//UKismetMathLibrary::Quat_RotateVector(FRotator(0.f, Character->GetControlRotation().Yaw, 0.f).Quaternion(), Velocity - LastVelocity * 10.f);
+		const FVector& OrientationDifference = UKismetMathLibrary::RotateAngleAxis(Velocity - LastVelocity * 10.f, Character->GetControlRotation().Yaw, FVector::UpVector);//UKismetMathLibrary::Quat_RotateVector(FRotator(0.f, Character->GetControlRotation().Yaw, 0.f).Quaternion(), Velocity - LastVelocity * 10.f);
 		const FVector& ClampedDifference =  UKismetMathLibrary::ClampVectorSize(OrientationDifference, 0.f, 30000.f);
 		VelocityTarget += FVector(ClampedDifference.X / 3.f, ClampedDifference.Y / 3.f, ClampedDifference.Z);
 	}
@@ -197,7 +199,7 @@ void UWeaponSystemAnimInstance::CalculateWeaponSway(const float DeltaTime)
 		OffsetRotation += FRotator(SwayOffset.Z * 0.5f, SwayOffset.Y * 0.8f, SwayOffset.Y * 1.f);
 	}
 	
-	OffsetTransform = Character->RecoilOffset * FTransform(OffsetRotation, OffsetLocation, FVector(1.f));
+	OffsetTransform = Character->GetWeaponOffsetTransform() * FTransform(OffsetRotation, OffsetLocation, FVector(1.f));
 	//UE_LOG(LogTemp, Warning, TEXT("OffsetTransform == %s"), *FTransform(OffsetRotation, OffsetLocation, FVector(1.f)).ToString());
 }
 
@@ -265,6 +267,9 @@ void UWeaponSystemAnimInstance::Init()
 
 	Character->CurrentWeaponChangedDelegate.AddDynamic(this, &ThisClass::CurrentWeaponChanged);
 	Character->LandedMultiDelegate.AddDynamic(this, &ThisClass::OnCharacterLanded);
+
+	const ATrueFPSCharacterBase* DefObj = Character->GetClass()->GetDefaultObject<ATrueFPSCharacterBase>();
+	CameraRelativeLocation = DefObj->Camera->GetComponentLocation() - DefObj->GetMesh()->GetSocketLocation(FName("head"));
 }
 
 void UWeaponSystemAnimInstance::CurrentWeaponChanged_Implementation(AWeapon* NewWeapon, AWeapon* OldWeapon)

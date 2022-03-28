@@ -17,11 +17,20 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScriptBase();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UReplicatedObject();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
+	ENGINE_API UClass* Z_Construct_UClass_UInputComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject_NoRegister();
 	ENGINE_API UEnum* Z_Construct_UEnum_Engine_EInputEvent();
 // End Cross Module References
+	DEFINE_FUNCTION(UWeaponScriptBase::execGetInputComponent)
+	{
+		P_GET_UBOOL(Z_Param_bHasPriority);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(UInputComponent**)Z_Param__Result=P_THIS->GetInputComponent_Implementation(Z_Param_bHasPriority);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UWeaponScriptBase::execRemoveAllUObject)
 	{
 		P_GET_OBJECT(UObject,Z_Param_UserObject);
@@ -47,6 +56,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->SetupBinding(Z_Param_Out_InputName,EInputEvent(Z_Param_InputEvent),Z_Param_Out_FunctionName);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UWeaponScriptBase::execIsEquipped)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->IsEquipped();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UWeaponScriptBase::execIsLocallyControlled)
@@ -91,6 +107,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_UWeaponScriptBase_BP_BeginPlay),NULL);
 	}
+	static FName NAME_UWeaponScriptBase_BP_EndPlay = FName(TEXT("BP_EndPlay"));
+	void UWeaponScriptBase::BP_EndPlay()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_UWeaponScriptBase_BP_EndPlay),NULL);
+	}
 	static FName NAME_UWeaponScriptBase_BP_OwningWeaponEquipped = FName(TEXT("BP_OwningWeaponEquipped"));
 	void UWeaponScriptBase::BP_OwningWeaponEquipped()
 	{
@@ -125,12 +146,22 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		const_cast<UWeaponScriptBase*>(this)->ProcessEvent(FindFunctionChecked(NAME_UWeaponScriptBase_CanTick),&Parms);
 		return !!Parms.ReturnValue;
 	}
+	static FName NAME_UWeaponScriptBase_GetInputComponent = FName(TEXT("GetInputComponent"));
+	UInputComponent* UWeaponScriptBase::GetInputComponent(bool bHasPriority) const
+	{
+		WeaponScriptBase_eventGetInputComponent_Parms Parms;
+		Parms.bHasPriority=bHasPriority ? true : false;
+		const_cast<UWeaponScriptBase*>(this)->ProcessEvent(FindFunctionChecked(NAME_UWeaponScriptBase_GetInputComponent),&Parms);
+		return Parms.ReturnValue;
+	}
 	void UWeaponScriptBase::StaticRegisterNativesUWeaponScriptBase()
 	{
 		UClass* Class = UWeaponScriptBase::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "CanTick", &UWeaponScriptBase::execCanTick },
+			{ "GetInputComponent", &UWeaponScriptBase::execGetInputComponent },
 			{ "GetOwningInventory", &UWeaponScriptBase::execGetOwningInventory },
+			{ "IsEquipped", &UWeaponScriptBase::execIsEquipped },
 			{ "IsLocallyControlled", &UWeaponScriptBase::execIsLocallyControlled },
 			{ "OwningWeaponEquipped", &UWeaponScriptBase::execOwningWeaponEquipped },
 			{ "OwningWeaponUnequipped", &UWeaponScriptBase::execOwningWeaponUnequipped },
@@ -161,6 +192,32 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScriptBase_BP_BeginPlay_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script" },
+		{ "Comment", "// Called when removed from Owning Weapon and is pending kill. Called on all instances.\n" },
+		{ "DisplayName", "End Play" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponScriptBase.h" },
+		{ "ToolTip", "Called when removed from Owning Weapon and is pending kill. Called on all instances." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponScriptBase, nullptr, "BP_EndPlay", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -338,6 +395,60 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bHasPriority_MetaData[];
+#endif
+		static void NewProp_bHasPriority_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasPriority;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	void Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority_SetBit(void* Obj)
+	{
+		((WeaponScriptBase_eventGetInputComponent_Parms*)Obj)->bHasPriority = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority = { "bHasPriority", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(WeaponScriptBase_eventGetInputComponent_Parms), &Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority_SetBit, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponScriptBase_eventGetInputComponent_Parms, ReturnValue), Z_Construct_UClass_UInputComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_ReturnValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_ReturnValue_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_bHasPriority,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script|Input Binding" },
+		{ "CPP_Default_bHasPriority", "true" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponScriptBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponScriptBase, nullptr, "GetInputComponent", nullptr, nullptr, sizeof(WeaponScriptBase_eventGetInputComponent_Parms), Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x5C080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UWeaponScriptBase_GetOwningInventory_Statics
 	{
 		struct WeaponScriptBase_eventGetOwningInventory_Parms
@@ -375,6 +486,44 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScriptBase_GetOwningInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics
+	{
+		struct WeaponScriptBase_eventIsEquipped_Parms
+		{
+			bool ReturnValue;
+		};
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((WeaponScriptBase_eventIsEquipped_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(WeaponScriptBase_eventIsEquipped_Parms), &Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponScriptBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponScriptBase, nullptr, "IsEquipped", nullptr, nullptr, sizeof(WeaponScriptBase_eventIsEquipped_Parms), Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UWeaponScriptBase_IsEquipped()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScriptBase_IsEquipped_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -668,13 +817,16 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponScriptBase_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_BeginPlay, "BP_BeginPlay" }, // 305887616
+		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_EndPlay, "BP_EndPlay" }, // 2467683288
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_OwningWeaponEquipped, "BP_OwningWeaponEquipped" }, // 2430076901
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_OwningWeaponUnequipped, "BP_OwningWeaponUnequipped" }, // 3085020317
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_RemoveInput, "BP_RemoveInput" }, // 2680145660
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_SetupInput, "BP_SetupInput" }, // 1588154430
 		{ &Z_Construct_UFunction_UWeaponScriptBase_BP_Tick, "BP_Tick" }, // 3998931727
 		{ &Z_Construct_UFunction_UWeaponScriptBase_CanTick, "CanTick" }, // 2380500681
+		{ &Z_Construct_UFunction_UWeaponScriptBase_GetInputComponent, "GetInputComponent" }, // 1318943518
 		{ &Z_Construct_UFunction_UWeaponScriptBase_GetOwningInventory, "GetOwningInventory" }, // 1527551697
+		{ &Z_Construct_UFunction_UWeaponScriptBase_IsEquipped, "IsEquipped" }, // 3572224081
 		{ &Z_Construct_UFunction_UWeaponScriptBase_IsLocallyControlled, "IsLocallyControlled" }, // 2602702205
 		{ &Z_Construct_UFunction_UWeaponScriptBase_OwningWeaponEquipped, "OwningWeaponEquipped" }, // 2503409325
 		{ &Z_Construct_UFunction_UWeaponScriptBase_OwningWeaponUnequipped, "OwningWeaponUnequipped" }, // 1342906194
@@ -732,7 +884,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScriptBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UWeaponScriptBase, 3559935747);
+	IMPLEMENT_CLASS(UWeaponScriptBase, 2131209920);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponScriptBase>()
 	{
 		return UWeaponScriptBase::StaticClass();

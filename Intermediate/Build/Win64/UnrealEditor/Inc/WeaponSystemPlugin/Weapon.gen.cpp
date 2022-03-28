@@ -359,7 +359,9 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Weapon" },
+		{ "Comment", "// Gets the relative transform of the default sights on the weapon. Default sights\n// usually being a mesh socket but this can be overridden.\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
+		{ "ToolTip", "Gets the relative transform of the default sights on the weapon. Default sights\nusually being a mesh socket but this can be overridden." },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetDefaultSightsRelativeTransform", nullptr, nullptr, sizeof(Weapon_eventGetDefaultSightsRelativeTransform_Parms), Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x5C820C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::Function_MetaDataParams)) };
@@ -388,7 +390,9 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Weapon" },
+		{ "Comment", "// Overridable function that returns the muzzle transform in world-space\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
+		{ "ToolTip", "Overridable function that returns the muzzle transform in world-space" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetMuzzleWorldTransform", nullptr, nullptr, sizeof(Weapon_eventGetMuzzleWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x5C820C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::Function_MetaDataParams)) };
@@ -543,7 +547,9 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Weapon" },
+		{ "Comment", "// The origin transform in world-space\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
+		{ "ToolTip", "The origin transform in world-space" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetOriginWorldTransform", nullptr, nullptr, sizeof(Weapon_eventGetOriginWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams)) };
@@ -677,12 +683,12 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeapon_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped, "GetAnimationVariablesOnEquipped" }, // 2222789109
 		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick, "GetAnimationVariablesOnTick" }, // 4082927911
-		{ &Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform, "GetDefaultSightsRelativeTransform" }, // 205238784
-		{ &Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform, "GetMuzzleWorldTransform" }, // 1467361668
+		{ &Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform, "GetDefaultSightsRelativeTransform" }, // 1263390035
+		{ &Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform, "GetMuzzleWorldTransform" }, // 3325872551
 		{ &Z_Construct_UFunction_AWeapon_GetOrientationRelativeTransform, "GetOrientationRelativeTransform" }, // 1584239922
 		{ &Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform, "GetOrientationWorldTransform" }, // 33458260
 		{ &Z_Construct_UFunction_AWeapon_GetOriginRelativeTransform, "GetOriginRelativeTransform" }, // 1496201312
-		{ &Z_Construct_UFunction_AWeapon_GetOriginWorldTransform, "GetOriginWorldTransform" }, // 2995503875
+		{ &Z_Construct_UFunction_AWeapon_GetOriginWorldTransform, "GetOriginWorldTransform" }, // 4215685398
 		{ &Z_Construct_UFunction_AWeapon_GetSightsWorldTransform, "GetSightsWorldTransform" }, // 2512391557
 	};
 #if WITH_METADATA
@@ -873,7 +879,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeapon, 3943207040);
+	IMPLEMENT_CLASS(AWeapon, 2736083415);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeapon>()
 	{
 		return AWeapon::StaticClass();

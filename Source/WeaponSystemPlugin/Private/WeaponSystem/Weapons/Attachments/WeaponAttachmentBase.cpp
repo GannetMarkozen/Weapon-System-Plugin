@@ -6,13 +6,13 @@
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "WeaponSystem/Inventories/CharacterInventoryComponent.h"
 #include "WeaponSystem/Weapons/WeaponBase.h"
+#include "WeaponSystem/Weapons/WeaponScriptBase.h"
 #include "WeaponSystem/Weapons/Attachments/WeaponAttachmentPoint.h"
 
 
 AWeaponAttachmentBase::AWeaponAttachmentBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-
 	bReplicates = true;
 }
 
@@ -45,7 +45,7 @@ void AWeaponAttachmentBase::Destroyed()
 }
 
 
-void AWeaponAttachmentBase::OnAttached_Implementation()
+void AWeaponAttachmentBase::OnAttached()
 {
 	if(!OwningWeapon || !OwningWeapon->IsVisible())
 		SetVisibility(false);
@@ -69,7 +69,7 @@ void AWeaponAttachmentBase::OnAttached_Implementation()
 	}
 }
 
-void AWeaponAttachmentBase::OnRemoved_Implementation()
+void AWeaponAttachmentBase::OnRemoved()
 {
 	if(OwningWeapon)
 	{

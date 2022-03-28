@@ -84,7 +84,7 @@ void AForegripAttachment::SetHandPlacement() const
 }
 
 
-void AForegripAttachment::OnRemoved_Implementation()
+void AForegripAttachment::OnRemoved()
 {
 	AWeapon* Weapon = Cast<AWeapon>(OwningWeapon);
 	if(!Weapon) return;
