@@ -261,7 +261,7 @@ void EmptyLinkFunctionForGeneratedCodeForegripAttachment() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AForegripAttachment, 2102032378);
+	IMPLEMENT_CLASS(AForegripAttachment, 1086662702);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AForegripAttachment>()
 	{
 		return AForegripAttachment::StaticClass();

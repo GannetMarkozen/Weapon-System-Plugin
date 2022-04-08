@@ -192,6 +192,8 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	virtual FTransform GetWeaponOffsetTransform_Implementation() const; \
 	virtual FTransform GetOffHandTransform_Implementation() const; \
 	virtual FTransform GetDomHandTransform_Implementation() const; \
+	virtual void SpawnWeaponDrop_Implementation(AWeaponBase* Weapon); \
+	virtual void Server_DropWeaponAt_Implementation(const int32 Index); \
 	virtual void SetupMesh_Implementation(); \
  \
 	DECLARE_FUNCTION(execInternal_CurrentWeaponChanged); \
@@ -210,6 +212,11 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \
 	DECLARE_FUNCTION(execGetOffHandTransform); \
 	DECLARE_FUNCTION(execGetDomHandTransform); \
+	DECLARE_FUNCTION(execSpawnWeaponDrop); \
+	DECLARE_FUNCTION(execServer_DropWeaponAt); \
+	DECLARE_FUNCTION(execDropWeapon); \
+	DECLARE_FUNCTION(execDropCurrentWeapon); \
+	DECLARE_FUNCTION(execDropWeaponAt); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execGetCurrentWeaponBase); \
 	DECLARE_FUNCTION(execSetupMesh);
@@ -233,6 +240,11 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \
 	DECLARE_FUNCTION(execGetOffHandTransform); \
 	DECLARE_FUNCTION(execGetDomHandTransform); \
+	DECLARE_FUNCTION(execSpawnWeaponDrop); \
+	DECLARE_FUNCTION(execServer_DropWeaponAt); \
+	DECLARE_FUNCTION(execDropWeapon); \
+	DECLARE_FUNCTION(execDropCurrentWeapon); \
+	DECLARE_FUNCTION(execDropWeaponAt); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execGetCurrentWeaponBase); \
 	DECLARE_FUNCTION(execSetupMesh);
@@ -250,6 +262,14 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UDamageInterface>();
 	struct TrueFPSCharacterBase_eventGetWeaponOffsetTransform_Parms \
 	{ \
 		FTransform ReturnValue; \
+	}; \
+	struct TrueFPSCharacterBase_eventServer_DropWeaponAt_Parms \
+	{ \
+		int32 Index; \
+	}; \
+	struct TrueFPSCharacterBase_eventSpawnWeaponDrop_Parms \
+	{ \
+		AWeaponBase* Weapon; \
 	};
 
 
@@ -259,7 +279,7 @@ private: \
 	static void StaticRegisterNativesATrueFPSCharacterBase(); \
 	friend struct Z_Construct_UClass_ATrueFPSCharacterBase_Statics; \
 public: \
-	DECLARE_CLASS(ATrueFPSCharacterBase, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(ATrueFPSCharacterBase, ACharacter, COMPILED_IN_FLAGS(CLASS_Abstract | CLASS_Config), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(ATrueFPSCharacterBase) \
 	enum class ENetFields_Private : uint16 \
 	{ \
@@ -274,7 +294,7 @@ private: \
 	static void StaticRegisterNativesATrueFPSCharacterBase(); \
 	friend struct Z_Construct_UClass_ATrueFPSCharacterBase_Statics; \
 public: \
-	DECLARE_CLASS(ATrueFPSCharacterBase, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(ATrueFPSCharacterBase, ACharacter, COMPILED_IN_FLAGS(CLASS_Abstract | CLASS_Config), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(ATrueFPSCharacterBase) \
 	enum class ENetFields_Private : uint16 \
 	{ \
@@ -287,7 +307,7 @@ public: \
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_82_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ATrueFPSCharacterBase(const FObjectInitializer& ObjectInitializer); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ATrueFPSCharacterBase) \
+	DEFINE_ABSTRACT_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ATrueFPSCharacterBase) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ATrueFPSCharacterBase); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ATrueFPSCharacterBase); \
 private: \
@@ -305,7 +325,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ATrueFPSCharacterBase); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ATrueFPSCharacterBase); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ATrueFPSCharacterBase)
+	DEFINE_ABSTRACT_DEFAULT_CONSTRUCTOR_CALL(ATrueFPSCharacterBase)
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_82_PRIVATE_PROPERTY_OFFSET

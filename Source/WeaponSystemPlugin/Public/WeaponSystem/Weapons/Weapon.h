@@ -110,7 +110,6 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintPure, Category = "Weapon")
 	FTransform GetDefaultSightsRelativeTransform() const;
 	virtual FORCEINLINE FTransform GetDefaultSightsRelativeTransform_Implementation() const {
-		//return WeaponMesh->GetSocketTransform(FName("Sights"), RTS_Actor);
 		return FTransform(FVector(-AimOffset, 0.f, 0.f)) * WeaponMesh->GetSocketTransform(FName("Sights"), RTS_Actor);
 	}
 	

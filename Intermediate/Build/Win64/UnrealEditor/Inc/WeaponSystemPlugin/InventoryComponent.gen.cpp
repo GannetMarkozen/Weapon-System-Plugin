@@ -163,6 +163,14 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		}
 		return Parms.ReturnValue;
 	}
+	DEFINE_FUNCTION(UInventoryComponent::execHasWeapon)
+	{
+		P_GET_OBJECT(AWeaponBase,Z_Param_Weapon);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->HasWeapon(Z_Param_Weapon);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UInventoryComponent::execGetCurrentWeapon)
 	{
 		P_FINISH;
@@ -208,6 +216,14 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		P_THIS->AddWeapon_Implementation(Z_Param_NewWeapon);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UInventoryComponent::execOnRep_Weapons)
+	{
+		P_GET_TARRAY_REF(AWeaponBase*,Z_Param_Out_OldWeapons);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->OnRep_Weapons(Z_Param_Out_OldWeapons);
+		P_NATIVE_END;
+	}
 	static FName NAME_UInventoryComponent_AddWeapon = FName(TEXT("AddWeapon"));
 	void UInventoryComponent::AddWeapon(AWeaponBase* NewWeapon)
 	{
@@ -243,7 +259,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 			{ "AddWeapon", &UInventoryComponent::execAddWeapon },
 			{ "GetCurrentWeapon", &UInventoryComponent::execGetCurrentWeapon },
 			{ "HasAuthority", &UInventoryComponent::execHasAuthority },
+			{ "HasWeapon", &UInventoryComponent::execHasWeapon },
 			{ "IsLocallyControlled", &UInventoryComponent::execIsLocallyControlled },
+			{ "OnRep_Weapons", &UInventoryComponent::execOnRep_Weapons },
 			{ "RemoveWeapon", &UInventoryComponent::execRemoveWeapon },
 			{ "RemoveWeaponAt", &UInventoryComponent::execRemoveWeaponAt },
 		};
@@ -265,12 +283,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Inventory" },
-		{ "Comment", "// NOTE: Does not check the validity of the new weapon by default. Only call on server.\n" },
+		{ "Comment", "/*BlueprintAuthorityOnly,*/" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
-		{ "ToolTip", "NOTE: Does not check the validity of the new weapon by default. Only call on server." },
+		{ "ToolTip", "BlueprintAuthorityOnly," },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "AddWeapon", nullptr, nullptr, sizeof(InventoryComponent_eventAddWeapon_Parms), Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C04, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "AddWeapon", nullptr, nullptr, sizeof(InventoryComponent_eventAddWeapon_Parms), Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_AddWeapon_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UInventoryComponent_AddWeapon()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -348,6 +366,56 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics
+	{
+		struct InventoryComponent_eventHasWeapon_Parms
+		{
+			const AWeaponBase* Weapon;
+			bool ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Weapon_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_Weapon_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(InventoryComponent_eventHasWeapon_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_Weapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_Weapon_MetaData)) };
+	void Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((InventoryComponent_eventHasWeapon_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(InventoryComponent_eventHasWeapon_Parms), &Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_Weapon,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Inventory" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "HasWeapon", nullptr, nullptr, sizeof(InventoryComponent_eventHasWeapon_Parms), Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UInventoryComponent_HasWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInventoryComponent_HasWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics
 	{
 		struct InventoryComponent_eventIsLocallyControlled_Parms
@@ -372,7 +440,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// Returns false if owning pawn is not valid\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
+		{ "ToolTip", "Returns false if owning pawn is not valid" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "IsLocallyControlled", nullptr, nullptr, sizeof(InventoryComponent_eventIsLocallyControlled_Parms), Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::Function_MetaDataParams)) };
@@ -382,6 +452,49 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics
+	{
+		struct InventoryComponent_eventOnRep_Weapons_Parms
+		{
+			TArray<AWeaponBase*> OldWeapons;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapons_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldWeapons_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_OldWeapons;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons_Inner = { "OldWeapons", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons = { "OldWeapons", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(InventoryComponent_eventOnRep_Weapons_Parms, OldWeapons), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::NewProp_OldWeapons,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "OnRep_Weapons", nullptr, nullptr, sizeof(InventoryComponent_eventOnRep_Weapons_Parms), Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00420400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -401,12 +514,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Inventory" },
-		{ "Comment", "// NOTE: Does not check the validity of the new weapon by default. Only call on server.\n" },
+		{ "Comment", "/*BlueprintAuthorityOnly,*/" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
-		{ "ToolTip", "NOTE: Does not check the validity of the new weapon by default. Only call on server." },
+		{ "ToolTip", "BlueprintAuthorityOnly," },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "RemoveWeapon", nullptr, nullptr, sizeof(InventoryComponent_eventRemoveWeapon_Parms), Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C04, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "RemoveWeapon", nullptr, nullptr, sizeof(InventoryComponent_eventRemoveWeapon_Parms), Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeapon_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UInventoryComponent_RemoveWeapon()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -440,12 +553,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::Function_MetaDataParams[] = {
 		{ "Category", "Inventory" },
-		{ "Comment", "// Only call on server.\n" },
+		{ "Comment", "/*BlueprintAuthorityOnly,*/" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
-		{ "ToolTip", "Only call on server." },
+		{ "ToolTip", "BlueprintAuthorityOnly," },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "RemoveWeaponAt", nullptr, nullptr, sizeof(InventoryComponent_eventRemoveWeaponAt_Parms), Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C04, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryComponent, nullptr, "RemoveWeaponAt", nullptr, nullptr, sizeof(InventoryComponent_eventRemoveWeaponAt_Parms), Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -485,12 +598,14 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UInventoryComponent_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UInventoryComponent_AddWeapon, "AddWeapon" }, // 654330040
+		{ &Z_Construct_UFunction_UInventoryComponent_AddWeapon, "AddWeapon" }, // 2263264520
 		{ &Z_Construct_UFunction_UInventoryComponent_GetCurrentWeapon, "GetCurrentWeapon" }, // 1854296651
 		{ &Z_Construct_UFunction_UInventoryComponent_HasAuthority, "HasAuthority" }, // 949491146
-		{ &Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled, "IsLocallyControlled" }, // 3558990309
-		{ &Z_Construct_UFunction_UInventoryComponent_RemoveWeapon, "RemoveWeapon" }, // 1744425111
-		{ &Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt, "RemoveWeaponAt" }, // 3280722192
+		{ &Z_Construct_UFunction_UInventoryComponent_HasWeapon, "HasWeapon" }, // 1158880901
+		{ &Z_Construct_UFunction_UInventoryComponent_IsLocallyControlled, "IsLocallyControlled" }, // 1154024346
+		{ &Z_Construct_UFunction_UInventoryComponent_OnRep_Weapons, "OnRep_Weapons" }, // 3767100655
+		{ &Z_Construct_UFunction_UInventoryComponent_RemoveWeapon, "RemoveWeapon" }, // 2130729960
+		{ &Z_Construct_UFunction_UInventoryComponent_RemoveWeaponAt, "RemoveWeaponAt" }, // 397998291
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryComponent_Statics::Class_MetaDataParams[] = {
@@ -510,7 +625,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/InventoryComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons = { "Weapons", nullptr, (EPropertyFlags)0x0020080000020835, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UInventoryComponent, Weapons), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons_MetaData)) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons = { "Weapons", "OnRep_Weapons", (EPropertyFlags)0x0020080100020835, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UInventoryComponent, Weapons), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryComponent_Statics::NewProp_Weapons_MetaData)) };
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UInventoryComponent_Statics::NewProp_DefaultWeapons_Inner = { "DefaultWeapons", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_AWeaponBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryComponent_Statics::NewProp_DefaultWeapons_MetaData[] = {
@@ -552,7 +667,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UInventoryComponent, 136691249);
+	IMPLEMENT_CLASS(UInventoryComponent, 330982993);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UInventoryComponent>()
 	{
 		return UInventoryComponent::StaticClass();

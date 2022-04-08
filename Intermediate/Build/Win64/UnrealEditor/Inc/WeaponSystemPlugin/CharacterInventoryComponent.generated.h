@@ -36,28 +36,31 @@ static inline void FCurrentWeaponChangedDelegate_DelegateWrapper(const FMulticas
  \
 	DECLARE_FUNCTION(execServer_EquipAt); \
 	DECLARE_FUNCTION(execCanEquip); \
+	DECLARE_FUNCTION(execEquipNone); \
 	DECLARE_FUNCTION(execEquipLast); \
 	DECLARE_FUNCTION(execEquipNext); \
 	DECLARE_FUNCTION(execEquip); \
 	DECLARE_FUNCTION(execEquipAt); \
-	DECLARE_FUNCTION(execCurrentWeaponChanged);
+	DECLARE_FUNCTION(execOnRep_CurrentWeapon);
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Inventories_CharacterInventoryComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execServer_EquipAt); \
 	DECLARE_FUNCTION(execCanEquip); \
+	DECLARE_FUNCTION(execEquipNone); \
 	DECLARE_FUNCTION(execEquipLast); \
 	DECLARE_FUNCTION(execEquipNext); \
 	DECLARE_FUNCTION(execEquip); \
 	DECLARE_FUNCTION(execEquipAt); \
-	DECLARE_FUNCTION(execCurrentWeaponChanged);
+	DECLARE_FUNCTION(execOnRep_CurrentWeapon);
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Inventories_CharacterInventoryComponent_h_17_EVENT_PARMS \
 	struct CharacterInventoryComponent_eventBP_CurrentWeaponChanged_Parms \
 	{ \
-		const AWeaponBase* OldWeapon; \
+		AWeaponBase* NewWeapon; \
+		AWeaponBase* OldWeapon; \
 	}; \
 	struct CharacterInventoryComponent_eventCanEquip_Parms \
 	{ \
@@ -88,8 +91,7 @@ public: \
 	{ \
 		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
 		CurrentWeapon=NETFIELD_REP_START, \
-		CurrentIndex, \
-		NETFIELD_REP_END=CurrentIndex	}; \
+		NETFIELD_REP_END=CurrentWeapon	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
@@ -104,8 +106,7 @@ public: \
 	{ \
 		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
 		CurrentWeapon=NETFIELD_REP_START, \
-		CurrentIndex, \
-		NETFIELD_REP_END=CurrentIndex	}; \
+		NETFIELD_REP_END=CurrentWeapon	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 

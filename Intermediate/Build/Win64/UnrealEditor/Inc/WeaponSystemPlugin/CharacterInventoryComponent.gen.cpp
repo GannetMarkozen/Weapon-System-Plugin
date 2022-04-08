@@ -72,6 +72,13 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		*(bool*)Z_Param__Result=P_THIS->CanEquip_Implementation(Z_Param_QueryWeapon);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UCharacterInventoryComponent::execEquipNone)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->EquipNone();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UCharacterInventoryComponent::execEquipLast)
 	{
 		P_FINISH;
@@ -103,18 +110,19 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		P_THIS->EquipAt(Z_Param_Index,Z_Param_bLocalPredicted);
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(UCharacterInventoryComponent::execCurrentWeaponChanged)
+	DEFINE_FUNCTION(UCharacterInventoryComponent::execOnRep_CurrentWeapon)
 	{
 		P_GET_OBJECT(AWeaponBase,Z_Param_OldWeapon);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->CurrentWeaponChanged(Z_Param_OldWeapon);
+		P_THIS->OnRep_CurrentWeapon(Z_Param_OldWeapon);
 		P_NATIVE_END;
 	}
 	static FName NAME_UCharacterInventoryComponent_BP_CurrentWeaponChanged = FName(TEXT("BP_CurrentWeaponChanged"));
-	void UCharacterInventoryComponent::BP_CurrentWeaponChanged(const AWeaponBase* OldWeapon)
+	void UCharacterInventoryComponent::BP_CurrentWeaponChanged(AWeaponBase* NewWeapon, AWeaponBase* OldWeapon)
 	{
 		CharacterInventoryComponent_eventBP_CurrentWeaponChanged_Parms Parms;
+		Parms.NewWeapon=NewWeapon;
 		Parms.OldWeapon=OldWeapon;
 		ProcessEvent(FindFunctionChecked(NAME_UCharacterInventoryComponent_BP_CurrentWeaponChanged),&Parms);
 	}
@@ -138,20 +146,19 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		UClass* Class = UCharacterInventoryComponent::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "CanEquip", &UCharacterInventoryComponent::execCanEquip },
-			{ "CurrentWeaponChanged", &UCharacterInventoryComponent::execCurrentWeaponChanged },
 			{ "Equip", &UCharacterInventoryComponent::execEquip },
 			{ "EquipAt", &UCharacterInventoryComponent::execEquipAt },
 			{ "EquipLast", &UCharacterInventoryComponent::execEquipLast },
 			{ "EquipNext", &UCharacterInventoryComponent::execEquipNext },
+			{ "EquipNone", &UCharacterInventoryComponent::execEquipNone },
+			{ "OnRep_CurrentWeapon", &UCharacterInventoryComponent::execOnRep_CurrentWeapon },
 			{ "Server_EquipAt", &UCharacterInventoryComponent::execServer_EquipAt },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
 	struct Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics
 	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldWeapon_MetaData[];
-#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_NewWeapon;
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapon;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -159,13 +166,10 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CharacterInventoryComponent_eventBP_CurrentWeaponChanged_Parms, OldWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_NewWeapon = { "NewWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CharacterInventoryComponent_eventBP_CurrentWeaponChanged_Parms, NewWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CharacterInventoryComponent_eventBP_CurrentWeaponChanged_Parms, OldWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_NewWeapon,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged_Statics::NewProp_OldWeapon,
 	};
 #if WITH_METADATA
@@ -231,48 +235,6 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCharacterInventoryComponent_CanEquip_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics
-	{
-		struct CharacterInventoryComponent_eventCurrentWeaponChanged_Parms
-		{
-			const AWeaponBase* OldWeapon;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldWeapon_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapon;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CharacterInventoryComponent_eventCurrentWeaponChanged_Parms, OldWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::NewProp_OldWeapon_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::NewProp_OldWeapon,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::Function_MetaDataParams[] = {
-		{ "Comment", "// Called on all instances whenever the current weapon has been changed. Equivalent to OnRep_CurrentWeapon\n" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/CharacterInventoryComponent.h" },
-		{ "ToolTip", "Called on all instances whenever the current weapon has been changed. Equivalent to OnRep_CurrentWeapon" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCharacterInventoryComponent, nullptr, "CurrentWeaponChanged", nullptr, nullptr, sizeof(CharacterInventoryComponent_eventCurrentWeaponChanged_Parms), Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -417,6 +379,69 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Inventory" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/CharacterInventoryComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCharacterInventoryComponent, nullptr, "EquipNone", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics
+	{
+		struct CharacterInventoryComponent_eventOnRep_CurrentWeapon_Parms
+		{
+			const AWeaponBase* OldWeapon;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldWeapon_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapon;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::NewProp_OldWeapon_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CharacterInventoryComponent_eventOnRep_CurrentWeapon_Parms, OldWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::NewProp_OldWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::NewProp_OldWeapon_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::NewProp_OldWeapon,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/CharacterInventoryComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCharacterInventoryComponent, nullptr, "OnRep_CurrentWeapon", nullptr, nullptr, sizeof(CharacterInventoryComponent_eventOnRep_CurrentWeapon_Parms), Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UCharacterInventoryComponent_Server_EquipAt_Statics
 	{
 #if WITH_METADATA
@@ -485,13 +510,14 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCharacterInventoryComponent_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged, "BP_CurrentWeaponChanged" }, // 2082147470
+		{ &Z_Construct_UFunction_UCharacterInventoryComponent_BP_CurrentWeaponChanged, "BP_CurrentWeaponChanged" }, // 1203901527
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_CanEquip, "CanEquip" }, // 1451579837
-		{ &Z_Construct_UFunction_UCharacterInventoryComponent_CurrentWeaponChanged, "CurrentWeaponChanged" }, // 3515815486
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_Equip, "Equip" }, // 2407884612
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_EquipAt, "EquipAt" }, // 1697639530
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_EquipLast, "EquipLast" }, // 16854190
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_EquipNext, "EquipNext" }, // 1215323519
+		{ &Z_Construct_UFunction_UCharacterInventoryComponent_EquipNone, "EquipNone" }, // 124085539
+		{ &Z_Construct_UFunction_UCharacterInventoryComponent_OnRep_CurrentWeapon, "OnRep_CurrentWeapon" }, // 128656969
 		{ &Z_Construct_UFunction_UCharacterInventoryComponent_Server_EquipAt, "Server_EquipAt" }, // 2803618781
 	};
 #if WITH_METADATA
@@ -511,17 +537,17 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/CharacterInventoryComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon = { "CurrentWeapon", "CurrentWeaponChanged", (EPropertyFlags)0x0020080100000034, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCharacterInventoryComponent, CurrentWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon = { "CurrentWeapon", "OnRep_CurrentWeapon", (EPropertyFlags)0x0020080100000034, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCharacterInventoryComponent, CurrentWeapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeapon_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Inventory" },
-		{ "Comment", "// Can change in editor to determine what the current weapon index we want to start out with (must be a valid index).\n// Only the correct value locally from local weapon swapping.\n" },
+		{ "Comment", "// Can change in editor to determine what the current weapon index we want to start out with (must be a valid index)\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Inventories/CharacterInventoryComponent.h" },
-		{ "ToolTip", "Can change in editor to determine what the current weapon index we want to start out with (must be a valid index).\nOnly the correct value locally from local weapon swapping." },
+		{ "ToolTip", "Can change in editor to determine what the current weapon index we want to start out with (must be a valid index)" },
 	};
 #endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex = { "CurrentIndex", nullptr, (EPropertyFlags)0x0020080000010035, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCharacterInventoryComponent, CurrentIndex), METADATA_PARAMS(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex_MetaData)) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex = { "CurrentIndex", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCharacterInventoryComponent, CurrentIndex), METADATA_PARAMS(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentIndex_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCharacterInventoryComponent_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData[] = {
 		{ "Category", "Inventory|Delegates" },
@@ -561,7 +587,7 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCharacterInventoryComponent, 3215162449);
+	IMPLEMENT_CLASS(UCharacterInventoryComponent, 4200501307);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UCharacterInventoryComponent>()
 	{
 		return UCharacterInventoryComponent::StaticClass();
@@ -571,11 +597,9 @@ void EmptyLinkFunctionForGeneratedCodeCharacterInventoryComponent() {}
 	void UCharacterInventoryComponent::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
 		static const FName Name_CurrentWeapon(TEXT("CurrentWeapon"));
-		static const FName Name_CurrentIndex(TEXT("CurrentIndex"));
 
 		const bool bIsValid = true
-			&& Name_CurrentWeapon == ClassReps[(int32)ENetFields_Private::CurrentWeapon].Property->GetFName()
-			&& Name_CurrentIndex == ClassReps[(int32)ENetFields_Private::CurrentIndex].Property->GetFName();
+			&& Name_CurrentWeapon == ClassReps[(int32)ENetFields_Private::CurrentWeapon].Property->GetFName();
 
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in UCharacterInventoryComponent"));
 	}

@@ -610,7 +610,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USetupAttachmentsScriptBase, 865387485);
+	IMPLEMENT_CLASS(USetupAttachmentsScriptBase, 3925410653);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USetupAttachmentsScriptBase>()
 	{
 		return USetupAttachmentsScriptBase::StaticClass();

@@ -7,8 +7,8 @@
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "WeaponBase.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FWeaponEquippedDelegate, class AWeaponBase*, Weapon);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FWeaponUnequippedDelegate, class AWeaponBase*, Weapon);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponEquippedDelegate, class AWeaponBase*, Weapon, class UCharacterInventoryComponent*, Inventory);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponUnequippedDelegate, class AWeaponBase*, Weapon, class UCharacterInventoryComponent*, Inventory);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponObtainedDelegate, class AWeaponBase*, Weapon, class UInventoryComponent*, CurrentInventory);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponUnobtainedDelegate, class AWeaponBase*, Weapon, class UInventoryComponent*, OldInventory);
 
@@ -55,30 +55,39 @@ public:
 	FORCEINLINE class USkeletalMeshComponent* GetMesh() const { return WeaponMesh; }
 	const FORCEINLINE TArray<class UWeaponScriptBase*>& GetScripts() const { return Scripts; }
 	FORCEINLINE class UInventoryComponent* GetOwningInventory() const { return OwningInventory; }
+	FORCEINLINE class ACharacter* GetOwningCharacter() const { return OwningInventory ? OwningInventory->GetOwner<ACharacter>() : nullptr; }
+
 	template<typename T>
 	FORCEINLINE T* GetOwningInventory() const { return Cast<T>(OwningInventory); }
+	template<typename T>
+	FORCEINLINE T* GetOwningCharacter() const { return OwningInventory ? OwningInventory->GetOwner<T>() : nullptr; }
+	
 
 protected:
 	// Equivalent to "On Obtained"
 	UFUNCTION()
 	virtual void OnRep_OwningInventory(const class UInventoryComponent* OldInventory);
-	virtual void OnEquipped();
-	virtual void OnUnequipped();
+	virtual void OnEquipped(class UCharacterInventoryComponent* Inventory);
+	virtual void OnUnequipped(class UCharacterInventoryComponent* Inventory);
 	virtual void OnObtained(class UInventoryComponent* CurrentInventory);
 	virtual void OnUnobtained(class UInventoryComponent* OldInventory);
 	
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "OnRep_Owning Inventory"), Category = "Weapon")
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "OnRep Owning Inventory"), Category = "Weapon")
 	void BP_OnRep_OwningInventory(class UInventoryComponent* OldInventory);
 
+	// Will only be called ever if OwningInventory is a Character Inventory Component. Inventory will always be valid
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Equipped"), Category = "Weapon")
-	void BP_OnEquipped();
+	void BP_OnEquipped(class UCharacterInventoryComponent* Inventory);
 
+	// Will only be called ever if OwningInventory is a Character Inventory Component. Inventory will always be valid
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Unequipped"), Category = "Weapon")
-	void BP_OnUnequipped();
+	void BP_OnUnequipped(class UCharacterInventoryComponent* Inventory);
 
+	// Called whenever the OwningInventory changes to a valid Inventory
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Obtained"), Category = "Weapon")
 	void BP_OnObtained(class UInventoryComponent* CurrentInventory);
 
+	// Called whenever the OwningInventory changes to a valid Inventory
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Unobtained"), Category = "Weapon")
 	void BP_OnUnobtained(class UInventoryComponent* OldInventory);
 
@@ -128,7 +137,14 @@ public:
 	// Called whenever the owning inventory becomes invalid, meaning this weapon has been dropped essentially.
 	UPROPERTY(BlueprintAssignable, Category = "Weapon|Delegates")
 	FWeaponUnobtainedDelegate UnobtainedDelegate;
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	FORCEINLINE bool RemoveFromInventory()
+	{
+		if(!IsValid(OwningInventory)) return false;
+		OwningInventory->RemoveWeapon(this);
+		return true;
+	}
 	
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool IsLocallyControlled() const { return OwningInventory && OwningInventory->IsLocallyControlled(); }
@@ -143,7 +159,10 @@ public:
 
 	// Whether or not this weapon is currently equipped by it's owning inventory
 	UFUNCTION(BlueprintPure, Category = "Weapon")
-	FORCEINLINE bool IsEquipped() const { return OwningInventory ? OwningInventory->GetCurrentWeapon() == this : false; }
+	FORCEINLINE bool IsEquipped() const { return IsEquippedBy(OwningInventory); }
+
+	UFUNCTION(BlueprintPure, Category = "Weapon")
+	FORCEINLINE bool IsEquippedBy(const class UInventoryComponent* Inventory) const { return Inventory && Inventory->GetCurrentWeapon() == this; }
 	
 	// Helper functions
 	UFUNCTION(BlueprintPure, Category = "Weapon")
@@ -207,6 +226,12 @@ public:
 
 	template<typename T>
 	FORCEINLINE bool RemoveScriptsByClass() { return RemoveScriptsByClass(T::StaticClass()); }
+
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Meta = (AutoCreateRefTerm = "Class"), Category = "Weapon")
+	bool RemoveScriptByClass(const TSubclassOf<class UWeaponScriptBase>& Class);
+
+	template<typename T>
+	FORCEINLINE bool RemoveScriptByClass() { return RemoveScriptByClass(T::StaticClass()); }
 
 	UFUNCTION(BlueprintPure, Meta = (DeterminesOutputType = "Class", AutoCreateRefTerm = "Class"), Category = "Weapon")
 	TArray<UWeaponScriptBase*> GetScriptsOfClass(const TSubclassOf<class UWeaponScriptBase>& Class) const;

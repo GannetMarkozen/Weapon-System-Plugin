@@ -86,5 +86,12 @@ void UInventoryComponent::RemoveWeaponAt_Implementation(const int32 Index)
 	}
 }
 
+template<typename T>
+T* UInventoryComponent::GetCurrentWeapon() const
+{
+	return Cast<T>(GetCurrentWeapon());
+}
+
+
 
 

@@ -209,4 +209,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
 	float VelocityInterpSpeed = 10.f;
+	
 };

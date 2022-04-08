@@ -879,7 +879,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeapon, 2736083415);
+	IMPLEMENT_CLASS(AWeapon, 1492508154);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeapon>()
 	{
 		return AWeapon::StaticClass();

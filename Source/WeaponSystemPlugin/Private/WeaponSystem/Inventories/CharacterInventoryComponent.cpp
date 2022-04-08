@@ -7,6 +7,7 @@
 #include "Net/UnrealNetwork.h"
 #include "WeaponSystem/Weapons//WeaponBase.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
+#include "WeaponSystem/Weapons/WeaponDropBase.h"
 
 
 UCharacterInventoryComponent::UCharacterInventoryComponent()
@@ -28,31 +29,28 @@ void UCharacterInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimePr
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ThisClass, CurrentWeapon);
-	DOREPLIFETIME_CONDITION(ThisClass, CurrentIndex, COND_OwnerOnly);
-}
-
-void UCharacterInventoryComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
-{
-	Super::PostEditChangeProperty(PropertyChangedEvent);
+	//DOREPLIFETIME_CONDITION(ThisClass, CurrentIndex, COND_OwnerOnly);
 }
 
 
-
-
-void UCharacterInventoryComponent::CurrentWeaponChanged(const AWeaponBase* OldWeapon)
+void UCharacterInventoryComponent::CurrentWeaponChanged(AWeaponBase* OldWeapon)
 {
+	// Find new CurrentIndex from the CurrentWeapon index in the Weapons array
+	const int32 NewIndex = CurrentWeapon ? Weapons.Find(CurrentWeapon) : 0;
+	CurrentIndex = NewIndex != INDEX_NONE ? NewIndex : 0;
+	
 	if(IsValid(CurrentWeapon))
 	{
-		CurrentWeapon->OnEquipped();
+		CurrentWeapon->OnEquipped(this);
 	}
 
 	if(IsValid(OldWeapon))
 	{
-		((AWeaponBase*)OldWeapon)->OnUnequipped();
+		OldWeapon->OnUnequipped(this);
 	}
 	
-	BP_CurrentWeaponChanged(OldWeapon);
-	CurrentWeaponChangedDelegate.Broadcast(CurrentWeapon, IsValid(OldWeapon) ? (AWeaponBase*)OldWeapon : nullptr);
+	BP_CurrentWeaponChanged(CurrentWeapon, OldWeapon);
+	CurrentWeaponChangedDelegate.Broadcast(CurrentWeapon, OldWeapon/*IsValid(OldWeapon) ? (AWeaponBase*)OldWeapon : nullptr*/);
 }
 
 void UCharacterInventoryComponent::EquipAt(const int32 Index, const bool bLocalPredicted)
@@ -60,7 +58,7 @@ void UCharacterInventoryComponent::EquipAt(const int32 Index, const bool bLocalP
 	if(!Weapons.IsValidIndex(Index) || !CanEquip(Weapons[Index])) return;
 
 	CurrentIndex = Index;
-	
+	 
 	if(!HasAuthority())
 	{
 		Server_EquipAt(Index);
@@ -75,7 +73,7 @@ void UCharacterInventoryComponent::Equip(AWeaponBase* Weapon)
 {
 	// Set CurrentWeapon and replicate
 	if(!CanEquip(Weapon)) return;
-	const AWeaponBase* OldWeapon = CurrentWeapon;
+	AWeaponBase* const OldWeapon = CurrentWeapon;
 	CurrentWeapon = Weapon;
 
 	// Replicate CurrentIndex to owner
@@ -99,11 +97,10 @@ void UCharacterInventoryComponent::AddWeapon_Implementation(AWeaponBase* NewWeap
 
 void UCharacterInventoryComponent::RemoveWeapon_Implementation(AWeaponBase* RemoveWeapon)
 {
-	checkf(HasAuthority(), TEXT("Called %s without authority."), *FString(__FUNCTION__));
+	//checkf(HasAuthority(), TEXT("Called %s without authority."), *FString(__FUNCTION__));
 	const int32 Index = Weapons.Find(RemoveWeapon);
 	if(Index == INDEX_NONE) return;
 	RemoveWeaponAt(Index);
-	//Super::RemoveWeapon_Implementation(RemoveWeapon);
 }
 
 void UCharacterInventoryComponent::RemoveWeaponAt_Implementation(const int32 Index)
@@ -128,9 +125,11 @@ void UCharacterInventoryComponent::RemoveWeaponAt_Implementation(const int32 Ind
 	}
 
 	Super::RemoveWeaponAt_Implementation(Index);
+
+	// Find new CurrentIndex from the CurrentWeapon index in the Weapons array
+	const int32 NewIndex = CurrentWeapon ? Weapons.Find(CurrentWeapon) : 0;
+	CurrentIndex = NewIndex != INDEX_NONE ? NewIndex : 0;
 }
-
-
 
 
 

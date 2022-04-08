@@ -374,7 +374,7 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UAimingScript, 4194681675);
+	IMPLEMENT_CLASS(UAimingScript, 1120307449);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UAimingScript>()
 	{
 		return UAimingScript::StaticClass();

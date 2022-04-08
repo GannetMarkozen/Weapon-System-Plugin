@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponAttachmentBase();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UCharacterInventoryComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -28,17 +29,19 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execInternal_OnUnequipped)
 	{
 		P_GET_OBJECT(AWeaponBase,Z_Param_W);
+		P_GET_OBJECT(UCharacterInventoryComponent,Z_Param_InInventory);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->Internal_OnUnequipped(Z_Param_W);
+		P_THIS->Internal_OnUnequipped(Z_Param_W,Z_Param_InInventory);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execInternal_OnEquipped)
 	{
 		P_GET_OBJECT(AWeaponBase,Z_Param_W);
+		P_GET_OBJECT(UCharacterInventoryComponent,Z_Param_InInventory);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->Internal_OnEquipped(Z_Param_W);
+		P_THIS->Internal_OnEquipped(Z_Param_W,Z_Param_InInventory);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execInternal_OnUnobtained)
@@ -57,6 +60,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->Internal_OnObtained(Z_Param_W,Z_Param_InOwningInventory);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AWeaponAttachmentBase::execGetOwningInventory)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(UInventoryComponent**)Z_Param__Result=P_THIS->GetOwningInventory();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(AWeaponAttachmentBase::execSetVisibility)
@@ -92,9 +102,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnAttached),NULL);
 	}
 	static FName NAME_AWeaponAttachmentBase_BP_OnEquipped = FName(TEXT("BP_OnEquipped"));
-	void AWeaponAttachmentBase::BP_OnEquipped()
+	void AWeaponAttachmentBase::BP_OnEquipped(UCharacterInventoryComponent* Inventory)
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnEquipped),NULL);
+		WeaponAttachmentBase_eventBP_OnEquipped_Parms Parms;
+		Parms.Inventory=Inventory;
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnEquipped),&Parms);
 	}
 	static FName NAME_AWeaponAttachmentBase_BP_OnObtained = FName(TEXT("BP_OnObtained"));
 	void AWeaponAttachmentBase::BP_OnObtained(UInventoryComponent* OwningInventory)
@@ -109,9 +121,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnRemoved),NULL);
 	}
 	static FName NAME_AWeaponAttachmentBase_BP_OnUnequipped = FName(TEXT("BP_OnUnequipped"));
-	void AWeaponAttachmentBase::BP_OnUnequipped()
+	void AWeaponAttachmentBase::BP_OnUnequipped(UCharacterInventoryComponent* Inventory)
 	{
-		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnUnequipped),NULL);
+		WeaponAttachmentBase_eventBP_OnUnequipped_Parms Parms;
+		Parms.Inventory=Inventory;
+		ProcessEvent(FindFunctionChecked(NAME_AWeaponAttachmentBase_BP_OnUnequipped),&Parms);
 	}
 	static FName NAME_AWeaponAttachmentBase_BP_OnUnobtained = FName(TEXT("BP_OnUnobtained"));
 	void AWeaponAttachmentBase::BP_OnUnobtained(UInventoryComponent* OldInventory)
@@ -124,6 +138,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	{
 		UClass* Class = AWeaponAttachmentBase::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "GetOwningInventory", &AWeaponAttachmentBase::execGetOwningInventory },
 			{ "Internal_OnEquipped", &AWeaponAttachmentBase::execInternal_OnEquipped },
 			{ "Internal_OnObtained", &AWeaponAttachmentBase::execInternal_OnObtained },
 			{ "Internal_OnUnequipped", &AWeaponAttachmentBase::execInternal_OnUnequipped },
@@ -161,9 +176,23 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics
 	{
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Inventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Inventory;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::NewProp_Inventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventBP_OnEquipped_Parms, Inventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::NewProp_Inventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::NewProp_Inventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::NewProp_Inventory,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams[] = {
@@ -172,7 +201,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnEquipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnEquipped", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventBP_OnEquipped_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -247,9 +276,23 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	struct Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics
 	{
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Inventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Inventory;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::NewProp_Inventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventBP_OnUnequipped_Parms, Inventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::NewProp_Inventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::NewProp_Inventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::NewProp_Inventory,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams[] = {
@@ -258,7 +301,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnUnequipped", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "BP_OnUnequipped", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventBP_OnUnequipped_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -306,13 +349,61 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics
+	{
+		struct WeaponAttachmentBase_eventGetOwningInventory_Parms
+		{
+			UInventoryComponent* ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventGetOwningInventory_Parms, ReturnValue), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::NewProp_ReturnValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::NewProp_ReturnValue_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attachment" },
+		{ "Comment", "// Get the Inventory that owns our owning weapon\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentBase.h" },
+		{ "ToolTip", "Get the Inventory that owns our owning weapon" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponAttachmentBase, nullptr, "GetOwningInventory", nullptr, nullptr, sizeof(WeaponAttachmentBase_eventGetOwningInventory_Parms), Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics
 	{
 		struct WeaponAttachmentBase_eventInternal_OnEquipped_Parms
 		{
 			AWeaponBase* W;
+			UCharacterInventoryComponent* InInventory;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_W;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InInventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InInventory;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
@@ -320,8 +411,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_W = { "W", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventInternal_OnEquipped_Parms, W), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_InInventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_InInventory = { "InInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventInternal_OnEquipped_Parms, InInventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_InInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_InInventory_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_W,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::NewProp_InInventory,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped_Statics::Function_MetaDataParams[] = {
@@ -387,8 +485,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		struct WeaponAttachmentBase_eventInternal_OnUnequipped_Parms
 		{
 			AWeaponBase* W;
+			UCharacterInventoryComponent* InInventory;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_W;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InInventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InInventory;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
@@ -396,8 +499,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_W = { "W", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventInternal_OnUnequipped_Parms, W), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_InInventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_InInventory = { "InInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponAttachmentBase_eventInternal_OnUnequipped_Parms, InInventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_InInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_InInventory_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_W,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::NewProp_InInventory,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped_Statics::Function_MetaDataParams[] = {
@@ -668,14 +778,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeaponAttachmentBase_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnAttached, "BP_OnAttached" }, // 2813667319
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped, "BP_OnEquipped" }, // 493714038
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnEquipped, "BP_OnEquipped" }, // 2817265615
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnObtained, "BP_OnObtained" }, // 3306597908
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnRemoved, "BP_OnRemoved" }, // 2785620924
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped, "BP_OnUnequipped" }, // 2564796014
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnequipped, "BP_OnUnequipped" }, // 2441471985
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_BP_OnUnobtained, "BP_OnUnobtained" }, // 177451846
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped, "Internal_OnEquipped" }, // 2351710582
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_GetOwningInventory, "GetOwningInventory" }, // 2605575005
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnEquipped, "Internal_OnEquipped" }, // 3949690509
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnObtained, "Internal_OnObtained" }, // 209923426
-		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped, "Internal_OnUnequipped" }, // 208843231
+		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnequipped, "Internal_OnUnequipped" }, // 858853416
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_Internal_OnUnobtained, "Internal_OnUnobtained" }, // 1869058782
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SetVisibility, "SetVisibility" }, // 125349569
 		{ &Z_Construct_UFunction_AWeaponAttachmentBase_SpawnAttachment, "SpawnAttachment" }, // 3760523635
@@ -730,7 +841,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponAttachmentBase, 3594459440);
+	IMPLEMENT_CLASS(AWeaponAttachmentBase, 677657465);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeaponAttachmentBase>()
 	{
 		return AWeaponAttachmentBase::StaticClass();

@@ -175,7 +175,7 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASightsAttachment, 1034175452);
+	IMPLEMENT_CLASS(ASightsAttachment, 3078161582);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ASightsAttachment>()
 	{
 		return ASightsAttachment::StaticClass();

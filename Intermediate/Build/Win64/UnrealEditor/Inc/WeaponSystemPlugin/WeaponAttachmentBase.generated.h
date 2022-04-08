@@ -9,6 +9,7 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AWeaponBase;
+class UCharacterInventoryComponent;
 class UInventoryComponent;
 class UObject;
 class AWeaponAttachmentBase;
@@ -26,6 +27,7 @@ class UWeaponAttachmentPoint;
 	DECLARE_FUNCTION(execInternal_OnEquipped); \
 	DECLARE_FUNCTION(execInternal_OnUnobtained); \
 	DECLARE_FUNCTION(execInternal_OnObtained); \
+	DECLARE_FUNCTION(execGetOwningInventory); \
 	DECLARE_FUNCTION(execSetVisibility); \
 	DECLARE_FUNCTION(execSpawnAttachmentUnattached); \
 	DECLARE_FUNCTION(execSpawnAttachment);
@@ -37,15 +39,24 @@ class UWeaponAttachmentPoint;
 	DECLARE_FUNCTION(execInternal_OnEquipped); \
 	DECLARE_FUNCTION(execInternal_OnUnobtained); \
 	DECLARE_FUNCTION(execInternal_OnObtained); \
+	DECLARE_FUNCTION(execGetOwningInventory); \
 	DECLARE_FUNCTION(execSetVisibility); \
 	DECLARE_FUNCTION(execSpawnAttachmentUnattached); \
 	DECLARE_FUNCTION(execSpawnAttachment);
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentBase_h_17_EVENT_PARMS \
+	struct WeaponAttachmentBase_eventBP_OnEquipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
+	}; \
 	struct WeaponAttachmentBase_eventBP_OnObtained_Parms \
 	{ \
 		UInventoryComponent* OwningInventory; \
+	}; \
+	struct WeaponAttachmentBase_eventBP_OnUnequipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
 	}; \
 	struct WeaponAttachmentBase_eventBP_OnUnobtained_Parms \
 	{ \

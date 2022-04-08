@@ -21,7 +21,8 @@
 #define PRINTLINE PRINT(TEXT("%s"), *FString(__FUNCTION__))
 #define PRINTLINEAUTH PRINT(TEXT("%s: %s"), *AUTH, *FString(__FUNCTION__))
 
-
+// Default Object: GetClass()->GetDefaultObject<ThisClass>()
+#define DEFOBJ GetClass()->GetDefaultObject<ThisClass>()
 
 #define CONCATE_(X, Y) X##Y
 #define CONCATE(X, Y) CONCATE_(X, Y)
@@ -295,12 +296,23 @@ public:
 	}
 	
 	// Calls PreReplication on object and passes in required variables.
-	// Must have a function with the exact signature: public void PreReplication(IRepChangedPropertyTracker&)
+	// Must have a function with the exact signature: void PreReplication(IRepChangedPropertyTracker&)
 	template<typename UserClass>
 	static FORCEINLINE void CallPreReplication(UserClass* Object)
 	{
 		static_assert(TIsClass<UserClass>::Value, TEXT("UWeaponSystemFunctionLibrary::CallPreReplication UserClass is not a valid UCLASS"));
 		if(IsValid(Object)) Object->PreReplication(*FindOrCreatePropertyTracker(Object).Get());
+	}
+	
+	// Calls PreReplication on each object and passes in required variables.
+	// Must have a function with the exact signature: void PreReplication(IRepChangedPropertyTracker&)
+	template<typename UserClass>
+	static FORCEINLINE void CallPreReplicationList(const TArray<UserClass*>& Objects)
+	{
+		static_assert(TIsClass<UserClass>::Value, TEXT("UWeaponSystemFunctionLibrary::CallPreReplicationList UserClass is not a valid UCLASS"));
+		for(UserClass* const Object : Objects)
+			if(IsValid(Object))
+				Object->PreReplication(*FindOrCreatePropertyTracker(Object).Get());
 	}
 
 

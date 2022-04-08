@@ -22,9 +22,9 @@ protected:
 		GetWorldTimerManager().SetTimerForNextTick(CallSetHandPlacement);
 	}*/
 
-	virtual FORCEINLINE void OnEquipped() override
+	virtual FORCEINLINE void OnEquipped(class UCharacterInventoryComponent* Inventory) override
 	{// On equipped, set hand placement transform after a tick so that the AnimPose is being played during the update.
-		Super::OnEquipped();
+		Super::OnEquipped(Inventory);
 		SetHandPlacement();
 		//GetWorldTimerManager().SetTimerForNextTick(this, &ThisClass::SetHandPlacement);
 	}

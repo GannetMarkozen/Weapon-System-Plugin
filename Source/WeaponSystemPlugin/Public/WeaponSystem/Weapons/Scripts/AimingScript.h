@@ -21,15 +21,16 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float DeltaTime) override;
 	virtual bool CanTick_Implementation() const override { return true; }
-	virtual void SetupInput() override
+	virtual void SetupInput(class UInputComponent* InputComponent) override
 	{
-		Super::SetupInput();
+		Super::SetupInput(InputComponent);
 		SetupBinding(this, &ThisClass::StartAiming, EInputBinding::SecondaryFire, IE_Pressed);
 		SetupBinding(this, &ThisClass::StopAiming, EInputBinding::SecondaryFire, IE_Released);
 	}
-	virtual void OwningWeaponUnequipped(AWeaponBase* Weapon) override
+	
+	virtual void OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory) override
 	{// If unequipped, stop aiming
-		Super::OwningWeaponUnequipped(Weapon);
+		Super::OwningWeaponUnequipped(Weapon, Inventory);
 		
 		AimingTimeline.Stop();
 		AimingTimeline.SetPlaybackPosition(0.f, false, true);

@@ -19,5 +19,6 @@
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/Weapon.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponBase.cpp"
+#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponDropBase.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponScript.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponScriptBase.cpp"

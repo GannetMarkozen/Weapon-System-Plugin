@@ -9,9 +9,10 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UInputComponent;
-class UObject;
 class UInventoryComponent;
+class UObject;
 class AWeaponBase;
+class UCharacterInventoryComponent;
 #ifdef WEAPONSYSTEMPLUGIN_WeaponScriptBase_generated_h
 #error "WeaponScriptBase.generated.h already included, missing '#pragma once' in WeaponScriptBase.h"
 #endif
@@ -19,13 +20,16 @@ class AWeaponBase;
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_SPARSE_DATA
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS \
-	virtual UInputComponent* GetInputComponent_Implementation(bool bHasPriority) const; \
+	virtual UInputComponent* GetInputComponentFromInventory_Implementation(const UInventoryComponent* Inventory, bool bHasPriority) const; \
 	virtual bool CanTick_Implementation() const; \
  \
+	DECLARE_FUNCTION(execGetInputComponentFromInventory); \
 	DECLARE_FUNCTION(execGetInputComponent); \
+	DECLARE_FUNCTION(execRemoveAllUObjectFromInputComponent); \
 	DECLARE_FUNCTION(execRemoveAllUObject); \
 	DECLARE_FUNCTION(execRemoveBinding); \
 	DECLARE_FUNCTION(execSetupBinding); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execGetOwningInventory); \
@@ -36,10 +40,13 @@ class AWeaponBase;
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execGetInputComponentFromInventory); \
 	DECLARE_FUNCTION(execGetInputComponent); \
+	DECLARE_FUNCTION(execRemoveAllUObjectFromInputComponent); \
 	DECLARE_FUNCTION(execRemoveAllUObject); \
 	DECLARE_FUNCTION(execRemoveBinding); \
 	DECLARE_FUNCTION(execSetupBinding); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execGetOwningInventory); \
@@ -49,6 +56,22 @@ class AWeaponBase;
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_EVENT_PARMS \
+	struct WeaponScriptBase_eventBP_OwningWeaponEquipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
+	}; \
+	struct WeaponScriptBase_eventBP_OwningWeaponUnequipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
+	}; \
+	struct WeaponScriptBase_eventBP_RemoveInput_Parms \
+	{ \
+		UInputComponent* InputComponent; \
+	}; \
+	struct WeaponScriptBase_eventBP_SetupInput_Parms \
+	{ \
+		UInputComponent* InputComponent; \
+	}; \
 	struct WeaponScriptBase_eventBP_Tick_Parms \
 	{ \
 		float DeltaTime; \
@@ -63,13 +86,14 @@ class AWeaponBase;
 		{ \
 		} \
 	}; \
-	struct WeaponScriptBase_eventGetInputComponent_Parms \
+	struct WeaponScriptBase_eventGetInputComponentFromInventory_Parms \
 	{ \
+		const UInventoryComponent* Inventory; \
 		bool bHasPriority; \
 		UInputComponent* ReturnValue; \
  \
 		/** Constructor, initializes return property only **/ \
-		WeaponScriptBase_eventGetInputComponent_Parms() \
+		WeaponScriptBase_eventGetInputComponentFromInventory_Parms() \
 			: ReturnValue(NULL) \
 		{ \
 		} \

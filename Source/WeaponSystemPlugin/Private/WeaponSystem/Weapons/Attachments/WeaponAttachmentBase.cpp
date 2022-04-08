@@ -63,9 +63,11 @@ void AWeaponAttachmentBase::OnAttached()
 			OnObtained(OwningWeapon->GetOwningInventory());
 
 		// Call equipped if owning weapon is currently being equipped by character inventory.
-		if(const UInventoryComponent* OwningInventory = OwningWeapon->GetOwningInventory())
+		/*if(const UInventoryComponent* OwningInventory = OwningWeapon->GetOwningInventory())
 			if(OwningInventory->GetCurrentWeapon() == OwningWeapon)
-				OnEquipped();
+				OnEquipped();*/
+		if(OwningWeapon->IsEquipped())
+			OnEquipped(GetOwningInventory<UCharacterInventoryComponent>());
 	}
 }
 

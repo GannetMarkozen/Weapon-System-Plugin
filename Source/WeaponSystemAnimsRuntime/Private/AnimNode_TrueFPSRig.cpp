@@ -142,13 +142,14 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	TArray<FTransform>& BSBoneTransforms = *(TArray<FTransform>*)&Output.Pose.GetBones();
 
 	// Init arm transforms. Component-space.
-	const FTransform CSInitRightHandTransform = CS_TRANSFORM(RightHand.BoneIndex);
-	const FTransform CSInitLeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);
-
-	//const FTransform CSInitRightJointTransform = CS_TRANSFORM(RightLowerArm.BoneIndex);
-	//const FTransform CSInitLeftJointTransform = CS_TRANSFORM(LeftLowerArm.BoneIndex);
+	/*const FTransform CSInitRightHandTransform = CS_TRANSFORM(RightHand.BoneIndex);
+	const FTransform CSInitLeftHandTransform = CS_TRANSFORM(LeftHand.BoneIndex);*/
+	
 	const FTransform CSInitRightJointTransform = CS_TRANSFORM(RightLowerArmIndex);
 	const FTransform CSInitLeftJointTransform = CS_TRANSFORM(LeftLowerArmIndex);
+
+	const FTransform CSInitRightHandTransform = BSBoneTransforms[RightHand.BoneIndex] * CSInitRightJointTransform;
+	const FTransform CSInitLeftHandTransform = BSBoneTransforms[LeftHand.BoneIndex] * CSInitLeftJointTransform;
 	
 	const FTransform CSInitCameraTransform = FTransform(FRotator(0.f, MeshYawOffset, 0.f), (FTransform(CameraRelativeLocation) * CS_TRANSFORM(Head.BoneIndex)).GetLocation());
 	FTransform CSInitWeaponTransform = OriginRelativeTransform * (bRightHanded ? CSInitRightHandTransform : CSInitLeftHandTransform);// Weapon relative transform is bone-space off of primary hand
@@ -254,9 +255,8 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	}
 	
 	
-	// Blended non aiming transform and current weapon transform by the aiming joint influence value
 	FTransform JointInfluenceWeaponTransform = CSWeaponTransform;
-	if(!FMath::IsNearlyZero(AimingValue))
+	if(!FMath::IsNearlyZero(AimingJointInfluence))// Blend joint influence transform by non-aiming transform by blend amount
 		JointInfluenceWeaponTransform.BlendWith(NonAimingTransform, 1.f - AimingJointInfluence);
 
 	//

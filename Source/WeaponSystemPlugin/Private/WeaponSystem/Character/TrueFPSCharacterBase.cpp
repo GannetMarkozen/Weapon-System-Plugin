@@ -9,6 +9,7 @@
 #include "WeaponSystem/Inventories/CharacterInventoryComponent.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "WeaponSystem/Weapons/WeaponBase.h"
+#include "WeaponSystem/Weapons/WeaponDropBase.h"
 
 ATrueFPSCharacterBase::ATrueFPSCharacterBase()
 {
@@ -92,7 +93,7 @@ void ATrueFPSCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ThisClass::MoveForward);
+	/*PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ThisClass::MoveForward);
 	PlayerInputComponent->BindAxis(FName("MoveRight"), this, &ThisClass::MoveRight);
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ThisClass::LookUp);
 	PlayerInputComponent->BindAxis(FName("LookRight"), this, &ThisClass::LookRight);
@@ -108,7 +109,7 @@ void ATrueFPSCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	
 
 	PlayerInputComponent->BindAction(FName("EquipNext"), IE_Pressed, Inventory, &UCharacterInventoryComponent::EquipNext);
-	PlayerInputComponent->BindAction(FName("EquipLast"), IE_Pressed, Inventory, &UCharacterInventoryComponent::EquipLast);
+	PlayerInputComponent->BindAction(FName("EquipLast"), IE_Pressed, Inventory, &UCharacterInventoryComponent::EquipLast);*/
 }
 
 void ATrueFPSCharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -156,8 +157,8 @@ void ATrueFPSCharacterBase::CurrentWeaponChanged(AWeapon* CurrentWeapon, AWeapon
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("weaponsocket_r"));
 		CurrentWeapon->SetActorRelativeTransform(FTransform(CurrentWeapon->GetRelativeRotationPlacement(), CurrentWeapon->GetRelativeLocationPlacement()));
 	}
-
-	if(OldWeapon)
+	
+	if(OldWeapon && Inventory->HasWeapon(OldWeapon))
 	{
 		OldWeapon->SetVisibility(false);
 		OldWeapon->SetActorEnableCollision(false);
@@ -167,9 +168,24 @@ void ATrueFPSCharacterBase::CurrentWeaponChanged(AWeapon* CurrentWeapon, AWeapon
 	CurrentWeaponChangedDelegate.Broadcast(CurrentWeapon, OldWeapon);
 }
 
-AWeapon* ATrueFPSCharacterBase::GetCurrentWeapon() const
+void ATrueFPSCharacterBase::DropWeaponAt(const int32 Index)
 {
-	return Inventory ? Cast<AWeapon>(Inventory->GetCurrentWeapon()) : nullptr;
+	const TArray<AWeaponBase*>& Weapons = Inventory->GetWeapons();
+	if(!Weapons.IsValidIndex(Index) || !IsValid(Weapons[Index])) return;
+	if(HasAuthority())
+	{
+		AWeaponBase* const DropWeapon = Weapons[Index];
+		//Inventory->RemoveWeaponAt(Index);
+		SpawnWeaponDrop(DropWeapon);
+	}
+	else Server_DropWeaponAt(Index);
 }
 
+void ATrueFPSCharacterBase::SpawnWeaponDrop_Implementation(AWeaponBase* Weapon)
+{
+	if(!HasAuthority()) return;
+	const FTransform SpawnTransform(Camera->GetComponentLocation() + GetBaseAimRotation().Vector() * 120.f);
+	const FVector Velocity(GetBaseAimRotation().Vector() * 500.f);
+	AWeaponDropBase::SpawnWeaponDrop<AWeaponDropBase>(AWeaponDropBase::StaticClass(), Weapon, SpawnTransform, Velocity);
+}
 

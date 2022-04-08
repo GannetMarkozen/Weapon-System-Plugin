@@ -22,24 +22,27 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+	
 	virtual FORCEINLINE class AWeaponBase* GetCurrentWeapon_Implementation() const override { return CurrentWeapon; }
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = CurrentWeaponChanged, Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = "OnRep_CurrentWeapon", Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
 	class AWeaponBase* CurrentWeapon;
 
-	// Can change in editor to determine what the current weapon index we want to start out with (must be a valid index).
-	// Only the correct value locally from local weapon swapping.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Replicated, Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
+	// Can change in editor to determine what the current weapon index we want to start out with (must be a valid index)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
 	int32 CurrentIndex = 0;
 
-	// Called on all instances whenever the current weapon has been changed. Equivalent to OnRep_CurrentWeapon
+private:
 	UFUNCTION()
-	virtual void CurrentWeaponChanged(const class AWeaponBase* OldWeapon);
+	FORCEINLINE void OnRep_CurrentWeapon(const class AWeaponBase* OldWeapon) { CurrentWeaponChanged((AWeaponBase*)OldWeapon); }
+	
+protected:
+	// Called on all instances whenever the current weapon has been changed. Equivalent to OnRep_CurrentWeapon
+	virtual void CurrentWeaponChanged(class AWeaponBase* OldWeapon);
 
 	// Called on all instances whenever the current weapon has been changed. Equivalent to OnRep_CurrentWeapon
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Current Weapon Changed"), Category = "Inventory")
-	void BP_CurrentWeaponChanged(const class AWeaponBase* OldWeapon);
+	void BP_CurrentWeaponChanged(class AWeaponBase* NewWeapon, class AWeaponBase* OldWeapon);
 	
 public:
 	// Call this locally to instantiate CurrentIndex. Will RPC to server.
@@ -63,6 +66,13 @@ public:
 	{
 		if(Weapons.Num() <= 1) return;
 		EquipAt(Weapons.IsValidIndex(CurrentIndex - 1) ? CurrentIndex - 1 : Weapons.Num() - 1);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	virtual FORCEINLINE void EquipNone()
+	{
+		Equip(nullptr);
+		CurrentIndex = 0;
 	}
 
 protected:
@@ -89,7 +99,7 @@ protected:
 			Equip(Weapons[Index]);
 	}
 
-public:
+public:	
 	FORCEINLINE int32 GetCurrentIndex() const { return CurrentIndex; }
 
 	UPROPERTY(BlueprintAssignable, Category = "Inventory|Delegates")

@@ -125,11 +125,11 @@ public:
 	UBurstFireHitscanScriptBase() = default;
 
 protected:
-	virtual FORCEINLINE void OwningWeaponUnequipped(AWeaponBase* Weapon) override
+	virtual FORCEINLINE void OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory) override
 	{
 		GetWorld()->GetTimerManager().ClearTimer(FiringTimerHandle);
 		ResetCanFire();
-		Super::OwningWeaponUnequipped(Weapon);
+		Super::OwningWeaponUnequipped(Weapon, Inventory);
 	}
 	
 	// Binds the input to fire

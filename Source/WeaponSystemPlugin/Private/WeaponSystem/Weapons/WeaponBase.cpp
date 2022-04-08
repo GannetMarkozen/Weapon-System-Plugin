@@ -46,7 +46,7 @@ void AWeaponBase::PreReplication(IRepChangedPropertyTracker& ChangedPropertyTrac
 	Super::PreReplication(ChangedPropertyTracker);
 
 	// Call PreReplication on weapon scripts
-	for(UWeaponScriptBase* const Script : Scripts) UWeaponSystemFunctionLibrary::CallPreReplication(Script);
+	UWeaponSystemFunctionLibrary::CallPreReplicationList(Scripts);
 	
 	DOREPLIFETIME_ACTIVE_OVERRIDE(ThisClass, Scripts, !DelayScriptsReplicationTimerHandle.IsValid());
 }
@@ -165,19 +165,33 @@ bool AWeaponBase::RemoveScriptsByClass(const TSubclassOf<UWeaponScriptBase>& Cla
 	return bRemovedAny;
 }
 
-
-
-
-void AWeaponBase::OnEquipped()
+bool AWeaponBase::RemoveScriptByClass(const TSubclassOf<UWeaponScriptBase>& Class)
 {
-	BP_OnEquipped();
-	EquippedDelegate.Broadcast(this);
+	checkf(HasAuthority(), TEXT("AWeaponBase::RemoveScriptByClass can not remove script without authority"));
+	if(!Class) return false;
+	for(int32 i = 0; i < Scripts.Num(); i++) {
+		if(IsValid(Scripts[i]) && Scripts[i]->IsA(Class)) {
+			Internal_OnRemovedScript(Scripts[i]);
+			Scripts[i]->Destroy();
+			Scripts.RemoveAt(i);
+			return true;
+		}
+	}
+	return false;
 }
 
-void AWeaponBase::OnUnequipped()
+
+
+void AWeaponBase::OnEquipped(UCharacterInventoryComponent* Inventory)
 {
-	BP_OnUnequipped();
-	UnequippedDelegate.Broadcast(this);
+	BP_OnEquipped(Inventory);
+	EquippedDelegate.Broadcast(this, Inventory);
+}
+
+void AWeaponBase::OnUnequipped(UCharacterInventoryComponent* Inventory)
+{
+	BP_OnUnequipped(Inventory);
+	UnequippedDelegate.Broadcast(this, Inventory);
 }
 
 void AWeaponBase::OnObtained(UInventoryComponent* CurrentInventory)

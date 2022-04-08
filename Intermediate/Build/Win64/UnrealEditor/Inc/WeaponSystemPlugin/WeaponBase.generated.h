@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AWeaponBase;
 class UInventoryComponent;
+class UCharacterInventoryComponent;
 class UWeaponScriptBase;
 class UUserWidget;
 class UWeaponAttachmentPoint;
@@ -53,11 +54,13 @@ static inline void FWeaponObtainedDelegate_DelegateWrapper(const FMulticastScrip
 struct _Script_WeaponSystemPlugin_eventWeaponUnequippedDelegate_Parms \
 { \
 	AWeaponBase* Weapon; \
+	UCharacterInventoryComponent* Inventory; \
 }; \
-static inline void FWeaponUnequippedDelegate_DelegateWrapper(const FMulticastScriptDelegate& WeaponUnequippedDelegate, AWeaponBase* Weapon) \
+static inline void FWeaponUnequippedDelegate_DelegateWrapper(const FMulticastScriptDelegate& WeaponUnequippedDelegate, AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory) \
 { \
 	_Script_WeaponSystemPlugin_eventWeaponUnequippedDelegate_Parms Parms; \
 	Parms.Weapon=Weapon; \
+	Parms.Inventory=Inventory; \
 	WeaponUnequippedDelegate.ProcessMulticastDelegate<UObject>(&Parms); \
 }
 
@@ -66,11 +69,13 @@ static inline void FWeaponUnequippedDelegate_DelegateWrapper(const FMulticastScr
 struct _Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms \
 { \
 	AWeaponBase* Weapon; \
+	UCharacterInventoryComponent* Inventory; \
 }; \
-static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScriptDelegate& WeaponEquippedDelegate, AWeaponBase* Weapon) \
+static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScriptDelegate& WeaponEquippedDelegate, AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory) \
 { \
 	_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms Parms; \
 	Parms.Weapon=Weapon; \
+	Parms.Inventory=Inventory; \
 	WeaponEquippedDelegate.ProcessMulticastDelegate<UObject>(&Parms); \
 }
 
@@ -81,6 +86,7 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execHasScript); \
 	DECLARE_FUNCTION(execGetScriptOfClass); \
 	DECLARE_FUNCTION(execGetScriptsOfClass); \
+	DECLARE_FUNCTION(execRemoveScriptByClass); \
 	DECLARE_FUNCTION(execRemoveScriptsByClass); \
 	DECLARE_FUNCTION(execRemoveScript); \
 	DECLARE_FUNCTION(execAddScript); \
@@ -90,10 +96,12 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execGetAttachmentPoints); \
 	DECLARE_FUNCTION(execGetAttachmentsOfClass); \
 	DECLARE_FUNCTION(execGetAttachments); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
 	DECLARE_FUNCTION(execIsVisible); \
 	DECLARE_FUNCTION(execSetVisibility); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
+	DECLARE_FUNCTION(execRemoveFromInventory); \
 	DECLARE_FUNCTION(execOnRep_Scripts); \
 	DECLARE_FUNCTION(execOnRep_OwningInventory);
 
@@ -103,6 +111,7 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execHasScript); \
 	DECLARE_FUNCTION(execGetScriptOfClass); \
 	DECLARE_FUNCTION(execGetScriptsOfClass); \
+	DECLARE_FUNCTION(execRemoveScriptByClass); \
 	DECLARE_FUNCTION(execRemoveScriptsByClass); \
 	DECLARE_FUNCTION(execRemoveScript); \
 	DECLARE_FUNCTION(execAddScript); \
@@ -112,10 +121,12 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	DECLARE_FUNCTION(execGetAttachmentPoints); \
 	DECLARE_FUNCTION(execGetAttachmentsOfClass); \
 	DECLARE_FUNCTION(execGetAttachments); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
 	DECLARE_FUNCTION(execIsVisible); \
 	DECLARE_FUNCTION(execSetVisibility); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
+	DECLARE_FUNCTION(execRemoveFromInventory); \
 	DECLARE_FUNCTION(execOnRep_Scripts); \
 	DECLARE_FUNCTION(execOnRep_OwningInventory);
 
@@ -124,6 +135,10 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	struct WeaponBase_eventBP_OnAddedScript_Parms \
 	{ \
 		UWeaponScriptBase* NewScript; \
+	}; \
+	struct WeaponBase_eventBP_OnEquipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
 	}; \
 	struct WeaponBase_eventBP_OnObtained_Parms \
 	{ \
@@ -136,6 +151,10 @@ static inline void FWeaponEquippedDelegate_DelegateWrapper(const FMulticastScrip
 	struct WeaponBase_eventBP_OnRep_OwningInventory_Parms \
 	{ \
 		UInventoryComponent* OldInventory; \
+	}; \
+	struct WeaponBase_eventBP_OnUnequipped_Parms \
+	{ \
+		UCharacterInventoryComponent* Inventory; \
 	}; \
 	struct WeaponBase_eventBP_OnUnobtained_Parms \
 	{ \

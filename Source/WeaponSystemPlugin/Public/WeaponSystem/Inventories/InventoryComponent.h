@@ -41,34 +41,36 @@ protected:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual bool ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags) override;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Replicated, Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, ReplicatedUsing = "OnRep_Weapons", Meta = (AllowPrivateAccess = "true"), Category = "Inventory")
 	TArray<class AWeaponBase*> Weapons;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Configurations")
 	TArray<TSubclassOf<class AWeaponBase>> DefaultWeapons;
 
 public:
-	// NOTE: Does not check the validity of the new weapon by default. Only call on server.
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, BlueprintAuthorityOnly, Category = "Inventory")
+	UFUNCTION()
+	virtual FORCEINLINE void OnRep_Weapons(const TArray<class AWeaponBase*>& OldWeapons) {}
+	
+	// NOTE: Does not check the validity of the new weapon by default. Only call on server. Be cautious about calling on client as to not cause inconsistencies between server and client.
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, /*BlueprintAuthorityOnly,*/ Category = "Inventory")
 	void AddWeapon(class AWeaponBase* NewWeapon);
 	virtual void AddWeapon_Implementation(class AWeaponBase* NewWeapon);
 	
-	// NOTE: Does not check the validity of the new weapon by default. Only call on server.
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, BlueprintAuthorityOnly, Category = "Inventory")
+	// NOTE: Does not check the validity of the new weapon by default. Only call on server. Be cautious about calling on client as to not cause inconsistencies between server and client.
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, /*BlueprintAuthorityOnly,*/ Category = "Inventory")
 	void RemoveWeapon(class AWeaponBase* RemoveWeapon);
 	virtual void RemoveWeapon_Implementation(class AWeaponBase* RemoveWeapon);
 
-	// Only call on server.
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, BlueprintAuthorityOnly, Category = "Inventory")
+	// Only call on server. Be cautious about calling on client as to not cause inconsistencies between server and client.
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, /*BlueprintAuthorityOnly,*/ Category = "Inventory")
 	void RemoveWeaponAt(const int32 Index);
 	virtual void RemoveWeaponAt_Implementation(const int32 Index);
-	
-
 
 	
 	UFUNCTION(BlueprintPure)
 	virtual FORCEINLINE bool HasAuthority() const { return GetOwner() && GetOwner()->HasAuthority(); }
 
+	// Returns false if owning pawn is not valid
 	UFUNCTION(BlueprintPure)
 	virtual FORCEINLINE bool IsLocallyControlled() const
 	{
@@ -81,7 +83,12 @@ public:
 	class AWeaponBase* GetCurrentWeapon() const;
 
 	template<typename T>
-	FORCEINLINE T* GetCurrentWeapon() const { return Cast<T>(GetCurrentWeapon()); }
+	T* GetCurrentWeapon() const;
+	
+	const FORCEINLINE TArray<class AWeaponBase*>& GetWeapons() const { return Weapons; }
+
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	FORCEINLINE bool HasWeapon(const class AWeaponBase* Weapon) const { return Weapon && Weapons.Find((class AWeaponBase*)Weapon) != INDEX_NONE; }
 
 protected:
 	virtual FORCEINLINE class AWeaponBase* GetCurrentWeapon_Implementation() const { return nullptr; }

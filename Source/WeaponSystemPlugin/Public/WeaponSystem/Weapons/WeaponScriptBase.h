@@ -46,17 +46,17 @@ protected:
 	virtual FORCEINLINE bool CanTick_Implementation() const { return false; }
 
 	UFUNCTION()
-	virtual void OwningWeaponEquipped(class AWeaponBase* Weapon);
+	virtual void OwningWeaponEquipped(class AWeaponBase* Weapon, class UCharacterInventoryComponent* Inventory);
 
 	UFUNCTION()
-	virtual void OwningWeaponUnequipped(class AWeaponBase* Weapon);
+	virtual void OwningWeaponUnequipped(class AWeaponBase* Weapon, class UCharacterInventoryComponent* Inventory);
 
 	// Called if owned by a Pawn and is local on equipped
-	virtual FORCEINLINE void SetupInput() {}
+	virtual FORCEINLINE void SetupInput(class UInputComponent* InputComponent) {}
 
 	// Called if owned by a pawn and is local on unequipped.
 	// By default removes all input from this object when called
-	virtual FORCEINLINE void RemoveInput() { RemoveAllUObject(this); }
+	virtual void RemoveInput(class UInputComponent* InputComponent);
 	
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Begin Play"), Category = "Script")
 	void BP_BeginPlay();
@@ -69,29 +69,35 @@ protected:
 	void BP_Tick(const float DeltaTime);
 
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Owning Weapon Equippped"), Category = "Script")
-	void BP_OwningWeaponEquipped();
+	void BP_OwningWeaponEquipped(class UCharacterInventoryComponent* Inventory);
 
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Owning Weapon Unequipped"), Category = "Script")
-	void BP_OwningWeaponUnequipped();
+	void BP_OwningWeaponUnequipped(class UCharacterInventoryComponent* Inventory);
 
 	// Called if owned by a Pawn and is local on equipped.
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Setup Input"), Category = "Script|Input Binding")
-	void BP_SetupInput();
+	void BP_SetupInput(class UInputComponent* InputComponent);
 
 	// Called if owned by a pawn and is local on unequipped.
 	// By default removes all input from this object when called
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Remove Input"), Category = "Script|Input Binding")
-	void BP_RemoveInput();
+	void BP_RemoveInput(class UInputComponent* InputComponent);
 
 public:
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE class UInventoryComponent* GetOwningInventory() const { return OwningWeaponBase->OwningInventory; }
 
+	template<typename T>
+	FORCEINLINE T* GetOwningInventory() const { return Cast<T>(GetOwningInventory()); }
+ 
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool IsLocallyControlled() const { return OwningWeaponBase ? OwningWeaponBase->IsLocallyControlled() : false; }
 
 	UFUNCTION(BlueprintPure, Category = "Script")
-	FORCEINLINE bool IsEquipped() const { return OwningWeaponBase ? OwningWeaponBase->IsEquipped() : false; }
+	FORCEINLINE bool IsEquipped() const { return OwningWeaponBase && OwningWeaponBase->IsEquipped(); }
+
+	UFUNCTION(BlueprintPure, Category = "Script")
+	FORCEINLINE bool IsEquippedBy(const class UInventoryComponent* Inventory) const { return OwningWeaponBase && OwningWeaponBase->IsEquippedBy(Inventory); }
 	
 protected:
 	// Adds a binding to our pawn owner given the passed in Object reference
@@ -165,15 +171,27 @@ protected:
 	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "UserObject", DisplayName = "Remove All Bindings"), Category = "Script|Input Binding")
 	FORCEINLINE void RemoveAllUObject(class UObject* UserObject)
 	{
+		if(!UserObject) return;
 		if(UInputComponent* InputComponent = GetInputComponent())
 			for(int32 i = 0; i < InputComponent->GetNumActionBindings(); i++)
 				if(InputComponent->GetActionBinding(i).ActionDelegate.GetUObject() == UserObject)
 					InputComponent->RemoveActionBinding(i--);// Decrement index on removal to adjust for the array shrinking to ensure we scan every item in the array
 	}
 
-	UFUNCTION(BlueprintPure, BlueprintNativeEvent, Category = "Script|Input Binding")
+	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "UserObject", DisplayName = "Remove All Bindings From Input Component"), Category = "Script|Input Binding")
+	static void RemoveAllUObjectFromInputComponent(class UObject* UserObject, class UInputComponent* InputComponent)
+	{
+		if(!InputComponent || !UserObject) return;
+		for(int32 i = 0; i < InputComponent->GetNumActionBindings(); i++)
+			if(InputComponent->GetActionBinding(i).ActionDelegate.GetUObject() == UserObject)
+				InputComponent->RemoveActionBinding(i--);// Decrement index on removal to adjust for the array shrinking to ensure we scan every item in the array
+	}
+
+	static FORCEINLINE void RemoveAllUObject(class UObject* UserObject, class UInputComponent* InputComponent) { RemoveAllUObjectFromInputComponent(UserObject, InputComponent); }
+
+	/*UFUNCTION(BlueprintPure, BlueprintNativeEvent, Category = "Script|Input Binding")
 	class UInputComponent* GetInputComponent(const bool bHasPriority = true) const;
-	virtual FORCEINLINE class UInputComponent* GetInputComponent_Implementation(const bool bHasPriority = true) const
+	virtual FORCEINLINE class UInputComponent* GetInputComponent_Implementation(const bool bHasPriority = true) const 
 	{
 		if(OwningWeaponBase && GetOwningInventory())
 			if(const APawn* OwningPawn = GetOwningInventory()->GetOwner<APawn>()) {
@@ -181,6 +199,25 @@ protected:
 				if(const AController* Controller = OwningPawn->Controller.Get())
 					return Controller->InputComponent.Get();
 			}
+		return nullptr;
+	}*/
+
+	UFUNCTION(BlueprintPure, Category = "Script|Input Binding")
+	FORCEINLINE class UInputComponent* GetInputComponent(const bool bHasPriority = true) const { return GetInputComponentFromInventory(GetOwningInventory(), bHasPriority); }
+
+	UFUNCTION(BlueprintPure, BlueprintNativeEvent, Category = "Script|Input Binding")
+	class UInputComponent* GetInputComponentFromInventory(const class UInventoryComponent* Inventory, const bool bHasPriority = true) const;
+	virtual FORCEINLINE class UInputComponent* GetInputComponentFromInventory_Implementation(const class UInventoryComponent* Inventory, const bool bHasPriority = true) const
+	{
+		if(!Inventory) return nullptr;
+		if(const APawn* OwningPawn = Inventory->GetOwner<APawn>())
+		{
+			if(!bHasPriority)
+				return OwningPawn->InputComponent.Get();
+			
+			if(const AController* Controller = OwningPawn->Controller.Get())
+				return Controller->InputComponent.Get();
+		}
 		return nullptr;
 	}
 	

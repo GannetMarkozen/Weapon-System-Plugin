@@ -39,8 +39,8 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x54C7ADAE,
-				0x23325F02,
+				0xFF7301DB,
+				0xE9FDDB53,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

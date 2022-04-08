@@ -60,13 +60,13 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Removed"), Category = "Attachment")
 	void BP_OnRemoved();
 	
-	virtual FORCEINLINE void OnEquipped() {}
+	virtual FORCEINLINE void OnEquipped(class UCharacterInventoryComponent* Inventory) {}
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Equipped"), Category = "Attachment")
-	void BP_OnEquipped();
+	void BP_OnEquipped(class UCharacterInventoryComponent* Inventory);
 	
-	virtual FORCEINLINE void OnUnequipped() {}
+	virtual FORCEINLINE void OnUnequipped(class UCharacterInventoryComponent* Inventory) {}
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Unequipped"), Category = "Attachment")
-	void BP_OnUnequipped();
+	void BP_OnUnequipped(class UCharacterInventoryComponent* Inventory);
 
 	// Called whenever the owning inventory of the owning weapon changes to a valid inventory
 	virtual FORCEINLINE void OnObtained(class UInventoryComponent* OwningInventory) {}
@@ -84,6 +84,13 @@ public:
 
 	template<typename T>
 	FORCEINLINE T* GetOwningWeapon() const { return Cast<T>(OwningWeapon); }
+
+	// Get the Inventory that owns our owning weapon
+	UFUNCTION(BlueprintPure, Category = "Attachment")
+	FORCEINLINE class UInventoryComponent* GetOwningInventory() const { return OwningWeapon ? OwningWeapon->GetOwningInventory() : nullptr; }
+
+	template<typename T>
+	FORCEINLINE T* GetOwningInventory() const { return Cast<T>(GetOwningInventory()); }
 
 private:
 	static FORCEINLINE class UWorld* StaticGetWorld()
@@ -110,6 +117,6 @@ private:
 
 	UFUNCTION() FORCEINLINE void Internal_OnObtained(class AWeaponBase* W, class UInventoryComponent* InOwningInventory) { OnObtained(InOwningInventory); BP_OnObtained(InOwningInventory); }
 	UFUNCTION() FORCEINLINE void Internal_OnUnobtained(class AWeaponBase* W, class UInventoryComponent* InOldInventory) { OnUnobtained(InOldInventory); BP_OnUnobtained(InOldInventory); }
-	UFUNCTION() FORCEINLINE void Internal_OnEquipped(class AWeaponBase* W) { OnEquipped(); BP_OnEquipped(); }
-	UFUNCTION() FORCEINLINE void Internal_OnUnequipped(class AWeaponBase* W) { OnUnequipped(); BP_OnUnequipped(); }
+	UFUNCTION() FORCEINLINE void Internal_OnEquipped(class AWeaponBase* W, class UCharacterInventoryComponent* InInventory) { OnEquipped(InInventory); BP_OnEquipped(InInventory); }
+	UFUNCTION() FORCEINLINE void Internal_OnUnequipped(class AWeaponBase* W, class UCharacterInventoryComponent* InInventory) { OnUnequipped(InInventory); BP_OnUnequipped(InInventory); }
 };

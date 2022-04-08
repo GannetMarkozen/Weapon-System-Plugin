@@ -498,6 +498,45 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		*(FTransform*)Z_Param__Result=P_THIS->GetDomHandTransform_Implementation();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execSpawnWeaponDrop)
+	{
+		P_GET_OBJECT(AWeaponBase,Z_Param_Weapon);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SpawnWeaponDrop_Implementation(Z_Param_Weapon);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execServer_DropWeaponAt)
+	{
+		P_GET_PROPERTY(FIntProperty,Z_Param_Index);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->Server_DropWeaponAt_Implementation(Z_Param_Index);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execDropWeapon)
+	{
+		P_GET_OBJECT(AWeaponBase,Z_Param_Weapon);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DropWeapon(Z_Param_Weapon);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execDropCurrentWeapon)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DropCurrentWeapon();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execDropWeaponAt)
+	{
+		P_GET_PROPERTY(FIntProperty,Z_Param_Index);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DropWeaponAt(Z_Param_Index);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ATrueFPSCharacterBase::execGetCurrentWeapon)
 	{
 		P_FINISH;
@@ -565,6 +604,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	{
 		ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_Multi_StopLeaning),NULL);
 	}
+	static FName NAME_ATrueFPSCharacterBase_Server_DropWeaponAt = FName(TEXT("Server_DropWeaponAt"));
+	void ATrueFPSCharacterBase::Server_DropWeaponAt(const int32 Index)
+	{
+		TrueFPSCharacterBase_eventServer_DropWeaponAt_Parms Parms;
+		Parms.Index=Index;
+		ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_Server_DropWeaponAt),&Parms);
+	}
 	static FName NAME_ATrueFPSCharacterBase_Server_LeanLeft = FName(TEXT("Server_LeanLeft"));
 	void ATrueFPSCharacterBase::Server_LeanLeft()
 	{
@@ -595,11 +641,21 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	{
 		ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_SetupMesh),NULL);
 	}
+	static FName NAME_ATrueFPSCharacterBase_SpawnWeaponDrop = FName(TEXT("SpawnWeaponDrop"));
+	void ATrueFPSCharacterBase::SpawnWeaponDrop(AWeaponBase* Weapon)
+	{
+		TrueFPSCharacterBase_eventSpawnWeaponDrop_Parms Parms;
+		Parms.Weapon=Weapon;
+		ProcessEvent(FindFunctionChecked(NAME_ATrueFPSCharacterBase_SpawnWeaponDrop),&Parms);
+	}
 	void ATrueFPSCharacterBase::StaticRegisterNativesATrueFPSCharacterBase()
 	{
 		UClass* Class = ATrueFPSCharacterBase::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AddRecoilInstance", &ATrueFPSCharacterBase::execAddRecoilInstance },
+			{ "DropCurrentWeapon", &ATrueFPSCharacterBase::execDropCurrentWeapon },
+			{ "DropWeapon", &ATrueFPSCharacterBase::execDropWeapon },
+			{ "DropWeaponAt", &ATrueFPSCharacterBase::execDropWeaponAt },
 			{ "GetCurrentWeapon", &ATrueFPSCharacterBase::execGetCurrentWeapon },
 			{ "GetCurrentWeaponBase", &ATrueFPSCharacterBase::execGetCurrentWeaponBase },
 			{ "GetDomHandTransform", &ATrueFPSCharacterBase::execGetDomHandTransform },
@@ -612,12 +668,14 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 			{ "Multi_StartCrouching", &ATrueFPSCharacterBase::execMulti_StartCrouching },
 			{ "Multi_StopCrouching", &ATrueFPSCharacterBase::execMulti_StopCrouching },
 			{ "Multi_StopLeaning", &ATrueFPSCharacterBase::execMulti_StopLeaning },
+			{ "Server_DropWeaponAt", &ATrueFPSCharacterBase::execServer_DropWeaponAt },
 			{ "Server_LeanLeft", &ATrueFPSCharacterBase::execServer_LeanLeft },
 			{ "Server_LeanRight", &ATrueFPSCharacterBase::execServer_LeanRight },
 			{ "Server_StartCrouching", &ATrueFPSCharacterBase::execServer_StartCrouching },
 			{ "Server_StopCrouching", &ATrueFPSCharacterBase::execServer_StopCrouching },
 			{ "Server_StopLeaning", &ATrueFPSCharacterBase::execServer_StopLeaning },
 			{ "SetupMesh", &ATrueFPSCharacterBase::execSetupMesh },
+			{ "SpawnWeaponDrop", &ATrueFPSCharacterBase::execSpawnWeaponDrop },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -665,6 +723,104 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropCurrentWeapon", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics
+	{
+		struct TrueFPSCharacterBase_eventDropWeapon_Parms
+		{
+			AWeaponBase* Weapon;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventDropWeapon_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::NewProp_Weapon,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeapon", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventDropWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics
+	{
+		struct TrueFPSCharacterBase_eventDropWeaponAt_Parms
+		{
+			int32 Index;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Index_MetaData[];
+#endif
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Index;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::NewProp_Index_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::NewProp_Index = { "Index", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventDropWeaponAt_Parms, Index), METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::NewProp_Index_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::NewProp_Index_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::NewProp_Index,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character" },
+		{ "CPP_Default_Index", "0" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeaponAt", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventDropWeaponAt_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics
 	{
 		struct TrueFPSCharacterBase_eventGetCurrentWeapon_Parms
@@ -684,9 +840,10 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams[] = {
-		{ "Comment", "// Automatically casts it to UWeapon\n" },
+		{ "Category", "Character" },
+		{ "Comment", "// Automatically casts it to AWeapon\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
-		{ "ToolTip", "Automatically casts it to UWeapon" },
+		{ "ToolTip", "Automatically casts it to AWeapon" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetCurrentWeapon", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventGetCurrentWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams)) };
@@ -718,6 +875,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
@@ -1004,6 +1162,42 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Index_MetaData[];
+#endif
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Index;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::NewProp_Index_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::NewProp_Index = { "Index", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventServer_DropWeaponAt_Parms, Index), METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::NewProp_Index_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::NewProp_Index_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::NewProp_Index,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "Server_DropWeaponAt", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventServer_DropWeaponAt_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00280CC0, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft_Statics
 	{
 #if WITH_METADATA
@@ -1137,6 +1331,35 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics
+	{
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventSpawnWeaponDrop_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::NewProp_Weapon,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "SpawnWeaponDrop", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventSpawnWeaponDrop_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister()
 	{
 		return ATrueFPSCharacterBase::StaticClass();
@@ -1192,6 +1415,18 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CrouchValue_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchValue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentPitchInputValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentPitchInputValue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentYawInputValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentYawInputValue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentRollInputValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentRollInputValue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -1202,8 +1437,11 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ATrueFPSCharacterBase_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance, "AddRecoilInstance" }, // 2591403426
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon, "GetCurrentWeapon" }, // 980961066
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase, "GetCurrentWeaponBase" }, // 3797872924
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon, "DropCurrentWeapon" }, // 3414516290
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon, "DropWeapon" }, // 3027337817
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt, "DropWeaponAt" }, // 1424047236
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon, "GetCurrentWeapon" }, // 1484860652
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase, "GetCurrentWeaponBase" }, // 4024522590
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform, "GetDomHandTransform" }, // 731370532
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances, "GetNumRecoilInstances" }, // 3268037751
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform, "GetOffHandTransform" }, // 2595666703
@@ -1214,12 +1452,14 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StartCrouching, "Multi_StartCrouching" }, // 2469225507
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopCrouching, "Multi_StopCrouching" }, // 4085037393
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopLeaning, "Multi_StopLeaning" }, // 1285748560
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt, "Server_DropWeaponAt" }, // 2266876016
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft, "Server_LeanLeft" }, // 1484640300
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanRight, "Server_LeanRight" }, // 1984952482
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StartCrouching, "Server_StartCrouching" }, // 2289870527
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopCrouching, "Server_StopCrouching" }, // 677728728
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning, "Server_StopLeaning" }, // 3585128864
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh, "SetupMesh" }, // 2884928218
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 188988469
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::Class_MetaDataParams[] = {
@@ -1316,6 +1556,27 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CrouchValue = { "CrouchValue", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CrouchValue), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CrouchValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CrouchValue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentPitchInputValue_MetaData[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentPitchInputValue = { "CurrentPitchInputValue", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentPitchInputValue), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentPitchInputValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentPitchInputValue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentYawInputValue_MetaData[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentYawInputValue = { "CurrentYawInputValue", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentYawInputValue), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentYawInputValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentYawInputValue_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentRollInputValue_MetaData[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentRollInputValue = { "CurrentRollInputValue", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentRollInputValue), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentRollInputValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentRollInputValue_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATrueFPSCharacterBase_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_Camera,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_ClientMesh,
@@ -1328,6 +1589,9 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LeanAmount,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LeanValue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CrouchValue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentPitchInputValue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentYawInputValue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentRollInputValue,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ATrueFPSCharacterBase_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ATrueFPSCharacterBase>::IsAbstract,
@@ -1344,7 +1608,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::PropPointers),
 		0,
-		0x009000A4u,
+		0x009000A5u,
 		METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_ATrueFPSCharacterBase()
@@ -1356,7 +1620,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATrueFPSCharacterBase, 863071127);
+	IMPLEMENT_CLASS(ATrueFPSCharacterBase, 1213845447);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ATrueFPSCharacterBase>()
 	{
 		return ATrueFPSCharacterBase::StaticClass();

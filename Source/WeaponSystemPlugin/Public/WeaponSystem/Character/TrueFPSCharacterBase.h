@@ -76,7 +76,7 @@ struct WEAPONSYSTEMPLUGIN_API FRecoilInstance
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLandedMultiDelegate, class ATrueFPSCharacterBase*, Character, const FHitResult&, Hit);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FCurrentWeaponChangedDelgate, class AWeapon*, CurrentWeapon, class AWeapon*, OldWeapon);
 
-UCLASS()
+UCLASS(Abstract)
 class WEAPONSYSTEMPLUGIN_API ATrueFPSCharacterBase : public ACharacter
 {
 	GENERATED_BODY()
@@ -108,17 +108,38 @@ protected:
 	
 	virtual void CurrentWeaponChanged(class AWeapon* CurrentWeapon, class AWeapon* OldWeapon);
 
-public:	
-	UFUNCTION(BlueprintPure)
+public:
+	const FORCEINLINE TArray<class AWeaponBase*>& GetWeapons() const { return Inventory->GetWeapons(); }
+	
+	UFUNCTION(BlueprintPure, Category = "Character")
 	FORCEINLINE class AWeaponBase* GetCurrentWeaponBase() const { return Inventory->GetCurrentWeapon(); }
 
-	// Automatically casts it to UWeapon
-	UFUNCTION(BlueprintPure)
-	class AWeapon* GetCurrentWeapon() const;
+	// Automatically casts it to AWeapon
+	UFUNCTION(BlueprintPure, Category = "Character")
+	FORCEINLINE class AWeapon* GetCurrentWeapon() const { return Inventory->GetCurrentWeapon<AWeapon>(); }
 
 	template<typename T>
-	FORCEINLINE T* GetCurrentWeapon() const { return Cast<T>(GetCurrentWeaponBase()); }
+	FORCEINLINE T* GetCurrentWeapon() const { return Inventory->GetCurrentWeapon<T>(); }
 
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	virtual void DropWeaponAt(const int32 Index = 0);
+
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	FORCEINLINE void DropCurrentWeapon() { DropWeaponAt(Inventory->GetCurrentIndex()); }
+
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	FORCEINLINE void DropWeapon(class AWeaponBase* Weapon) { if(Weapon) DropWeaponAt(Inventory->GetWeapons().Find(Weapon)); }
+	
+protected:
+	UFUNCTION(Server, Reliable)
+	void Server_DropWeaponAt(const int32 Index);
+	FORCEINLINE void Server_DropWeaponAt_Implementation(const int32 Index) { DropWeaponAt(Index); }
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Character")
+	void SpawnWeaponDrop(class AWeaponBase* Weapon);
+	virtual void SpawnWeaponDrop_Implementation(class AWeaponBase* Weapon);
+
+public:	
 	// By default returns the world-transform of hand_r
 	UFUNCTION(BlueprintNativeEvent, BlueprintPure, Meta = (DisplayName = "Get Dominant-Hand World Transform"), Category = "Character|Anim")
 	FTransform GetDomHandTransform() const;
@@ -184,7 +205,6 @@ private:
 	TArray<FRecoilInstance> RecoilInstances;
 
 protected:
-
 	float CrouchValueTarget = 0.f;
 	float LeanValueTarget = 0.f;
 	bool bCrouching = false;
@@ -252,33 +272,53 @@ protected:
 	//	Basic Locomotion
 	//
 	
-	virtual FORCEINLINE void MoveForward(const float Value)
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
+	virtual void MoveForward(const float Value)
 	{
-		const FVector& Direction = FRotator(0.f, GetBaseAimRotation().Yaw, 0.f).Vector();
+		const FVector Direction = FRotator(0.f, GetBaseAimRotation().Yaw, 0.f).Vector();
 		AddMovementInput(Direction, Value);
 	}
 
-	virtual FORCEINLINE void MoveRight(const float Value)
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
+	virtual void MoveRight(const float Value)
 	{
-		const FVector& Direction = FRotator(0.f, GetBaseAimRotation().Yaw + 90.f, 0.f).Vector();
+		const FVector Direction = FRotator(0.f, GetBaseAimRotation().Yaw + 90.f, 0.f).Vector();
 		AddMovementInput(Direction, Value);
-	}
-
-	virtual FORCEINLINE void LookUp(const float Value)
-	{
-		AddControllerPitchInput(-Value);
-		CurrentPitchInputValue = -Value;
-	}
-
-	virtual FORCEINLINE void LookRight(const float Value)
-	{
-		AddControllerYawInput(Value);
-		CurrentYawInputValue = Value;
 	}
 
 public:
+	virtual void AddControllerPitchInput(const float Value) override
+	{
+		Super::AddControllerPitchInput(Value);
+		CurrentPitchInputValue = Value;
+	}
+
+	virtual void AddControllerYawInput(const float Value) override
+	{
+		Super::AddControllerYawInput(Value);
+		CurrentYawInputValue = Value;
+	}
+
+	virtual void AddControllerRollInput(const float Value) override
+	{
+		Super::AddControllerRollInput(Value);
+		CurrentRollInputValue = Value;
+	}
+
+	FORCEINLINE void AddControllerPitchInputInverse(const float Value) { AddControllerPitchInput(-Value); }
+	FORCEINLINE void AddControllerYawInputInverse(const float Value) { AddControllerYawInput(-Value); }
+	FORCEINLINE void AddControllerRollInputInverse(const float Value) { AddControllerRollInput(-Value); }
+
+	// The last updated pitch input value
+	UPROPERTY(BlueprintReadOnly, Category = "Character|Locomotion")
 	float CurrentPitchInputValue = 0.f;
+
+	// The last updated yaw input value
+	UPROPERTY(BlueprintReadOnly, Category = "Character|Locomotion")
 	float CurrentYawInputValue = 0.f;
+
+	// The last updated roll input value
+	UPROPERTY(BlueprintReadOnly, Category = "Character|Locomotion")
 	float CurrentRollInputValue = 0.f;
 
 

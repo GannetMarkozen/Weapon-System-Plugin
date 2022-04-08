@@ -59,6 +59,8 @@ C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\Weapon.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/TrueFPSCharacterBase.cpp
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\Net/UnrealNetwork.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem/Weapons/WeaponDropBase.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponDropBase.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Inventories/CharacterInventoryComponent.cpp
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Inventories/InventoryComponent.cpp
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Engine/ActorChannel.h
@@ -229,5 +231,12 @@ C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\SetupAttachmentsScriptBase.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/Weapon.cpp
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponBase.cpp
+C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponDropBase.cpp
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/SphereComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\ShapeComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\SphereComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/ProjectileMovementComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\ProjectileMovementComponent.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponScript.cpp
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/WeaponScriptBase.cpp

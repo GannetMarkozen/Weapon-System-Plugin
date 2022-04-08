@@ -2,6 +2,8 @@
 
 
 #include "WeaponSystem/Weapons/WeaponScriptBase.h"
+
+#include "WeaponSystem/Inventories/CharacterInventoryComponent.h"
 #include "WeaponSystem/Weapons/WeaponBase.h"
 
 
@@ -21,7 +23,8 @@ void UWeaponScriptBase::BeginPlay()
 	BP_BeginPlay();
 
 	// If owning weapon's already equipped. Call on equipped.
-	if(IsEquipped()) OwningWeaponEquipped(OwningWeaponBase);
+	if(IsEquipped())
+		OwningWeaponEquipped(OwningWeaponBase, GetOwningInventory<UCharacterInventoryComponent>());
 }
 
 void UWeaponScriptBase::EndPlay()
@@ -39,6 +42,11 @@ void UWeaponScriptBase::EndPlay()
 	BP_EndPlay();
 }
 
+void UWeaponScriptBase::RemoveInput(UInputComponent* InputComponent)
+{
+	RemoveAllUObject(this, InputComponent);
+}
+
 
 void UWeaponScriptBase::OnDestroyed()
 {
@@ -48,25 +56,30 @@ void UWeaponScriptBase::OnDestroyed()
 }
 
 
-void UWeaponScriptBase::OwningWeaponEquipped(AWeaponBase* Weapon)
+void UWeaponScriptBase::OwningWeaponEquipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory)
 {
-	BP_OwningWeaponEquipped();
+	BP_OwningWeaponEquipped(Inventory);
 	
 	if(OwningWeaponBase->IsLocallyControlled())
 	{
-		SetupInput();
-		BP_SetupInput();
+		if(UInputComponent* const InputComponent = GetInputComponentFromInventory(Inventory))
+		{
+			SetupInput(InputComponent);
+			BP_SetupInput(InputComponent);
+		}
 	}
-		
 }
 
-void UWeaponScriptBase::OwningWeaponUnequipped(AWeaponBase* Weapon)
+void UWeaponScriptBase::OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory)
 {
-	BP_OwningWeaponUnequipped();
+	BP_OwningWeaponUnequipped(Inventory);
 	
 	if(OwningWeaponBase->IsLocallyControlled())
 	{
-		RemoveInput();
-		BP_RemoveInput();
+		if(UInputComponent* const InputComponent = GetInputComponentFromInventory(Inventory))
+		{
+			RemoveInput(InputComponent);
+			BP_RemoveInput(InputComponent);
+		}
 	}
 }

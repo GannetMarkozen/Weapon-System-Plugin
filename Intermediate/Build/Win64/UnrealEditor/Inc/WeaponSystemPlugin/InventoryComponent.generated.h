@@ -146,22 +146,26 @@ template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UInventoryInterface>
 	virtual void RemoveWeapon_Implementation(AWeaponBase* RemoveWeapon); \
 	virtual void AddWeapon_Implementation(AWeaponBase* NewWeapon); \
  \
+	DECLARE_FUNCTION(execHasWeapon); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execHasAuthority); \
 	DECLARE_FUNCTION(execRemoveWeaponAt); \
 	DECLARE_FUNCTION(execRemoveWeapon); \
-	DECLARE_FUNCTION(execAddWeapon);
+	DECLARE_FUNCTION(execAddWeapon); \
+	DECLARE_FUNCTION(execOnRep_Weapons);
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Inventories_InventoryComponent_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execHasWeapon); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execHasAuthority); \
 	DECLARE_FUNCTION(execRemoveWeaponAt); \
 	DECLARE_FUNCTION(execRemoveWeapon); \
-	DECLARE_FUNCTION(execAddWeapon);
+	DECLARE_FUNCTION(execAddWeapon); \
+	DECLARE_FUNCTION(execOnRep_Weapons);
 
 
 #define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Inventories_InventoryComponent_h_33_EVENT_PARMS \

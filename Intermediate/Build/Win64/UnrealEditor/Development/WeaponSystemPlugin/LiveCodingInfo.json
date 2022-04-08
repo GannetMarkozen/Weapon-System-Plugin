@@ -22,6 +22,7 @@
 			"SetupAttachmentsScriptBase.cpp.obj",
 			"Weapon.cpp.obj",
 			"WeaponBase.cpp.obj",
+			"WeaponDropBase.cpp.obj",
 			"WeaponScript.cpp.obj",
 			"WeaponScriptBase.cpp.obj"
 		],
@@ -45,11 +46,12 @@
 			"WeaponAttachmentBase.gen.cpp.obj",
 			"WeaponAttachmentPoint.gen.cpp.obj",
 			"WeaponBase.gen.cpp.obj",
+			"WeaponDropBase.gen.cpp.obj",
 			"WeaponScript.gen.cpp.obj",
-			"WeaponScriptBase.gen.cpp.obj",
-			"WeaponSystemAnimInstance.gen.cpp.obj"
+			"WeaponScriptBase.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.3_of_3.cpp.obj": [
+			"WeaponSystemAnimInstance.gen.cpp.obj",
 			"WeaponSystemFunctionLibrary.gen.cpp.obj",
 			"WeaponSystemPlugin.init.gen.cpp.obj"
 		]
