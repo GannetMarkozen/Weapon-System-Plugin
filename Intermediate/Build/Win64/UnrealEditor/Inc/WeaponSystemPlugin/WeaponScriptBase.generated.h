@@ -18,10 +18,9 @@ class UCharacterInventoryComponent;
 #endif
 #define WEAPONSYSTEMPLUGIN_WeaponScriptBase_generated_h
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_SPARSE_DATA
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_SPARSE_DATA
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_RPC_WRAPPERS \
 	virtual UInputComponent* GetInputComponentFromInventory_Implementation(const UInventoryComponent* Inventory, bool bHasPriority) const; \
-	virtual bool CanTick_Implementation() const; \
  \
 	DECLARE_FUNCTION(execGetInputComponentFromInventory); \
 	DECLARE_FUNCTION(execGetInputComponent); \
@@ -29,16 +28,15 @@ class UCharacterInventoryComponent;
 	DECLARE_FUNCTION(execRemoveAllUObject); \
 	DECLARE_FUNCTION(execRemoveBinding); \
 	DECLARE_FUNCTION(execSetupBinding); \
-	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execGetOwningInventory); \
 	DECLARE_FUNCTION(execOwningWeaponUnequipped); \
-	DECLARE_FUNCTION(execOwningWeaponEquipped); \
-	DECLARE_FUNCTION(execCanTick);
+	DECLARE_FUNCTION(execOwningWeaponEquipped);
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGetInputComponentFromInventory); \
 	DECLARE_FUNCTION(execGetInputComponent); \
@@ -46,16 +44,15 @@ class UCharacterInventoryComponent;
 	DECLARE_FUNCTION(execRemoveAllUObject); \
 	DECLARE_FUNCTION(execRemoveBinding); \
 	DECLARE_FUNCTION(execSetupBinding); \
-	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsEquipped); \
+	DECLARE_FUNCTION(execIsEquippedBy); \
 	DECLARE_FUNCTION(execIsLocallyControlled); \
 	DECLARE_FUNCTION(execGetOwningInventory); \
 	DECLARE_FUNCTION(execOwningWeaponUnequipped); \
-	DECLARE_FUNCTION(execOwningWeaponEquipped); \
-	DECLARE_FUNCTION(execCanTick);
+	DECLARE_FUNCTION(execOwningWeaponEquipped);
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_EVENT_PARMS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_EVENT_PARMS \
 	struct WeaponScriptBase_eventBP_OwningWeaponEquipped_Parms \
 	{ \
 		UCharacterInventoryComponent* Inventory; \
@@ -72,20 +69,6 @@ class UCharacterInventoryComponent;
 	{ \
 		UInputComponent* InputComponent; \
 	}; \
-	struct WeaponScriptBase_eventBP_Tick_Parms \
-	{ \
-		float DeltaTime; \
-	}; \
-	struct WeaponScriptBase_eventCanTick_Parms \
-	{ \
-		bool ReturnValue; \
- \
-		/** Constructor, initializes return property only **/ \
-		WeaponScriptBase_eventCanTick_Parms() \
-			: ReturnValue(false) \
-		{ \
-		} \
-	}; \
 	struct WeaponScriptBase_eventGetInputComponentFromInventory_Parms \
 	{ \
 		const UInventoryComponent* Inventory; \
@@ -100,26 +83,26 @@ class UCharacterInventoryComponent;
 	};
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_CALLBACK_WRAPPERS
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_INCLASS_NO_PURE_DECLS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_CALLBACK_WRAPPERS
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUWeaponScriptBase(); \
 	friend struct Z_Construct_UClass_UWeaponScriptBase_Statics; \
 public: \
-	DECLARE_CLASS(UWeaponScriptBase, UReplicatedObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(UWeaponScriptBase, UScriptBase, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(UWeaponScriptBase)
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_INCLASS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_INCLASS \
 private: \
 	static void StaticRegisterNativesUWeaponScriptBase(); \
 	friend struct Z_Construct_UClass_UWeaponScriptBase_Statics; \
 public: \
-	DECLARE_CLASS(UWeaponScriptBase, UReplicatedObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(UWeaponScriptBase, UScriptBase, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(UWeaponScriptBase)
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_STANDARD_CONSTRUCTORS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UWeaponScriptBase(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_ABSTRACT_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UWeaponScriptBase) \
@@ -132,7 +115,7 @@ private: \
 public:
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_ENHANCED_CONSTRUCTORS \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UWeaponScriptBase(UWeaponScriptBase&&); \
@@ -143,36 +126,36 @@ public: \
 	DEFINE_ABSTRACT_DEFAULT_CONSTRUCTOR_CALL(UWeaponScriptBase)
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_PRIVATE_PROPERTY_OFFSET \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__OwningWeaponBase() { return STRUCT_OFFSET(UWeaponScriptBase, OwningWeaponBase); }
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_17_PROLOG \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_EVENT_PARMS
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_19_PROLOG \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_EVENT_PARMS
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_GENERATED_BODY_LEGACY \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_PRIVATE_PROPERTY_OFFSET \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_SPARSE_DATA \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_CALLBACK_WRAPPERS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_INCLASS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_STANDARD_CONSTRUCTORS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_PRIVATE_PROPERTY_OFFSET \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_SPARSE_DATA \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_RPC_WRAPPERS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_CALLBACK_WRAPPERS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_INCLASS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_GENERATED_BODY \
+#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_PRIVATE_PROPERTY_OFFSET \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_SPARSE_DATA \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_CALLBACK_WRAPPERS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_INCLASS_NO_PURE_DECLS \
-	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_20_ENHANCED_CONSTRUCTORS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_PRIVATE_PROPERTY_OFFSET \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_SPARSE_DATA \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_CALLBACK_WRAPPERS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_INCLASS_NO_PURE_DECLS \
+	AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScriptBase_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

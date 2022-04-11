@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "WeaponSystem/Inventories/InventoryComponent.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
+#include "WeaponScriptBase.h"
 #include "WeaponBase.generated.h"
+
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponEquippedDelegate, class AWeaponBase*, Weapon, class UCharacterInventoryComponent*, Inventory);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FWeaponUnequippedDelegate, class AWeaponBase*, Weapon, class UCharacterInventoryComponent*, Inventory);

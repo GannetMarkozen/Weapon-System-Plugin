@@ -1,4 +1,5 @@
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Character\Anim\WeaponSystemAnimInstance.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Character\TrueFPSCharacterBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Inventories\CharacterInventoryComponent.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Inventories\InventoryComponent.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\Attachments\ForegripAttachment.h
@@ -11,12 +12,12 @@ C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\Scripts\HitscanScriptBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\Scripts\SetupAttachmentsScriptBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\Weapon.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponDropBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponBase.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponDropBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponScript.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ReplicatedObject.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponScriptBase.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ReplicatedObject.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ScriptBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\WeaponSystemFunctionLibrary.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Character\TrueFPSCharacterBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Private\WeaponSystem\Weapons\Attachments\PoseableHandComponent.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Private\WeaponSystem\Weapons\Interfaces.h

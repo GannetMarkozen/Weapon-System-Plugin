@@ -20,7 +20,7 @@ class UWorld;
  \
 	DECLARE_FUNCTION(execDestroy); \
 	DECLARE_FUNCTION(execHasAuthority); \
-	DECLARE_FUNCTION(execGetOwningActor); \
+	DECLARE_FUNCTION(execGetOwner); \
 	DECLARE_FUNCTION(execGetWorld);
 
 
@@ -28,7 +28,7 @@ class UWorld;
  \
 	DECLARE_FUNCTION(execDestroy); \
 	DECLARE_FUNCTION(execHasAuthority); \
-	DECLARE_FUNCTION(execGetOwningActor); \
+	DECLARE_FUNCTION(execGetOwner); \
 	DECLARE_FUNCTION(execGetWorld);
 
 

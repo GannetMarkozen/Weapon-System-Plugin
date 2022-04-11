@@ -10,19 +10,11 @@
 void UWeaponScriptBase::BeginPlay()
 {
 	// Bind equip events
-	if(CanTick())
-	{
-		FTickerDelegate TickDelegate;
-		TickDelegate.BindUObject(this, &ThisClass::Internal_Tick);
-		TickHandle = FTicker::GetCoreTicker().AddTicker(TickDelegate);
-	}
-	
 	OwningWeaponBase->EquippedDelegate.AddDynamic(this, &ThisClass::OwningWeaponEquipped);
 	OwningWeaponBase->UnequippedDelegate.AddDynamic(this, &ThisClass::OwningWeaponUnequipped);
 
-	BP_BeginPlay();
+	Super::BeginPlay();
 
-	// If owning weapon's already equipped. Call on equipped.
 	if(IsEquipped())
 		OwningWeaponEquipped(OwningWeaponBase, GetOwningInventory<UCharacterInventoryComponent>());
 }
@@ -30,16 +22,18 @@ void UWeaponScriptBase::BeginPlay()
 void UWeaponScriptBase::EndPlay()
 {
 	// Unbind events
-	if(TickHandle.IsValid())
-		FTicker::GetCoreTicker().RemoveTicker(TickHandle);
-	
 	if(IsValid(OwningWeaponBase))
 	{
 		OwningWeaponBase->EquippedDelegate.RemoveAll(this);
 		OwningWeaponBase->UnequippedDelegate.RemoveAll(this);
 	}
-	
-	BP_EndPlay();
+
+	Super::EndPlay();
+}
+
+AActor* UWeaponScriptBase::GetOwner() const
+{
+	return OwningWeaponBase ? OwningWeaponBase : Super::GetOwner();
 }
 
 void UWeaponScriptBase::RemoveInput(UInputComponent* InputComponent)
@@ -47,14 +41,20 @@ void UWeaponScriptBase::RemoveInput(UInputComponent* InputComponent)
 	RemoveAllUObject(this, InputComponent);
 }
 
-
-void UWeaponScriptBase::OnDestroyed()
+UInventoryComponent* UWeaponScriptBase::GetOwningInventory() const
 {
-	if(TickHandle.IsValid())
-		FTicker::GetCoreTicker().RemoveTicker(TickHandle);
-	Super::OnDestroyed();
+	return OwningWeaponBase ? OwningWeaponBase->GetOwningInventory() : nullptr;
 }
 
+bool UWeaponScriptBase::IsLocallyControlled() const
+{
+	return OwningWeaponBase && OwningWeaponBase->IsLocallyControlled();
+}
+
+bool UWeaponScriptBase::IsEquippedBy(const UInventoryComponent* Inventory) const
+{
+	return OwningWeaponBase && OwningWeaponBase->IsEquippedBy(Inventory);
+}
 
 void UWeaponScriptBase::OwningWeaponEquipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory)
 {
@@ -83,3 +83,19 @@ void UWeaponScriptBase::OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterIn
 		}
 	}
 }
+
+UInputComponent* UWeaponScriptBase::GetInputComponentFromInventory_Implementation(const UInventoryComponent* Inventory, const bool bHasPriority) const
+{
+	if(!Inventory) return nullptr;
+	if(const APawn* OwningPawn = Inventory->GetOwner<APawn>())
+	{
+		if(!bHasPriority)
+			return OwningPawn->InputComponent.Get();
+			
+		if(const AController* Controller = OwningPawn->Controller.Get())
+			return Controller->InputComponent.Get();
+	}
+	return nullptr;
+}
+
+

@@ -6,6 +6,7 @@
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Inventories/InventoryComponent.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/ReplicatedObject.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/ReplicateUObject/RepChangedPropertyTracker.cpp"
+#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/ScriptBase.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/WeaponSystemFunctionLibrary.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/Attachments/ForegripAttachment.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Weapons/Attachments/PoseableHandComponent.cpp"

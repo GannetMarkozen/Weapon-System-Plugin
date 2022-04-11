@@ -34,11 +34,11 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		*(bool*)Z_Param__Result=P_THIS->HasAuthority();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(UReplicatedObject::execGetOwningActor)
+	DEFINE_FUNCTION(UReplicatedObject::execGetOwner)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(AActor**)Z_Param__Result=P_THIS->GetOwningActor();
+		*(AActor**)Z_Param__Result=P_THIS->GetOwner();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UReplicatedObject::execGetWorld)
@@ -58,7 +58,7 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		UClass* Class = UReplicatedObject::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "Destroy", &UReplicatedObject::execDestroy },
-			{ "GetOwningActor", &UReplicatedObject::execGetOwningActor },
+			{ "GetOwner", &UReplicatedObject::execGetOwner },
 			{ "GetWorld", &UReplicatedObject::execGetWorld },
 			{ "HasAuthority", &UReplicatedObject::execHasAuthority },
 		};
@@ -109,9 +109,9 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics
+	struct Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics
 	{
-		struct ReplicatedObject_eventGetOwningActor_Parms
+		struct ReplicatedObject_eventGetOwner_Parms
 		{
 			AActor* ReturnValue;
 		};
@@ -122,24 +122,24 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ReplicatedObject_eventGetOwningActor_Parms, ReturnValue), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::NewProp_ReturnValue,
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ReplicatedObject_eventGetOwner_Parms, ReturnValue), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::NewProp_ReturnValue,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams[] = {
 		{ "Comment", "// Override if the outer of this object is not an AActor\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/ReplicatedObject.h" },
 		{ "ToolTip", "Override if the outer of this object is not an AActor" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetOwningActor", nullptr, nullptr, sizeof(ReplicatedObject_eventGetOwningActor_Parms), Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UReplicatedObject_GetOwningActor()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetOwner", nullptr, nullptr, sizeof(ReplicatedObject_eventGetOwner_Parms), Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UReplicatedObject_GetOwner()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetOwningActor_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -237,7 +237,7 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_UReplicatedObject_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UReplicatedObject_BP_OnDestroyed, "BP_OnDestroyed" }, // 4206747397
 		{ &Z_Construct_UFunction_UReplicatedObject_Destroy, "Destroy" }, // 420023857
-		{ &Z_Construct_UFunction_UReplicatedObject_GetOwningActor, "GetOwningActor" }, // 3124153382
+		{ &Z_Construct_UFunction_UReplicatedObject_GetOwner, "GetOwner" }, // 246951230
 		{ &Z_Construct_UFunction_UReplicatedObject_GetWorld, "GetWorld" }, // 2708958858
 		{ &Z_Construct_UFunction_UReplicatedObject_HasAuthority, "HasAuthority" }, // 2635712284
 	};
@@ -275,7 +275,7 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UReplicatedObject, 1437650041);
+	IMPLEMENT_CLASS(UReplicatedObject, 2896179393);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UReplicatedObject>()
 	{
 		return UReplicatedObject::StaticClass();

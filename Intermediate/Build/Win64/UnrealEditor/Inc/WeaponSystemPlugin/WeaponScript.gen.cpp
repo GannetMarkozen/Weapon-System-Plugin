@@ -209,7 +209,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UWeaponScript, 4058452421);
+	IMPLEMENT_CLASS(UWeaponScript, 2936264814);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponScript>()
 	{
 		return UWeaponScript::StaticClass();

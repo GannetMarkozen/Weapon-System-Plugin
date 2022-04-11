@@ -16,6 +16,8 @@ class WEAPONSYSTEMPLUGIN_API UReplicatedObject : public UObject
 	GENERATED_BODY()
 public:
 	UReplicatedObject(){}
+
+	virtual FORCEINLINE bool IsSupportedForNetworking() const override { return true; }
 	
 	// Replicate blueprint variables
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override
@@ -31,13 +33,9 @@ public:
 	}
 
 	FORCEINLINE void CallPreReplication() { UWeaponSystemFunctionLibrary::CallPreReplication(this); }
-
-	//TSharedPtr<class FMyRepChangedPropertyTracker> FindOrCreatePropertyTracker(class UNetDriver* NetDriver);
-	//void InitChangedTracker(class UNetDriver* NetDriver, class FMyRepChangedPropertyTracker* ChangedTracker) const;
-
-	//void CallPreReplication(class UNetDriver* NetDriver);
-
-	virtual FORCEINLINE bool IsSupportedForNetworking() const override { return true; }
+	
+	template<typename T>
+	static void CallPreReplicationList(const TArray<T*>& Scripts) { for(T* Script : Scripts) if(IsValid(Script)) CallPreReplication(Script); }
 	
 	virtual int32 GetFunctionCallspace(UFunction* Function, FFrame* Stack) override
 	{
@@ -48,7 +46,7 @@ public:
 	virtual bool CallRemoteFunction(UFunction* Function, void* Params, FOutParmRec* OutParams, FFrame* Stack) override
 	{
 		check(!HasAnyFlags(RF_ClassDefaultObject));
-		AActor* Owner = GetOwningActor();
+		AActor* Owner = GetOwner();
 		if(UNetDriver* NetDriver = Owner->GetNetDriver())
 		{
 			NetDriver->ProcessRemoteFunction(Owner, Function, Params, OutParams, Stack, this);
@@ -71,9 +69,15 @@ public:
 
 	// Override if the outer of this object is not an AActor
 	UFUNCTION(BlueprintPure)
-	virtual FORCEINLINE AActor* GetOwningActor() const
+	virtual FORCEINLINE AActor* GetOwner() const
 	{
 		return GetTypedOuter<AActor>();
+	}
+
+	template<typename T>
+	FORCEINLINE T* GetOwner() const
+	{
+		return Cast<T>(GetOwner());
 	}
 
 	// Calls GetOwningActor() to check actor's authority. If outer is not AActor
@@ -81,7 +85,7 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool HasAuthority() const
 	{
-		AActor* Owner = GetOwningActor();
+		AActor* Owner = GetOwner();
 		return Owner ? Owner->HasAuthority() : false;
 	}
 
@@ -90,7 +94,7 @@ public:
 	{
 		if(!IsPendingKill())
 		{
-			checkf(GetOwningActor()->HasAuthority(), TEXT("UReplicatedObject::Destroy Object does not have authority to destroy itself!"));
+			checkf(GetOwner()->HasAuthority(), TEXT("UReplicatedObject::Destroy Object does not have authority to destroy itself!"));
 			OnDestroyed();
 			BP_OnDestroyed();
 			MarkPendingKill();

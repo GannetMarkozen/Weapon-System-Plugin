@@ -36,6 +36,17 @@ void ATrueFPSCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 
+	/*if(HasAuthority())
+	{
+		for(TFieldIterator<FProperty> Itr(URecoilInstance::StaticClass()); Itr; ++Itr)
+		{
+			//PRINT(TEXT("Field == %s"), *Itr->GetName());
+			FProperty* Prop = *Itr;
+			
+		}
+	}*/
+	
+
 	// Setup the TrueFPS mesh
 	SetupMesh();
 	

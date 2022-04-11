@@ -326,3 +326,52 @@ private:
 	UFUNCTION()
 	void Internal_CurrentWeaponChanged(class AWeaponBase* CurrentWeapon, class AWeaponBase* OldWeapon);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+UCLASS(Abstract, Blueprintable)
+class WEAPONSYSTEMPLUGIN_API URecoilInstance : public UObject
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(BlueprintReadWrite)
+	int32 Something;
+};
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "WeaponSystem/ReplicatedObject.h"
-#include "WeaponBase.h"
+//#include "WeaponSystem/ReplicatedObject.h"
+#include "WeaponSystem/ScriptBase.h"
+//#include "WeaponBase.h"
 #include "WeaponScriptBase.generated.h"
+
 
 
 /** Weapon Scripts are instanced objects that reside on a Weapon. These scripts carry out
@@ -14,37 +16,24 @@
  *	to an inventory.
  */
 
-UCLASS(Abstract, DefaultToInstanced, EditInlineNew, Blueprintable, BlueprintType)
-class WEAPONSYSTEMPLUGIN_API UWeaponScriptBase : public UReplicatedObject
+UCLASS(Abstract)
+class WEAPONSYSTEMPLUGIN_API UWeaponScriptBase : public UScriptBase
 {
 	GENERATED_BODY()
 public:
 	UWeaponScriptBase() = default;
 	friend class AWeaponBase;
+	
+	virtual void BeginPlay() override;
+	virtual void EndPlay() override;
+	
+	virtual class AActor* GetOwner() const override;// { return OwningWeaponBase ? OwningWeaponBase : Super::GetOwner(); }
 
 protected:
-	virtual void OnDestroyed() override;
-
-	// Called when the script has been created
-	// and attached to a weapon
-	virtual void BeginPlay();
-
-	// Called when a script has been removed
-	virtual FORCEINLINE void EndPlay();
-	
-	virtual FORCEINLINE void Tick(const float DeltaTime) {}
-	
-	virtual FORCEINLINE class AActor* GetOwningActor() const override { return OwningWeaponBase ? OwningWeaponBase : Super::GetOwningActor(); }
-
 	// This is the weapon that owns this script
 	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Script")
 	class AWeaponBase* OwningWeaponBase;
-
-	// Override this to allow the script to tick
-	UFUNCTION(BlueprintNativeEvent, Category = "Script")
-	bool CanTick() const;
-	virtual FORCEINLINE bool CanTick_Implementation() const { return false; }
-
+	
 	UFUNCTION()
 	virtual void OwningWeaponEquipped(class AWeaponBase* Weapon, class UCharacterInventoryComponent* Inventory);
 
@@ -58,16 +47,6 @@ protected:
 	// By default removes all input from this object when called
 	virtual void RemoveInput(class UInputComponent* InputComponent);
 	
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Begin Play"), Category = "Script")
-	void BP_BeginPlay();
-
-	// Called when removed from Owning Weapon and is pending kill. Called on all instances.
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "End Play"), Category = "Script")
-	void BP_EndPlay();
-
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Tick"), Category = "Script")
-	void BP_Tick(const float DeltaTime);
-
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Owning Weapon Equippped"), Category = "Script")
 	void BP_OwningWeaponEquipped(class UCharacterInventoryComponent* Inventory);
 
@@ -84,20 +63,32 @@ protected:
 	void BP_RemoveInput(class UInputComponent* InputComponent);
 
 public:
+	/*UFUNCTION(BlueprintPure)
+	FORCEINLINE class UInventoryComponent* GetOwningInventory() const { return OwningWeaponBase->OwningInventory; }*/
+
 	UFUNCTION(BlueprintPure)
-	FORCEINLINE class UInventoryComponent* GetOwningInventory() const { return OwningWeaponBase->OwningInventory; }
+	class UInventoryComponent* GetOwningInventory() const;
 
 	template<typename T>
 	FORCEINLINE T* GetOwningInventory() const { return Cast<T>(GetOwningInventory()); }
  
-	UFUNCTION(BlueprintPure)
+	/*UFUNCTION(BlueprintPure)
 	FORCEINLINE bool IsLocallyControlled() const { return OwningWeaponBase ? OwningWeaponBase->IsLocallyControlled() : false; }
 
 	UFUNCTION(BlueprintPure, Category = "Script")
 	FORCEINLINE bool IsEquipped() const { return OwningWeaponBase && OwningWeaponBase->IsEquipped(); }
 
 	UFUNCTION(BlueprintPure, Category = "Script")
-	FORCEINLINE bool IsEquippedBy(const class UInventoryComponent* Inventory) const { return OwningWeaponBase && OwningWeaponBase->IsEquippedBy(Inventory); }
+	FORCEINLINE bool IsEquippedBy(const class UInventoryComponent* Inventory) const { return OwningWeaponBase && OwningWeaponBase->IsEquippedBy(Inventory); }*/
+
+	UFUNCTION(BlueprintPure)
+	bool IsLocallyControlled() const;
+
+	UFUNCTION(BlueprintPure, Category = "Script")
+	bool IsEquippedBy(const class UInventoryComponent* Inventory) const;
+
+	UFUNCTION(BlueprintPure, Category = "Script")
+	FORCEINLINE bool IsEquipped() const { return IsEquippedBy(GetOwningInventory()); }
 	
 protected:
 	// Adds a binding to our pawn owner given the passed in Object reference
@@ -207,8 +198,8 @@ protected:
 
 	UFUNCTION(BlueprintPure, BlueprintNativeEvent, Category = "Script|Input Binding")
 	class UInputComponent* GetInputComponentFromInventory(const class UInventoryComponent* Inventory, const bool bHasPriority = true) const;
-	virtual FORCEINLINE class UInputComponent* GetInputComponentFromInventory_Implementation(const class UInventoryComponent* Inventory, const bool bHasPriority = true) const
-	{
+	virtual class UInputComponent* GetInputComponentFromInventory_Implementation(const class UInventoryComponent* Inventory, const bool bHasPriority = true) const;
+	/*{
 		if(!Inventory) return nullptr;
 		if(const APawn* OwningPawn = Inventory->GetOwner<APawn>())
 		{
@@ -219,7 +210,7 @@ protected:
 				return Controller->InputComponent.Get();
 		}
 		return nullptr;
-	}
+	}*/
 	
 	// Must input a custom enum value into the input value
 	/*UFUNCTION(BlueprintCallable, CustomThunk, meta = (CustomStructureParam = "InputValue", AllowPrivateAccess = "true", AutoCreateRefTerm = "InputValue, FunctionName"), Category = "Script|Input Binding")
@@ -262,14 +253,4 @@ protected:
 		// Define return val
 		P_NATIVE_END;
 	}*/
-
-private:
-	FDelegateHandle TickHandle;
-	
-	FORCEINLINE bool Internal_Tick(const float DeltaTime)
-	{
-		Tick(DeltaTime);
-		BP_Tick(DeltaTime);
-		return true;
-	}
 };

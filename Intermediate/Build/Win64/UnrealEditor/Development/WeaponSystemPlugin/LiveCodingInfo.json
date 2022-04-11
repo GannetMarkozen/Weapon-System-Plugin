@@ -9,6 +9,7 @@
 			"InventoryComponent.cpp.obj",
 			"ReplicatedObject.cpp.obj",
 			"RepChangedPropertyTracker.cpp.obj",
+			"ScriptBase.cpp.obj",
 			"WeaponSystemFunctionLibrary.cpp.obj",
 			"ForegripAttachment.cpp.obj",
 			"PoseableHandComponent.cpp.obj",
@@ -36,21 +37,22 @@
 			"InventoryComponent.gen.cpp.obj",
 			"PoseableHandComponent.gen.cpp.obj",
 			"ReplicatedObject.gen.cpp.obj",
+			"ScriptBase.gen.cpp.obj",
 			"SetupAttachmentsScriptBase.gen.cpp.obj",
-			"SightsAttachment.gen.cpp.obj",
-			"TrueFPSCharacterBase.gen.cpp.obj"
+			"SightsAttachment.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj": [
+			"TrueFPSCharacterBase.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",
 			"Weapon.gen.cpp.obj",
 			"WeaponAttachmentBase.gen.cpp.obj",
 			"WeaponAttachmentPoint.gen.cpp.obj",
-			"WeaponBase.gen.cpp.obj",
-			"WeaponDropBase.gen.cpp.obj",
-			"WeaponScript.gen.cpp.obj",
-			"WeaponScriptBase.gen.cpp.obj"
+			"WeaponBase.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.3_of_3.cpp.obj": [
+			"WeaponDropBase.gen.cpp.obj",
+			"WeaponScript.gen.cpp.obj",
+			"WeaponScriptBase.gen.cpp.obj",
 			"WeaponSystemAnimInstance.gen.cpp.obj",
 			"WeaponSystemFunctionLibrary.gen.cpp.obj",
 			"WeaponSystemPlugin.init.gen.cpp.obj"

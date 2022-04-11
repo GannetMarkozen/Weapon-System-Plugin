@@ -34,13 +34,15 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Core\Public\Container
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Net\Core\Public\Net/Core/PushModel/PushModel.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ReplicateUObject/RepChangedPropertyTracker.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponSystemFunctionLibrary.generated.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\WeaponScriptBase.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem/ScriptBase.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\ReplicatedObject.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\ReplicatedObject.generated.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\ScriptBase.generated.h
+C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponScriptBase.generated.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponBase.generated.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem\Weapons\VisualizationMacros.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\Weapon.generated.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem/Weapons/WeaponScriptBase.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Public\WeaponSystem/ReplicatedObject.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\ReplicatedObject.generated.h
-C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponScriptBase.generated.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\WeaponScript.generated.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\AimingScript.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/CharacterInventoryComponent.gen.cpp
@@ -162,6 +164,7 @@ C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin/Private/WeaponSystem/Weapons/Attachments/PoseableHandComponent.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\PoseableHandComponent.generated.h
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/ReplicatedObject.gen.cpp
+C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/ScriptBase.gen.cpp
 C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/SetupAttachmentsScriptBase.gen.cpp
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin/Public/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\SetupAttachmentsScriptBase.generated.h
@@ -187,4 +190,3 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEdito
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\DataTableFunctionLibrary.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\Net/UnrealNetwork.h
 C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\WeaponSystemPlugin\SightsAttachment.generated.h
-C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/TrueFPSCharacterBase.gen.cpp

@@ -439,7 +439,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCycleSightsScriptBase, 285710372);
+	IMPLEMENT_CLASS(UCycleSightsScriptBase, 2322105723);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UCycleSightsScriptBase>()
 	{
 		return UCycleSightsScriptBase::StaticClass();
