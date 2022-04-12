@@ -32,9 +32,6 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacterBase() {}
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UCharacterInventoryComponent_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_URecoilInstance_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_URecoilInstance();
-	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 // End Cross Module References
 	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics
 	{
@@ -1750,83 +1747,6 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in ATrueFPSCharacterBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ATrueFPSCharacterBase);
-	void URecoilInstance::StaticRegisterNativesURecoilInstance()
-	{
-	}
-	UClass* Z_Construct_UClass_URecoilInstance_NoRegister()
-	{
-		return URecoilInstance::StaticClass();
-	}
-	struct Z_Construct_UClass_URecoilInstance_Statics
-	{
-		static UObject* (*const DependentSingletons[])();
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
-#endif
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Something_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Something;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
-		static const UECodeGen_Private::FClassParams ClassParams;
-	};
-	UObject* (*const Z_Construct_UClass_URecoilInstance_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_UObject,
-		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URecoilInstance_Statics::Class_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "IncludePath", "WeaponSystem/Character/TrueFPSCharacterBase.h" },
-		{ "IsBlueprintBase", "true" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
-	};
-#endif
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URecoilInstance_Statics::NewProp_Something_MetaData[] = {
-		{ "Category", "RecoilInstance" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_URecoilInstance_Statics::NewProp_Something = { "Something", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(URecoilInstance, Something), METADATA_PARAMS(Z_Construct_UClass_URecoilInstance_Statics::NewProp_Something_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_URecoilInstance_Statics::NewProp_Something_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_URecoilInstance_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URecoilInstance_Statics::NewProp_Something,
-	};
-	const FCppClassTypeInfoStatic Z_Construct_UClass_URecoilInstance_Statics::StaticCppClassTypeInfo = {
-		TCppClassTypeTraits<URecoilInstance>::IsAbstract,
-	};
-	const UECodeGen_Private::FClassParams Z_Construct_UClass_URecoilInstance_Statics::ClassParams = {
-		&URecoilInstance::StaticClass,
-		nullptr,
-		&StaticCppClassTypeInfo,
-		DependentSingletons,
-		nullptr,
-		Z_Construct_UClass_URecoilInstance_Statics::PropPointers,
-		nullptr,
-		UE_ARRAY_COUNT(DependentSingletons),
-		0,
-		UE_ARRAY_COUNT(Z_Construct_UClass_URecoilInstance_Statics::PropPointers),
-		0,
-		0x001000A1u,
-		METADATA_PARAMS(Z_Construct_UClass_URecoilInstance_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_URecoilInstance_Statics::Class_MetaDataParams))
-	};
-	UClass* Z_Construct_UClass_URecoilInstance()
-	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
-		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_URecoilInstance_Statics::ClassParams);
-		}
-		return OuterClass;
-	}
-	IMPLEMENT_CLASS(URecoilInstance, 392481435);
-	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<URecoilInstance>()
-	{
-		return URecoilInstance::StaticClass();
-	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_URecoilInstance(Z_Construct_UClass_URecoilInstance, &URecoilInstance::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("URecoilInstance"), false, nullptr, nullptr, nullptr);
-	DEFINE_VTABLE_PTR_HELPER_CTOR(URecoilInstance);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 #ifdef _MSC_VER
 #pragma warning (pop)
