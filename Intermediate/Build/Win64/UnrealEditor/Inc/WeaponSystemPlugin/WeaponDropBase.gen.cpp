@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/WeaponDropBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 // Cross Module References
@@ -115,7 +111,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_BP_OnWeaponRemoved_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_BP_OnWeaponRemoved_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -142,13 +138,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponDropBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "GetOwnedWeaponAndDestroy", nullptr, nullptr, sizeof(WeaponDropBase_eventGetOwnedWeaponAndDestroy_Parms), Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "GetOwnedWeaponAndDestroy", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::WeaponDropBase_eventGetOwnedWeaponAndDestroy_Parms), Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -170,7 +166,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_OnRep_OwnedWeapon_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_OnRep_OwnedWeapon_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -210,7 +206,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_OnWeaponRemoved_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_OnWeaponRemoved_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -280,13 +276,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponDropBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "SpawnWeaponDrop", nullptr, nullptr, sizeof(WeaponDropBase_eventSpawnWeaponDrop_Parms), Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C82405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "SpawnWeaponDrop", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::WeaponDropBase_eventSpawnWeaponDrop_Parms), Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C82405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -364,16 +360,17 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponDropBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "SpawnWeaponDropFromClass", nullptr, nullptr, sizeof(WeaponDropBase_eventSpawnWeaponDropFromClass_Parms), Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C82405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponDropBase, nullptr, "SpawnWeaponDropFromClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::WeaponDropBase_eventSpawnWeaponDropFromClass_Parms), Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C82405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AWeaponDropBase);
 	UClass* Z_Construct_UClass_AWeaponDropBase_NoRegister()
 	{
 		return AWeaponDropBase::StaticClass();
@@ -410,12 +407,12 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeaponDropBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWeaponDropBase_BP_OnWeaponRemoved, "BP_OnWeaponRemoved" }, // 3204557731
-		{ &Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy, "GetOwnedWeaponAndDestroy" }, // 301266543
-		{ &Z_Construct_UFunction_AWeaponDropBase_OnRep_OwnedWeapon, "OnRep_OwnedWeapon" }, // 650179549
-		{ &Z_Construct_UFunction_AWeaponDropBase_OnWeaponRemoved, "OnWeaponRemoved" }, // 1516439059
-		{ &Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 3294371654
-		{ &Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass, "SpawnWeaponDropFromClass" }, // 959547149
+		{ &Z_Construct_UFunction_AWeaponDropBase_BP_OnWeaponRemoved, "BP_OnWeaponRemoved" }, // 1220493008
+		{ &Z_Construct_UFunction_AWeaponDropBase_GetOwnedWeaponAndDestroy, "GetOwnedWeaponAndDestroy" }, // 673107401
+		{ &Z_Construct_UFunction_AWeaponDropBase_OnRep_OwnedWeapon, "OnRep_OwnedWeapon" }, // 404097110
+		{ &Z_Construct_UFunction_AWeaponDropBase_OnWeaponRemoved, "OnWeaponRemoved" }, // 2616002252
+		{ &Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 2479194349
+		{ &Z_Construct_UFunction_AWeaponDropBase_SpawnWeaponDropFromClass, "SpawnWeaponDropFromClass" }, // 1485365736
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponDropBase_Statics::Class_MetaDataParams[] = {
@@ -489,19 +486,16 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 	};
 	UClass* Z_Construct_UClass_AWeaponDropBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_AWeaponDropBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_AWeaponDropBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_AWeaponDropBase.OuterSingleton, Z_Construct_UClass_AWeaponDropBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_AWeaponDropBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(AWeaponDropBase, 1586924005);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeaponDropBase>()
 	{
 		return AWeaponDropBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_AWeaponDropBase(Z_Construct_UClass_AWeaponDropBase, &AWeaponDropBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("AWeaponDropBase"), false, nullptr, nullptr, nullptr);
 
 	void AWeaponDropBase::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -513,7 +507,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponDropBase() {}
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AWeaponDropBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWeaponDropBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponDropBase_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponDropBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWeaponDropBase, AWeaponDropBase::StaticClass, TEXT("AWeaponDropBase"), &Z_Registration_Info_UClass_AWeaponDropBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWeaponDropBase), 4064305059U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponDropBase_h_1523426931(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponDropBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponDropBase_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

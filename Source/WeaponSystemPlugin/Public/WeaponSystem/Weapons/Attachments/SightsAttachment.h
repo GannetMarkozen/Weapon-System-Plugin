@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GeneratedCodeHelpers.h"
 #include "VisualizationSceneComponent.h"
 #include "WeaponAttachmentBase.h"
 #include "WeaponAttachmentPoint.h"

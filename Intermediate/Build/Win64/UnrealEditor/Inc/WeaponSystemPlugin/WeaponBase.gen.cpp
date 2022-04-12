@@ -6,21 +6,17 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/WeaponBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 // Cross Module References
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UCharacterInventoryComponent_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScriptBase_NoRegister();
@@ -30,91 +26,47 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponAttachmentBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 // End Cross Module References
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics
+	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics
 	{
-		struct _Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms
+		struct _Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms
 		{
 			AWeaponBase* Weapon;
-			UInventoryComponent* OldInventory;
+			UCharacterInventoryComponent* Inventory;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldInventory_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Inventory_MetaData[];
 #endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldInventory;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Inventory;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData[] = {
 		{ "EditInline", "true" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory = { "OldInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms, OldInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_Weapon,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory,
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms, Inventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Weapon,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponUnobtainedDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponEquippedDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics
-	{
-		struct _Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms
-		{
-			AWeaponBase* Weapon;
-			UInventoryComponent* CurrentInventory;
-		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentInventory_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentInventory;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory = { "CurrentInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms, CurrentInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_Weapon,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponObtainedDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -152,57 +104,101 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponUnequippedDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventWeaponUnequippedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponUnequippedDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventWeaponUnequippedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics
+	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics
 	{
-		struct _Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms
+		struct _Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms
 		{
 			AWeaponBase* Weapon;
-			UCharacterInventoryComponent* Inventory;
+			UInventoryComponent* CurrentInventory;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Inventory_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentInventory_MetaData[];
 #endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_Inventory;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentInventory;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData[] = {
 		{ "EditInline", "true" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms, Inventory), Z_Construct_UClass_UCharacterInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Weapon,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::NewProp_Inventory,
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory = { "CurrentInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms, CurrentInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_Weapon,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::NewProp_CurrentInventory,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponEquippedDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventWeaponEquippedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponObtainedDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventWeaponObtainedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms
+		{
+			AWeaponBase* Weapon;
+			UInventoryComponent* OldInventory;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Weapon;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OldInventory_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldInventory;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_Weapon = { "Weapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms, Weapon), Z_Construct_UClass_AWeaponBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory = { "OldInventory", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms, OldInventory), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_Weapon,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::NewProp_OldInventory,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "WeaponUnobtainedDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventWeaponUnobtainedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -482,13 +478,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Adds script to the Scripts array and initializes it." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_AddScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "AddScript", nullptr, nullptr, sizeof(WeaponBase_eventAddScript_Parms), Z_Construct_UFunction_AWeaponBase_AddScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_AddScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "AddScript", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::WeaponBase_eventAddScript_Parms), Z_Construct_UFunction_AWeaponBase_AddScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_AddScript_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_AddScript()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_AddScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_AddScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -528,7 +524,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnAddedScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnAddedScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -568,7 +564,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnEquipped_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnEquipped_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -608,7 +604,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnObtained_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnObtained_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -648,7 +644,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnRemovedScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnRemovedScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -686,7 +682,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnRep_OwningInventory_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnRep_OwningInventory_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -726,7 +722,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnUnequipped_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnUnequipped_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -766,7 +762,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnUnobtained_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_BP_OnUnobtained_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -836,13 +832,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "UnsafeDuringActorConstruction", "" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "CreateScript", nullptr, nullptr, sizeof(WeaponBase_eventCreateScript_Parms), Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "CreateScript", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::WeaponBase_eventCreateScript_Parms), Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_CreateScript()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_CreateScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -894,13 +890,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "UnsafeDuringActorConstruction", "" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "CreateScriptUninitialized", nullptr, nullptr, sizeof(WeaponBase_eventCreateScriptUninitialized_Parms), Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "CreateScriptUninitialized", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::WeaponBase_eventCreateScriptUninitialized_Parms), Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -938,13 +934,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachedWidgets", nullptr, nullptr, sizeof(WeaponBase_eventGetAttachedWidgets_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachedWidgets", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::WeaponBase_eventGetAttachedWidgets_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -982,13 +978,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachmentPoints", nullptr, nullptr, sizeof(WeaponBase_eventGetAttachmentPoints_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachmentPoints", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::WeaponBase_eventGetAttachmentPoints_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1020,13 +1016,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Helper functions" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachments", nullptr, nullptr, sizeof(WeaponBase_eventGetAttachments_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachments", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::WeaponBase_eventGetAttachments_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetAttachments()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachments_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1070,13 +1066,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachmentsOfClass", nullptr, nullptr, sizeof(WeaponBase_eventGetAttachmentsOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetAttachmentsOfClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::WeaponBase_eventGetAttachmentsOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1125,13 +1121,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetScriptOfClass", nullptr, nullptr, sizeof(WeaponBase_eventGetScriptOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetScriptOfClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::WeaponBase_eventGetScriptOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetScriptOfClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetScriptOfClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1183,13 +1179,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetScriptsOfClass", nullptr, nullptr, sizeof(WeaponBase_eventGetScriptsOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "GetScriptsOfClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::WeaponBase_eventGetScriptsOfClass_Parms), Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1234,13 +1230,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_HasScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "HasScript", nullptr, nullptr, sizeof(WeaponBase_eventHasScript_Parms), Z_Construct_UFunction_AWeaponBase_HasScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_HasScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "HasScript", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::WeaponBase_eventHasScript_Parms), Z_Construct_UFunction_AWeaponBase_HasScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_HasScript_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_HasScript()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_HasScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_HasScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1274,13 +1270,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Whether or not this weapon is currently equipped by it's owning inventory" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsEquipped", nullptr, nullptr, sizeof(WeaponBase_eventIsEquipped_Parms), Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsEquipped", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::WeaponBase_eventIsEquipped_Parms), Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_IsEquipped()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsEquipped_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1325,13 +1321,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsEquippedBy", nullptr, nullptr, sizeof(WeaponBase_eventIsEquippedBy_Parms), Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsEquippedBy", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::WeaponBase_eventIsEquippedBy_Parms), Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_IsEquippedBy()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsEquippedBy_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1362,13 +1358,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsLocallyControlled", nullptr, nullptr, sizeof(WeaponBase_eventIsLocallyControlled_Parms), Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsLocallyControlled", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::WeaponBase_eventIsLocallyControlled_Parms), Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_IsLocallyControlled()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsLocallyControlled_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1402,13 +1398,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Whether or not this weapon's components are visible" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsVisible", nullptr, nullptr, sizeof(WeaponBase_eventIsVisible_Parms), Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "IsVisible", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::WeaponBase_eventIsVisible_Parms), Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_IsVisible()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_IsVisible_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1445,13 +1441,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Equivalent to \"On Obtained\"" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "OnRep_OwningInventory", nullptr, nullptr, sizeof(WeaponBase_eventOnRep_OwningInventory_Parms), Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "OnRep_OwningInventory", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::WeaponBase_eventOnRep_OwningInventory_Parms), Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1489,13 +1485,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "OnRep_Scripts", nullptr, nullptr, sizeof(WeaponBase_eventOnRep_Scripts_Parms), Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "OnRep_Scripts", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::WeaponBase_eventOnRep_Scripts_Parms), Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_OnRep_Scripts()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_OnRep_Scripts_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1527,13 +1523,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveFromInventory", nullptr, nullptr, sizeof(WeaponBase_eventRemoveFromInventory_Parms), Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveFromInventory", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::WeaponBase_eventRemoveFromInventory_Parms), Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_RemoveFromInventory()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveFromInventory_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1568,13 +1564,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScript", nullptr, nullptr, sizeof(WeaponBase_eventRemoveScript_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScript", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::WeaponBase_eventRemoveScript_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_RemoveScript()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScript_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1619,13 +1615,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScriptByClass", nullptr, nullptr, sizeof(WeaponBase_eventRemoveScriptByClass_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScriptByClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::WeaponBase_eventRemoveScriptByClass_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1672,13 +1668,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Removes all scripts of class." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScriptsByClass", nullptr, nullptr, sizeof(WeaponBase_eventRemoveScriptsByClass_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "RemoveScriptsByClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::WeaponBase_eventRemoveScriptsByClass_Parms), Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1721,16 +1717,17 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Sets this weapon's visibility and all of it's attachments." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "SetVisibility", nullptr, nullptr, sizeof(WeaponBase_eventSetVisibility_Parms), Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeaponBase, nullptr, "SetVisibility", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::WeaponBase_eventSetVisibility_Parms), Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeaponBase_SetVisibility()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeaponBase_SetVisibility_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AWeaponBase);
 	UClass* Z_Construct_UClass_AWeaponBase_NoRegister()
 	{
 		return AWeaponBase::StaticClass();
@@ -1787,34 +1784,34 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeaponBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWeaponBase_AddScript, "AddScript" }, // 2985481973
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnAddedScript, "BP_OnAddedScript" }, // 3472390792
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnEquipped, "BP_OnEquipped" }, // 891542356
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnObtained, "BP_OnObtained" }, // 1546790832
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnRemovedScript, "BP_OnRemovedScript" }, // 4176637758
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnRep_OwningInventory, "BP_OnRep_OwningInventory" }, // 2521399135
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnUnequipped, "BP_OnUnequipped" }, // 3334084764
-		{ &Z_Construct_UFunction_AWeaponBase_BP_OnUnobtained, "BP_OnUnobtained" }, // 2130005454
-		{ &Z_Construct_UFunction_AWeaponBase_CreateScript, "CreateScript" }, // 413583464
-		{ &Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized, "CreateScriptUninitialized" }, // 2718938646
-		{ &Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets, "GetAttachedWidgets" }, // 1751768487
-		{ &Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints, "GetAttachmentPoints" }, // 2213006058
-		{ &Z_Construct_UFunction_AWeaponBase_GetAttachments, "GetAttachments" }, // 482644158
-		{ &Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass, "GetAttachmentsOfClass" }, // 4253800229
-		{ &Z_Construct_UFunction_AWeaponBase_GetScriptOfClass, "GetScriptOfClass" }, // 779922349
-		{ &Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass, "GetScriptsOfClass" }, // 2138324915
-		{ &Z_Construct_UFunction_AWeaponBase_HasScript, "HasScript" }, // 52851415
-		{ &Z_Construct_UFunction_AWeaponBase_IsEquipped, "IsEquipped" }, // 1876160989
-		{ &Z_Construct_UFunction_AWeaponBase_IsEquippedBy, "IsEquippedBy" }, // 3213536138
-		{ &Z_Construct_UFunction_AWeaponBase_IsLocallyControlled, "IsLocallyControlled" }, // 2384321065
-		{ &Z_Construct_UFunction_AWeaponBase_IsVisible, "IsVisible" }, // 1845909840
-		{ &Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory, "OnRep_OwningInventory" }, // 2504853382
-		{ &Z_Construct_UFunction_AWeaponBase_OnRep_Scripts, "OnRep_Scripts" }, // 1380604166
-		{ &Z_Construct_UFunction_AWeaponBase_RemoveFromInventory, "RemoveFromInventory" }, // 3427327617
-		{ &Z_Construct_UFunction_AWeaponBase_RemoveScript, "RemoveScript" }, // 446892010
-		{ &Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass, "RemoveScriptByClass" }, // 4041298796
-		{ &Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass, "RemoveScriptsByClass" }, // 1232929116
-		{ &Z_Construct_UFunction_AWeaponBase_SetVisibility, "SetVisibility" }, // 930343393
+		{ &Z_Construct_UFunction_AWeaponBase_AddScript, "AddScript" }, // 2786369374
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnAddedScript, "BP_OnAddedScript" }, // 3269271925
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnEquipped, "BP_OnEquipped" }, // 3331998603
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnObtained, "BP_OnObtained" }, // 1500903516
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnRemovedScript, "BP_OnRemovedScript" }, // 4181701711
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnRep_OwningInventory, "BP_OnRep_OwningInventory" }, // 3153449327
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnUnequipped, "BP_OnUnequipped" }, // 1687659590
+		{ &Z_Construct_UFunction_AWeaponBase_BP_OnUnobtained, "BP_OnUnobtained" }, // 1608527443
+		{ &Z_Construct_UFunction_AWeaponBase_CreateScript, "CreateScript" }, // 2802234534
+		{ &Z_Construct_UFunction_AWeaponBase_CreateScriptUninitialized, "CreateScriptUninitialized" }, // 4232232129
+		{ &Z_Construct_UFunction_AWeaponBase_GetAttachedWidgets, "GetAttachedWidgets" }, // 1390502630
+		{ &Z_Construct_UFunction_AWeaponBase_GetAttachmentPoints, "GetAttachmentPoints" }, // 693233765
+		{ &Z_Construct_UFunction_AWeaponBase_GetAttachments, "GetAttachments" }, // 3846889297
+		{ &Z_Construct_UFunction_AWeaponBase_GetAttachmentsOfClass, "GetAttachmentsOfClass" }, // 398376651
+		{ &Z_Construct_UFunction_AWeaponBase_GetScriptOfClass, "GetScriptOfClass" }, // 202987109
+		{ &Z_Construct_UFunction_AWeaponBase_GetScriptsOfClass, "GetScriptsOfClass" }, // 1549324073
+		{ &Z_Construct_UFunction_AWeaponBase_HasScript, "HasScript" }, // 2557419575
+		{ &Z_Construct_UFunction_AWeaponBase_IsEquipped, "IsEquipped" }, // 3389682205
+		{ &Z_Construct_UFunction_AWeaponBase_IsEquippedBy, "IsEquippedBy" }, // 2955406405
+		{ &Z_Construct_UFunction_AWeaponBase_IsLocallyControlled, "IsLocallyControlled" }, // 126504983
+		{ &Z_Construct_UFunction_AWeaponBase_IsVisible, "IsVisible" }, // 1902929555
+		{ &Z_Construct_UFunction_AWeaponBase_OnRep_OwningInventory, "OnRep_OwningInventory" }, // 2407953521
+		{ &Z_Construct_UFunction_AWeaponBase_OnRep_Scripts, "OnRep_Scripts" }, // 763309740
+		{ &Z_Construct_UFunction_AWeaponBase_RemoveFromInventory, "RemoveFromInventory" }, // 3695129931
+		{ &Z_Construct_UFunction_AWeaponBase_RemoveScript, "RemoveScript" }, // 543700963
+		{ &Z_Construct_UFunction_AWeaponBase_RemoveScriptByClass, "RemoveScriptByClass" }, // 510750663
+		{ &Z_Construct_UFunction_AWeaponBase_RemoveScriptsByClass, "RemoveScriptsByClass" }, // 3128367843
+		{ &Z_Construct_UFunction_AWeaponBase_SetVisibility, "SetVisibility" }, // 2992563555
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponBase_Statics::Class_MetaDataParams[] = {
@@ -1881,7 +1878,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Called when this weapon is equipped by a UCharacterInventoryComponent" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate = { "EquippedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, EquippedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate = { "EquippedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, EquippedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_EquippedDelegate_MetaData)) }; // 2621067382
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate_MetaData[] = {
 		{ "Category", "Weapon|Delegates" },
@@ -1890,7 +1887,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Called when this weapon is unequipped by a UCharacterInventoryComponent" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate = { "UnequippedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, UnequippedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate = { "UnequippedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, UnequippedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnequippedDelegate_MetaData)) }; // 185857013
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate_MetaData[] = {
 		{ "Category", "Weapon|Delegates" },
@@ -1899,7 +1896,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Called whenever the owning inventory becomes valid, thus obtained by an inventory." },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate = { "ObtainedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, ObtainedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate = { "ObtainedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, ObtainedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_ObtainedDelegate_MetaData)) }; // 4039644156
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate_MetaData[] = {
 		{ "Category", "Weapon|Delegates" },
@@ -1908,7 +1905,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		{ "ToolTip", "Called whenever the owning inventory becomes invalid, meaning this weapon has been dropped essentially." },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate = { "UnobtainedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, UnobtainedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate = { "UnobtainedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponBase, UnobtainedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponBase_Statics::NewProp_UnobtainedDelegate_MetaData)) }; // 3063998746
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWeaponBase_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponBase_Statics::NewProp_WeaponMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponBase_Statics::NewProp_Scripts_Inner,
@@ -1940,19 +1937,16 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 	};
 	UClass* Z_Construct_UClass_AWeaponBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_AWeaponBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_AWeaponBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_AWeaponBase.OuterSingleton, Z_Construct_UClass_AWeaponBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_AWeaponBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(AWeaponBase, 329659406);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeaponBase>()
 	{
 		return AWeaponBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_AWeaponBase(Z_Construct_UClass_AWeaponBase, &AWeaponBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("AWeaponBase"), false, nullptr, nullptr, nullptr);
 
 	void AWeaponBase::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -1966,7 +1960,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponBase() {}
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AWeaponBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWeaponBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponBase_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWeaponBase, AWeaponBase::StaticClass, TEXT("AWeaponBase"), &Z_Registration_Info_UClass_AWeaponBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWeaponBase), 2538404453U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponBase_h_3294931530(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponBase_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

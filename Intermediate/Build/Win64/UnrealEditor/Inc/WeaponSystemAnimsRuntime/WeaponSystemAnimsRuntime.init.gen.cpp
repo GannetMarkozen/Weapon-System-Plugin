@@ -5,31 +5,25 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimsRuntime_init() {}
-	UPackage* Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime()
+	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_WeaponSystemAnimsRuntime;
+	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime()
 	{
-		static UPackage* ReturnPackage = nullptr;
-		if (!ReturnPackage)
+		if (!Z_Registration_Info_UPackage__Script_WeaponSystemAnimsRuntime.OuterSingleton)
 		{
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/WeaponSystemAnimsRuntime",
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x1D5C35F9,
-				0x842C8CB2,
+				0xB457E01F,
+				0x49A62B70,
 				METADATA_PARAMS(nullptr, 0)
 			};
-			UECodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);
+			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_WeaponSystemAnimsRuntime.OuterSingleton, PackageParams);
 		}
-		return ReturnPackage;
+		return Z_Registration_Info_UPackage__Script_WeaponSystemAnimsRuntime.OuterSingleton;
 	}
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemAnimsRuntime(Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime, TEXT("/Script/WeaponSystemAnimsRuntime"), Z_Registration_Info_UPackage__Script_WeaponSystemAnimsRuntime, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xB457E01F, 0x49A62B70));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

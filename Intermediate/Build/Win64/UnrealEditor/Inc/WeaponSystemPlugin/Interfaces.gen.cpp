@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Private/WeaponSystem/Weapons/Interfaces.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 // Cross Module References
@@ -96,7 +92,7 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UItemInterface_GetDescription_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemInterface_GetDescription_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -125,7 +121,7 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UItemInterface_GetDisplayName_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemInterface_GetDisplayName_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -154,10 +150,11 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UItemInterface_GetThumbnail_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemInterface_GetThumbnail_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UItemInterface);
 	UClass* Z_Construct_UClass_UItemInterface_NoRegister()
 	{
 		return UItemInterface::StaticClass();
@@ -177,9 +174,9 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UItemInterface_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UItemInterface_GetDescription, "GetDescription" }, // 1755165009
-		{ &Z_Construct_UFunction_UItemInterface_GetDisplayName, "GetDisplayName" }, // 5159579
-		{ &Z_Construct_UFunction_UItemInterface_GetThumbnail, "GetThumbnail" }, // 2846118221
+		{ &Z_Construct_UFunction_UItemInterface_GetDescription, "GetDescription" }, // 1367844927
+		{ &Z_Construct_UFunction_UItemInterface_GetDisplayName, "GetDisplayName" }, // 3944067556
+		{ &Z_Construct_UFunction_UItemInterface_GetThumbnail, "GetThumbnail" }, // 408435952
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItemInterface_Statics::Class_MetaDataParams[] = {
@@ -206,19 +203,16 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 	};
 	UClass* Z_Construct_UClass_UItemInterface()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UItemInterface.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UItemInterface_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UItemInterface.OuterSingleton, Z_Construct_UClass_UItemInterface_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UItemInterface.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UItemInterface, 3736952299);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UItemInterface>()
 	{
 		return UItemInterface::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UItemInterface(Z_Construct_UClass_UItemInterface, &UItemInterface::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UItemInterface"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UItemInterface);
 	static FName NAME_UItemInterface_GetDescription = FName(TEXT("GetDescription"));
 	FText IItemInterface::Execute_GetDescription(const UObject* O)
@@ -324,10 +318,11 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentWidgetInterface_WidgetConstructed_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentWidgetInterface_WidgetConstructed_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWeaponAttachmentWidgetInterface);
 	UClass* Z_Construct_UClass_UWeaponAttachmentWidgetInterface_NoRegister()
 	{
 		return UWeaponAttachmentWidgetInterface::StaticClass();
@@ -347,7 +342,7 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponAttachmentWidgetInterface_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponAttachmentWidgetInterface_WidgetConstructed, "WidgetConstructed" }, // 2587455545
+		{ &Z_Construct_UFunction_UWeaponAttachmentWidgetInterface_WidgetConstructed, "WidgetConstructed" }, // 3241738355
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponAttachmentWidgetInterface_Statics::Class_MetaDataParams[] = {
@@ -374,19 +369,16 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 	};
 	UClass* Z_Construct_UClass_UWeaponAttachmentWidgetInterface()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UWeaponAttachmentWidgetInterface.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UWeaponAttachmentWidgetInterface_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UWeaponAttachmentWidgetInterface.OuterSingleton, Z_Construct_UClass_UWeaponAttachmentWidgetInterface_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UWeaponAttachmentWidgetInterface.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UWeaponAttachmentWidgetInterface, 2564145270);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponAttachmentWidgetInterface>()
 	{
 		return UWeaponAttachmentWidgetInterface::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UWeaponAttachmentWidgetInterface(Z_Construct_UClass_UWeaponAttachmentWidgetInterface, &UWeaponAttachmentWidgetInterface::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UWeaponAttachmentWidgetInterface"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UWeaponAttachmentWidgetInterface);
 	static FName NAME_UWeaponAttachmentWidgetInterface_WidgetConstructed = FName(TEXT("WidgetConstructed"));
 	void IWeaponAttachmentWidgetInterface::Execute_WidgetConstructed(UObject* O, UWeaponAttachmentPoint* AttachmentPoint)
@@ -405,7 +397,16 @@ void EmptyLinkFunctionForGeneratedCodeInterfaces() {}
 			I->WidgetConstructed_Implementation(AttachmentPoint);
 		}
 	}
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Interfaces_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Interfaces_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UItemInterface, UItemInterface::StaticClass, TEXT("UItemInterface"), &Z_Registration_Info_UClass_UItemInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemInterface), 640128802U) },
+		{ Z_Construct_UClass_UWeaponAttachmentWidgetInterface, UWeaponAttachmentWidgetInterface::StaticClass, TEXT("UWeaponAttachmentWidgetInterface"), &Z_Registration_Info_UClass_UWeaponAttachmentWidgetInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponAttachmentWidgetInterface), 1830094802U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Interfaces_h_4224191776(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Interfaces_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Interfaces_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

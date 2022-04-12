@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemsAnimsUncooked/Public/AnimGraphNode_ProceduralAimOffset.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_ProceduralAimOffset() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_ProceduralAimOffset() {}
 	void UAnimGraphNode_ProceduralAimOffset::StaticRegisterNativesUAnimGraphNode_ProceduralAimOffset()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAnimGraphNode_ProceduralAimOffset);
 	UClass* Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_NoRegister()
 	{
 		return UAnimGraphNode_ProceduralAimOffset::StaticClass();
@@ -57,7 +54,7 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_ProceduralAimOffset() {}
 		{ "ModuleRelativePath", "Public/AnimGraphNode_ProceduralAimOffset.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node = { "Node", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAnimGraphNode_ProceduralAimOffset, Node), Z_Construct_UScriptStruct_FAnimNode_ProceduralAimOffset, METADATA_PARAMS(Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node = { "Node", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAnimGraphNode_ProceduralAimOffset, Node), Z_Construct_UScriptStruct_FAnimNode_ProceduralAimOffset, METADATA_PARAMS(Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node_MetaData)) }; // 600809040
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::NewProp_Node,
 	};
@@ -81,21 +78,26 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_ProceduralAimOffset() {}
 	};
 	UClass* Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UAnimGraphNode_ProceduralAimOffset.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UAnimGraphNode_ProceduralAimOffset.OuterSingleton, Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UAnimGraphNode_ProceduralAimOffset.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UAnimGraphNode_ProceduralAimOffset, 2859586473);
 	template<> WEAPONSYSTEMANIMSUNCOOKED_API UClass* StaticClass<UAnimGraphNode_ProceduralAimOffset>()
 	{
 		return UAnimGraphNode_ProceduralAimOffset::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UAnimGraphNode_ProceduralAimOffset(Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset, &UAnimGraphNode_ProceduralAimOffset::StaticClass, TEXT("/Script/WeaponSystemAnimsUncooked"), TEXT("UAnimGraphNode_ProceduralAimOffset"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UAnimGraphNode_ProceduralAimOffset);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_ProceduralAimOffset_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_ProceduralAimOffset_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UAnimGraphNode_ProceduralAimOffset, UAnimGraphNode_ProceduralAimOffset::StaticClass, TEXT("UAnimGraphNode_ProceduralAimOffset"), &Z_Registration_Info_UClass_UAnimGraphNode_ProceduralAimOffset, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAnimGraphNode_ProceduralAimOffset), 514981672U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_ProceduralAimOffset_h_1061810688(TEXT("/Script/WeaponSystemAnimsUncooked"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_ProceduralAimOffset_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_ProceduralAimOffset_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

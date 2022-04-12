@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 // Cross Module References
@@ -162,7 +158,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -196,7 +192,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_CanHitscan_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_CanHitscan_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -219,7 +215,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Hitscan_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Hitscan_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -236,13 +232,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) }; // 1416937132
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000082, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventMulti_Hitscan_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_MetaData)) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000082, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventMulti_Hitscan_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::NewProp_Hits,
@@ -261,7 +257,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -284,7 +280,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_PlayFiringEffect_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_PlayFiringEffect_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -301,13 +297,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) }; // 1416937132
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventPlayImpactEffect_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_MetaData)) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventPlayImpactEffect_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::NewProp_Hits,
@@ -324,7 +320,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -341,13 +337,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_Inner = { "Hits", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(nullptr, 0) }; // 1416937132
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000082, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventServer_Hitscan_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_MetaData)) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits = { "Hits", nullptr, (EPropertyFlags)0x0010008008000082, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventServer_Hitscan_Parms, Hits), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::NewProp_Hits,
@@ -364,10 +360,11 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UHitscanScriptBase);
 	UClass* Z_Construct_UClass_UHitscanScriptBase_NoRegister()
 	{
 		return UHitscanScriptBase::StaticClass();
@@ -424,13 +421,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UHitscanScriptBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude, "CalculateSpreadMagnitude" }, // 4124194211
-		{ &Z_Construct_UFunction_UHitscanScriptBase_CanHitscan, "CanHitscan" }, // 3946574525
-		{ &Z_Construct_UFunction_UHitscanScriptBase_Hitscan, "Hitscan" }, // 2506338385
-		{ &Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan, "Multi_Hitscan" }, // 2713069232
-		{ &Z_Construct_UFunction_UHitscanScriptBase_PlayFiringEffect, "PlayFiringEffect" }, // 3839834017
-		{ &Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect, "PlayImpactEffect" }, // 4241963078
-		{ &Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan, "Server_Hitscan" }, // 228402775
+		{ &Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude, "CalculateSpreadMagnitude" }, // 3055348107
+		{ &Z_Construct_UFunction_UHitscanScriptBase_CanHitscan, "CanHitscan" }, // 2598655845
+		{ &Z_Construct_UFunction_UHitscanScriptBase_Hitscan, "Hitscan" }, // 3964796463
+		{ &Z_Construct_UFunction_UHitscanScriptBase_Multi_Hitscan, "Multi_Hitscan" }, // 31140664
+		{ &Z_Construct_UFunction_UHitscanScriptBase_PlayFiringEffect, "PlayFiringEffect" }, // 3417184151
+		{ &Z_Construct_UFunction_UHitscanScriptBase_PlayImpactEffect, "PlayImpactEffect" }, // 3139132734
+		{ &Z_Construct_UFunction_UHitscanScriptBase_Server_Hitscan, "Server_Hitscan" }, // 740497385
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::Class_MetaDataParams[] = {
@@ -480,7 +477,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel = { "CollisionChannel", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, CollisionChannel), Z_Construct_UEnum_Engine_ECollisionChannel, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel = { "CollisionChannel", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, CollisionChannel), Z_Construct_UEnum_Engine_ECollisionChannel, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData)) }; // 727872708
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_FiringSound_MetaData[] = {
 		{ "Category", "Configurations|Cosmetic" },
@@ -509,7 +506,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams = { "RecoilParams", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, RecoilParams), Z_Construct_UScriptStruct_FRecoilParams, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams = { "RecoilParams", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, RecoilParams), Z_Construct_UScriptStruct_FRecoilParams, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData)) }; // 436822902
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHitscanScriptBase_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RateOfFire,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_Range,
@@ -541,19 +538,16 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	};
 	UClass* Z_Construct_UClass_UHitscanScriptBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UHitscanScriptBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UHitscanScriptBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UHitscanScriptBase.OuterSingleton, Z_Construct_UClass_UHitscanScriptBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UHitscanScriptBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UHitscanScriptBase, 2425083794);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UHitscanScriptBase>()
 	{
 		return UHitscanScriptBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UHitscanScriptBase(Z_Construct_UClass_UHitscanScriptBase, &UHitscanScriptBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UHitscanScriptBase"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UHitscanScriptBase);
 	DEFINE_FUNCTION(USemiAutoHitscanScriptBase::execFire)
 	{
@@ -625,7 +619,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_CanFire_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_CanFire_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -648,7 +642,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_Fire_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_Fire_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -684,7 +678,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SemiAutoHitscanScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SemiAutoHitscanScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) }; // 1054153585
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_FiringInput,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent,
@@ -699,16 +693,17 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "ToolTip", "Binds the input to fire" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USemiAutoHitscanScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(SemiAutoHitscanScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USemiAutoHitscanScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::SemiAutoHitscanScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(USemiAutoHitscanScriptBase);
 	UClass* Z_Construct_UClass_USemiAutoHitscanScriptBase_NoRegister()
 	{
 		return USemiAutoHitscanScriptBase::StaticClass();
@@ -728,9 +723,9 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_USemiAutoHitscanScriptBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_CanFire, "CanFire" }, // 1701763096
-		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_Fire, "Fire" }, // 3754081798
-		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 1905778987
+		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_CanFire, "CanFire" }, // 1393444880
+		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_Fire, "Fire" }, // 1788250844
+		{ &Z_Construct_UFunction_USemiAutoHitscanScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 2743710522
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USemiAutoHitscanScriptBase_Statics::Class_MetaDataParams[] = {
@@ -760,19 +755,16 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	};
 	UClass* Z_Construct_UClass_USemiAutoHitscanScriptBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_USemiAutoHitscanScriptBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_USemiAutoHitscanScriptBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_USemiAutoHitscanScriptBase.OuterSingleton, Z_Construct_UClass_USemiAutoHitscanScriptBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_USemiAutoHitscanScriptBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(USemiAutoHitscanScriptBase, 223462775);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USemiAutoHitscanScriptBase>()
 	{
 		return USemiAutoHitscanScriptBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_USemiAutoHitscanScriptBase(Z_Construct_UClass_USemiAutoHitscanScriptBase, &USemiAutoHitscanScriptBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("USemiAutoHitscanScriptBase"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(USemiAutoHitscanScriptBase);
 	DEFINE_FUNCTION(UBurstFireHitscanScriptBase::execFire)
 	{
@@ -844,7 +836,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_CanFire_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_CanFire_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -867,7 +859,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_Fire_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_Fire_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -903,7 +895,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(BurstFireHitscanScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(BurstFireHitscanScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) }; // 1054153585
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_FiringInput,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent,
@@ -918,16 +910,17 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "ToolTip", "Binds the input to fire" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UBurstFireHitscanScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(BurstFireHitscanScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UBurstFireHitscanScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::BurstFireHitscanScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UBurstFireHitscanScriptBase);
 	UClass* Z_Construct_UClass_UBurstFireHitscanScriptBase_NoRegister()
 	{
 		return UBurstFireHitscanScriptBase::StaticClass();
@@ -956,9 +949,9 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UBurstFireHitscanScriptBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_CanFire, "CanFire" }, // 2352773422
-		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_Fire, "Fire" }, // 132736564
-		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 2631051469
+		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_CanFire, "CanFire" }, // 84544551
+		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_Fire, "Fire" }, // 707027465
+		{ &Z_Construct_UFunction_UBurstFireHitscanScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 1420445830
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UBurstFireHitscanScriptBase_Statics::Class_MetaDataParams[] = {
@@ -1012,21 +1005,28 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	};
 	UClass* Z_Construct_UClass_UBurstFireHitscanScriptBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UBurstFireHitscanScriptBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UBurstFireHitscanScriptBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UBurstFireHitscanScriptBase.OuterSingleton, Z_Construct_UClass_UBurstFireHitscanScriptBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UBurstFireHitscanScriptBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UBurstFireHitscanScriptBase, 1183611924);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UBurstFireHitscanScriptBase>()
 	{
 		return UBurstFireHitscanScriptBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UBurstFireHitscanScriptBase(Z_Construct_UClass_UBurstFireHitscanScriptBase, &UBurstFireHitscanScriptBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UBurstFireHitscanScriptBase"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UBurstFireHitscanScriptBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UHitscanScriptBase, UHitscanScriptBase::StaticClass, TEXT("UHitscanScriptBase"), &Z_Registration_Info_UClass_UHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UHitscanScriptBase), 3426308252U) },
+		{ Z_Construct_UClass_USemiAutoHitscanScriptBase, USemiAutoHitscanScriptBase::StaticClass, TEXT("USemiAutoHitscanScriptBase"), &Z_Registration_Info_UClass_USemiAutoHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USemiAutoHitscanScriptBase), 2846873552U) },
+		{ Z_Construct_UClass_UBurstFireHitscanScriptBase, UBurstFireHitscanScriptBase::StaticClass, TEXT("UBurstFireHitscanScriptBase"), &Z_Registration_Info_UClass_UBurstFireHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBurstFireHitscanScriptBase), 1176290878U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_2402819560(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

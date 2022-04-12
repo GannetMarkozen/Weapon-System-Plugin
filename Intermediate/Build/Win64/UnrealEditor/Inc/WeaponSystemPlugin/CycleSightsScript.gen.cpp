@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Scripts/CycleSightsScript.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 // Cross Module References
@@ -123,7 +119,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_CycleSights_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_CycleSights_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -146,7 +142,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_OnRep_CurrentSights_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_OnRep_CurrentSights_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -168,7 +164,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_Server_CycleSights_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_Server_CycleSights_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -204,7 +200,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CycleSightsScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CycleSightsScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) }; // 1054153585
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_CycleInput,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent,
@@ -219,13 +215,13 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		{ "ToolTip", "Binds input to the CycleSights function. Should be called on event Setup Input" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCycleSightsScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(CycleSightsScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCycleSightsScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::CycleSightsScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -248,7 +244,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineEnd_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineEnd_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -285,7 +281,7 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineProgress_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineProgress_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -308,10 +304,11 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineStart_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCycleSightsScriptBase_TimelineStart_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCycleSightsScriptBase);
 	UClass* Z_Construct_UClass_UCycleSightsScriptBase_NoRegister()
 	{
 		return UCycleSightsScriptBase::StaticClass();
@@ -352,13 +349,13 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCycleSightsScriptBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_CycleSights, "CycleSights" }, // 3596047173
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_OnRep_CurrentSights, "OnRep_CurrentSights" }, // 1501701468
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_Server_CycleSights, "Server_CycleSights" }, // 1112637659
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 1340105259
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineEnd, "TimelineEnd" }, // 455724068
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineProgress, "TimelineProgress" }, // 3807500324
-		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineStart, "TimelineStart" }, // 4253294064
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_CycleSights, "CycleSights" }, // 3422111307
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_OnRep_CurrentSights, "OnRep_CurrentSights" }, // 2436446802
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_Server_CycleSights, "Server_CycleSights" }, // 2770757557
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 42652258
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineEnd, "TimelineEnd" }, // 3081102939
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineProgress, "TimelineProgress" }, // 560983774
+		{ &Z_Construct_UFunction_UCycleSightsScriptBase_TimelineStart, "TimelineStart" }, // 438630076
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCycleSightsScriptBase_Statics::Class_MetaDataParams[] = {
@@ -432,19 +429,16 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 	};
 	UClass* Z_Construct_UClass_UCycleSightsScriptBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCycleSightsScriptBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCycleSightsScriptBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCycleSightsScriptBase.OuterSingleton, Z_Construct_UClass_UCycleSightsScriptBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCycleSightsScriptBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCycleSightsScriptBase, 2322105723);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UCycleSightsScriptBase>()
 	{
 		return UCycleSightsScriptBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCycleSightsScriptBase(Z_Construct_UClass_UCycleSightsScriptBase, &UCycleSightsScriptBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UCycleSightsScriptBase"), false, nullptr, nullptr, nullptr);
 
 	void UCycleSightsScriptBase::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -456,7 +450,15 @@ void EmptyLinkFunctionForGeneratedCodeCycleSightsScript() {}
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in UCycleSightsScriptBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCycleSightsScriptBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_CycleSightsScript_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_CycleSightsScript_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCycleSightsScriptBase, UCycleSightsScriptBase::StaticClass, TEXT("UCycleSightsScriptBase"), &Z_Registration_Info_UClass_UCycleSightsScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCycleSightsScriptBase), 3302205735U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_CycleSightsScript_h_899046234(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_CycleSightsScript_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_CycleSightsScript_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

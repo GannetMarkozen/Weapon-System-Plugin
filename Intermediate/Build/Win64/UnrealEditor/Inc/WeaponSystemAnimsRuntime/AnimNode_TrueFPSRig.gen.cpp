@@ -6,111 +6,269 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemAnimsRuntime/Public/AnimNode_TrueFPSRig.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAnimNode_TrueFPSRig() {}
 // Cross Module References
 	WEAPONSYSTEMANIMSRUNTIME_API UEnum* Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
+	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FArmPullbackConfig();
+	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FFloatRange();
 	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FAnimNode_Base();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FPoseLink();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FBoneReference();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
-	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FBoneParams();
-	WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* Z_Construct_UScriptStruct_FArmPullbackConfig();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FFloatRange();
 // End Cross Module References
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EArmPullbackConfig;
 	static UEnum* EArmPullbackConfig_StaticEnum()
 	{
-		static UEnum* Singleton = nullptr;
-		if (!Singleton)
+		if (!Z_Registration_Info_UEnum_EArmPullbackConfig.OuterSingleton)
 		{
-			Singleton = GetStaticEnum(Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("EArmPullbackConfig"));
+			Z_Registration_Info_UEnum_EArmPullbackConfig.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("EArmPullbackConfig"));
 		}
-		return Singleton;
+		return Z_Registration_Info_UEnum_EArmPullbackConfig.OuterSingleton;
 	}
 	template<> WEAPONSYSTEMANIMSRUNTIME_API UEnum* StaticEnum<EArmPullbackConfig>()
 	{
 		return EArmPullbackConfig_StaticEnum();
 	}
-	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EArmPullbackConfig(EArmPullbackConfig_StaticEnum, TEXT("/Script/WeaponSystemAnimsRuntime"), TEXT("EArmPullbackConfig"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Hash() { return 1268961793U; }
+	struct Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enumerators[] = {
+		{ "EArmPullbackConfig::Enabled", (int64)EArmPullbackConfig::Enabled },
+		{ "EArmPullbackConfig::Disabled", (int64)EArmPullbackConfig::Disabled },
+		{ "EArmPullbackConfig::AimingValue", (int64)EArmPullbackConfig::AimingValue },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enum_MetaDataParams[] = {
+		{ "AimingValue.DisplayName", "Based on Aiming Value" },
+		{ "AimingValue.Name", "EArmPullbackConfig::AimingValue" },
+		{ "BlueprintType", "true" },
+		{ "Disabled.DisplayName", "Disabled" },
+		{ "Disabled.Name", "EArmPullbackConfig::Disabled" },
+		{ "Enabled.DisplayName", "Enabled" },
+		{ "Enabled.Name", "EArmPullbackConfig::Enabled" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
+		nullptr,
+		"EArmPullbackConfig",
+		"EArmPullbackConfig",
+		Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enumerators,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enumerators),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::EnumClass,
+		METADATA_PARAMS(Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::Enum_MetaDataParams))
+	};
 	UEnum* Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig()
 	{
-#if WITH_HOT_RELOAD
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
-		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EArmPullbackConfig"), 0, Get_Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Hash(), false);
-#else
-		static UEnum* ReturnEnum = nullptr;
-#endif // WITH_HOT_RELOAD
-		if (!ReturnEnum)
+		if (!Z_Registration_Info_UEnum_EArmPullbackConfig.InnerSingleton)
 		{
-			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-				{ "EArmPullbackConfig::Enabled", (int64)EArmPullbackConfig::Enabled },
-				{ "EArmPullbackConfig::Disabled", (int64)EArmPullbackConfig::Disabled },
-				{ "EArmPullbackConfig::AimingValue", (int64)EArmPullbackConfig::AimingValue },
-			};
-#if WITH_METADATA
-			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "AimingValue.DisplayName", "Based on Aiming Value" },
-				{ "AimingValue.Name", "EArmPullbackConfig::AimingValue" },
-				{ "BlueprintType", "true" },
-				{ "Disabled.DisplayName", "Disabled" },
-				{ "Disabled.Name", "EArmPullbackConfig::Disabled" },
-				{ "Enabled.DisplayName", "Enabled" },
-				{ "Enabled.Name", "EArmPullbackConfig::Enabled" },
-				{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-			};
-#endif
-			static const UECodeGen_Private::FEnumParams EnumParams = {
-				(UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
-				nullptr,
-				"EArmPullbackConfig",
-				"EArmPullbackConfig",
-				Enumerators,
-				UE_ARRAY_COUNT(Enumerators),
-				RF_Public|RF_Transient|RF_MarkAsNative,
-				EEnumFlags::None,
-				UECodeGen_Private::EDynamicType::NotDynamic,
-				(uint8)UEnum::ECppForm::EnumClass,
-				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
-			};
-			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EArmPullbackConfig.InnerSingleton, Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig_Statics::EnumParams);
 		}
-		return ReturnEnum;
+		return Z_Registration_Info_UEnum_EArmPullbackConfig.InnerSingleton;
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_ArmPullbackConfig;
+class UScriptStruct* FArmPullbackConfig::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_ArmPullbackConfig.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_ArmPullbackConfig.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FArmPullbackConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("ArmPullbackConfig"));
+	}
+	return Z_Registration_Info_UScriptStruct_ArmPullbackConfig.OuterSingleton;
+}
+template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FArmPullbackConfig>()
+{
+	return FArmPullbackConfig::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FArmPullbackConfig_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Config_Underlying;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Config_MetaData[];
+#endif
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Config;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmPullbackThreshold_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ArmPullbackThreshold;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "Arm Pull-Back Configuration" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FArmPullbackConfig>();
+	}
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData[] = {
+		{ "Category", "ArmPullbackConfig" },
+		{ "DisplayName", "Arm Pull-Back Configuration" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config = { "Config", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FArmPullbackConfig, Config), Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData)) }; // 1596296569
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData[] = {
+		{ "Category", "ArmPullbackConfig" },
+		{ "ClampMax", "1" },
+		{ "ClampMin", "0" },
+		{ "Comment", "// The aiming value that, when exceeded, will disable arm pull-back.\n" },
+		{ "DisplayName", "Arm Pull-Back Disabled Threshold" },
+		{ "EditCondition", "Config == EArmPullbackConfig::AimingValue" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+		{ "ToolTip", "The aiming value that, when exceeded, will disable arm pull-back." },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold = { "ArmPullbackThreshold", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FArmPullbackConfig, ArmPullbackThreshold), METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
+		nullptr,
+		&NewStructOps,
+		"ArmPullbackConfig",
+		sizeof(FArmPullbackConfig),
+		alignof(FArmPullbackConfig),
+		Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FArmPullbackConfig()
+	{
+		if (!Z_Registration_Info_UScriptStruct_ArmPullbackConfig.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_ArmPullbackConfig.InnerSingleton, Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_ArmPullbackConfig.InnerSingleton;
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_JointClampConfig;
+class UScriptStruct* FJointClampConfig::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_JointClampConfig.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_JointClampConfig.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FJointClampConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("JointClampConfig"));
+	}
+	return Z_Registration_Info_UScriptStruct_JointClampConfig.OuterSingleton;
+}
+template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FJointClampConfig>()
+{
+	return FJointClampConfig::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FJointClampConfig_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HorizontalRange_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HorizontalRange;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_VerticalRange_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_VerticalRange;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "Arm Joint Clamping Configurations" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FJointClampConfig>();
+	}
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData[] = {
+		{ "Category", "JointClampConfig" },
+		{ "DisplayName", "Joint Horizontal Clamp Range" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange = { "HorizontalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, HorizontalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData[] = {
+		{ "Category", "JointClampConfig" },
+		{ "DisplayName", "Joint Vertical Clamp Range" },
+		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange = { "VerticalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, VerticalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
+		nullptr,
+		&NewStructOps,
+		"JointClampConfig",
+		sizeof(FJointClampConfig),
+		alignof(FJointClampConfig),
+		Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig()
+	{
+		if (!Z_Registration_Info_UScriptStruct_JointClampConfig.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_JointClampConfig.InnerSingleton, Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_JointClampConfig.InnerSingleton;
 	}
 
 static_assert(std::is_polymorphic<FAnimNode_TrueFPSRig>() == std::is_polymorphic<FAnimNode_Base>(), "USTRUCT FAnimNode_TrueFPSRig cannot be polymorphic unless super FAnimNode_Base is polymorphic");
 
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig;
 class UScriptStruct* FAnimNode_TrueFPSRig::StaticStruct()
 {
-	static class UScriptStruct* Singleton = NULL;
-	if (!Singleton)
+	if (!Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.OuterSingleton)
 	{
-		extern WEAPONSYSTEMANIMSRUNTIME_API uint32 Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("AnimNode_TrueFPSRig"), sizeof(FAnimNode_TrueFPSRig), Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash());
+		Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("AnimNode_TrueFPSRig"));
 	}
-	return Singleton;
+	return Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.OuterSingleton;
 }
 template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FAnimNode_TrueFPSRig>()
 {
 	return FAnimNode_TrueFPSRig::StaticStruct();
 }
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FAnimNode_TrueFPSRig(FAnimNode_TrueFPSRig::StaticStruct, TEXT("/Script/WeaponSystemAnimsRuntime"), TEXT("AnimNode_TrueFPSRig"), false, nullptr, nullptr);
-static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimNode_TrueFPSRig
-{
-	FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimNode_TrueFPSRig()
-	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("AnimNode_TrueFPSRig")),new UScriptStruct::TCppStructOps<FAnimNode_TrueFPSRig>);
-	}
-} ScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimNode_TrueFPSRig;
 	struct Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics
 	{
 #if WITH_METADATA
@@ -272,14 +430,14 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose = { "BasePose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, BasePose), Z_Construct_UScriptStruct_FPoseLink, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose = { "BasePose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, BasePose), Z_Construct_UScriptStruct_FPoseLink, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose_MetaData)) }; // 2393943538
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData[] = {
 		{ "Category", "Configurations" },
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose = { "ReferencePose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ReferencePose), Z_Construct_UScriptStruct_FPoseLink, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose = { "ReferencePose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ReferencePose), Z_Construct_UScriptStruct_FPoseLink, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose_MetaData)) }; // 2393943538
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData[] = {
 		{ "Category", "Bone References" },
@@ -288,7 +446,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "Bone references" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand = { "RightHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand = { "RightHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightHand_MetaData)) }; // 831728502
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData[] = {
 		{ "Category", "Bone References" },
@@ -297,14 +455,14 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightUpperArm;" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand = { "LeftHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand = { "LeftHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData)) }; // 831728502
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData[] = {
 		{ "Category", "Bone References" },
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head = { "Head", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Head), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head = { "Head", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Head), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Head_MetaData)) }; // 831728502
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData[] = {
 		{ "Category", "Bone References" },
@@ -313,7 +471,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftUpperArm;// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone = { "StableBone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, StableBone), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone = { "StableBone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, StableBone), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData)) }; // 831728502
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CameraRelativeRotation_MetaData[] = {
 		{ "Category", "Configurations" },
@@ -377,7 +535,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "Right joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\nand outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\nrange will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp = { "RightJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp = { "RightJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, RightJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointClamp_MetaData)) }; // 2821632508
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData[] = {
 		{ "Category", "Arms IK" },
@@ -388,7 +546,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "Left joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value\nand outward horizontal displacement is affected by Max-Value). Specifying \"Open\" on a range-boundary means that\nrange will not be clamped. \"Inclusive\" and \"Exclusive\" range-boundary specifiers have no difference." },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp = { "LeftJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp = { "LeftJointClamp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftJointClamp), Z_Construct_UScriptStruct_FJointClampConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftJointClamp_MetaData)) }; // 2821632508
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_RightJointLocationOffset_MetaData[] = {
 		{ "Category", "Arms IK" },
@@ -549,7 +707,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Alpha = { "Alpha", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, Alpha), METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Alpha_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_Alpha_MetaData)) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_Inner = { "SpineBoneParams", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FBoneParams, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_Inner = { "SpineBoneParams", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FBoneParams, METADATA_PARAMS(nullptr, 0) }; // 3279354559
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_MetaData[] = {
 		{ "Category", "Configurations" },
@@ -559,7 +717,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ToolTip", "All of the spine / neck / head bone names. The top-most bone should be the\nlast bone-name because that will determine the target rotation" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams = { "SpineBoneParams", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, SpineBoneParams), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_MetaData)) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams = { "SpineBoneParams", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, SpineBoneParams), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_SpineBoneParams_MetaData)) }; // 3279354559
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_CameraRelativeLocation_MetaData[] = {
 		{ "Category", "Configurations" },
@@ -615,7 +773,7 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig = { "ArmPullbackConfig", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ArmPullbackConfig), Z_Construct_UScriptStruct_FArmPullbackConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig = { "ArmPullbackConfig", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, ArmPullbackConfig), Z_Construct_UScriptStruct_FArmPullbackConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ArmPullbackConfig_MetaData)) }; // 970142112
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_BasePose,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_ReferencePose,
@@ -667,227 +825,27 @@ static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFAnimN
 	};
 	UScriptStruct* Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig()
 	{
-#if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash();
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("AnimNode_TrueFPSRig"), sizeof(FAnimNode_TrueFPSRig), Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash(), false);
-#else
-		static UScriptStruct* ReturnStruct = nullptr;
-#endif
-		if (!ReturnStruct)
+		if (!Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.InnerSingleton)
 		{
-			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::ReturnStructParams);
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.InnerSingleton, Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::ReturnStructParams);
 		}
-		return ReturnStruct;
+		return Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig.InnerSingleton;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Hash() { return 1707714741U; }
-class UScriptStruct* FJointClampConfig::StaticStruct()
-{
-	static class UScriptStruct* Singleton = NULL;
-	if (!Singleton)
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics
 	{
-		extern WEAPONSYSTEMANIMSRUNTIME_API uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FJointClampConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("JointClampConfig"), sizeof(FJointClampConfig), Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash());
-	}
-	return Singleton;
-}
-template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FJointClampConfig>()
-{
-	return FJointClampConfig::StaticStruct();
-}
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FJointClampConfig(FJointClampConfig::StaticStruct, TEXT("/Script/WeaponSystemAnimsRuntime"), TEXT("JointClampConfig"), false, nullptr, nullptr);
-static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig
-{
-	FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig()
-	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("JointClampConfig")),new UScriptStruct::TCppStructOps<FJointClampConfig>);
-	}
-} ScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFJointClampConfig;
-	struct Z_Construct_UScriptStruct_FJointClampConfig_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
-#endif
-		static void* NewStructOps();
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_HorizontalRange_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_HorizontalRange;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_VerticalRange_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_VerticalRange;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-		static const UECodeGen_Private::FStructParams ReturnStructParams;
+		static const FEnumRegisterCompiledInInfo EnumInfo[];
+		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "DisplayName", "Arm Joint Clamping Configurations" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::EnumInfo[] = {
+		{ EArmPullbackConfig_StaticEnum, TEXT("EArmPullbackConfig"), &Z_Registration_Info_UEnum_EArmPullbackConfig, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1596296569U) },
 	};
-#endif
-	void* Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewStructOps()
-	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FJointClampConfig>();
-	}
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData[] = {
-		{ "Category", "JointClampConfig" },
-		{ "DisplayName", "Joint Horizontal Clamp Range" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo[] = {
+		{ FArmPullbackConfig::StaticStruct, Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewStructOps, TEXT("ArmPullbackConfig"), &Z_Registration_Info_UScriptStruct_ArmPullbackConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArmPullbackConfig), 970142112U) },
+		{ FJointClampConfig::StaticStruct, Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewStructOps, TEXT("JointClampConfig"), &Z_Registration_Info_UScriptStruct_JointClampConfig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FJointClampConfig), 2821632508U) },
+		{ FAnimNode_TrueFPSRig::StaticStruct, Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewStructOps, TEXT("AnimNode_TrueFPSRig"), &Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAnimNode_TrueFPSRig), 1182199300U) },
 	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange = { "HorizontalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, HorizontalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData[] = {
-		{ "Category", "JointClampConfig" },
-		{ "DisplayName", "Joint Vertical Clamp Range" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange = { "VerticalRange", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FJointClampConfig, VerticalRange), Z_Construct_UScriptStruct_FFloatRange, METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_HorizontalRange,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FJointClampConfig_Statics::NewProp_VerticalRange,
-	};
-	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams = {
-		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
-		nullptr,
-		&NewStructOps,
-		"JointClampConfig",
-		sizeof(FJointClampConfig),
-		alignof(FJointClampConfig),
-		Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::PropPointers),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EStructFlags(0x00000001),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FJointClampConfig_Statics::Struct_MetaDataParams))
-	};
-	UScriptStruct* Z_Construct_UScriptStruct_FJointClampConfig()
-	{
-#if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash();
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("JointClampConfig"), sizeof(FJointClampConfig), Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash(), false);
-#else
-		static UScriptStruct* ReturnStruct = nullptr;
-#endif
-		if (!ReturnStruct)
-		{
-			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FJointClampConfig_Statics::ReturnStructParams);
-		}
-		return ReturnStruct;
-	}
-	uint32 Get_Z_Construct_UScriptStruct_FJointClampConfig_Hash() { return 4229284973U; }
-class UScriptStruct* FArmPullbackConfig::StaticStruct()
-{
-	static class UScriptStruct* Singleton = NULL;
-	if (!Singleton)
-	{
-		extern WEAPONSYSTEMANIMSRUNTIME_API uint32 Get_Z_Construct_UScriptStruct_FArmPullbackConfig_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FArmPullbackConfig, Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime(), TEXT("ArmPullbackConfig"), sizeof(FArmPullbackConfig), Get_Z_Construct_UScriptStruct_FArmPullbackConfig_Hash());
-	}
-	return Singleton;
-}
-template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FArmPullbackConfig>()
-{
-	return FArmPullbackConfig::StaticStruct();
-}
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FArmPullbackConfig(FArmPullbackConfig::StaticStruct, TEXT("/Script/WeaponSystemAnimsRuntime"), TEXT("ArmPullbackConfig"), false, nullptr, nullptr);
-static struct FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFArmPullbackConfig
-{
-	FScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFArmPullbackConfig()
-	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("ArmPullbackConfig")),new UScriptStruct::TCppStructOps<FArmPullbackConfig>);
-	}
-} ScriptStruct_WeaponSystemAnimsRuntime_StaticRegisterNativesFArmPullbackConfig;
-	struct Z_Construct_UScriptStruct_FArmPullbackConfig_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
-#endif
-		static void* NewStructOps();
-		static const UECodeGen_Private::FBytePropertyParams NewProp_Config_Underlying;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Config_MetaData[];
-#endif
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_Config;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmPullbackThreshold_MetaData[];
-#endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_ArmPullbackThreshold;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-		static const UECodeGen_Private::FStructParams ReturnStructParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "DisplayName", "Arm Pull-Back Configuration" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	void* Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewStructOps()
-	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FArmPullbackConfig>();
-	}
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData[] = {
-		{ "Category", "ArmPullbackConfig" },
-		{ "DisplayName", "Arm Pull-Back Configuration" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-	};
-#endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config = { "Config", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FArmPullbackConfig, Config), Z_Construct_UEnum_WeaponSystemAnimsRuntime_EArmPullbackConfig, METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData[] = {
-		{ "Category", "ArmPullbackConfig" },
-		{ "ClampMax", "1" },
-		{ "ClampMin", "0" },
-		{ "Comment", "// The aiming value that, when exceeded, will disable arm pull-back.\n" },
-		{ "DisplayName", "Arm Pull-Back Disabled Threshold" },
-		{ "EditCondition", "Config == EArmPullbackConfig::AimingValue" },
-		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-		{ "ToolTip", "The aiming value that, when exceeded, will disable arm pull-back." },
-	};
-#endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold = { "ArmPullbackThreshold", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FArmPullbackConfig, ArmPullbackThreshold), METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_Config,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::NewProp_ArmPullbackThreshold,
-	};
-	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::ReturnStructParams = {
-		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime,
-		nullptr,
-		&NewStructOps,
-		"ArmPullbackConfig",
-		sizeof(FArmPullbackConfig),
-		alignof(FArmPullbackConfig),
-		Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::PropPointers),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EStructFlags(0x00000001),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::Struct_MetaDataParams))
-	};
-	UScriptStruct* Z_Construct_UScriptStruct_FArmPullbackConfig()
-	{
-#if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FArmPullbackConfig_Hash();
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemAnimsRuntime();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("ArmPullbackConfig"), sizeof(FArmPullbackConfig), Get_Z_Construct_UScriptStruct_FArmPullbackConfig_Hash(), false);
-#else
-		static UScriptStruct* ReturnStruct = nullptr;
-#endif
-		if (!ReturnStruct)
-		{
-			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FArmPullbackConfig_Statics::ReturnStructParams);
-		}
-		return ReturnStruct;
-	}
-	uint32 Get_Z_Construct_UScriptStruct_FArmPullbackConfig_Hash() { return 3660088641U; }
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_2985212844(TEXT("/Script/WeaponSystemAnimsRuntime"),
+		nullptr, 0,
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

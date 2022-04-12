@@ -13,7 +13,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define WEAPONSYSTEMANIMSRUNTIME_AnimNode_ProceduralAimOffset_generated_h
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h_32_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h_14_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FBoneParams_Statics; \
+	static class UScriptStruct* StaticStruct();
+
+
+template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FBoneParams>();
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h_32_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAnimNode_ProceduralAimOffset_Statics; \
 	static class UScriptStruct* StaticStruct(); \
 	typedef FAnimNode_Base Super;
@@ -21,15 +28,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FAnimNode_ProceduralAimOffset>();
 
-#define AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h_14_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FBoneParams_Statics; \
-	static class UScriptStruct* StaticStruct();
-
-
-template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FBoneParams>();
-
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h
+#define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_ProceduralAimOffset_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

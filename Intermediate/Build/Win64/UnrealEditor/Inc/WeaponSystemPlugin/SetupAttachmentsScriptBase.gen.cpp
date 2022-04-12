@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 // Cross Module References
@@ -137,7 +133,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineBeginning_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineBeginning_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -161,7 +157,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineEnd_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineEnd_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -185,7 +181,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelinePlay_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelinePlay_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -209,7 +205,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineReverse_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineReverse_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -245,13 +241,13 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "DestroyAttachmentWidgetsByClass", nullptr, nullptr, sizeof(SetupAttachmentsScriptBase_eventDestroyAttachmentWidgetsByClass_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "DestroyAttachmentWidgetsByClass", nullptr, nullptr, sizeof(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::SetupAttachmentsScriptBase_eventDestroyAttachmentWidgetsByClass_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -273,7 +269,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_OnRep_IsAttaching_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_OnRep_IsAttaching_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -295,7 +291,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_Server_SetupAttachments_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_Server_SetupAttachments_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -331,7 +327,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SetupAttachmentsScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent = { "InputEvent", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SetupAttachmentsScriptBase_eventSetupActivationBinding_Parms, InputEvent), Z_Construct_UEnum_Engine_EInputEvent, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent_MetaData)) }; // 1054153585
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputName,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::NewProp_InputEvent,
@@ -346,13 +342,13 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		{ "ToolTip", "Binds input to Setup Attachments" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(SetupAttachmentsScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "SetupActivationBinding", nullptr, nullptr, sizeof(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::SetupAttachmentsScriptBase_eventSetupActivationBinding_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -375,7 +371,7 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupAttachments_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupAttachments_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -427,13 +423,13 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "SpawnAttachmentWidgets", nullptr, nullptr, sizeof(SetupAttachmentsScriptBase_eventSpawnAttachmentWidgets_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "SpawnAttachmentWidgets", nullptr, nullptr, sizeof(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::SetupAttachmentsScriptBase_eventSpawnAttachmentWidgets_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -467,16 +463,17 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/SetupAttachmentsScriptBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "TimelineProgress", nullptr, nullptr, sizeof(SetupAttachmentsScriptBase_eventTimelineProgress_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USetupAttachmentsScriptBase, nullptr, "TimelineProgress", nullptr, nullptr, sizeof(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::SetupAttachmentsScriptBase_eventTimelineProgress_Parms), Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(USetupAttachmentsScriptBase);
 	UClass* Z_Construct_UClass_USetupAttachmentsScriptBase_NoRegister()
 	{
 		return USetupAttachmentsScriptBase::StaticClass();
@@ -518,17 +515,17 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_USetupAttachmentsScriptBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineBeginning, "BP_TimelineBeginning" }, // 1864216399
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineEnd, "BP_TimelineEnd" }, // 1261507186
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelinePlay, "BP_TimelinePlay" }, // 694138434
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineReverse, "BP_TimelineReverse" }, // 162210852
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass, "DestroyAttachmentWidgetsByClass" }, // 3348679825
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_OnRep_IsAttaching, "OnRep_IsAttaching" }, // 1032458063
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_Server_SetupAttachments, "Server_SetupAttachments" }, // 428058875
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 291445281
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupAttachments, "SetupAttachments" }, // 3952088197
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets, "SpawnAttachmentWidgets" }, // 2679304770
-		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress, "TimelineProgress" }, // 2846617194
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineBeginning, "BP_TimelineBeginning" }, // 2453060250
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineEnd, "BP_TimelineEnd" }, // 1627403349
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelinePlay, "BP_TimelinePlay" }, // 759679342
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_BP_TimelineReverse, "BP_TimelineReverse" }, // 2709056154
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_DestroyAttachmentWidgetsByClass, "DestroyAttachmentWidgetsByClass" }, // 3014943119
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_OnRep_IsAttaching, "OnRep_IsAttaching" }, // 991814856
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_Server_SetupAttachments, "Server_SetupAttachments" }, // 4156151865
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupActivationBinding, "SetupActivationBinding" }, // 1947702015
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SetupAttachments, "SetupAttachments" }, // 722589710
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_SpawnAttachmentWidgets, "SpawnAttachmentWidgets" }, // 3446699146
+		{ &Z_Construct_UFunction_USetupAttachmentsScriptBase_TimelineProgress, "TimelineProgress" }, // 3438140744
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USetupAttachmentsScriptBase_Statics::Class_MetaDataParams[] = {
@@ -603,19 +600,16 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 	};
 	UClass* Z_Construct_UClass_USetupAttachmentsScriptBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_USetupAttachmentsScriptBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_USetupAttachmentsScriptBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_USetupAttachmentsScriptBase.OuterSingleton, Z_Construct_UClass_USetupAttachmentsScriptBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_USetupAttachmentsScriptBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(USetupAttachmentsScriptBase, 4062410653);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USetupAttachmentsScriptBase>()
 	{
 		return USetupAttachmentsScriptBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_USetupAttachmentsScriptBase(Z_Construct_UClass_USetupAttachmentsScriptBase, &USetupAttachmentsScriptBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("USetupAttachmentsScriptBase"), false, nullptr, nullptr, nullptr);
 
 	void USetupAttachmentsScriptBase::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -627,7 +621,15 @@ void EmptyLinkFunctionForGeneratedCodeSetupAttachmentsScriptBase() {}
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in USetupAttachmentsScriptBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(USetupAttachmentsScriptBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_SetupAttachmentsScriptBase_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_SetupAttachmentsScriptBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_USetupAttachmentsScriptBase, USetupAttachmentsScriptBase::StaticClass, TEXT("USetupAttachmentsScriptBase"), &Z_Registration_Info_UClass_USetupAttachmentsScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USetupAttachmentsScriptBase), 3467125264U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_SetupAttachmentsScriptBase_h_3307121708(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_SetupAttachmentsScriptBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_SetupAttachmentsScriptBase_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

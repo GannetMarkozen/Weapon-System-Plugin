@@ -7,10 +7,6 @@
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Character/Anim/WeaponSystemAnimInstance.h"
 #include "Engine/Classes/Components/SkeletalMeshComponent.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 // Cross Module References
@@ -113,7 +109,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_Init_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_Init_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -136,7 +132,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemAnimInstance_eventBP_OnCharacterLanded_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemAnimInstance_eventBP_OnCharacterLanded_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_InCharacter,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::NewProp_Hit,
@@ -154,7 +150,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -186,7 +182,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_CurrentWeaponChanged_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_CurrentWeaponChanged_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -214,7 +210,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemAnimInstance_eventOnCharacterLanded_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemAnimInstance_eventOnCharacterLanded_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_InCharacter,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::NewProp_Hit,
@@ -225,13 +221,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/Anim/WeaponSystemAnimInstance.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemAnimInstance, nullptr, "OnCharacterLanded", nullptr, nullptr, sizeof(WeaponSystemAnimInstance_eventOnCharacterLanded_Parms), Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemAnimInstance, nullptr, "OnCharacterLanded", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::WeaponSystemAnimInstance_eventOnCharacterLanded_Parms), Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -269,10 +265,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_SetVars_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemAnimInstance_SetVars_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWeaponSystemAnimInstance);
 	UClass* Z_Construct_UClass_UWeaponSystemAnimInstance_NoRegister()
 	{
 		return UWeaponSystemAnimInstance::StaticClass();
@@ -456,11 +453,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_Init, "BP_Init" }, // 111791612
-		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded, "BP_OnCharacterLanded" }, // 2566923806
-		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_CurrentWeaponChanged, "CurrentWeaponChanged" }, // 2908937040
-		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded, "OnCharacterLanded" }, // 3335335882
-		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_SetVars, "SetVars" }, // 2542848025
+		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_Init, "BP_Init" }, // 1401866440
+		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_BP_OnCharacterLanded, "BP_OnCharacterLanded" }, // 4195259005
+		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_CurrentWeaponChanged, "CurrentWeaponChanged" }, // 3821154126
+		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_OnCharacterLanded, "OnCharacterLanded" }, // 2175742135
+		{ &Z_Construct_UFunction_UWeaponSystemAnimInstance_SetVars, "SetVars" }, // 1345558917
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::Class_MetaDataParams[] = {
@@ -849,21 +846,26 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 	};
 	UClass* Z_Construct_UClass_UWeaponSystemAnimInstance()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UWeaponSystemAnimInstance.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UWeaponSystemAnimInstance.OuterSingleton, Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UWeaponSystemAnimInstance.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UWeaponSystemAnimInstance, 337272203);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponSystemAnimInstance>()
 	{
 		return UWeaponSystemAnimInstance::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UWeaponSystemAnimInstance(Z_Construct_UClass_UWeaponSystemAnimInstance, &UWeaponSystemAnimInstance::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UWeaponSystemAnimInstance"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UWeaponSystemAnimInstance);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UWeaponSystemAnimInstance, UWeaponSystemAnimInstance::StaticClass, TEXT("UWeaponSystemAnimInstance"), &Z_Registration_Info_UClass_UWeaponSystemAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponSystemAnimInstance), 3279892883U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_3443511920(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

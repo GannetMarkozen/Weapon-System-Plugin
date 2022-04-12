@@ -38,7 +38,8 @@ public class WeaponSystemPlugin : ModuleRules
 				"CoreUObject",
 				"Slate",
 				"SlateCore",
-				"UMG"
+				"UMG",
+				"NetCore"
 				//"Networking",
 				// ... add private dependencies that you statically link with here ...	
 			}

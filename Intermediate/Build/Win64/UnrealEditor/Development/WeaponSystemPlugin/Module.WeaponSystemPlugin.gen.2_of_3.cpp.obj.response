@@ -3,19 +3,25 @@
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\WeaponSystemPlugin\Private"
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
 /I Runtime
+/I ..\Shaders\Shared
 /I Runtime\Engine\Classes
 /I Runtime\Engine\Public
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreOnline
+/I Runtime\CoreOnline\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
 /I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NetCore
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
 /I Runtime\Net\Core\Public
+/I Runtime\Net\Common\Public
 /I Runtime\ApplicationCore\Public
 /I Runtime\RHI\Public
 /I Runtime\Json\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\JsonUtilities
+/I Runtime\JsonUtilities\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SlateCore
 /I Runtime\SlateCore\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\InputCore
@@ -23,8 +29,8 @@
 /I Runtime\InputCore\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Slate
 /I Runtime\Slate\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\ImageWrapper
 /I Runtime\ImageWrapper\Public
+/I ThirdParty
 /I Runtime\Messaging\Public
 /I Runtime\MessagingCommon\Public
 /I Runtime\RenderCore\Public
@@ -32,7 +38,6 @@
 /I Runtime\Analytics\AnalyticsET\Public
 /I Runtime\Analytics\Analytics\Public
 /I Runtime\Sockets\Public
-/I Runtime\Net\Common\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AssetRegistry
 /I Runtime\AssetRegistry\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\EngineMessages
@@ -45,6 +50,8 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\GameplayTags
 /I Runtime\GameplayTags\Classes
 /I Runtime\GameplayTags\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\DeveloperSettings
+/I Runtime\DeveloperSettings\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\PacketHandler
 /I Runtime\PacketHandlers
 /I Runtime\PacketHandlers\PacketHandler\Classes
@@ -56,30 +63,32 @@
 /I Runtime\MeshDescription\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\StaticMeshDescription
 /I Runtime\StaticMeshDescription\Public
+/I Runtime\SkeletalMeshDescription\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationCore
+/I Runtime\AnimationCore\Public
 /I Runtime\PakFile\Public
 /I Runtime\RSA\Public
 /I Runtime\NetworkReplayStreaming
 /I Runtime\NetworkReplayStreaming\NetworkReplayStreaming\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\PhysicsCore
 /I Runtime\PhysicsCore\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\DeveloperSettings
-/I Runtime\DeveloperSettings\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Chaos
 /I Runtime\Experimental
 /I Runtime\Experimental\Chaos\Public
 /I Runtime\Experimental\ChaosCore\Public
 /I ThirdParty\Intel
 /I Runtime\Experimental\Voronoi\Public
+/I Runtime\GeometryCore\Public
 /I Runtime\SignalProcessing\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AudioExtensions
 /I Runtime\AudioExtensions\Public
 /I Runtime\AudioMixerCore\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\PropertyAccess
-/I Runtime\PropertyAccess\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AudioLinkCore
+/I Runtime\AudioLink
+/I Runtime\AudioLink\AudioLinkCore\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEd
 /I Editor
 /I Programs\UnrealLightmass\Public
-/I Developer\Android\AndroidDeviceDetection\Public\Interfaces
 /I Editor\UnrealEd\Classes
 /I Editor\UnrealEd\Public
 /I Developer
@@ -92,7 +101,7 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\EditorSubsystem
 /I Editor\EditorSubsystem\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\InteractiveToolsFramework
-/I Runtime\Experimental\InteractiveToolsFramework\Public
+/I Runtime\InteractiveToolsFramework\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\TypedElementFramework
 /I Runtime\TypedElementFramework\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\TypedElementRuntime
@@ -101,6 +110,7 @@
 /I Editor\EditorStyle\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SourceControl
 /I Developer\SourceControl\Public
+/I Developer\UncontrolledChangelists\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEdMessages
 /I Editor\UnrealEdMessages\Classes
 /I Editor\UnrealEdMessages\Public
@@ -111,12 +121,13 @@
 /I Editor\BlueprintGraph\Public
 /I Runtime\Online
 /I Runtime\Online\HTTP\Public
-/I Runtime\UnrealAudio\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\FunctionalTesting
 /I Developer\FunctionalTesting\Classes
 /I Developer\FunctionalTesting\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AutomationController
 /I Developer\AutomationController\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AutomationTest
+/I Runtime\AutomationTest\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Localization
 /I Developer\Localization\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AudioEditor
@@ -125,7 +136,10 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AudioMixer
 /I Runtime\AudioMixer\Classes
 /I Runtime\AudioMixer\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AudioLinkEngine
+/I Runtime\AudioLink\AudioLinkEngine\Public
 /I Developer\TargetPlatform\Public
+/I Developer\TextureFormat\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\LevelEditor
 /I Editor\LevelEditor\Public
 /I Developer\Settings\Public
@@ -144,6 +158,8 @@
 /I Editor\PropertyEditor\Public
 /I Editor\ActorPickerMode\Public
 /I Editor\SceneDepthPickerMode\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\EditorConfig
+/I Editor\EditorConfig\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\DetailCustomizations
 /I Editor\DetailCustomizations\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\ClassViewer
@@ -157,7 +173,6 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\ContentBrowserData
 /I Editor\ContentBrowserData\Public
 /I Developer\CollectionManager\Public
-/I ThirdParty
 /I ThirdParty\libSampleRate\Public
 /I Runtime\NetworkFileSystem\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\UMG
@@ -168,8 +183,6 @@
 /I Runtime\TimeManagement\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\MovieSceneTracks
 /I Runtime\MovieSceneTracks\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationCore
-/I Runtime\AnimationCore\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\PropertyPath
 /I Runtime\PropertyPath\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NavigationSystem
@@ -191,15 +204,24 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\StatusBar
 /I Editor\StatusBar\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\InterchangeCore
-/I Runtime\Interchange
-/I Runtime\Interchange\Core\Public
+/I Runtime\Experimental\Interchange
+/I Runtime\Experimental\Interchange\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\InterchangeEngine
-/I Runtime\Interchange\Engine\Public
+/I Runtime\Experimental\Interchange\Engine\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\DeveloperToolSettings
 /I Developer\DeveloperToolSettings\Classes
 /I Developer\DeveloperToolSettings\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SubobjectDataInterface
+/I Editor\SubobjectDataInterface\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SubobjectEditor
+/I Editor\SubobjectEditor\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Kismet
+/I Editor\Kismet\Classes
+/I Editor\Kismet\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\PhysicsUtilities
+/I Developer\PhysicsUtilities\Public
+/I Developer\ToolWidgets\Public
 /I Runtime\Windows
-/I Runtime\Windows\XAudio2\Public
 /I Editor\AssetTagsEditor\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AddContentDialog
 /I Editor\AddContentDialog\Public
@@ -213,6 +235,7 @@
 /I Editor\Persona\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SkeletonEditor
 /I Editor\SkeletonEditor\Public
+/I Developer\AnimationWidgets\Public
 /I Editor\AnimationEditor\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AdvancedPreviewScene
 /I Editor\AdvancedPreviewScene\Public
@@ -225,9 +248,6 @@
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule
 /I Runtime\AIModule\Public
 /I Runtime\AIModule\Classes
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Kismet
-/I Editor\Kismet\Classes
-/I Editor\Kismet\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController
@@ -239,6 +259,9 @@
 /I Runtime\AnimGraphRuntime\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimGraph
 /I Editor\AnimGraph\Public
+/I ThirdParty\mimalloc\include
+/I ThirdParty\LibTiff\Source\Win64
+/I ThirdParty\LibTiff\Source
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -250,7 +273,7 @@
 /I ThirdParty\PhysX3\PhysX_3.4\Include\common
 /I ThirdParty\PhysX3\PhysX_3.4\Include\extensions
 /I ThirdParty\PhysX3\PhysX_3.4\Include\geometry
-/I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\INCLUDE"
+/I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\INCLUDE"
 /I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\include\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
@@ -261,9 +284,11 @@
 /Yu"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
 /Fp"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
 /Fo"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj"
+/sourceDependencies "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemPlugin\Module.WeaponSystemPlugin.gen.2_of_3.cpp.json"
 /Zc:inline
 /nologo
 /Oi
+/FC
 /c
 /Gw
 /Gy
@@ -281,6 +306,7 @@
 /GF
 /errorReport:prompt
 /EHsc
+/DPLATFORM_EXCEPTIONS_DISABLED=0
 /Z7
 /MD
 /bigobj
@@ -297,3 +323,4 @@
 /TP
 /GR-
 /W4
+/std:c++17

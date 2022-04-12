@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/WeaponScript.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 // Cross Module References
@@ -21,72 +17,71 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 // End Cross Module References
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EInputBinding;
 	static UEnum* EInputBinding_StaticEnum()
 	{
-		static UEnum* Singleton = nullptr;
-		if (!Singleton)
+		if (!Z_Registration_Info_UEnum_EInputBinding.OuterSingleton)
 		{
-			Singleton = GetStaticEnum(Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("EInputBinding"));
+			Z_Registration_Info_UEnum_EInputBinding.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("EInputBinding"));
 		}
-		return Singleton;
+		return Z_Registration_Info_UEnum_EInputBinding.OuterSingleton;
 	}
 	template<> WEAPONSYSTEMPLUGIN_API UEnum* StaticEnum<EInputBinding>()
 	{
 		return EInputBinding_StaticEnum();
 	}
-	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EInputBinding(EInputBinding_StaticEnum, TEXT("/Script/WeaponSystemPlugin"), TEXT("EInputBinding"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Hash() { return 1822433707U; }
+	struct Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enumerators[] = {
+		{ "EInputBinding::PrimaryFire", (int64)EInputBinding::PrimaryFire },
+		{ "EInputBinding::SecondaryFire", (int64)EInputBinding::SecondaryFire },
+		{ "EInputBinding::Reload", (int64)EInputBinding::Reload },
+		{ "EInputBinding::Interact", (int64)EInputBinding::Interact },
+		{ "EInputBinding::Inspect", (int64)EInputBinding::Inspect },
+		{ "EInputBinding::Jump", (int64)EInputBinding::Jump },
+		{ "EInputBinding::CycleSights", (int64)EInputBinding::CycleSights },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "CycleSights.DisplayName", "Cycle-Sights" },
+		{ "CycleSights.Name", "EInputBinding::CycleSights" },
+		{ "Inspect.Name", "EInputBinding::Inspect" },
+		{ "Interact.Name", "EInputBinding::Interact" },
+		{ "Jump.Name", "EInputBinding::Jump" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponScript.h" },
+		{ "PrimaryFire.DisplayName", "Primary-Fire" },
+		{ "PrimaryFire.Name", "EInputBinding::PrimaryFire" },
+		{ "Reload.Name", "EInputBinding::Reload" },
+		{ "SecondaryFire.DisplayName", "Secondary-Fire" },
+		{ "SecondaryFire.Name", "EInputBinding::SecondaryFire" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
+		nullptr,
+		"EInputBinding",
+		"EInputBinding",
+		Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enumerators,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enumerators),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::EnumClass,
+		METADATA_PARAMS(Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::Enum_MetaDataParams))
+	};
 	UEnum* Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding()
 	{
-#if WITH_HOT_RELOAD
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemPlugin();
-		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EInputBinding"), 0, Get_Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Hash(), false);
-#else
-		static UEnum* ReturnEnum = nullptr;
-#endif // WITH_HOT_RELOAD
-		if (!ReturnEnum)
+		if (!Z_Registration_Info_UEnum_EInputBinding.InnerSingleton)
 		{
-			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-				{ "EInputBinding::PrimaryFire", (int64)EInputBinding::PrimaryFire },
-				{ "EInputBinding::SecondaryFire", (int64)EInputBinding::SecondaryFire },
-				{ "EInputBinding::Reload", (int64)EInputBinding::Reload },
-				{ "EInputBinding::Interact", (int64)EInputBinding::Interact },
-				{ "EInputBinding::Inspect", (int64)EInputBinding::Inspect },
-				{ "EInputBinding::Jump", (int64)EInputBinding::Jump },
-				{ "EInputBinding::CycleSights", (int64)EInputBinding::CycleSights },
-			};
-#if WITH_METADATA
-			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "BlueprintType", "true" },
-				{ "CycleSights.DisplayName", "Cycle-Sights" },
-				{ "CycleSights.Name", "EInputBinding::CycleSights" },
-				{ "Inspect.Name", "EInputBinding::Inspect" },
-				{ "Interact.Name", "EInputBinding::Interact" },
-				{ "Jump.Name", "EInputBinding::Jump" },
-				{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/WeaponScript.h" },
-				{ "PrimaryFire.DisplayName", "Primary-Fire" },
-				{ "PrimaryFire.Name", "EInputBinding::PrimaryFire" },
-				{ "Reload.Name", "EInputBinding::Reload" },
-				{ "SecondaryFire.DisplayName", "Secondary-Fire" },
-				{ "SecondaryFire.Name", "EInputBinding::SecondaryFire" },
-			};
-#endif
-			static const UECodeGen_Private::FEnumParams EnumParams = {
-				(UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
-				nullptr,
-				"EInputBinding",
-				"EInputBinding",
-				Enumerators,
-				UE_ARRAY_COUNT(Enumerators),
-				RF_Public|RF_Transient|RF_MarkAsNative,
-				EEnumFlags::None,
-				UECodeGen_Private::EDynamicType::NotDynamic,
-				(uint8)UEnum::ECppForm::EnumClass,
-				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
-			};
-			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EInputBinding.InnerSingleton, Z_Construct_UEnum_WeaponSystemPlugin_EInputBinding_Statics::EnumParams);
 		}
-		return ReturnEnum;
+		return Z_Registration_Info_UEnum_EInputBinding.InnerSingleton;
 	}
 	DEFINE_FUNCTION(UWeaponScript::execGetOwningCharacter)
 	{
@@ -128,16 +123,17 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 		{ "ToolTip", "Returns the OwningWeapon's OwningCharacter if it is valid (may be invalid if owner of inventory possessing us is not a character)" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponScript, nullptr, "GetOwningCharacter", nullptr, nullptr, sizeof(WeaponScript_eventGetOwningCharacter_Parms), Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponScript, nullptr, "GetOwningCharacter", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::WeaponScript_eventGetOwningCharacter_Parms), Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponScript_GetOwningCharacter()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWeaponScript);
 	UClass* Z_Construct_UClass_UWeaponScript_NoRegister()
 	{
 		return UWeaponScript::StaticClass();
@@ -162,7 +158,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponScript_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponScript_GetOwningCharacter, "GetOwningCharacter" }, // 378705143
+		{ &Z_Construct_UFunction_UWeaponScript_GetOwningCharacter, "GetOwningCharacter" }, // 3796316332
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponScript_Statics::Class_MetaDataParams[] = {
@@ -202,21 +198,30 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 	};
 	UClass* Z_Construct_UClass_UWeaponScript()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UWeaponScript.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UWeaponScript_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UWeaponScript.OuterSingleton, Z_Construct_UClass_UWeaponScript_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UWeaponScript.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UWeaponScript, 2936264814);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponScript>()
 	{
 		return UWeaponScript::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UWeaponScript(Z_Construct_UClass_UWeaponScript, &UWeaponScript::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UWeaponScript"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UWeaponScript);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics
+	{
+		static const FEnumRegisterCompiledInInfo EnumInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::EnumInfo[] = {
+		{ EInputBinding_StaticEnum, TEXT("EInputBinding"), &Z_Registration_Info_UEnum_EInputBinding, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1586908399U) },
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UWeaponScript, UWeaponScript::StaticClass, TEXT("UWeaponScript"), &Z_Registration_Info_UClass_UWeaponScript, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponScript), 1659695886U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_1714541884(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo),
+		nullptr, 0,
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

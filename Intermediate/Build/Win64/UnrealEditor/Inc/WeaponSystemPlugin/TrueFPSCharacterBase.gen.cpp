@@ -6,26 +6,22 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Character/TrueFPSCharacterBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacterBase() {}
 // Cross Module References
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature();
-	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister();
-	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
-	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FRecoilParams();
-	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UDamageInterface_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UDamageInterface();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
+	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FRecoilParams();
+	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister();
+	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_ATrueFPSCharacterBase();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeaponBase_NoRegister();
@@ -33,108 +29,167 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacterBase() {}
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UCharacterInventoryComponent_NoRegister();
 // End Cross Module References
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics
+	DEFINE_FUNCTION(IDamageInterface::execApplyDamage)
 	{
-		struct _Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms
-		{
-			AWeapon* CurrentWeapon;
-			AWeapon* OldWeapon;
-		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentWeapon;
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapon;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_CurrentWeapon = { "CurrentWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms, CurrentWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms, OldWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_CurrentWeapon,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_OldWeapon,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "CurrentWeaponChangedDelgate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::FuncParams);
-		}
-		return ReturnFunction;
+		P_GET_PROPERTY(FFloatProperty,Z_Param_Damage);
+		P_GET_STRUCT_REF(FVector,Z_Param_Out_Direction);
+		P_GET_PROPERTY(FFloatProperty,Z_Param_KnockbackMultiplier);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ApplyDamage_Implementation(Z_Param_Damage,Z_Param_Out_Direction,Z_Param_KnockbackMultiplier);
+		P_NATIVE_END;
 	}
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics
+	void IDamageInterface::ApplyDamage(float Damage, FVector const& Direction, float KnockbackMultiplier)
 	{
-		struct _Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms
-		{
-			ATrueFPSCharacterBase* Character;
-			FHitResult Hit;
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_ApplyDamage instead.");
+	}
+	void UDamageInterface::StaticRegisterNativesUDamageInterface()
+	{
+		UClass* Class = UDamageInterface::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "ApplyDamage", &IDamageInterface::execApplyDamage },
 		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_Character;
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics
+	{
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Hit_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Direction_MetaData[];
 #endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Hit;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Direction;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_KnockbackMultiplier;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Character = { "Character", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms, Character), Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, Damage), METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Character,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit,
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction = { "Direction", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, Direction), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData)) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_KnockbackMultiplier = { "KnockbackMultiplier", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, KnockbackMultiplier), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Damage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_KnockbackMultiplier,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "AutoCreateRefTerm", "Direction" },
+		{ "Category", "Damage Interface" },
+		{ "CPP_Default_Direction", "" },
+		{ "CPP_Default_KnockbackMultiplier", "1.000000" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "OnLandedMultiDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UDamageInterface, nullptr, "ApplyDamage", nullptr, nullptr, sizeof(DamageInterface_eventApplyDamage_Parms), Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0CC80C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UDamageInterface_ApplyDamage()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UDamageInterface);
+	UClass* Z_Construct_UClass_UDamageInterface_NoRegister()
+	{
+		return UDamageInterface::StaticClass();
+	}
+	struct Z_Construct_UClass_UDamageInterface_Statics
+	{
+		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
+#endif
+		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
+		static const UECodeGen_Private::FClassParams ClassParams;
+	};
+	UObject* (*const Z_Construct_UClass_UDamageInterface_Statics::DependentSingletons[])() = {
+		(UObject* (*)())Z_Construct_UClass_UInterface,
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_UDamageInterface_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UDamageInterface_ApplyDamage, "ApplyDamage" }, // 1303287012
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "IsBlueprintBase", "true" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const FCppClassTypeInfoStatic Z_Construct_UClass_UDamageInterface_Statics::StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<IDamageInterface>::IsAbstract,
+	};
+	const UECodeGen_Private::FClassParams Z_Construct_UClass_UDamageInterface_Statics::ClassParams = {
+		&UDamageInterface::StaticClass,
+		nullptr,
+		&StaticCppClassTypeInfo,
+		DependentSingletons,
+		FuncInfo,
+		nullptr,
+		nullptr,
+		UE_ARRAY_COUNT(DependentSingletons),
+		UE_ARRAY_COUNT(FuncInfo),
+		0,
+		0,
+		0x000840A1u,
+		METADATA_PARAMS(Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams))
+	};
+	UClass* Z_Construct_UClass_UDamageInterface()
+	{
+		if (!Z_Registration_Info_UClass_UDamageInterface.OuterSingleton)
+		{
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UDamageInterface.OuterSingleton, Z_Construct_UClass_UDamageInterface_Statics::ClassParams);
+		}
+		return Z_Registration_Info_UClass_UDamageInterface.OuterSingleton;
+	}
+	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UDamageInterface>()
+	{
+		return UDamageInterface::StaticClass();
+	}
+	DEFINE_VTABLE_PTR_HELPER_CTOR(UDamageInterface);
+	static FName NAME_UDamageInterface_ApplyDamage = FName(TEXT("ApplyDamage"));
+	void IDamageInterface::Execute_ApplyDamage(UObject* O, float Damage, FVector const& Direction, float KnockbackMultiplier)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(UDamageInterface::StaticClass()));
+		DamageInterface_eventApplyDamage_Parms Parms;
+		UFunction* const Func = O->FindFunction(NAME_UDamageInterface_ApplyDamage);
+		if (Func)
+		{
+			Parms.Damage=Damage;
+			Parms.Direction=Direction;
+			Parms.KnockbackMultiplier=KnockbackMultiplier;
+			O->ProcessEvent(Func, &Parms);
+		}
+		else if (auto I = (IDamageInterface*)(O->GetNativeInterfaceAddress(UDamageInterface::StaticClass())))
+		{
+			I->ApplyDamage_Implementation(Damage,Direction,KnockbackMultiplier);
+		}
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_RecoilParams;
 class UScriptStruct* FRecoilParams::StaticStruct()
 {
-	static class UScriptStruct* Singleton = NULL;
-	if (!Singleton)
+	if (!Z_Registration_Info_UScriptStruct_RecoilParams.OuterSingleton)
 	{
-		extern WEAPONSYSTEMPLUGIN_API uint32 Get_Z_Construct_UScriptStruct_FRecoilParams_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FRecoilParams, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("RecoilParams"), sizeof(FRecoilParams), Get_Z_Construct_UScriptStruct_FRecoilParams_Hash());
+		Z_Registration_Info_UScriptStruct_RecoilParams.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FRecoilParams, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("RecoilParams"));
 	}
-	return Singleton;
+	return Z_Registration_Info_UScriptStruct_RecoilParams.OuterSingleton;
 }
 template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 {
 	return FRecoilParams::StaticStruct();
 }
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FRecoilParams(FRecoilParams::StaticStruct, TEXT("/Script/WeaponSystemPlugin"), TEXT("RecoilParams"), false, nullptr, nullptr);
-static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParams
-{
-	FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParams()
-	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("RecoilParams")),new UScriptStruct::TCppStructOps<FRecoilParams>);
-	}
-} ScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParams;
 	struct Z_Construct_UScriptStruct_FRecoilParams_Statics
 	{
 #if WITH_METADATA
@@ -219,169 +274,91 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 	UScriptStruct* Z_Construct_UScriptStruct_FRecoilParams()
 	{
-#if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FRecoilParams_Hash();
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemPlugin();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("RecoilParams"), sizeof(FRecoilParams), Get_Z_Construct_UScriptStruct_FRecoilParams_Hash(), false);
-#else
-		static UScriptStruct* ReturnStruct = nullptr;
-#endif
-		if (!ReturnStruct)
+		if (!Z_Registration_Info_UScriptStruct_RecoilParams.InnerSingleton)
 		{
-			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FRecoilParams_Statics::ReturnStructParams);
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_RecoilParams.InnerSingleton, Z_Construct_UScriptStruct_FRecoilParams_Statics::ReturnStructParams);
 		}
-		return ReturnStruct;
+		return Z_Registration_Info_UScriptStruct_RecoilParams.InnerSingleton;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FRecoilParams_Hash() { return 106742654U; }
-	DEFINE_FUNCTION(IDamageInterface::execApplyDamage)
+	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics
 	{
-		P_GET_PROPERTY(FFloatProperty,Z_Param_Damage);
-		P_GET_STRUCT_REF(FVector,Z_Param_Out_Direction);
-		P_GET_PROPERTY(FFloatProperty,Z_Param_KnockbackMultiplier);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->ApplyDamage_Implementation(Z_Param_Damage,Z_Param_Out_Direction,Z_Param_KnockbackMultiplier);
-		P_NATIVE_END;
-	}
-	void IDamageInterface::ApplyDamage(float Damage, FVector const& Direction, float KnockbackMultiplier)
-	{
-		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_ApplyDamage instead.");
-	}
-	void UDamageInterface::StaticRegisterNativesUDamageInterface()
-	{
-		UClass* Class = UDamageInterface::StaticClass();
-		static const FNameNativePtrPair Funcs[] = {
-			{ "ApplyDamage", &IDamageInterface::execApplyDamage },
+		struct _Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms
+		{
+			ATrueFPSCharacterBase* Character;
+			FHitResult Hit;
 		};
-		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
-	}
-	struct Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics
-	{
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Character;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Direction_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Hit_MetaData[];
 #endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Direction;
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_KnockbackMultiplier;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Hit;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, Damage), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Character = { "Character", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms, Character), Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction = { "Direction", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, Direction), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction_MetaData)) };
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_KnockbackMultiplier = { "KnockbackMultiplier", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DamageInterface_eventApplyDamage_Parms, KnockbackMultiplier), METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Damage,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_Direction,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::NewProp_KnockbackMultiplier,
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit = { "Hit", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms, Hit), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit_MetaData)) }; // 1416937132
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Character,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::NewProp_Hit,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "AutoCreateRefTerm", "Direction" },
-		{ "Category", "Damage Interface" },
-		{ "CPP_Default_Direction", "" },
-		{ "CPP_Default_KnockbackMultiplier", "1.000000" },
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UDamageInterface, nullptr, "ApplyDamage", nullptr, nullptr, sizeof(DamageInterface_eventApplyDamage_Parms), Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0CC80C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UDamageInterface_ApplyDamage()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "OnLandedMultiDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventOnLandedMultiDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UDamageInterface_ApplyDamage_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
-	UClass* Z_Construct_UClass_UDamageInterface_NoRegister()
+	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics
 	{
-		return UDamageInterface::StaticClass();
-	}
-	struct Z_Construct_UClass_UDamageInterface_Statics
-	{
-		static UObject* (*const DependentSingletons[])();
-		static const FClassFunctionLinkInfo FuncInfo[];
+		struct _Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms
+		{
+			AWeapon* CurrentWeapon;
+			AWeapon* OldWeapon;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentWeapon;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldWeapon;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
-		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
-		static const UECodeGen_Private::FClassParams ClassParams;
+		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	UObject* (*const Z_Construct_UClass_UDamageInterface_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_UInterface,
-		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
-	};
-	const FClassFunctionLinkInfo Z_Construct_UClass_UDamageInterface_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UDamageInterface_ApplyDamage, "ApplyDamage" }, // 1111806694
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_CurrentWeapon = { "CurrentWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms, CurrentWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_OldWeapon = { "OldWeapon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms, OldWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_CurrentWeapon,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::NewProp_OldWeapon,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "IsBlueprintBase", "true" },
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const FCppClassTypeInfoStatic Z_Construct_UClass_UDamageInterface_Statics::StaticCppClassTypeInfo = {
-		TCppClassTypeTraits<IDamageInterface>::IsAbstract,
-	};
-	const UECodeGen_Private::FClassParams Z_Construct_UClass_UDamageInterface_Statics::ClassParams = {
-		&UDamageInterface::StaticClass,
-		nullptr,
-		&StaticCppClassTypeInfo,
-		DependentSingletons,
-		FuncInfo,
-		nullptr,
-		nullptr,
-		UE_ARRAY_COUNT(DependentSingletons),
-		UE_ARRAY_COUNT(FuncInfo),
-		0,
-		0,
-		0x000840A1u,
-		METADATA_PARAMS(Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UDamageInterface_Statics::Class_MetaDataParams))
-	};
-	UClass* Z_Construct_UClass_UDamageInterface()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "CurrentWeaponChangedDelgate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventCurrentWeaponChangedDelgate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UDamageInterface_Statics::ClassParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature_Statics::FuncParams);
 		}
-		return OuterClass;
-	}
-	IMPLEMENT_CLASS(UDamageInterface, 465120191);
-	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UDamageInterface>()
-	{
-		return UDamageInterface::StaticClass();
-	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UDamageInterface(Z_Construct_UClass_UDamageInterface, &UDamageInterface::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UDamageInterface"), false, nullptr, nullptr, nullptr);
-	DEFINE_VTABLE_PTR_HELPER_CTOR(UDamageInterface);
-	static FName NAME_UDamageInterface_ApplyDamage = FName(TEXT("ApplyDamage"));
-	void IDamageInterface::Execute_ApplyDamage(UObject* O, float Damage, FVector const& Direction, float KnockbackMultiplier)
-	{
-		check(O != NULL);
-		check(O->GetClass()->ImplementsInterface(UDamageInterface::StaticClass()));
-		DamageInterface_eventApplyDamage_Parms Parms;
-		UFunction* const Func = O->FindFunction(NAME_UDamageInterface_ApplyDamage);
-		if (Func)
-		{
-			Parms.Damage=Damage;
-			Parms.Direction=Direction;
-			Parms.KnockbackMultiplier=KnockbackMultiplier;
-			O->ProcessEvent(Func, &Parms);
-		}
-		else if (auto I = (IDamageInterface*)(O->GetNativeInterfaceAddress(UDamageInterface::StaticClass())))
-		{
-			I->ApplyDamage_Implementation(Damage,Direction,KnockbackMultiplier);
-		}
+		return ReturnFunction;
 	}
 	DEFINE_FUNCTION(ATrueFPSCharacterBase::execInternal_CurrentWeaponChanged)
 	{
@@ -718,7 +695,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams = { "RecoilParams", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventAddRecoilInstance_Parms, RecoilParams), Z_Construct_UScriptStruct_FRecoilParams, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams = { "RecoilParams", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(TrueFPSCharacterBase_eventAddRecoilInstance_Parms, RecoilParams), Z_Construct_UScriptStruct_FRecoilParams, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams_MetaData)) }; // 436822902
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::NewProp_RecoilParams,
 	};
@@ -731,13 +708,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ToolTip", "Recoil" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "AddRecoilInstance", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventAddRecoilInstance_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "AddRecoilInstance", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::TrueFPSCharacterBase_eventAddRecoilInstance_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -760,7 +737,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -787,13 +764,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeapon", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventDropWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeapon", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::TrueFPSCharacterBase_eventDropWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -829,13 +806,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeaponAt", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventDropWeaponAt_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "DropWeaponAt", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::TrueFPSCharacterBase_eventDropWeaponAt_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -864,13 +841,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ToolTip", "Automatically casts it to AWeapon" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetCurrentWeapon", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventGetCurrentWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetCurrentWeapon", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::TrueFPSCharacterBase_eventGetCurrentWeapon_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -897,13 +874,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetCurrentWeaponBase", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventGetCurrentWeaponBase_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetCurrentWeaponBase", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::TrueFPSCharacterBase_eventGetCurrentWeaponBase_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -935,7 +912,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -963,13 +940,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetNumRecoilInstances", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventGetNumRecoilInstances_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "GetNumRecoilInstances", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::TrueFPSCharacterBase_eventGetNumRecoilInstances_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1001,7 +978,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1030,7 +1007,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1060,13 +1037,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "Internal_CurrentWeaponChanged", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventInternal_CurrentWeaponChanged_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "Internal_CurrentWeaponChanged", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::TrueFPSCharacterBase_eventInternal_CurrentWeaponChanged_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1103,13 +1080,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ToolTip", "Basic Locomotion" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "MoveForward", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventMoveForward_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "MoveForward", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::TrueFPSCharacterBase_eventMoveForward_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1144,13 +1121,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "MoveRight", nullptr, nullptr, sizeof(TrueFPSCharacterBase_eventMoveRight_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "MoveRight", nullptr, nullptr, sizeof(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::TrueFPSCharacterBase_eventMoveRight_Parms), Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1172,7 +1149,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1194,7 +1171,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanRight_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanRight_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1216,7 +1193,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StartCrouching_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StartCrouching_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1238,7 +1215,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopCrouching_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopCrouching_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1260,7 +1237,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopLeaning_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopLeaning_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1296,7 +1273,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1318,7 +1295,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1340,7 +1317,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanRight_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanRight_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1362,7 +1339,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StartCrouching_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StartCrouching_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1384,7 +1361,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopCrouching_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopCrouching_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1406,7 +1383,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1429,7 +1406,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1458,10 +1435,11 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ATrueFPSCharacterBase);
 	UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister()
 	{
 		return ATrueFPSCharacterBase::StaticClass();
@@ -1538,32 +1516,32 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ATrueFPSCharacterBase_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance, "AddRecoilInstance" }, // 2591403426
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon, "DropCurrentWeapon" }, // 3414516290
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon, "DropWeapon" }, // 3027337817
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt, "DropWeaponAt" }, // 1424047236
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon, "GetCurrentWeapon" }, // 1484860652
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase, "GetCurrentWeaponBase" }, // 4024522590
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform, "GetDomHandTransform" }, // 731370532
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances, "GetNumRecoilInstances" }, // 3268037751
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform, "GetOffHandTransform" }, // 2595666703
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform, "GetWeaponOffsetTransform" }, // 3173533193
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged, "Internal_CurrentWeaponChanged" }, // 414162967
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward, "MoveForward" }, // 2419982520
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight, "MoveRight" }, // 930201139
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft, "Multi_LeanLeft" }, // 3637738802
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanRight, "Multi_LeanRight" }, // 3726311309
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StartCrouching, "Multi_StartCrouching" }, // 2469225507
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopCrouching, "Multi_StopCrouching" }, // 4085037393
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopLeaning, "Multi_StopLeaning" }, // 1285748560
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt, "Server_DropWeaponAt" }, // 2266876016
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft, "Server_LeanLeft" }, // 1484640300
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanRight, "Server_LeanRight" }, // 1984952482
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StartCrouching, "Server_StartCrouching" }, // 2289870527
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopCrouching, "Server_StopCrouching" }, // 677728728
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning, "Server_StopLeaning" }, // 3585128864
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh, "SetupMesh" }, // 2884928218
-		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 188988469
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_AddRecoilInstance, "AddRecoilInstance" }, // 2664990855
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropCurrentWeapon, "DropCurrentWeapon" }, // 2490232584
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeapon, "DropWeapon" }, // 2714422522
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_DropWeaponAt, "DropWeaponAt" }, // 2123631813
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeapon, "GetCurrentWeapon" }, // 4273511064
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetCurrentWeaponBase, "GetCurrentWeaponBase" }, // 3212245074
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetDomHandTransform, "GetDomHandTransform" }, // 2487026622
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetNumRecoilInstances, "GetNumRecoilInstances" }, // 1472345027
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform, "GetOffHandTransform" }, // 3796241453
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform, "GetWeaponOffsetTransform" }, // 2190818391
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged, "Internal_CurrentWeaponChanged" }, // 1726424524
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward, "MoveForward" }, // 3626200457
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight, "MoveRight" }, // 3386566903
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft, "Multi_LeanLeft" }, // 1619228063
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanRight, "Multi_LeanRight" }, // 1083802113
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StartCrouching, "Multi_StartCrouching" }, // 3160691634
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopCrouching, "Multi_StopCrouching" }, // 3201656638
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_StopLeaning, "Multi_StopLeaning" }, // 1145649324
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_DropWeaponAt, "Server_DropWeaponAt" }, // 3241995502
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanLeft, "Server_LeanLeft" }, // 2779233188
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_LeanRight, "Server_LeanRight" }, // 330741172
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StartCrouching, "Server_StartCrouching" }, // 1092850582
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopCrouching, "Server_StopCrouching" }, // 1715570873
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning, "Server_StopLeaning" }, // 1781112736
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh, "SetupMesh" }, // 3330827891
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 3156761278
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::Class_MetaDataParams[] = {
@@ -1620,14 +1598,14 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate = { "LandedMultiDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, LandedMultiDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate = { "LandedMultiDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, LandedMultiDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LandedMultiDelegate_MetaData)) }; // 3992567406
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData[] = {
 		{ "Category", "Character|Delegates" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate = { "CurrentWeaponChangedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentWeaponChangedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData)) };
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate = { "CurrentWeaponChangedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, CurrentWeaponChangedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_CurrentWeaponChangedDelegate_MetaData)) }; // 936607102
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset_MetaData[] = {
 		{ "Category", "Weapon|Recoil" },
@@ -1723,19 +1701,16 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 	};
 	UClass* Z_Construct_UClass_ATrueFPSCharacterBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ATrueFPSCharacterBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ATrueFPSCharacterBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ATrueFPSCharacterBase.OuterSingleton, Z_Construct_UClass_ATrueFPSCharacterBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ATrueFPSCharacterBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ATrueFPSCharacterBase, 4017038332);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ATrueFPSCharacterBase>()
 	{
 		return ATrueFPSCharacterBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ATrueFPSCharacterBase(Z_Construct_UClass_ATrueFPSCharacterBase, &ATrueFPSCharacterBase::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("ATrueFPSCharacterBase"), false, nullptr, nullptr, nullptr);
 
 	void ATrueFPSCharacterBase::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -1747,7 +1722,20 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFRecoilParam
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in ATrueFPSCharacterBase"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ATrueFPSCharacterBase);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics
+	{
+		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ScriptStructInfo[] = {
+		{ FRecoilParams::StaticStruct, Z_Construct_UScriptStruct_FRecoilParams_Statics::NewStructOps, TEXT("RecoilParams"), &Z_Registration_Info_UScriptStruct_RecoilParams, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FRecoilParams), 436822902U) },
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UDamageInterface, UDamageInterface::StaticClass, TEXT("UDamageInterface"), &Z_Registration_Info_UClass_UDamageInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UDamageInterface), 1879780594U) },
+		{ Z_Construct_UClass_ATrueFPSCharacterBase, ATrueFPSCharacterBase::StaticClass, TEXT("ATrueFPSCharacterBase"), &Z_Registration_Info_UClass_ATrueFPSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATrueFPSCharacterBase), 3728106075U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_1747526909(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ScriptStructInfo),
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

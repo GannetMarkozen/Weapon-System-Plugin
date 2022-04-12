@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentPoint.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 // Cross Module References
@@ -103,7 +99,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_AttachmentChanged_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_AttachmentChanged_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -128,7 +124,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_DestroyAttachment_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_DestroyAttachment_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -165,13 +161,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		{ "ToolTip", "May be invalid" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "GetAttachedWidget", nullptr, nullptr, sizeof(WeaponAttachmentPoint_eventGetAttachedWidget_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "GetAttachedWidget", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::WeaponAttachmentPoint_eventGetAttachedWidget_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -202,13 +198,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Attachments/WeaponAttachmentPoint.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "HasAuthority", nullptr, nullptr, sizeof(WeaponAttachmentPoint_eventHasAuthority_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "HasAuthority", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::WeaponAttachmentPoint_eventHasAuthority_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -230,7 +226,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_OnRep_Attachment_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_OnRep_Attachment_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -259,13 +255,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		{ "ToolTip", "Sets the new attachment on the Server and calls it's OnRep function. New Attachment may be invalid." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "SetAttachment", nullptr, nullptr, sizeof(WeaponAttachmentPoint_eventSetAttachment_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "SetAttachment", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::WeaponAttachmentPoint_eventSetAttachment_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -308,16 +304,17 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		{ "ToolTip", "Spawns and sets attachment reference. Returns null if attachment is already set or if parameters are invalid." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "SpawnAttachment", nullptr, nullptr, sizeof(WeaponAttachmentPoint_eventSpawnAttachment_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponAttachmentPoint, nullptr, "SpawnAttachment", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::WeaponAttachmentPoint_eventSpawnAttachment_Parms), Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420405, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWeaponAttachmentPoint);
 	UClass* Z_Construct_UClass_UWeaponAttachmentPoint_NoRegister()
 	{
 		return UWeaponAttachmentPoint::StaticClass();
@@ -360,13 +357,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponAttachmentPoint_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_AttachmentChanged, "AttachmentChanged" }, // 769149609
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_DestroyAttachment, "DestroyAttachment" }, // 2801928684
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget, "GetAttachedWidget" }, // 2015079598
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority, "HasAuthority" }, // 1007779335
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_OnRep_Attachment, "OnRep_Attachment" }, // 20453604
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment, "SetAttachment" }, // 2417682681
-		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment, "SpawnAttachment" }, // 157543105
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_AttachmentChanged, "AttachmentChanged" }, // 3918937229
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_DestroyAttachment, "DestroyAttachment" }, // 1550871355
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_GetAttachedWidget, "GetAttachedWidget" }, // 2541184432
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_HasAuthority, "HasAuthority" }, // 999251570
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_OnRep_Attachment, "OnRep_Attachment" }, // 1275895287
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_SetAttachment, "SetAttachment" }, // 2080547293
+		{ &Z_Construct_UFunction_UWeaponAttachmentPoint_SpawnAttachment, "SpawnAttachment" }, // 1692259038
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponAttachmentPoint_Statics::Class_MetaDataParams[] = {
@@ -430,7 +427,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponAttachmentPoint_Statics::NewProp_Attachment,
 	};
 		const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UWeaponAttachmentPoint_Statics::InterfaceParams[] = {
-			{ Z_Construct_UClass_UItemInterface_NoRegister, (int32)VTABLE_OFFSET(UWeaponAttachmentPoint, IItemInterface), false },
+			{ Z_Construct_UClass_UItemInterface_NoRegister, (int32)VTABLE_OFFSET(UWeaponAttachmentPoint, IItemInterface), false },  // 640128802
 		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UWeaponAttachmentPoint_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UWeaponAttachmentPoint>::IsAbstract,
@@ -452,19 +449,16 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 	};
 	UClass* Z_Construct_UClass_UWeaponAttachmentPoint()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UWeaponAttachmentPoint.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UWeaponAttachmentPoint_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UWeaponAttachmentPoint.OuterSingleton, Z_Construct_UClass_UWeaponAttachmentPoint_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UWeaponAttachmentPoint.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UWeaponAttachmentPoint, 2053508013);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UWeaponAttachmentPoint>()
 	{
 		return UWeaponAttachmentPoint::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UWeaponAttachmentPoint(Z_Construct_UClass_UWeaponAttachmentPoint, &UWeaponAttachmentPoint::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UWeaponAttachmentPoint"), false, nullptr, nullptr, nullptr);
 
 	void UWeaponAttachmentPoint::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
@@ -476,7 +470,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponAttachmentPoint() {}
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in UWeaponAttachmentPoint"));
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UWeaponAttachmentPoint);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentPoint_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentPoint_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UWeaponAttachmentPoint, UWeaponAttachmentPoint::StaticClass, TEXT("UWeaponAttachmentPoint"), &Z_Registration_Info_UClass_UWeaponAttachmentPoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponAttachmentPoint), 1614443618U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentPoint_h_1888325137(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentPoint_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_WeaponAttachmentPoint_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

@@ -4,7 +4,6 @@
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
 
-
 void UScriptBase::BeginPlay()
 {
 	if(CanTick())

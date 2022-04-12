@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Attachments/SightsAttachment.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 // Cross Module References
@@ -72,10 +68,11 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASightsAttachment_GetSightsWorldTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASightsAttachment_GetSightsWorldTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ASightsAttachment);
 	UClass* Z_Construct_UClass_ASightsAttachment_NoRegister()
 	{
 		return ASightsAttachment::StaticClass();
@@ -108,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASightsAttachment_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ASightsAttachment_GetSightsWorldTransform, "GetSightsWorldTransform" }, // 26056263
+		{ &Z_Construct_UFunction_ASightsAttachment_GetSightsWorldTransform, "GetSightsWorldTransform" }, // 3330529409
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASightsAttachment_Statics::Class_MetaDataParams[] = {
@@ -168,23 +165,21 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 	};
 	UClass* Z_Construct_UClass_ASightsAttachment()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ASightsAttachment.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ASightsAttachment_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ASightsAttachment.OuterSingleton, Z_Construct_UClass_ASightsAttachment_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ASightsAttachment.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ASightsAttachment, 3078161582);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<ASightsAttachment>()
 	{
 		return ASightsAttachment::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ASightsAttachment(Z_Construct_UClass_ASightsAttachment, &ASightsAttachment::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("ASightsAttachment"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ASightsAttachment);
 	void USightsAttachmentPoint::StaticRegisterNativesUSightsAttachmentPoint()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(USightsAttachmentPoint);
 	UClass* Z_Construct_UClass_USightsAttachmentPoint_NoRegister()
 	{
 		return USightsAttachmentPoint::StaticClass();
@@ -290,21 +285,27 @@ void EmptyLinkFunctionForGeneratedCodeSightsAttachment() {}
 	};
 	UClass* Z_Construct_UClass_USightsAttachmentPoint()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_USightsAttachmentPoint.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_USightsAttachmentPoint_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_USightsAttachmentPoint.OuterSingleton, Z_Construct_UClass_USightsAttachmentPoint_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_USightsAttachmentPoint.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(USightsAttachmentPoint, 1255576307);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<USightsAttachmentPoint>()
 	{
 		return USightsAttachmentPoint::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_USightsAttachmentPoint(Z_Construct_UClass_USightsAttachmentPoint, &USightsAttachmentPoint::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("USightsAttachmentPoint"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(USightsAttachmentPoint);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_SightsAttachment_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_SightsAttachment_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ASightsAttachment, ASightsAttachment::StaticClass, TEXT("ASightsAttachment"), &Z_Registration_Info_UClass_ASightsAttachment, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASightsAttachment), 4205183189U) },
+		{ Z_Construct_UClass_USightsAttachmentPoint, USightsAttachmentPoint::StaticClass, TEXT("USightsAttachmentPoint"), &Z_Registration_Info_UClass_USightsAttachmentPoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USightsAttachmentPoint), 443271619U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_SightsAttachment_h_2328750160(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_SightsAttachment_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_SightsAttachment_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

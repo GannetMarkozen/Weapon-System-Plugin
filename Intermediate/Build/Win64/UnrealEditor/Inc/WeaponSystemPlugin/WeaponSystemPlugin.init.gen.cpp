@@ -5,33 +5,29 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelegate__DelegateSignature();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_PlaceholderDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature();
-	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin()
+	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_WeaponSystemPlugin;
+	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin()
 	{
-		static UPackage* ReturnPackage = nullptr;
-		if (!ReturnPackage)
+		if (!Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton)
 		{
 			static UObject* (*const SingletonFuncArray[])() = {
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelegate__DelegateSignature,
-				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelgate__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_OnLandedMultiDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_PlaceholderDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponEquippedDelegate__DelegateSignature,
-				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponObtainedDelegate__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnequippedDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_WeaponUnobtainedDelegate__DelegateSignature,
 			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
@@ -39,15 +35,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xB75DB49C,
-				0xF4FE5738,
+				0x606EFF0D,
+				0x52A845BA,
 				METADATA_PARAMS(nullptr, 0)
 			};
-			UECodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);
+			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton, PackageParams);
 		}
-		return ReturnPackage;
+		return Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton;
 	}
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemPlugin(Z_Construct_UPackage__Script_WeaponSystemPlugin, TEXT("/Script/WeaponSystemPlugin"), Z_Registration_Info_UPackage__Script_WeaponSystemPlugin, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x606EFF0D, 0x52A845BA));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

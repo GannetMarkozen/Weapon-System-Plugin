@@ -8,6 +8,7 @@
 #include "Curves/CurveVector.h"
 #include "Engine/SkeletalMeshSocket.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/InputSettings.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "WeaponSystem/Weapons/Weapon.h"
 
@@ -70,9 +71,17 @@ void UWeaponSystemAnimInstance::SetVars_Implementation(const float DeltaTime)
 		const APlayerController* PlayerController = Character->GetController<APlayerController>();
 		if(!PlayerController) return;
 		
-		const FRotator& PreCalculatedCameraRot = Character->Camera->GetComponentRotation() +
-			FRotator(Character->CurrentPitchInputValue * PlayerController->InputPitchScale,
+#if ENGINE_MAJOR_VERSION < 5
+		const FRotator AddRot(Character->CurrentPitchInputValue * PlayerController->InputPitchScale,
 				Character->CurrentYawInputValue * PlayerController->InputYawScale, Character->CurrentRollInputValue * PlayerController->InputRollScale);
+#else
+		const FRotator AddRot(Character->CurrentPitchInputValue * PlayerController->InputPitchScale_DEPRECATED,
+			Character->CurrentYawInputValue * PlayerController->InputYawScale_DEPRECATED, Character->CurrentRollInputValue * PlayerController->InputRollScale_DEPRECATED);
+#endif
+		
+		const FRotator& PreCalculatedCameraRot = Character->Camera->GetComponentRotation() + AddRot;
+			/*FRotator(Character->CurrentPitchInputValue * PlayerController->InputPitchScale,
+				Character->CurrentYawInputValue * PlayerController->InputYawScale, Character->CurrentRollInputValue * PlayerController->InputRollScale);*/
 
 		constexpr float ClampAngle = 89.9f;
 		CameraRotation = FRotator(FMath::ClampAngle(PreCalculatedCameraRot.Pitch, -ClampAngle, ClampAngle), PreCalculatedCameraRot.Yaw, PreCalculatedCameraRot.Roll);

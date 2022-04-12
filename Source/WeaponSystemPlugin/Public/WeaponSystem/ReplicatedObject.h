@@ -28,8 +28,10 @@ public:
 
 	virtual void PreReplication(IRepChangedPropertyTracker& ChangedPropertyTracker)
 	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		if(const UBlueprintGeneratedClass* BPClass = Cast<UBlueprintGeneratedClass>(GetClass()))
 			BPClass->InstancePreReplication(this, ChangedPropertyTracker);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 
 	FORCEINLINE void CallPreReplication() { UWeaponSystemFunctionLibrary::CallPreReplication(this); }
@@ -92,13 +94,23 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly)
 	void Destroy()
 	{
+#if ENGINE_MAJOR_VERSION < 5
 		if(!IsPendingKill())
 		{
-			checkf(GetOwner()->HasAuthority(), TEXT("UReplicatedObject::Destroy Object does not have authority to destroy itself!"));
+			checkf(GetOwner()->HasAuthority(), TEXT("Object does not have authority to destroy itself!"));
 			OnDestroyed();
 			BP_OnDestroyed();
 			MarkPendingKill();
 		}
+#else// ENGINE_MAJOR_VERSION < 5
+		if(!IsValid(this))
+		{
+			checkf(GetOwner()->HasAuthority(), TEXT("Object does not have authority to destroy itself!"));
+			OnDestroyed();
+			BP_OnDestroyed();
+			MarkAsGarbage();
+		}
+#endif// ENGINE_MAJOR_VERSION < 5
 	}
 
 protected:

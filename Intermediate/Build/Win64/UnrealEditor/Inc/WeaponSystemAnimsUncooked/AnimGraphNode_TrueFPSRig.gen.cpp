@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemsAnimsUncooked/Public/AnimGraphNode_TrueFPSRig.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_TrueFPSRig() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_TrueFPSRig() {}
 	void UAnimGraphNode_TrueFPSRig::StaticRegisterNativesUAnimGraphNode_TrueFPSRig()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAnimGraphNode_TrueFPSRig);
 	UClass* Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_NoRegister()
 	{
 		return UAnimGraphNode_TrueFPSRig::StaticClass();
@@ -57,7 +54,7 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_TrueFPSRig() {}
 		{ "ModuleRelativePath", "Public/AnimGraphNode_TrueFPSRig.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node = { "Node", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAnimGraphNode_TrueFPSRig, Node), Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig, METADATA_PARAMS(Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node = { "Node", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAnimGraphNode_TrueFPSRig, Node), Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig, METADATA_PARAMS(Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node_MetaData)) }; // 1182199300
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::NewProp_Node,
 	};
@@ -81,21 +78,26 @@ void EmptyLinkFunctionForGeneratedCodeAnimGraphNode_TrueFPSRig() {}
 	};
 	UClass* Z_Construct_UClass_UAnimGraphNode_TrueFPSRig()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UAnimGraphNode_TrueFPSRig.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UAnimGraphNode_TrueFPSRig.OuterSingleton, Z_Construct_UClass_UAnimGraphNode_TrueFPSRig_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UAnimGraphNode_TrueFPSRig.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UAnimGraphNode_TrueFPSRig, 856285770);
 	template<> WEAPONSYSTEMANIMSUNCOOKED_API UClass* StaticClass<UAnimGraphNode_TrueFPSRig>()
 	{
 		return UAnimGraphNode_TrueFPSRig::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UAnimGraphNode_TrueFPSRig(Z_Construct_UClass_UAnimGraphNode_TrueFPSRig, &UAnimGraphNode_TrueFPSRig::StaticClass, TEXT("/Script/WeaponSystemAnimsUncooked"), TEXT("UAnimGraphNode_TrueFPSRig"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UAnimGraphNode_TrueFPSRig);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_TrueFPSRig_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_TrueFPSRig_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UAnimGraphNode_TrueFPSRig, UAnimGraphNode_TrueFPSRig::StaticClass, TEXT("UAnimGraphNode_TrueFPSRig"), &Z_Registration_Info_UClass_UAnimGraphNode_TrueFPSRig, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAnimGraphNode_TrueFPSRig), 3374624732U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_TrueFPSRig_h_4250444658(TEXT("/Script/WeaponSystemAnimsUncooked"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_TrueFPSRig_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemsAnimsUncooked_Public_AnimGraphNode_TrueFPSRig_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

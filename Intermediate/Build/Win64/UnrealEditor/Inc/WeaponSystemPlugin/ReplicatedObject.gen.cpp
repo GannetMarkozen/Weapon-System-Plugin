@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/ReplicatedObject.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 // Cross Module References
@@ -83,7 +79,7 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_BP_OnDestroyed_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UReplicatedObject_BP_OnDestroyed_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -105,7 +101,7 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_Destroy_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UReplicatedObject_Destroy_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -133,13 +129,13 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		{ "ToolTip", "Override if the outer of this object is not an AActor" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetOwner", nullptr, nullptr, sizeof(ReplicatedObject_eventGetOwner_Parms), Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetOwner", nullptr, nullptr, sizeof(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::ReplicatedObject_eventGetOwner_Parms), Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UReplicatedObject_GetOwner()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetOwner_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -167,13 +163,13 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		{ "ToolTip", "*      HELPERS" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetWorld", nullptr, nullptr, sizeof(ReplicatedObject_eventGetWorld_Parms), Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "GetWorld", nullptr, nullptr, sizeof(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::ReplicatedObject_eventGetWorld_Parms), Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UReplicatedObject_GetWorld()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UReplicatedObject_GetWorld_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -206,16 +202,17 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		{ "ToolTip", "Calls GetOwningActor() to check actor's authority. If outer is not AActor\noverride GetOwningActor" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "HasAuthority", nullptr, nullptr, sizeof(ReplicatedObject_eventHasAuthority_Parms), Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UReplicatedObject, nullptr, "HasAuthority", nullptr, nullptr, sizeof(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::ReplicatedObject_eventHasAuthority_Parms), Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UReplicatedObject_HasAuthority()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UReplicatedObject_HasAuthority_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UReplicatedObject);
 	UClass* Z_Construct_UClass_UReplicatedObject_NoRegister()
 	{
 		return UReplicatedObject::StaticClass();
@@ -235,11 +232,11 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UReplicatedObject_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UReplicatedObject_BP_OnDestroyed, "BP_OnDestroyed" }, // 4206747397
-		{ &Z_Construct_UFunction_UReplicatedObject_Destroy, "Destroy" }, // 420023857
-		{ &Z_Construct_UFunction_UReplicatedObject_GetOwner, "GetOwner" }, // 246951230
-		{ &Z_Construct_UFunction_UReplicatedObject_GetWorld, "GetWorld" }, // 2708958858
-		{ &Z_Construct_UFunction_UReplicatedObject_HasAuthority, "HasAuthority" }, // 2635712284
+		{ &Z_Construct_UFunction_UReplicatedObject_BP_OnDestroyed, "BP_OnDestroyed" }, // 479612835
+		{ &Z_Construct_UFunction_UReplicatedObject_Destroy, "Destroy" }, // 1994424837
+		{ &Z_Construct_UFunction_UReplicatedObject_GetOwner, "GetOwner" }, // 1335970808
+		{ &Z_Construct_UFunction_UReplicatedObject_GetWorld, "GetWorld" }, // 3345607645
+		{ &Z_Construct_UFunction_UReplicatedObject_HasAuthority, "HasAuthority" }, // 859011397
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UReplicatedObject_Statics::Class_MetaDataParams[] = {
@@ -268,21 +265,26 @@ void EmptyLinkFunctionForGeneratedCodeReplicatedObject() {}
 	};
 	UClass* Z_Construct_UClass_UReplicatedObject()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UReplicatedObject.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UReplicatedObject_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UReplicatedObject.OuterSingleton, Z_Construct_UClass_UReplicatedObject_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UReplicatedObject.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UReplicatedObject, 2896179393);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UReplicatedObject>()
 	{
 		return UReplicatedObject::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UReplicatedObject(Z_Construct_UClass_UReplicatedObject, &UReplicatedObject::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UReplicatedObject"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UReplicatedObject);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_ReplicatedObject_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_ReplicatedObject_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UReplicatedObject, UReplicatedObject::StaticClass, TEXT("UReplicatedObject"), &Z_Registration_Info_UClass_UReplicatedObject, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UReplicatedObject), 3101077465U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_ReplicatedObject_h_3629319278(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_ReplicatedObject_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_ReplicatedObject_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

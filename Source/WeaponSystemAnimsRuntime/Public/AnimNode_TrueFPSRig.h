@@ -259,9 +259,16 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	static void SortBones(TArray<FBoneTransform>& OutBoneTransforms);
 
 private:
-	static FORCEINLINE void ClampRange(float& InOutValue, const FFloatRange& Range)
+	/*static void ClampRange(float& InOutValue, const FFloatRange& Range)
 	{
 		InOutValue = FMath::Clamp<float>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
+			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
+	}*/
+
+	template<typename T>
+	static void ClampRange(T& InOutValue, const FFloatRange& Range)
+	{
+		InOutValue = FMath::Clamp<T>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
 			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
 	}
 };

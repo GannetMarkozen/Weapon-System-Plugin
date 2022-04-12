@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Weapon.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 // Cross Module References
@@ -26,28 +22,19 @@ void EmptyLinkFunctionForGeneratedCodeWeapon() {}
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMesh_NoRegister();
 // End Cross Module References
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AnimProperties;
 class UScriptStruct* FAnimProperties::StaticStruct()
 {
-	static class UScriptStruct* Singleton = NULL;
-	if (!Singleton)
+	if (!Z_Registration_Info_UScriptStruct_AnimProperties.OuterSingleton)
 	{
-		extern WEAPONSYSTEMPLUGIN_API uint32 Get_Z_Construct_UScriptStruct_FAnimProperties_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FAnimProperties, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("AnimProperties"), sizeof(FAnimProperties), Get_Z_Construct_UScriptStruct_FAnimProperties_Hash());
+		Z_Registration_Info_UScriptStruct_AnimProperties.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FAnimProperties, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("AnimProperties"));
 	}
-	return Singleton;
+	return Z_Registration_Info_UScriptStruct_AnimProperties.OuterSingleton;
 }
 template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAnimProperties>()
 {
 	return FAnimProperties::StaticStruct();
 }
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FAnimProperties(FAnimProperties::StaticStruct, TEXT("/Script/WeaponSystemPlugin"), TEXT("AnimProperties"), false, nullptr, nullptr);
-static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimProperties
-{
-	FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimProperties()
-	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("AnimProperties")),new UScriptStruct::TCppStructOps<FAnimProperties>);
-	}
-} ScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimProperties;
 	struct Z_Construct_UScriptStruct_FAnimProperties_Statics
 	{
 #if WITH_METADATA
@@ -121,20 +108,12 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 	};
 	UScriptStruct* Z_Construct_UScriptStruct_FAnimProperties()
 	{
-#if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FAnimProperties_Hash();
-		UPackage* Outer = Z_Construct_UPackage__Script_WeaponSystemPlugin();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("AnimProperties"), sizeof(FAnimProperties), Get_Z_Construct_UScriptStruct_FAnimProperties_Hash(), false);
-#else
-		static UScriptStruct* ReturnStruct = nullptr;
-#endif
-		if (!ReturnStruct)
+		if (!Z_Registration_Info_UScriptStruct_AnimProperties.InnerSingleton)
 		{
-			UECodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FAnimProperties_Statics::ReturnStructParams);
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_AnimProperties.InnerSingleton, Z_Construct_UScriptStruct_FAnimProperties_Statics::ReturnStructParams);
 		}
-		return ReturnStruct;
+		return Z_Registration_Info_UScriptStruct_AnimProperties.InnerSingleton;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FAnimProperties_Hash() { return 1911255332U; }
 	DEFINE_FUNCTION(AWeapon::execGetOrientationWorldTransform)
 	{
 		P_GET_PROPERTY(FFloatProperty,Z_Param_AimingValue);
@@ -283,13 +262,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetAnimationVariablesOnEquipped", nullptr, nullptr, sizeof(Weapon_eventGetAnimationVariablesOnEquipped_Parms), Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetAnimationVariablesOnEquipped", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::Weapon_eventGetAnimationVariablesOnEquipped_Parms), Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -333,13 +312,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetAnimationVariablesOnTick", nullptr, nullptr, sizeof(Weapon_eventGetAnimationVariablesOnTick_Parms), Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetAnimationVariablesOnTick", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::Weapon_eventGetAnimationVariablesOnTick_Parms), Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54C20401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -370,7 +349,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -401,7 +380,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -444,7 +423,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetOrientationRelativeTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetOrientationRelativeTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -486,13 +465,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ToolTip", "Returns the orientation of the weapon in world-space based on the sights rotation\nand the origin location. Can be overriden to return whatever by overriding Get Orientation Relative Transform.\nThis default implementation allows the pivot point to rotate by the aim rotation" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetOrientationWorldTransform", nullptr, nullptr, sizeof(Weapon_eventGetOrientationWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetOrientationWorldTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::Weapon_eventGetOrientationWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -523,7 +502,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetOriginRelativeTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetOriginRelativeTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -552,13 +531,13 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ToolTip", "The origin transform in world-space" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetOriginWorldTransform", nullptr, nullptr, sizeof(Weapon_eventGetOriginWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetOriginWorldTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Weapon_eventGetOriginWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeapon_GetOriginWorldTransform()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetOriginWorldTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -585,16 +564,17 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetSightsWorldTransform", nullptr, nullptr, sizeof(Weapon_eventGetSightsWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWeapon, nullptr, "GetSightsWorldTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::Weapon_eventGetSightsWorldTransform_Parms), Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_AWeapon_GetSightsWorldTransform()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWeapon_GetSightsWorldTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AWeapon);
 	UClass* Z_Construct_UClass_AWeapon_NoRegister()
 	{
 		return AWeapon::StaticClass();
@@ -681,15 +661,15 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AWeapon_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped, "GetAnimationVariablesOnEquipped" }, // 2222789109
-		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick, "GetAnimationVariablesOnTick" }, // 4082927911
-		{ &Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform, "GetDefaultSightsRelativeTransform" }, // 1263390035
-		{ &Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform, "GetMuzzleWorldTransform" }, // 3325872551
-		{ &Z_Construct_UFunction_AWeapon_GetOrientationRelativeTransform, "GetOrientationRelativeTransform" }, // 1584239922
-		{ &Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform, "GetOrientationWorldTransform" }, // 33458260
-		{ &Z_Construct_UFunction_AWeapon_GetOriginRelativeTransform, "GetOriginRelativeTransform" }, // 1496201312
-		{ &Z_Construct_UFunction_AWeapon_GetOriginWorldTransform, "GetOriginWorldTransform" }, // 4215685398
-		{ &Z_Construct_UFunction_AWeapon_GetSightsWorldTransform, "GetSightsWorldTransform" }, // 2512391557
+		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnEquipped, "GetAnimationVariablesOnEquipped" }, // 62387622
+		{ &Z_Construct_UFunction_AWeapon_GetAnimationVariablesOnTick, "GetAnimationVariablesOnTick" }, // 1354772808
+		{ &Z_Construct_UFunction_AWeapon_GetDefaultSightsRelativeTransform, "GetDefaultSightsRelativeTransform" }, // 1661377035
+		{ &Z_Construct_UFunction_AWeapon_GetMuzzleWorldTransform, "GetMuzzleWorldTransform" }, // 515345508
+		{ &Z_Construct_UFunction_AWeapon_GetOrientationRelativeTransform, "GetOrientationRelativeTransform" }, // 3683212745
+		{ &Z_Construct_UFunction_AWeapon_GetOrientationWorldTransform, "GetOrientationWorldTransform" }, // 3543415173
+		{ &Z_Construct_UFunction_AWeapon_GetOriginRelativeTransform, "GetOriginRelativeTransform" }, // 4264359726
+		{ &Z_Construct_UFunction_AWeapon_GetOriginWorldTransform, "GetOriginWorldTransform" }, // 2502887743
+		{ &Z_Construct_UFunction_AWeapon_GetSightsWorldTransform, "GetSightsWorldTransform" }, // 1832428968
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeapon_Statics::Class_MetaDataParams[] = {
@@ -728,7 +708,7 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Weapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps = { "AnimProps", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeapon, AnimProps), Z_Construct_UScriptStruct_FAnimProperties, METADATA_PARAMS(Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps = { "AnimProps", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeapon, AnimProps), Z_Construct_UScriptStruct_FAnimProperties, METADATA_PARAMS(Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeapon_Statics::NewProp_AnimProps_MetaData)) }; // 1163227068
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeapon_Statics::NewProp_OriginRelativeTransform_MetaData[] = {
 		{ "ALlowPrivateAccess", "true" },
@@ -872,21 +852,30 @@ static struct FScriptStruct_WeaponSystemPlugin_StaticRegisterNativesFAnimPropert
 	};
 	UClass* Z_Construct_UClass_AWeapon()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_AWeapon.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_AWeapon_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_AWeapon.OuterSingleton, Z_Construct_UClass_AWeapon_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_AWeapon.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(AWeapon, 1492508154);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AWeapon>()
 	{
 		return AWeapon::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_AWeapon(Z_Construct_UClass_AWeapon, &AWeapon::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("AWeapon"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWeapon);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics
+	{
+		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ScriptStructInfo[] = {
+		{ FAnimProperties::StaticStruct, Z_Construct_UScriptStruct_FAnimProperties_Statics::NewStructOps, TEXT("AnimProperties"), &Z_Registration_Info_UScriptStruct_AnimProperties, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAnimProperties), 1163227068U) },
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AWeapon, AWeapon::StaticClass, TEXT("AWeapon"), &Z_Registration_Info_UClass_AWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWeapon), 2737542880U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_3434847209(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ClassInfo),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Weapon_h_Statics::ScriptStructInfo),
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

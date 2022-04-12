@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Attachments/VisualizationSceneComponent.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeVisualizationSceneComponent() {}
 // Cross Module References
@@ -24,6 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeVisualizationSceneComponent() {}
 	void UVisualizationSceneComponent::StaticRegisterNativesUVisualizationSceneComponent()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UVisualizationSceneComponent);
 	UClass* Z_Construct_UClass_UVisualizationSceneComponent_NoRegister()
 	{
 		return UVisualizationSceneComponent::StaticClass();
@@ -133,21 +130,26 @@ void EmptyLinkFunctionForGeneratedCodeVisualizationSceneComponent() {}
 	};
 	UClass* Z_Construct_UClass_UVisualizationSceneComponent()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UVisualizationSceneComponent.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UVisualizationSceneComponent_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UVisualizationSceneComponent.OuterSingleton, Z_Construct_UClass_UVisualizationSceneComponent_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UVisualizationSceneComponent.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UVisualizationSceneComponent, 4204661031);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UVisualizationSceneComponent>()
 	{
 		return UVisualizationSceneComponent::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UVisualizationSceneComponent(Z_Construct_UClass_UVisualizationSceneComponent, &UVisualizationSceneComponent::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("UVisualizationSceneComponent"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UVisualizationSceneComponent);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_VisualizationSceneComponent_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_VisualizationSceneComponent_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UVisualizationSceneComponent, UVisualizationSceneComponent::StaticClass, TEXT("UVisualizationSceneComponent"), &Z_Registration_Info_UClass_UVisualizationSceneComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UVisualizationSceneComponent), 2856818675U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_VisualizationSceneComponent_h_1169682951(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_VisualizationSceneComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_VisualizationSceneComponent_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

@@ -322,6 +322,7 @@ public:
 	float CurrentRollInputValue = 0.f;
 
 
+
 private:
 	UFUNCTION()
 	void Internal_CurrentWeaponChanged(class AWeaponBase* CurrentWeapon, class AWeaponBase* OldWeapon);

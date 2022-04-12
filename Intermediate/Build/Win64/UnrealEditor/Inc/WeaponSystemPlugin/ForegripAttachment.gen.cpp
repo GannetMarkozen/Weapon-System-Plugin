@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "WeaponSystemPlugin/Public/WeaponSystem/Weapons/Attachments/ForegripAttachment.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeForegripAttachment() {}
 // Cross Module References
@@ -57,10 +53,11 @@ void EmptyLinkFunctionForGeneratedCodeForegripAttachment() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AForegripAttachment_SetHandPlacement_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AForegripAttachment_SetHandPlacement_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AForegripAttachment);
 	UClass* Z_Construct_UClass_AForegripAttachment_NoRegister()
 	{
 		return AForegripAttachment::StaticClass();
@@ -119,7 +116,7 @@ void EmptyLinkFunctionForGeneratedCodeForegripAttachment() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AForegripAttachment_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AForegripAttachment_SetHandPlacement, "SetHandPlacement" }, // 685097311
+		{ &Z_Construct_UFunction_AForegripAttachment_SetHandPlacement, "SetHandPlacement" }, // 242545984
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AForegripAttachment_Statics::Class_MetaDataParams[] = {
@@ -254,21 +251,26 @@ void EmptyLinkFunctionForGeneratedCodeForegripAttachment() {}
 	};
 	UClass* Z_Construct_UClass_AForegripAttachment()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_AForegripAttachment.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_AForegripAttachment_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_AForegripAttachment.OuterSingleton, Z_Construct_UClass_AForegripAttachment_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_AForegripAttachment.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(AForegripAttachment, 1086662702);
 	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<AForegripAttachment>()
 	{
 		return AForegripAttachment::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_AForegripAttachment(Z_Construct_UClass_AForegripAttachment, &AForegripAttachment::StaticClass, TEXT("/Script/WeaponSystemPlugin"), TEXT("AForegripAttachment"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AForegripAttachment);
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_ForegripAttachment_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_ForegripAttachment_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AForegripAttachment, AForegripAttachment::StaticClass, TEXT("AForegripAttachment"), &Z_Registration_Info_UClass_AForegripAttachment, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AForegripAttachment), 1091332046U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_ForegripAttachment_h_3499088162(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_ForegripAttachment_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Attachments_ForegripAttachment_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

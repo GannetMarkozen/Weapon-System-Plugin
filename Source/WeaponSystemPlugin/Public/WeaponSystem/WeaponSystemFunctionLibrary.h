@@ -156,7 +156,7 @@ public:
 		if(!AnimationSequence || !BoneName.IsValid()) return FTransform::Identity;
 		
 		int32 BoneIndex = AnimationSequence->GetSkeleton()->GetReferenceSkeleton().FindBoneIndex(BoneName);
-		if(BoneIndex == NAME_None) return FTransform::Identity;
+		if(BoneIndex == INDEX_NONE) return FTransform::Identity;
 
 		FTransform BoneTransform;
 		AnimationSequence->GetBoneTransform(BoneTransform, BoneIndex, ExtractionTime, true);
@@ -247,10 +247,19 @@ public:
 
 	static FORCEINLINE void InitChangedTracker(class FMyRepChangedPropertyTracker* ChangedTracker, const TSharedPtr<FRepLayout>& RepLayout)
 	{
+#if ENGINE_MAJOR_VERSION < 5
+		
 		const int32 NumParents = RepLayout.Get()->GetNumParents();
 		ChangedTracker->Parents.SetNum(NumParents);
 		for(int32 i = 0; i < NumParents; i++)
 			ChangedTracker->Parents[i].IsConditional = ((ACCESS_PRIVATE_MEMBER(*RepLayout.Get(), Parents)[i].Flags & ERepParentFlags::IsConditional) != ERepParentFlags::None) ? 1 : 0;
+
+#else// ENGINE_MAJOR_VERSION < 5
+		
+		const int32 NumParents = RepLayout.Get()->GetNumParents();
+		ChangedTracker->InitActiveParents(NumParents);
+		
+#endif// ENGINE_MAJOR_VERSION < 5
 	}
 
 	static FORCEINLINE TSharedPtr<FMyRepChangedPropertyTracker> FindOrCreatePropertyTracker(class UObject* Obj)
