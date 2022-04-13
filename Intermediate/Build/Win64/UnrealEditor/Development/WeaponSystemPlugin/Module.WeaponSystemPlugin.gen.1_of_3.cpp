@@ -10,4 +10,3 @@
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/PoseableHandComponent.gen.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/ReplicatedObject.gen.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/ScriptBase.gen.cpp"
-#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/SetupAttachmentsScriptBase.gen.cpp"

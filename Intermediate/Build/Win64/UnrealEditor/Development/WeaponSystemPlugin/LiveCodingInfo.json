@@ -39,10 +39,10 @@
 			"InventoryComponent.gen.cpp.obj",
 			"PoseableHandComponent.gen.cpp.obj",
 			"ReplicatedObject.gen.cpp.obj",
-			"ScriptBase.gen.cpp.obj",
-			"SetupAttachmentsScriptBase.gen.cpp.obj"
+			"ScriptBase.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj": [
+			"SetupAttachmentsScriptBase.gen.cpp.obj",
 			"SightsAttachment.gen.cpp.obj",
 			"TrueFPSCharacterBase.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",

@@ -35,13 +35,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x606EFF0D,
-				0x52A845BA,
+				0x5D3CC952,
+				0xDFB8C2C8,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemPlugin(Z_Construct_UPackage__Script_WeaponSystemPlugin, TEXT("/Script/WeaponSystemPlugin"), Z_Registration_Info_UPackage__Script_WeaponSystemPlugin, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x606EFF0D, 0x52A845BA));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemPlugin(Z_Construct_UPackage__Script_WeaponSystemPlugin, TEXT("/Script/WeaponSystemPlugin"), Z_Registration_Info_UPackage__Script_WeaponSystemPlugin, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x5D3CC952, 0xDFB8C2C8));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
