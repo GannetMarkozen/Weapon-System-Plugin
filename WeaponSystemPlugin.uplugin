@@ -21,6 +21,11 @@
 			"LoadingPhase": "Default"
 		},
 		{
+			"Name": "WeaponSystemUncooked",
+			"Type": "UncookedOnly",
+			"LoadingPhase": "Default"
+		},
+		{
 			"Name": "WeaponSystemAnimsUncooked",
 			"Type": "UncookedOnly",
 			"LoadingPhase": "Default"

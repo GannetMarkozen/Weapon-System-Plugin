@@ -4,6 +4,7 @@
 	{
 		"WeaponSystemAnimsRuntime": "UnrealEditor-WeaponSystemAnimsRuntime.dll",
 		"WeaponSystemAnimsUncooked": "UnrealEditor-WeaponSystemAnimsUncooked.dll",
-		"WeaponSystemPlugin": "UnrealEditor-WeaponSystemPlugin.dll"
+		"WeaponSystemPlugin": "UnrealEditor-WeaponSystemPlugin.dll",
+		"WeaponSystemUncooked": "UnrealEditor-WeaponSystemUncooked.dll"
 	}
 }

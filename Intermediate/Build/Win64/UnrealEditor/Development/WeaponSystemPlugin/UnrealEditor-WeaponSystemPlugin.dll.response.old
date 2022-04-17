@@ -44,7 +44,6 @@
 "..\Intermediate\Build\Win64\UnrealEditor\Development\Slate\UnrealEditor-Slate.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\SlateCore\UnrealEditor-SlateCore.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\UMG\UnrealEditor-UMG.lib"
-"..\Intermediate\Build\Win64\UnrealEditor\Development\Networking\UnrealEditor-Networking.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\NetCore\UnrealEditor-NetCore.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\InputCore\UnrealEditor-InputCore.lib"
