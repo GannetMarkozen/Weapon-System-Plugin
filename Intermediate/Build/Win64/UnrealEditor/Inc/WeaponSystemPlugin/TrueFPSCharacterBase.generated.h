@@ -207,6 +207,11 @@ static inline void FCurrentWeaponChangedDelgate_DelegateWrapper(const FMulticast
 	DECLARE_FUNCTION(execServer_StopCrouching); \
 	DECLARE_FUNCTION(execMulti_StartCrouching); \
 	DECLARE_FUNCTION(execServer_StartCrouching); \
+	DECLARE_FUNCTION(execStopLeaning); \
+	DECLARE_FUNCTION(execLeanLeft); \
+	DECLARE_FUNCTION(execLeanRight); \
+	DECLARE_FUNCTION(execStopCrouching); \
+	DECLARE_FUNCTION(execStartCrouching); \
 	DECLARE_FUNCTION(execGetNumRecoilInstances); \
 	DECLARE_FUNCTION(execAddRecoilInstance); \
 	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \
@@ -237,6 +242,11 @@ static inline void FCurrentWeaponChangedDelgate_DelegateWrapper(const FMulticast
 	DECLARE_FUNCTION(execServer_StopCrouching); \
 	DECLARE_FUNCTION(execMulti_StartCrouching); \
 	DECLARE_FUNCTION(execServer_StartCrouching); \
+	DECLARE_FUNCTION(execStopLeaning); \
+	DECLARE_FUNCTION(execLeanLeft); \
+	DECLARE_FUNCTION(execLeanRight); \
+	DECLARE_FUNCTION(execStopCrouching); \
+	DECLARE_FUNCTION(execStartCrouching); \
 	DECLARE_FUNCTION(execGetNumRecoilInstances); \
 	DECLARE_FUNCTION(execAddRecoilInstance); \
 	DECLARE_FUNCTION(execGetWeaponOffsetTransform); \

@@ -455,6 +455,41 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		P_THIS->Server_StartCrouching_Implementation();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execStopLeaning)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StopLeaning();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execLeanLeft)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->LeanLeft();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execLeanRight)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->LeanRight();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execStopCrouching)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StopCrouching();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ATrueFPSCharacterBase::execStartCrouching)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StartCrouching();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ATrueFPSCharacterBase::execGetNumRecoilInstances)
 	{
 		P_FINISH;
@@ -656,6 +691,8 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 			{ "GetOffHandTransform", &ATrueFPSCharacterBase::execGetOffHandTransform },
 			{ "GetWeaponOffsetTransform", &ATrueFPSCharacterBase::execGetWeaponOffsetTransform },
 			{ "Internal_CurrentWeaponChanged", &ATrueFPSCharacterBase::execInternal_CurrentWeaponChanged },
+			{ "LeanLeft", &ATrueFPSCharacterBase::execLeanLeft },
+			{ "LeanRight", &ATrueFPSCharacterBase::execLeanRight },
 			{ "MoveForward", &ATrueFPSCharacterBase::execMoveForward },
 			{ "MoveRight", &ATrueFPSCharacterBase::execMoveRight },
 			{ "Multi_LeanLeft", &ATrueFPSCharacterBase::execMulti_LeanLeft },
@@ -671,6 +708,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 			{ "Server_StopLeaning", &ATrueFPSCharacterBase::execServer_StopLeaning },
 			{ "SetupMesh", &ATrueFPSCharacterBase::execSetupMesh },
 			{ "SpawnWeaponDrop", &ATrueFPSCharacterBase::execSpawnWeaponDrop },
+			{ "StartCrouching", &ATrueFPSCharacterBase::execStartCrouching },
+			{ "StopCrouching", &ATrueFPSCharacterBase::execStopCrouching },
+			{ "StopLeaning", &ATrueFPSCharacterBase::execStopLeaning },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -1044,6 +1084,52 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "LeanLeft", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "LeanRight", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1439,6 +1525,75 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "StartCrouching", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "StopCrouching", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Character|Locomotion" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ATrueFPSCharacterBase, nullptr, "StopLeaning", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ATrueFPSCharacterBase);
 	UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister()
 	{
@@ -1527,6 +1682,8 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetOffHandTransform, "GetOffHandTransform" }, // 3796241453
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_GetWeaponOffsetTransform, "GetWeaponOffsetTransform" }, // 2190818391
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Internal_CurrentWeaponChanged, "Internal_CurrentWeaponChanged" }, // 1726424524
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_LeanLeft, "LeanLeft" }, // 1223384441
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_LeanRight, "LeanRight" }, // 3084357148
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveForward, "MoveForward" }, // 3626200457
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_MoveRight, "MoveRight" }, // 3386566903
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Multi_LeanLeft, "Multi_LeanLeft" }, // 1619228063
@@ -1542,6 +1699,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_Server_StopLeaning, "Server_StopLeaning" }, // 1781112736
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SetupMesh, "SetupMesh" }, // 3330827891
 		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_SpawnWeaponDrop, "SpawnWeaponDrop" }, // 3156761278
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_StartCrouching, "StartCrouching" }, // 2641662341
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_StopCrouching, "StopCrouching" }, // 1840249064
+		{ &Z_Construct_UFunction_ATrueFPSCharacterBase_StopLeaning, "StopLeaning" }, // 4211908213
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::Class_MetaDataParams[] = {
@@ -1617,7 +1777,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset = { "RecoilOffset", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacterBase, RecoilOffset), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_RecoilOffset_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacterBase_Statics::NewProp_LeanAmount_MetaData[] = {
-		{ "Category", "Configurations" },
+		{ "Category", "Configurations|Locomotion" },
 		{ "Comment", "//\n//\x09""Anim Vars\n//\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacterBase.h" },
 		{ "ToolTip", "Anim Vars" },
@@ -1732,9 +1892,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UDamageInterface, UDamageInterface::StaticClass, TEXT("UDamageInterface"), &Z_Registration_Info_UClass_UDamageInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UDamageInterface), 1879780594U) },
-		{ Z_Construct_UClass_ATrueFPSCharacterBase, ATrueFPSCharacterBase::StaticClass, TEXT("ATrueFPSCharacterBase"), &Z_Registration_Info_UClass_ATrueFPSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATrueFPSCharacterBase), 3728106075U) },
+		{ Z_Construct_UClass_ATrueFPSCharacterBase, ATrueFPSCharacterBase::StaticClass, TEXT("ATrueFPSCharacterBase"), &Z_Registration_Info_UClass_ATrueFPSCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATrueFPSCharacterBase), 908207584U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_1747526909(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_2301115268(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacterBase_h_Statics::ScriptStructInfo),
 		nullptr, 0);

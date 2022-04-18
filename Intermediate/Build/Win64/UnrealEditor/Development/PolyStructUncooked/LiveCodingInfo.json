@@ -2,11 +2,11 @@
 	"RemapUnityFiles": 
 	{
 		"Module.PolyStructUncooked.cpp.obj": [
-			"K2Node_CastPolyStructRef.cpp.obj",
+			"BPNode_PolyStruct.cpp.obj",
 			"PolyStructUncooked.cpp.obj"
 		],
 		"Module.PolyStructUncooked.gen.cpp.obj": [
-			"K2Node_CastPolyStructRef.gen.cpp.obj",
+			"BPNode_PolyStruct.gen.cpp.obj",
 			"PolyStructUncooked.init.gen.cpp.obj"
 		]
 	}

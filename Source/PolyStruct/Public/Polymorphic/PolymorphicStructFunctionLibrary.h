@@ -6,6 +6,7 @@
 #include "UObject/Object.h"
 #include "PolyStruct.h"
 #include "Kismet/KismetArrayLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "PolymorphicStructFunctionLibrary.generated.h"
 
 /**
@@ -69,7 +70,8 @@ public:
 	}
 
 	// Extracts the data into a struct variable. Avoids copying
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "EXTRACT"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", BlueprintInternalUseOnly = "true",
+		BlueprintThreadSafe, ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "EXTRACT"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static void ExtractStruct(const FPolyStruct& PolyStruct, UPARAM(ref) int32& OutStruct, EStructCastPin& OutPin) {}
 	static void execExtractStruct(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)
 	{
@@ -90,12 +92,14 @@ public:
 
 	// Ensures the OutStruct parameter will be a valid cast and then extracts the data into the output.
 	// Not a true cast as the memory is being copied but this syntactically may make more sense than "Extract"
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", DisplayName = "Cast (copy)", CompactNodeTitle = "CAST"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static void CastCopy(const FPolyStruct& PolyStruct, int32& OutStruct, EStructCastPin& OutPin);
-	static FORCEINLINE void execCastCopy(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractStruct(Context, Stack, RESULT_PARAM); }
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (BlueprintInternalUseOnly = "true", BlueprintThreadSafe, CustomStructureParam = "OutStruct",
+		ExpandEnumAsExecs = "OutPin", DisplayName = "Get (copy)", CompactNodeTitle = "GET"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void GetCopy(const FPolyStruct& PolyStruct, int32& OutStruct, EStructCastPin& OutPin);
+	static FORCEINLINE void execGetCopy(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractStruct(Context, Stack, RESULT_PARAM); }
 	
 	// Empties the Polymorphic Struct then copies the Struct parameter's values into the Polymorphic Struct
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", CompactNodeTitle = "SET"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", BlueprintInternalUseOnly = "true",
+		BlueprintThreadSafe, CompactNodeTitle = "SET"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static void SetPolyStruct(UPARAM(ref) FPolyStruct& PolyStruct, const int32& Struct);
 	static void execSetPolyStruct(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)
 	{
@@ -180,7 +184,8 @@ public:
 	static FORCEINLINE void MakePolyStructContainer(UPARAM(DisplayName=">>") const TArray<FPolyStruct>& PolyStructs, FPolyStructHandle& PolyStructHandle) { PolyStructHandle = PolyStructs; }
 
 	// Converts the Struct parameter to a Poly Struct and adds it to the Poly Struct Handle array
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", CompactNodeTitle = "ADD", DisplayName = "Add (struct)"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", BlueprintInternalUseOnly = "true", BlueprintThreadSafe,
+		CompactNodeTitle = "ADD", DisplayName = "Add (struct)"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static int32 AddStruct(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32& Struct);
 	static void execAddStruct(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)
 	{
@@ -275,7 +280,7 @@ public:
 
 	// Gets a copy of the Poly Struct at the given index (if it is a valid index)
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "GET"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void Get(const FPolyStructHandle& PolyStructHandle, const int32 Index, FPolyStruct& OutPolyStruct) { if(const FPolyStruct* PolyStruct = PolyStructHandle.GetAt(Index)) OutPolyStruct = *PolyStruct; }
+	static FORCEINLINE void GetAtIndex(const FPolyStructHandle& PolyStructHandle, const int32 Index, FPolyStruct& OutPolyStruct) { if(const FPolyStruct* PolyStruct = PolyStructHandle.GetAt(Index)) OutPolyStruct = *PolyStruct; }
 
 	// Empties the array of Poly Structs from the Poly Struct Handle
 	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "EMPTY"), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -302,24 +307,6 @@ public:
 	static void ToArray(const FPolyStructHandle& PolyStructHandle, TArray<FPolyStruct>& OutPolyStructs)
 	{
 		for(const TSharedPtr<FPolyStruct>& Ptr : PolyStructHandle.PolyStructs) if(Ptr.IsValid()) OutPolyStructs.Add(*Ptr.Get());
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (BlueprintInternalUseOnly = "true", CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", DisplayName = "Get (ref)", CompactNodeTitle = "GET", BlueprintThreadSafe), Category = "Weapon System Function Library|Polymorphic Struct")
-	static void CastRef(UPARAM(ref) FPolyStruct& PolyStruct, int32& OutStruct, EStructCastPin& OutPin);
-	DECLARE_FUNCTION(execCastRef)
-	{
-		execExtractStruct(Context, Stack, RESULT_PARAM);
 	}
 };
 
