@@ -21,7 +21,12 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "WeaponSystemUncooked",
+			"Name": "PolyStruct",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "PolyStructUncooked",
 			"Type": "UncookedOnly",
 			"LoadingPhase": "Default"
 		},

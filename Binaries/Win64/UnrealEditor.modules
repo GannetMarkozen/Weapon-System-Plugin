@@ -2,9 +2,10 @@
 	"BuildId": "19505902",
 	"Modules": 
 	{
+		"PolyStruct": "UnrealEditor-PolyStruct.dll",
+		"PolyStructUncooked": "UnrealEditor-PolyStructUncooked.dll",
 		"WeaponSystemAnimsRuntime": "UnrealEditor-WeaponSystemAnimsRuntime.dll",
 		"WeaponSystemAnimsUncooked": "UnrealEditor-WeaponSystemAnimsUncooked.dll",
-		"WeaponSystemPlugin": "UnrealEditor-WeaponSystemPlugin.dll",
-		"WeaponSystemUncooked": "UnrealEditor-WeaponSystemUncooked.dll"
+		"WeaponSystemPlugin": "UnrealEditor-WeaponSystemPlugin.dll"
 	}
 }

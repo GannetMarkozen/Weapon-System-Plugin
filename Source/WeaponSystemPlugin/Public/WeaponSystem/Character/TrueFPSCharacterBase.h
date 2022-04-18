@@ -192,7 +192,7 @@ public:
 	//	Anim Vars
 	//
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations|Locomotion")
 	float LeanAmount = 45.f;
 	
 	UPROPERTY(BlueprintReadWrite, Category = "Anim")
@@ -208,7 +208,8 @@ protected:
 	float CrouchValueTarget = 0.f;
 	float LeanValueTarget = 0.f;
 	bool bCrouching = false;
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
 	virtual void StartCrouching()
 	{
 		if(!bCrouching)
@@ -223,9 +224,17 @@ protected:
 		}
 		bCrouching = !bCrouching;
 	}
+
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
 	virtual void StopCrouching() { CrouchValueTarget = 0.f; Server_StopCrouching(); }
+
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
 	virtual void LeanRight() { LeanValueTarget = LeanAmount; Server_LeanRight(); }
+
+	UFUNCTION(BlueprintCallable, Category  = "Character|Locomotion")
 	virtual void LeanLeft() { LeanValueTarget = -LeanAmount; Server_LeanLeft(); }
+
+	UFUNCTION(BlueprintCallable, Category = "Character|Locomotion")
 	virtual void StopLeaning() { LeanValueTarget = 0.f; Server_StopLeaning(); }
 
 	UFUNCTION(Server, Reliable)

@@ -5,8 +5,6 @@
 			"WeaponSystemPlugin.cpp.obj",
 			"WeaponSystemAnimInstance.cpp.obj",
 			"TrueFPSCharacterBase.cpp.obj",
-			"PolymorphicStructFunctionLibrary.cpp.obj",
-			"PolyStruct.cpp.obj",
 			"CharacterInventoryComponent.cpp.obj",
 			"InventoryComponent.cpp.obj",
 			"ReplicatedObject.cpp.obj",
@@ -29,7 +27,7 @@
 			"WeaponScript.cpp.obj",
 			"WeaponScriptBase.cpp.obj"
 		],
-		"Module.WeaponSystemPlugin.gen.1_of_4.cpp.obj": [
+		"Module.WeaponSystemPlugin.gen.1_of_3.cpp.obj": [
 			"AimingScript.gen.cpp.obj",
 			"CharacterInventoryComponent.gen.cpp.obj",
 			"CycleSightsScript.gen.cpp.obj",
@@ -37,29 +35,25 @@
 			"HitscanScriptBase.gen.cpp.obj",
 			"Interfaces.gen.cpp.obj",
 			"InventoryComponent.gen.cpp.obj",
-			"PolymorphicStructFunctionLibrary.gen.cpp.obj"
-		],
-		"Module.WeaponSystemPlugin.gen.2_of_4.cpp.obj": [
-			"PolyStruct.gen.cpp.obj",
 			"PoseableHandComponent.gen.cpp.obj",
 			"ReplicatedObject.gen.cpp.obj",
 			"ScriptBase.gen.cpp.obj",
-			"SetupAttachmentsScriptBase.gen.cpp.obj",
+			"SetupAttachmentsScriptBase.gen.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj": [
 			"SightsAttachment.gen.cpp.obj",
 			"TrueFPSCharacterBase.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",
 			"Weapon.gen.cpp.obj",
-			"WeaponAttachmentBase.gen.cpp.obj"
-		],
-		"Module.WeaponSystemPlugin.gen.3_of_4.cpp.obj": [
+			"WeaponAttachmentBase.gen.cpp.obj",
 			"WeaponAttachmentPoint.gen.cpp.obj",
-			"WeaponBase.gen.cpp.obj",
+			"WeaponBase.gen.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.3_of_3.cpp.obj": [
 			"WeaponDropBase.gen.cpp.obj",
 			"WeaponScript.gen.cpp.obj",
 			"WeaponScriptBase.gen.cpp.obj",
-			"WeaponSystemAnimInstance.gen.cpp.obj"
-		],
-		"Module.WeaponSystemPlugin.gen.4_of_4.cpp.obj": [
+			"WeaponSystemAnimInstance.gen.cpp.obj",
 			"WeaponSystemFunctionLibrary.gen.cpp.obj",
 			"WeaponSystemPlugin.init.gen.cpp.obj"
 		]
