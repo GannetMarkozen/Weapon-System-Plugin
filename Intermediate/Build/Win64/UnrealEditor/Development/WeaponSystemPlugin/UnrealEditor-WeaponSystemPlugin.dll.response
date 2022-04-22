@@ -50,6 +50,7 @@
 "..\Intermediate\Build\Win64\UnrealEditor\Development\AnimationCore\UnrealEditor-AnimationCore.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\AnimGraphRuntime\UnrealEditor-AnimGraphRuntime.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\AnimGraph\UnrealEditor-AnimGraph.lib"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\UnrealEditor-PolyStruct.lib"
 "delayimp.lib"
 "wininet.lib"
 "rpcrt4.lib"

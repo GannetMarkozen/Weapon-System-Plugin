@@ -25,7 +25,7 @@ public class PolyStruct : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "Engine", "InputCore", "CoreUObject"
+				"Core", "Engine", "CoreUObject"
 				// ... add other public dependencies that you statically link with here ...
 			}
 		);

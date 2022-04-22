@@ -33,7 +33,7 @@ void AWeapon::BeginPlay()
 
 void AWeapon::OnRep_OwningInventory(const UInventoryComponent* OldInventory)
 {
-	if(IsValid(OwningInventory)) OwningCharacter = OwningInventory->GetOwner<ATrueFPSCharacterBase>();
+	if(IsValid(OwningInventory)) OwningCharacter = OwningInventory->GetOwner<AShooterCharacterBase>();
 	Super::OnRep_OwningInventory(OldInventory);
 }
 

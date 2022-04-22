@@ -2,13 +2,13 @@
 	"RemapUnityFiles": 
 	{
 		"Module.PolyStruct.cpp.obj": [
+			"PolymorphicStruct.cpp.obj",
 			"PolymorphicStructFunctionLibrary.cpp.obj",
-			"PolyStruct.cpp.obj",
 			"PolyStruct.cpp.obj"
 		],
 		"Module.PolyStruct.gen.cpp.obj": [
+			"PolymorphicStruct.gen.cpp.obj",
 			"PolymorphicStructFunctionLibrary.gen.cpp.obj",
-			"PolyStruct.gen.cpp.obj",
 			"PolyStruct.init.gen.cpp.obj"
 		]
 	}

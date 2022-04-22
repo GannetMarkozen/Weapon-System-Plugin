@@ -25,7 +25,7 @@ public class WeaponSystemPlugin : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "InputCore", "AnimationCore", "AnimGraphRuntime", "AnimGraph"
+				"Core", "InputCore", "AnimationCore", "AnimGraphRuntime", "AnimGraph", "PolyStruct"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -39,7 +39,7 @@ public class WeaponSystemPlugin : ModuleRules
 				"Slate",
 				"SlateCore",
 				"UMG",
-				"NetCore"
+				"NetCore",
 				//"Networking",
 				// ... add private dependencies that you statically link with here ...	
 			}

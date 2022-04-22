@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "WeaponSystem/Character/TrueFPSCharacterBase.h"
+#include "WeaponSystem/Character/ShooterCharacterBase.h"
 #include "WeaponSystem/Weapons/WeaponBase.h"
 #include "VisualizationMacros.h"
 #include "Weapon.generated.h"
@@ -39,7 +39,7 @@ protected:
 	virtual void OnRep_OwningInventory(const UInventoryComponent* OldInventory) override;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
-	class ATrueFPSCharacterBase* OwningCharacter;
+	class AShooterCharacterBase* OwningCharacter;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Configurations|Placement")
 	FVector RelativeLocationPlacement;
@@ -83,7 +83,7 @@ public:
 	const FORCEINLINE FRotator& GetRelativeRotationPlacement() const { return RelativeRotationPlacement; }
 	FORCEINLINE class UAnimMontage* GetEquipMontage() const { return EquipMontage; }
 	FORCEINLINE class UAnimMontage* GetUnequipMontage() const { return UnequipMontage; }
-	FORCEINLINE class ATrueFPSCharacterBase* GetOwningCharacter() const { return OwningCharacter; }
+	FORCEINLINE class AShooterCharacterBase* GetOwningCharacter() const { return OwningCharacter; }
 	template<typename T>
 	FORCEINLINE T* GetOwningCharacter() { return Cast<T>(OwningCharacter); }
 
@@ -95,7 +95,7 @@ public:
 	}
 
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Get Animation Variables (On Tick)"), Category = "Weapon|Anim")
-	FORCEINLINE void GetAnimationVariablesOnTick(const class ATrueFPSCharacterBase* Character, FTransform& OutOrientationRelativeTransform, FTransform& OutSightsRelativeTransform) const {
+	FORCEINLINE void GetAnimationVariablesOnTick(const class AShooterCharacterBase* Character, FTransform& OutOrientationRelativeTransform, FTransform& OutSightsRelativeTransform) const {
 		if(!IsValid(Character)) return;
 		const FTransform DomHandTransform = Character->GetDomHandTransform();
 		OutOrientationRelativeTransform = GetOrientationWorldTransform(Character->ADSValue).GetRelativeTransform(DomHandTransform);

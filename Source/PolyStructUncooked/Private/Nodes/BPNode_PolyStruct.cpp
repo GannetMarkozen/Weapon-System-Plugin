@@ -12,7 +12,7 @@
 #include "EdGraph/EdGraphNodeUtils.h"
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Polymorphic/PolymorphicStructFunctionLibrary.h"
-#include "Polymorphic/PolyStruct.h"
+#include "Polymorphic/PolymorphicStruct.h"
 
 #define LOCTEXT_NAMESPACE "BPNode_PolyStructGet"
 
@@ -500,8 +500,9 @@ void UBPNode_PolyStructHandleAdd::AllocateDefaultPins()
 
 	CreatePin(EGPD_Input, UEdGraphSchema_K2::PC_Exec, UEdGraphSchema_K2::PN_Execute);
 	CreatePin(EGPD_Output, UEdGraphSchema_K2::PC_Exec, UEdGraphSchema_K2::PN_Then);
-	GetSuccessPin()->PinFriendlyName = FText::FromString(TEXT("Success"));
-	CreatePin(EGPD_Output, UEdGraphSchema_K2::PC_Exec, TEXT("Fail"));
+
+	// Out index
+	CreatePin(EGPD_Output, UEdGraphSchema_K2::PC_Int, TEXT("Index"));
 	
 	// Input
 	FCreatePinParams PolyStructParams;
@@ -521,7 +522,7 @@ void UBPNode_PolyStructHandleAdd::ExpandNode(FKismetCompilerContext& CompilerCon
 	Super::ExpandNode(CompilerContext, SourceGraph);
 
 	UK2Node_CallFunction* Func = CompilerContext.SpawnIntermediateNode<UK2Node_CallFunction>(this, SourceGraph);
-	Func->SetFromFunction(UPolyStructFunctionLibrary::StaticClass()->FindFunctionByName(GET_FUNCTION_NAME_CHECKED(UPolyStructFunctionLibrary, SetPolyStruct)));
+	Func->SetFromFunction(UPolyStructFunctionLibrary::StaticClass()->FindFunctionByName(GET_FUNCTION_NAME_CHECKED(UPolyStructFunctionLibrary, AddStruct)));
 	Func->AllocateDefaultPins();
 	CompilerContext.MessageLog.NotifyIntermediateObjectCreation(Func, this);
 
@@ -529,9 +530,9 @@ void UBPNode_PolyStructHandleAdd::ExpandNode(FKismetCompilerContext& CompilerCon
 	Func->FindPin(TEXT("Struct"), EGPD_Input)->PinType = GetStructPin()->PinType;
 
 	CompilerContext.MovePinLinksToIntermediate(*GetStructPin(), *Func->FindPin(TEXT("Struct"), EGPD_Input));
-	CompilerContext.MovePinLinksToIntermediate(*GetPolyPin(), *Func->FindPin(TEXT("PolyStruct"), EGPD_Input));
-	CompilerContext.MovePinLinksToIntermediate(*GetSuccessPin(), *Func->FindPin(TEXT("Success"), EGPD_Output));
-	CompilerContext.MovePinLinksToIntermediate(*GetFailPin(), *Func->FindPin(TEXT("Fail"), EGPD_Output));
+	CompilerContext.MovePinLinksToIntermediate(*GetPolyPin(), *Func->FindPin(TEXT("PolyStructHandle"), EGPD_Input));
+	CompilerContext.MovePinLinksToIntermediate(*GetThenPin(), *Func->GetThenPin());
+	CompilerContext.MovePinLinksToIntermediate(*GetIndexPin(), *Func->GetReturnValuePin());
 	
 	BreakAllNodeLinks();
 }

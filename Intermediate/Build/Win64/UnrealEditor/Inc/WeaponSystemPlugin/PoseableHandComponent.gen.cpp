@@ -9,9 +9,8 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePoseableHandComponent() {}
 // Cross Module References
-	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_ELaterality();
-	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_ELateralityMod();
+	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UPoseableHandComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UPoseableHandComponent();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent();
@@ -19,64 +18,9 @@ void EmptyLinkFunctionForGeneratedCodePoseableHandComponent() {}
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMesh_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimSequence_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_ELaterality();
 	ENGINE_API UClass* Z_Construct_UClass_USkeleton_NoRegister();
 // End Cross Module References
-	static FEnumRegistrationInfo Z_Registration_Info_UEnum_ELaterality;
-	static UEnum* ELaterality_StaticEnum()
-	{
-		if (!Z_Registration_Info_UEnum_ELaterality.OuterSingleton)
-		{
-			Z_Registration_Info_UEnum_ELaterality.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("ELaterality"));
-		}
-		return Z_Registration_Info_UEnum_ELaterality.OuterSingleton;
-	}
-	template<> WEAPONSYSTEMPLUGIN_API UEnum* StaticEnum<ELaterality>()
-	{
-		return ELaterality_StaticEnum();
-	}
-	struct Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics
-	{
-		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FEnumParams EnumParams;
-	};
-	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enumerators[] = {
-		{ "ELaterality::Left", (int64)ELaterality::Left },
-		{ "ELaterality::Right", (int64)ELaterality::Right },
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enum_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "Comment", "//\n//\n//\n" },
-		{ "Left.Comment", "//\n//\n//\n" },
-		{ "Left.Name", "ELaterality::Left" },
-		{ "ModuleRelativePath", "Private/WeaponSystem/Weapons/Attachments/PoseableHandComponent.h" },
-		{ "Right.Comment", "//\n//\n//\n" },
-		{ "Right.Name", "ELaterality::Right" },
-	};
-#endif
-	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::EnumParams = {
-		(UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
-		nullptr,
-		"ELaterality",
-		"ELaterality",
-		Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enumerators,
-		UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enumerators),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EEnumFlags::None,
-		(uint8)UEnum::ECppForm::EnumClass,
-		METADATA_PARAMS(Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::Enum_MetaDataParams))
-	};
-	UEnum* Z_Construct_UEnum_WeaponSystemPlugin_ELaterality()
-	{
-		if (!Z_Registration_Info_UEnum_ELaterality.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_ELaterality.InnerSingleton, Z_Construct_UEnum_WeaponSystemPlugin_ELaterality_Statics::EnumParams);
-		}
-		return Z_Registration_Info_UEnum_ELaterality.InnerSingleton;
-	}
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_ELateralityMod;
 	static UEnum* ELateralityMod_StaticEnum()
 	{
@@ -411,7 +355,7 @@ void EmptyLinkFunctionForGeneratedCodePoseableHandComponent() {}
 		{ "ToolTip", "The laterality of the hand to derive the hand pose from" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality = { "ExtractPoseLaterality", nullptr, (EPropertyFlags)0x0020080800000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UPoseableHandComponent, ExtractPoseLaterality), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality_MetaData)) }; // 2124270646
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality = { "ExtractPoseLaterality", nullptr, (EPropertyFlags)0x0020080800000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UPoseableHandComponent, ExtractPoseLaterality), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_ExtractPoseLaterality_MetaData)) }; // 913489345
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_MetaData[] = {
@@ -421,7 +365,7 @@ void EmptyLinkFunctionForGeneratedCodePoseableHandComponent() {}
 		{ "ToolTip", "Need to know the laterality of the visualizer to do custom calculations for it" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality = { "VisualizerLaterality", nullptr, (EPropertyFlags)0x0020080800000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UPoseableHandComponent, VisualizerLaterality), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_MetaData)) }; // 2124270646
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality = { "VisualizerLaterality", nullptr, (EPropertyFlags)0x0020080800000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UPoseableHandComponent, VisualizerLaterality), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_VisualizerLaterality_MetaData)) }; // 913489345
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPoseableHandComponent_Statics::NewProp_bCachePose_MetaData[] = {
 		{ "Category", "Visualization|Animation" },
@@ -510,13 +454,12 @@ void EmptyLinkFunctionForGeneratedCodePoseableHandComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::EnumInfo[] = {
-		{ ELaterality_StaticEnum, TEXT("ELaterality"), &Z_Registration_Info_UEnum_ELaterality, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2124270646U) },
 		{ ELateralityMod_StaticEnum, TEXT("ELateralityMod"), &Z_Registration_Info_UEnum_ELateralityMod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3749071803U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPoseableHandComponent, UPoseableHandComponent::StaticClass, TEXT("UPoseableHandComponent"), &Z_Registration_Info_UClass_UPoseableHandComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPoseableHandComponent), 2899300129U) },
+		{ Z_Construct_UClass_UPoseableHandComponent, UPoseableHandComponent::StaticClass, TEXT("UPoseableHandComponent"), &Z_Registration_Info_UClass_UPoseableHandComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPoseableHandComponent), 676514710U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_1856629133(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_3639359371(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Private_WeaponSystem_Weapons_Attachments_PoseableHandComponent_h_Statics::EnumInfo));

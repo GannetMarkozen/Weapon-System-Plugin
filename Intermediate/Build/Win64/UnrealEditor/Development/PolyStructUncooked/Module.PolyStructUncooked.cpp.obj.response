@@ -1,18 +1,18 @@
 "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp"
 /I .
 /I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStructUncooked\Private"
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Slate
 /I Runtime
+/I Runtime\Slate\Public
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
 /I Runtime\CoreUObject\Public
+/I Runtime\ApplicationCore\Public
+/I Runtime\RHI\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\InputCore
 /I Runtime\InputCore\Classes
 /I Runtime\InputCore\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Slate
-/I Runtime\Slate\Public
-/I Runtime\ApplicationCore\Public
-/I Runtime\RHI\Public
 /I Runtime\Json\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\SlateCore
 /I Runtime\SlateCore\Public

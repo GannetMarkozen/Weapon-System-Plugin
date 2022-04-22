@@ -8,7 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class ATrueFPSCharacterBase;
+class AShooterCharacterBase;
 struct FHitResult;
 class AWeapon;
 #ifdef WEAPONSYSTEMPLUGIN_WeaponSystemAnimInstance_generated_h
@@ -18,33 +18,39 @@ class AWeapon;
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_19_SPARSE_DATA
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_19_RPC_WRAPPERS \
-	virtual void SetVars_Implementation(const float DeltaTime); \
-	virtual void CurrentWeaponChanged_Implementation(AWeapon* NewWeapon, AWeapon* OldWeapon); \
  \
 	DECLARE_FUNCTION(execOnCharacterLanded); \
-	DECLARE_FUNCTION(execSetVars); \
-	DECLARE_FUNCTION(execCurrentWeaponChanged);
+	DECLARE_FUNCTION(execInternal_CurrentWeaponChanged);
 
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execOnCharacterLanded); \
-	DECLARE_FUNCTION(execSetVars); \
-	DECLARE_FUNCTION(execCurrentWeaponChanged);
+	DECLARE_FUNCTION(execInternal_CurrentWeaponChanged);
 
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_19_EVENT_PARMS \
-	struct WeaponSystemAnimInstance_eventBP_OnCharacterLanded_Parms \
-	{ \
-		ATrueFPSCharacterBase* InCharacter; \
-		FHitResult Hit; \
-	}; \
-	struct WeaponSystemAnimInstance_eventCurrentWeaponChanged_Parms \
+	struct WeaponSystemAnimInstance_eventBP_CurrentWeaponChanged_Parms \
 	{ \
 		AWeapon* NewWeapon; \
 		AWeapon* OldWeapon; \
 	}; \
-	struct WeaponSystemAnimInstance_eventSetVars_Parms \
+	struct WeaponSystemAnimInstance_eventBP_OnCharacterLanded_Parms \
+	{ \
+		AShooterCharacterBase* InCharacter; \
+		FHitResult Hit; \
+	}; \
+	struct WeaponSystemAnimInstance_eventBP_PostUpdateAnimation_Parms \
+	{ \
+		float DeltaTime; \
+	}; \
+	struct WeaponSystemAnimInstance_eventBP_UpdateOffsetTransform_Parms \
+	{ \
+		float DeltaTime; \
+		FVector OutOffsetLocation; \
+		FRotator OutOffsetRotation; \
+	}; \
+	struct WeaponSystemAnimInstance_eventBP_UpdateVariables_Parms \
 	{ \
 		float DeltaTime; \
 	};

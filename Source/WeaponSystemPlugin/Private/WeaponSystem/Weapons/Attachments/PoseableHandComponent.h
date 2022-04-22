@@ -4,20 +4,10 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
+#include "WeaponSystem/Types.h"
 #include "PoseableHandComponent.generated.h"
 
 
-
-//
-//
-//
-
-
-UENUM(BlueprintType)
-enum class ELaterality : uint8
-{
-	Left, Right
-};
 
 UENUM(BlueprintType)
 enum class ELateralityMod : uint8

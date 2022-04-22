@@ -3,11 +3,32 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
-#include "PolyStruct.h"
-#include "Kismet/KismetArrayLibrary.h"
-#include "Kismet/KismetMathLibrary.h"
+#include "PolymorphicStruct.h"
 #include "PolymorphicStructFunctionLibrary.generated.h"
+
+#define CONCATE_(X, Y) X##Y
+#define CONCATE(X, Y) CONCATE_(X, Y)
+
+// Pre-requisite to calling ACCESS_PRIVATE_MEMBER to be able to access a private member. CLASS, MEMBER, TYPES
+#define ALLOW_PRIVATE_ACCESS(CLASS, MEMBER, ...) \
+template<typename Only, __VA_ARGS__ CLASS::*Member> \
+struct CONCATE(MEMBER, __LINE__) { friend __VA_ARGS__ CLASS::*Access(Only*) { return Member; } }; \
+template<typename> struct Only_##MEMBER; \
+template<> struct Only_##MEMBER<CLASS> { friend __VA_ARGS__ CLASS::*Access(Only_##MEMBER<CLASS>*); }; \
+template struct CONCATE(MEMBER, __LINE__)<Only_##MEMBER<CLASS>, &CLASS::MEMBER>
+
+// Access private member from an object. Must call ALLOW_PRIVATE_ACCESS in global-scope first
+#define ACCESS_PRIVATE_MEMBER(OBJECT, MEMBER) \
+((OBJECT).*Access((Only_##MEMBER<std::remove_reference<decltype(OBJECT)>::type>*)nullptr))
+
+
+typedef TScriptArray<FHeapAllocator> FMyScriptArr;
+ALLOW_PRIVATE_ACCESS(FMyScriptArr, ArrayNum, int32);
+ALLOW_PRIVATE_ACCESS(FMyScriptArr, ArrayMax, int32);
+
+typedef TSizedHeapAllocator<32>::ForAnyElementType FMyThing;
+ALLOW_PRIVATE_ACCESS(FMyThing, Data, FScriptContainerElement*);
+
 
 /**
  * 
@@ -19,7 +40,7 @@ enum class EStructCastPin : uint8
 	Fail = false,
 };
 
-UCLASS(Meta = (DisplayName = "Polymorphic Struct Function Library"))
+UCLASS(Meta = (DisplayName = "Polymorphic Struct Function Library", Keywords = "poly,struct,handle,get,equals,valid"))
 class POLYSTRUCT_API UPolyStructFunctionLibrary final : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
@@ -89,6 +110,26 @@ public:
 		OutPin = PolyStruct.ExtractStruct(OutStruct, OutStructProp->Struct) ? EStructCastPin::Success : EStructCastPin::Fail;
 		P_NATIVE_END
 	}
+
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", BlueprintInternalUseOnly = "true",
+		BlueprintThreadSafe, CompactNodeTitle = "EXTRACT"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void ExtractStructUnchecked(const FPolyStruct& PolyStruct, UPARAM(ref) int32& OutStruct) {}
+	static void execExtractStructUnchecked(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)
+	{
+		const FPolyStruct& PolyStruct = GetPolyStruct(Stack);
+		void* OutStruct; FStructProperty* OutStructProp;
+		GetCustomStructParam(Stack, OutStruct, OutStructProp);
+		P_FINISH
+		if(!ValidateCustomStructParam(Stack, OutStructProp)) return;
+		P_NATIVE_BEGIN
+		PolyStruct.ExtractStruct(OutStruct, OutStructProp->Struct);
+		P_NATIVE_END
+	}
+
+	UFUNCTION(BlueprintPure, CustomThunk, Meta = (CustomStructureParam = "OutStruct"))
+	static void MakeDefaultCustomStruct(int32& OutStruct);
+	DECLARE_FUNCTION(execMakeDefaultCustomStruct) { Stack.StepCompiledIn<FStructProperty>(nullptr); P_FINISH }
+	
 
 	// Ensures the OutStruct parameter will be a valid cast and then extracts the data into the output.
 	// Not a true cast as the memory is being copied but this syntactically may make more sense than "Extract"
@@ -181,7 +222,7 @@ public:
 
 	// Makes a Poly Struct Container and initializes it with an array of Poly Structs
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Make PolyStructHandle"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void MakePolyStructContainer(UPARAM(DisplayName=">>") const TArray<FPolyStruct>& PolyStructs, FPolyStructHandle& PolyStructHandle) { PolyStructHandle = PolyStructs; }
+	static FORCEINLINE void MakePolyStructHandleFromArray(UPARAM(DisplayName=">>") const TArray<FPolyStruct>& PolyStructs, FPolyStructHandle& PolyStructHandle) { PolyStructHandle = PolyStructs; }
 
 	// Converts the Struct parameter to a Poly Struct and adds it to the Poly Struct Handle array
 	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", BlueprintInternalUseOnly = "true", BlueprintThreadSafe,
@@ -208,8 +249,12 @@ public:
 	static FORCEINLINE int32 Add(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const FPolyStruct& PolyStruct) { return PolyStructHandle.Add(PolyStruct); }
 
 	// Appends Poly Structs to the array
-	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "APPEND"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void Append(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const TArray<FPolyStruct>& PolyStructs) { PolyStructHandle.Append(PolyStructs); }
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "APPEND", DisplayName = "Append (from poly array)"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void AppendFromPolyArray(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const TArray<FPolyStruct>& PolyStructs) { PolyStructHandle.Append(PolyStructs); }
+
+	// Appends the elements of the In Poly Struct Handle to the Out Poly Struct Handle
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "APPEND", DisplayName = "Append (from poly handle)"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void AppendFromPolyHandle(UPARAM(ref) FPolyStructHandle& OutPolyStructHandle, UPARAM(ref) const FPolyStructHandle& InPolyStructHandle) { OutPolyStructHandle += InPolyStructHandle; }
 
 	// Gets the Poly Struct at the given index and attempts to extract the data into the Out Struct parameter
 	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "EXTRACT AT"), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -234,9 +279,9 @@ public:
 	}
 
 	// Gets the Poly Struct at the given index and attempts to cast it into the desired type
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "CAST AT"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static void CastAt(const FPolyStructHandle& PolyStructHandle, int32& OutStruct, const int32 Index, EStructCastPin& OutPin);
-	static FORCEINLINE void execCastAt(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractAt(Context, Stack, RESULT_PARAM); }
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "GET AT"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void GetAt(const FPolyStructHandle& PolyStructHandle, int32& OutStruct, const int32 Index, EStructCastPin& OutPin);
+	static FORCEINLINE void execGetAt(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractAt(Context, Stack, RESULT_PARAM); }
 
 	// Attempts to extract each Poly Struct and add to the passed in array. Success if extracted any. Use sparingly to avoid casting and copying
 	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "EXTRACT ARRAY"), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -271,7 +316,7 @@ public:
 	}
 
 	// Casts each Poly Struct and returns all valid casts as an array of Structs. Success if array is not empty. Use sparingly to avoid excessive casting and copying
-	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "CAST ARRAY"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "GET ARRAY"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static void CastArray(const FPolyStructHandle& PolyStructHandle, TArray<int32>& OutArray, EStructCastPin& OutPin);
 	static FORCEINLINE void execCastArray(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractArray(Context, Stack, RESULT_PARAM); }
 
@@ -308,7 +353,150 @@ public:
 	{
 		for(const TSharedPtr<FPolyStruct>& Ptr : PolyStructHandle.PolyStructs) if(Ptr.IsValid()) OutPolyStructs.Add(*Ptr.Get());
 	}
+
+
+	UFUNCTION(BlueprintCallable, Meta = (BlueprintInternalUseOnly = "true"))
+	static FORCEINLINE void MakeDefaultPolyStructHandle(FPolyStructHandle& OutPolyStructHandle) {}
+
+
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", BlueprintInternalUseOnly = "true"))
+	static void Internal_AddStruct(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32& Struct);
+	DECLARE_FUNCTION(execInternal_AddStruct) { execAddStruct(Context, Stack, RESULT_PARAM); }
 };
+
+/*
+#undef CONCATE_
+#undef CONCATE
+#undef ALLOW_PRIVATE_ACCESS
+#undef ACCESS_PRIVATE_MEMBER
+*/
+
+
+
+UCLASS()
+class POLYSTRUCT_API UPolyStructHack final : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
+protected:
+	FORCEINLINE static FPolyStruct& GetPolyStruct(FFrame& Stack)
+	{
+		Stack.StepCompiledIn<FStructProperty>(nullptr);
+		return *(FPolyStruct*)Stack.MostRecentPropertyAddress;
+	}
+	FORCEINLINE static FPolyStructHandle& GetPolyStructHandle(FFrame& Stack)
+	{
+		Stack.StepCompiledIn<FStructProperty>(nullptr);
+		return *(FPolyStructHandle*)Stack.MostRecentPropertyAddress;
+	}
+	FORCEINLINE static EStructCastPin& GetStructCastPin(FFrame& Stack)
+	{
+		Stack.StepCompiledIn<FByteProperty>(nullptr);
+		return *(EStructCastPin*)Stack.MostRecentPropertyAddress;
+	}
+	FORCEINLINE static void GetCustomStructParam(FFrame& Stack, void*& OutStruct, FStructProperty*& OutStructProp)
+	{
+		Stack.StepCompiledIn<FStructProperty>(nullptr);
+		OutStruct = Stack.MostRecentPropertyAddress;
+		OutStructProp = CastField<FStructProperty>(Stack.MostRecentProperty);
+	}
+	FORCEINLINE static bool ValidateCustomStructParam(FFrame& Stack, const FStructProperty* StructProp)
+	{
+		if(StructProp) return true;
+		UE_LOG(LogTemp, Error, TEXT("Custom struct parameter is invalid. Must be a valid struct property"));
+		Stack.bArrayContextFailed = true;
+		return false;
+	}
+	
+public:
+	UFUNCTION(BlueprintPure, CustomThunk, Meta = (CustomStructureParam = "OutStruct", CompactNodeTitle = "CAST", BlueprintInternalUseOnly = "true"))
+	static void CastPolyStruct(UPARAM(ref) FPolyStruct& PolyStruct, int32& OutStruct);
+	DECLARE_FUNCTION(execCastPolyStruct)
+	{
+		
+	}
+	
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray"))
+	static void MakeTempArr(TArray<int32>& OutArray);
+	DECLARE_FUNCTION(execMakeTempArr) { Stack.StepCompiledIn<FArrayProperty>(nullptr); P_FINISH }
+
+	UFUNCTION(BlueprintPure)
+	static FORCEINLINE int32 GetZeroIndex() { return 0; }
+	
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", BlueprintInternalUseOnly = "true"))
+	static void ArrayPointToPolyStructHack(UPARAM(ref) FPolyStruct& PolyStruct, UPARAM(ref) TArray<int32>& OutArray);
+	DECLARE_FUNCTION(execArrayPointToPolyStructHack)
+	{
+		FPolyStruct& PolyStruct = GetPolyStruct(Stack);
+		Stack.StepCompiledIn<FArrayProperty>(nullptr);
+		void* const OutArrPtr = Stack.MostRecentPropertyAddress;
+		const FArrayProperty* ArrProp = CastField<FArrayProperty>(Stack.MostRecentProperty);
+		Stack.StepCompiledIn<FBoolProperty>(nullptr);
+		P_FINISH
+		if(!OutArrPtr || !ArrProp)
+		{
+			Stack.bArrayContextFailed = true;
+			return;
+		}
+		P_NATIVE_BEGIN
+		FMyScriptArr& OutScriptArr = *(FMyScriptArr*)OutArrPtr;
+		ACCESS_PRIVATE_MEMBER(OutScriptArr, ArrayNum) = 1;
+		
+		FMyThing& OutMyThingArr = *(FMyThing*)OutArrPtr;
+		ACCESS_PRIVATE_MEMBER(OutMyThingArr, Data) = (FScriptContainerElement*)PolyStruct.GetMemory();
+		P_NATIVE_END
+	}
+
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", BlueprintInternalUseOnly = "true"))
+	static void ArrayPointToPolyStructHackUndo(UPARAM(ref) TArray<int32>& OutArray);
+	DECLARE_FUNCTION(execArrayPointToPolyStructHackUndo)
+	{
+		Stack.StepCompiledIn<FArrayProperty>(nullptr);
+		void* const OutArrPtr = Stack.MostRecentPropertyAddress;
+		const FArrayProperty* ArrProp = CastField<FArrayProperty>(Stack.MostRecentProperty);
+		P_FINISH
+		if(!OutArrPtr || !ArrProp)
+		{
+			Stack.bArrayContextFailed = true;
+			return;
+		}
+		P_NATIVE_BEGIN
+		UE_LOG(LogTemp, Warning, TEXT("Arr.Num() == %i"))
+		FMyScriptArr& OutScriptArr = *(FMyScriptArr*)OutArrPtr;
+		ACCESS_PRIVATE_MEMBER(OutScriptArr, ArrayNum) = 0;
+
+		FMyThing& OutMyThingArr = *(FMyThing*)OutArrPtr;
+		ACCESS_PRIVATE_MEMBER(OutMyThingArr, Data) = nullptr;
+		P_NATIVE_END
+	}
+
+
+
+
+	UFUNCTION(BlueprintPure, CustomThunk, Meta = (CustomStructureParam = "Struct", BlueprintInternalUseOnly = "true"))
+	static bool IsAFromRef(UPARAM(ref) const FPolyStruct& PolyStruct, UPARAM(ref) const int32& Struct);
+	DECLARE_FUNCTION(execIsAFromRef)
+	{
+		const FPolyStruct& PolyStruct = GetPolyStruct(Stack);
+		void* Struct; FStructProperty* StructProp;
+		GetCustomStructParam(Stack, Struct, StructProp);
+		P_FINISH
+		if(!ValidateCustomStructParam(Stack, StructProp)) return;
+		P_NATIVE_BEGIN
+		*(bool*)RESULT_PARAM = PolyStruct.IsA(StructProp->Struct);
+		P_NATIVE_END
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 

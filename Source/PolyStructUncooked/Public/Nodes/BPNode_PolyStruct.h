@@ -107,8 +107,8 @@ class UBPNode_PolyStructHandleAdd : public UK2Node
 	virtual bool IsNodeSafeToIgnore() const override { return true; }
 	virtual void GetMenuActions(FBlueprintActionDatabaseRegistrar& ActionRegistrar) const override;
 	FORCEINLINE UEdGraphPin* GetInputPin() const { return Pins[0]; }
-	FORCEINLINE UEdGraphPin* GetSuccessPin() const { return Pins[1]; }
-	FORCEINLINE UEdGraphPin* GetFailPin() const { return Pins[2]; }
+	FORCEINLINE UEdGraphPin* GetThenPin() const { return Pins[1]; }
+	FORCEINLINE UEdGraphPin* GetIndexPin() const { return Pins[2]; }
 	FORCEINLINE UEdGraphPin* GetPolyPin() const { return Pins[3]; }
 	FORCEINLINE UEdGraphPin* GetStructPin() const { return Pins[4]; }
 };

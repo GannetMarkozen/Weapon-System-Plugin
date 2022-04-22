@@ -8,7 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class ATrueFPSCharacterBase;
+class AShooterCharacterBase;
 #ifdef WEAPONSYSTEMPLUGIN_WeaponScript_generated_h
 #error "WeaponScript.generated.h already included, missing '#pragma once' in WeaponScript.h"
 #endif

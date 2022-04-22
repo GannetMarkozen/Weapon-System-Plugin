@@ -35,5 +35,5 @@ protected:
 
 	// Returns the OwningWeapon's OwningCharacter if it is valid (may be invalid if owner of inventory possessing us is not a character)
 	UFUNCTION(BlueprintPure, Category = "Script")
-	FORCEINLINE class ATrueFPSCharacterBase* GetOwningCharacter() const { return OwningWeapon->GetOwningCharacter(); }
+	FORCEINLINE class AShooterCharacterBase* GetOwningCharacter() const { return OwningWeapon->GetOwningCharacter(); }
 };

@@ -26,44 +26,70 @@ protected:
 	virtual void NativePostEvaluateAnimation() override;
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
-	virtual void Init();
+	// Called after all the logic this update has been ran
+	virtual void PostUpdateAnimation(const float DeltaTime);
 
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Init"), Category = "Anim")
-	void BP_Init();
+	// Called after all the logic this update has been ran
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Post Update Animation"), Category = "Anim")
+	void BP_PostUpdateAnimation(const float DeltaTime);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Anim")
-	void CurrentWeaponChanged(class AWeapon* NewWeapon, class AWeapon* OldWeapon);
-	virtual void CurrentWeaponChanged_Implementation(class AWeapon* NewWeapon, class AWeapon* OldWeapon);
+	// Called when the Character reference is set
+	virtual void OnCharacterInitialized();
 
-	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Set Variables"), Category = "Anim")
-	void SetVars(const float DeltaTime);
-	virtual void SetVars_Implementation(const float DeltaTime);
+	// Called when the Character reference is set
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Character Initialized"), Category = "Anim")
+	void BP_OnCharacterInitialized();
 
-	virtual void CalculateWeaponSway(const float DeltaTime);
+	UFUNCTION()
+	FORCEINLINE void Internal_CurrentWeaponChanged(class AWeapon* NewWeapon, class AWeapon* OldWeapon)
+	{
+		CurrentWeaponChanged(NewWeapon, OldWeapon);
+		BP_CurrentWeaponChanged(NewWeapon, OldWeapon);
+	}
 
-	virtual void CalculateMeshOffset(const float DeltaTime);
+	// Called whenever the Current Weapon reference changes (may be invalid)
+	virtual void CurrentWeaponChanged(class AWeapon* NewWeapon, class AWeapon* OldWeapon);
+
+	// Called whenever the Current Weapon reference changes (may be invalid)
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Current Weapon Changed"), Category = "Anim")
+	void BP_CurrentWeaponChanged(class AWeapon* NewWeapon, class AWeapon* OldWeapon);
+	
+	virtual void UpdateVariables(const float DeltaTime);
+
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Update Variables"), Category = "Anim")
+	void BP_UpdateVariables(const float DeltaTime);
+
+	virtual void UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
+
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Update Offset Transform"), Category = "Anim")
+	void BP_UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
+
+	virtual void UpdateTurnInPlace(const float DeltaTime);
 
 	UFUNCTION(BlueprintCallable, Category = "Anim")
-	virtual void OnCharacterLanded(class ATrueFPSCharacterBase* InCharacter, const FHitResult& Hit);
+	virtual void OnCharacterLanded(class AShooterCharacterBase* InCharacter, const FHitResult& Hit);
 
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Character Landed"), Category = "Anim")
-	void BP_OnCharacterLanded(class ATrueFPSCharacterBase* InCharacter, const FHitResult& Hit);
+	void BP_OnCharacterLanded(class AShooterCharacterBase* InCharacter, const FHitResult& Hit);
 	
 
 public:
 	/*
 	 *	REFERENCES
 	 */
-	
-	UPROPERTY(BlueprintReadWrite, Category = "Anim")
-	class ATrueFPSCharacterBase* Character;
 
+	// The Shooter Character that owns this Anim Instance
+	UPROPERTY(BlueprintReadWrite, Category = "Anim")
+	class AShooterCharacterBase* Character;
+
+	// The Mesh that owns this Anim Instance
 	UPROPERTY(BlueprintReadWrite, Category = "Anim")
 	class USkeletalMeshComponent* Mesh;
 
+	// The weapon currently equipped. May be invalid
 	UPROPERTY(BlueprintReadWrite, Category = "Anim")
 	class AWeapon* CurrentWeapon;
-
+	
 	UPROPERTY(BlueprintReadWrite, Category = "Anim")
 	bool bCurrentWeaponIsValid = false;
 
@@ -116,7 +142,7 @@ public:
 	FTransform OffsetTransform;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|IK")
-	float ADSMagnitude = 0.f;
+	float AimingValue = 0.f;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Anim|IK")
 	float CurrentWeightScale = 1.f;
@@ -132,7 +158,7 @@ public:
 	float MovementDirection = 0.f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|Locomotion")
-	float MovementVelocity = 0.f;
+	float MovementSpeed = 0.f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|Locomotion")
 	bool bIsFalling = false;
@@ -172,7 +198,7 @@ public:
 
 	// Relative to the root
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim|IK")
-	FRotator CameraRelativeRotation;
+	FRotator AimRotation;
 
 	// Camera's transform relative to the head
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim|IK")
@@ -201,7 +227,7 @@ public:
 	float AccumulativeRotationReturnInterpSpeed = 30.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
-	float AccumulativeRotationInterpSpeed = 10.f;
+	float AccumulativeRotationInterpSpeed = 5.f;
 
 	// The rotation interp speed on non-local players' viewports
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")

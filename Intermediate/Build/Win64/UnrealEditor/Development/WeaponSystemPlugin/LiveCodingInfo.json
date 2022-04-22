@@ -4,7 +4,8 @@
 		"Module.WeaponSystemPlugin.cpp.obj": [
 			"WeaponSystemPlugin.cpp.obj",
 			"WeaponSystemAnimInstance.cpp.obj",
-			"TrueFPSCharacterBase.cpp.obj",
+			"ShooterCharacterBase.cpp.obj",
+			"TrueFPSCharacter.cpp.obj",
 			"CharacterInventoryComponent.cpp.obj",
 			"InventoryComponent.cpp.obj",
 			"ReplicatedObject.cpp.obj",
@@ -41,8 +42,10 @@
 			"SetupAttachmentsScriptBase.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.2_of_3.cpp.obj": [
+			"ShooterCharacterBase.gen.cpp.obj",
 			"SightsAttachment.gen.cpp.obj",
-			"TrueFPSCharacterBase.gen.cpp.obj",
+			"TrueFPSCharacter.gen.cpp.obj",
+			"Types.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",
 			"Weapon.gen.cpp.obj",
 			"WeaponAttachmentBase.gen.cpp.obj",

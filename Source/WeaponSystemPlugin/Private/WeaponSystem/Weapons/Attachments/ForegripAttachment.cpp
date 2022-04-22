@@ -5,7 +5,7 @@
 
 #include "PoseableHandComponent.h"
 #include "Animation/AnimInstanceProxy.h"
-#include "WeaponSystem/Character/TrueFPSCharacterBase.h"
+#include "WeaponSystem/Character/ShooterCharacterBase.h"
 #include "WeaponSystem/Weapons/Weapon.h"
 #include "WeaponSystem/Weapons/Attachments/WeaponAttachmentPoint.h"
 
@@ -41,7 +41,11 @@ void AForegripAttachment::SetHandPlacement() const
 	
 	FCompactPose OutPose;
 	FBlendedCurve OutCurve;
+#if ENGINE_MAJOR_VERSION < 5
 	FStackCustomAttributes OutAttr;
+#else//ENGINE_MAJOR_VERSION
+	UE::Anim::FStackAttributeContainer OutAttr;
+#endif//ENGINE_MAJOR_VERSION
 	OutPose.SetBoneContainer(&Character->GetMesh()->GetAnimInstance()->GetRequiredBones());
 	FAnimationPoseData OutData(OutPose, OutCurve, OutAttr);
 

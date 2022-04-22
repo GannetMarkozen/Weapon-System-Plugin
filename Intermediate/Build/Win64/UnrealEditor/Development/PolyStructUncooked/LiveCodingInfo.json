@@ -2,10 +2,16 @@
 	"RemapUnityFiles": 
 	{
 		"Module.PolyStructUncooked.cpp.obj": [
+			"BPNode_CastPolyStruct.cpp.obj",
+			"BPNode_CastPolyStructHack.cpp.obj",
+			"BPNode_MakePolyStructHandle.cpp.obj",
 			"BPNode_PolyStruct.cpp.obj",
 			"PolyStructUncooked.cpp.obj"
 		],
 		"Module.PolyStructUncooked.gen.cpp.obj": [
+			"BPNode_CastPolyStruct.gen.cpp.obj",
+			"BPNode_CastPolyStructHack.gen.cpp.obj",
+			"BPNode_MakePolyStructHandle.gen.cpp.obj",
 			"BPNode_PolyStruct.gen.cpp.obj",
 			"PolyStructUncooked.init.gen.cpp.obj"
 		]

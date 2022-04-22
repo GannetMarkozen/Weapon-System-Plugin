@@ -259,6 +259,8 @@
 /I Runtime\AnimGraphRuntime\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimGraph
 /I Editor\AnimGraph\Public
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStruct"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStruct\Public"
 /I ThirdParty\mimalloc\include
 /I ThirdParty\LibTiff\Source\Win64
 /I ThirdParty\LibTiff\Source

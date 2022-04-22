@@ -25,7 +25,7 @@ public class PolyStructUncooked : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "InputCore"
+				"Core", "InputCore", "CoreUObject",
 				// ... add other public dependencies that you statically link with here ...
 			}
 		);
@@ -34,9 +34,6 @@ public class PolyStructUncooked : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core",
-				"CoreUObject",
-				"InputCore",
 				"Slate",
 				"Engine",
 				"AssetTools",
@@ -54,6 +51,7 @@ public class PolyStructUncooked : ModuleRules
 				"DetailCustomizations",
 				"Settings",
 				"RenderCore",
+				"ToolMenus",
 				"PolyStruct",
 				// ... add private dependencies that you statically link with here ...	
 			}

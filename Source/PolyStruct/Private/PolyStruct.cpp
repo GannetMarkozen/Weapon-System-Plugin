@@ -1,8 +1,8 @@
 ﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "PolyStruct.h"
+#include "PolyStruct/Public/PolyStruct.h"
 
-#define LOCTEXT_NAMESPACE "FWeaponSystemUncookedModule"
+#define LOCTEXT_NAMESPACE "FPolyStructModule"
 
 void FPolyStructModule::StartupModule()
 {

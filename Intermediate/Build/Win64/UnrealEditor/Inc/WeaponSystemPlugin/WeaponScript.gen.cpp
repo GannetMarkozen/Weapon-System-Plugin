@@ -14,7 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScript_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScript();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScriptBase();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AShooterCharacterBase_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 // End Cross Module References
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EInputBinding;
@@ -87,7 +87,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(ATrueFPSCharacterBase**)Z_Param__Result=P_THIS->GetOwningCharacter();
+		*(AShooterCharacterBase**)Z_Param__Result=P_THIS->GetOwningCharacter();
 		P_NATIVE_END;
 	}
 	void UWeaponScript::StaticRegisterNativesUWeaponScript()
@@ -102,7 +102,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 	{
 		struct WeaponScript_eventGetOwningCharacter_Parms
 		{
-			ATrueFPSCharacterBase* ReturnValue;
+			AShooterCharacterBase* ReturnValue;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -111,7 +111,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponScript_eventGetOwningCharacter_Parms, ReturnValue), Z_Construct_UClass_ATrueFPSCharacterBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponScript_eventGetOwningCharacter_Parms, ReturnValue), Z_Construct_UClass_AShooterCharacterBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponScript_GetOwningCharacter_Statics::NewProp_ReturnValue,
 	};
@@ -158,7 +158,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponScript_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponScript_GetOwningCharacter, "GetOwningCharacter" }, // 3796316332
+		{ &Z_Construct_UFunction_UWeaponScript_GetOwningCharacter, "GetOwningCharacter" }, // 3419843098
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponScript_Statics::Class_MetaDataParams[] = {
@@ -218,9 +218,9 @@ void EmptyLinkFunctionForGeneratedCodeWeaponScript() {}
 		{ EInputBinding_StaticEnum, TEXT("EInputBinding"), &Z_Registration_Info_UEnum_EInputBinding, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1586908399U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UWeaponScript, UWeaponScript::StaticClass, TEXT("UWeaponScript"), &Z_Registration_Info_UClass_UWeaponScript, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponScript), 1659695886U) },
+		{ Z_Construct_UClass_UWeaponScript, UWeaponScript::StaticClass, TEXT("UWeaponScript"), &Z_Registration_Info_UClass_UWeaponScript, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponScript), 3070057216U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_1714541884(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_2888293192(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_WeaponScript_h_Statics::EnumInfo));
