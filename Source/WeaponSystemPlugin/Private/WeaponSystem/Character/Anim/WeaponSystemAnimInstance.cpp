@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Copyright 2022, Gannet Markozen, All rights reserved
 
 
 #include "WeaponSystem/Character/Anim/WeaponSystemAnimInstance.h"
@@ -54,7 +54,8 @@ void UWeaponSystemAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	FVector OutOffsetLocation = FVector::ZeroVector;
 	FRotator OutOffsetRotation = FRotator::ZeroRotator;
 	UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation);
-	BP_UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation);
+	BP_UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation, OutOffsetLocation, OutOffsetRotation);
+	//BP_UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation);
 
 	// Update the OffsetTransform with the updated offset location and rotation
 	OffsetTransform = Character->GetWeaponOffsetTransform() * FTransform(OutOffsetRotation, OutOffsetLocation);

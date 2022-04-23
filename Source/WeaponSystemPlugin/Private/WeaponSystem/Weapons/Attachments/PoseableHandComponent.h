@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
-#include "WeaponSystem/Types.h"
+#include "WeaponSystem/Globals.h"
 #include "PoseableHandComponent.generated.h"
 
 
@@ -22,10 +22,6 @@ class WEAPONSYSTEMPLUGIN_API UPoseableHandComponent : public USceneComponent
 	GENERATED_BODY()
 public:
 	UPoseableHandComponent();
-
-	// Pose snapshot cached when initializing Poseable Mesh for use in animation.
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pose Animation")
-	//FPoseSnapshot CachedPoseSnapshot;
 
 	// Pose snapshot shared amongst all instances of the poseable hand component
 	TSharedPtr<FPoseSnapshot> CachedPoseSnapshot = nullptr;

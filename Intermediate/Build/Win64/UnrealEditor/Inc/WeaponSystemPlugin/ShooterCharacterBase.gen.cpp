@@ -1735,7 +1735,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 		{ "ToolTip", "Which hand equips the weapon" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand = { "DomHand", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterCharacterBase, DomHand), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand_MetaData)) }; // 913489345
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand = { "DomHand", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShooterCharacterBase, DomHand), Z_Construct_UEnum_WeaponSystemPlugin_ELaterality, METADATA_PARAMS(Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_DomHand_MetaData)) }; // 581560619
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShooterCharacterBase_Statics::NewProp_WeaponSocket_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -1904,9 +1904,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FRecoilParams>()
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UDamageInterface, UDamageInterface::StaticClass, TEXT("UDamageInterface"), &Z_Registration_Info_UClass_UDamageInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UDamageInterface), 4178947392U) },
-		{ Z_Construct_UClass_AShooterCharacterBase, AShooterCharacterBase::StaticClass, TEXT("AShooterCharacterBase"), &Z_Registration_Info_UClass_AShooterCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacterBase), 1470949488U) },
+		{ Z_Construct_UClass_AShooterCharacterBase, AShooterCharacterBase::StaticClass, TEXT("AShooterCharacterBase"), &Z_Registration_Info_UClass_AShooterCharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacterBase), 1383008983U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_2064140633(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_1401942164(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_ShooterCharacterBase_h_Statics::ScriptStructInfo),
 		nullptr, 0);

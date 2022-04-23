@@ -39,7 +39,6 @@ void UPoseableHandComponent::BeginPlay()
 	Super::BeginPlay();
 }
 
-
 void UPoseableHandComponent::OnRegister()
 {
 	if(!bShowVisualizationMesh)
@@ -140,7 +139,7 @@ void UPoseableHandComponent::OnComponentDestroyed(bool bDestroyingHierarchy)
 
 void UPoseableHandComponent::SetMeshPose()
 {
-	if(CachedPoseSnapshot.IsValid() && CachedPoseSnapshot->bIsValid)
+	if(CachedPoseSnapshot.IsValid())
 	{
 		CachedPoseSnapshot->bIsValid = false;
 		CachedPoseSnapshot->BoneNames.Empty();

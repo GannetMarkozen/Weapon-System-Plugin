@@ -47,6 +47,8 @@ class AWeapon;
 	struct WeaponSystemAnimInstance_eventBP_UpdateOffsetTransform_Parms \
 	{ \
 		float DeltaTime; \
+		FVector InOffsetLocation; \
+		FRotator InOffsetRotation; \
 		FVector OutOffsetLocation; \
 		FRotator OutOffsetRotation; \
 	}; \

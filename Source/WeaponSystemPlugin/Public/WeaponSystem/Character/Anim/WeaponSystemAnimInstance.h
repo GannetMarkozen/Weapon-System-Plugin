@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Copyright 2022, Gannet Markozen, All rights reserved
 
 #pragma once
 
@@ -61,9 +61,10 @@ protected:
 
 	virtual void UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
 
+	// Override to apply your own weapon offsets
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Update Offset Transform"), Category = "Anim")
-	void BP_UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
-
+	void BP_UpdateOffsetTransform(const float DeltaTime, const FVector& InOffsetLocation, const FRotator& InOffsetRotation, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
+	
 	virtual void UpdateTurnInPlace(const float DeltaTime);
 
 	UFUNCTION(BlueprintCallable, Category = "Anim")
@@ -71,7 +72,6 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Character Landed"), Category = "Anim")
 	void BP_OnCharacterLanded(class AShooterCharacterBase* InCharacter, const FHitResult& Hit);
-	
 
 public:
 	/*

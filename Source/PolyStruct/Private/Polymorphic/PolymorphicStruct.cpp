@@ -100,23 +100,34 @@ bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess
 	if(Ar.IsSaving())
 		CheckedScriptStruct = ScriptStruct;
 
+	// Read / write ScriptStruct
 	Ar << CheckedScriptStruct;
 
 	if(const UScriptStruct* Struct = CheckedScriptStruct.Get())
 	{
 		if(Ar.IsLoading())
 			SetStruct(Struct);// Set struct uninitialized
-
-		// Net serialize each property
-		for(TFieldIterator<FProperty> Itr(Struct); Itr; ++Itr)
+		
+		if(Struct->UseNativeSerialization())
+		{//	Native net serialize
+			Struct->GetCppStructOps()->NetSerialize(Ar, Map, bOutSuccess, Memory);
+		}
+		else
 		{
-			if(Itr->PropertyFlags & CPF_RepSkip) continue;
-			void* const PropItem = Itr->ContainerPtrToValuePtr<void>(Memory);
-			Itr->NetSerializeItem(Ar, Map, PropItem);
+			// Net serialize each property
+			for(TFieldIterator<FProperty> Itr(Struct); Itr; ++Itr)
+			{
+				if(Itr->PropertyFlags & CPF_RepSkip) continue;
+				void* const PropItem = Itr->ContainerPtrToValuePtr<void>(Memory);
+				Itr->NetSerializeItem(Ar, Map, PropItem);
+			}
 		}
 	}
 	else
 	{
+		// If no valid script struct was serialized,
+		// then there was no valid data to serialize.
+		// So empty to match
 		Empty();
 	}
 	return true;

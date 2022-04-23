@@ -256,15 +256,9 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	bool CanEvaluate() const;
 	void ProceduralAimOffset(FPoseContext& Output, FQuat& AccumulativeOffsetInverse);
 
-	static void SortBones(TArray<FBoneTransform>& OutBoneTransforms);
+	//static void SortBones(TArray<FBoneTransform>& OutBoneTransforms);
 
 private:
-	/*static void ClampRange(float& InOutValue, const FFloatRange& Range)
-	{
-		InOutValue = FMath::Clamp<float>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
-			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
-	}*/
-
 	template<typename T>
 	static void ClampRange(T& InOutValue, const FFloatRange& Range)
 	{

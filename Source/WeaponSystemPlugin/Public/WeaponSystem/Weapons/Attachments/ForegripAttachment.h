@@ -16,17 +16,11 @@ public:
 
 protected:
 	virtual void OnRemoved() override;
-	/*virtual FORCEINLINE void OnObtained_Implementation(class UInventoryComponent* OwningInventory) override
-	{
-		const auto& CallSetHandPlacement = [=]()->void{ if(IsValid(this)) SetHandPlacement(OwningInventory); };
-		GetWorldTimerManager().SetTimerForNextTick(CallSetHandPlacement);
-	}*/
 
 	virtual FORCEINLINE void OnEquipped(class UCharacterInventoryComponent* Inventory) override
 	{// On equipped, set hand placement transform after a tick so that the AnimPose is being played during the update.
 		Super::OnEquipped(Inventory);
 		SetHandPlacement();
-		//GetWorldTimerManager().SetTimerForNextTick(this, &ThisClass::SetHandPlacement);
 	}
 
 	// Sets the owning weapon's hand placement offset transform

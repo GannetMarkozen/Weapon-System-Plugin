@@ -176,7 +176,7 @@ struct TStructOpsTypeTraits<FPolyStructHandle> : TStructOpsTypeTraitsBase2<FPoly
 
 
 
-namespace FPolymorphic
+namespace FPolyUtils
 {
 	// Ensures a valid PolyStruct cast
 	template<typename To>
@@ -241,8 +241,7 @@ namespace FPolymorphic
 	FORCEINLINE FPolyStructHandle::FStreamParam operator>>(FPolyStructHandle::FStreamParam Stream, T& Struct) { Stream.Handle->ExtractStructAt<T>(Struct, Stream.Index++); return Stream; }
 }
 
-using namespace FPolymorphic;
-
+using namespace FPolyUtils;
 
 
 

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "WeaponSystem/Inventories/CharacterInventoryComponent.h"
-#include "WeaponSystem/Types.h"
+#include "WeaponSystem/Globals.h"
 #include "ShooterCharacterBase.generated.h"
 
 UINTERFACE(MinimalAPI, Blueprintable, BlueprintType)
