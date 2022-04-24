@@ -181,8 +181,8 @@ public:
 	
 
 	// Empties the data and invalidates the struct
-	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "INVALIDATE"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void Invalidate(UPARAM(ref) FPolyStruct& PolyStruct) { PolyStruct.Empty(); }
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "EMPTY", DisplayName = "Empty (poly struct)"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void EmptyPolyStruct(UPARAM(ref) FPolyStruct& PolyStruct) { PolyStruct.Empty(); }
 
 	// Whether or not the Polymorphic Struct contains any data
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "IS VALID"), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -241,6 +241,63 @@ public:
 		}
 		P_NATIVE_BEGIN
 		*(int32*)RESULT_PARAM = Handle.Add(Struct, StructProp->Struct);
+		P_NATIVE_END
+	}
+
+	// Inserts the struct at the given index
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", DisplayName = "Insert (struct)", CompactNodeTitle = "INSERT", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void InsertStructAt(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32& Struct, const int32 Index, EStructCastPin& OutPin);
+	DECLARE_FUNCTION(execInsertStructAt)
+	{
+		FPolyStructHandle& Handle = GetPolyStructHandle(Stack);
+		void* Struct; FStructProperty* StructProp;
+		GetCustomStructParam(Stack, Struct, StructProp);
+		int32 Index = 0;
+		Stack.StepCompiledIn<FIntProperty>(&Index);
+		EStructCastPin& OutPin = GetStructCastPin(Stack);
+		P_FINISH
+		if(!ValidateCustomStructParam(Stack, StructProp))
+		{
+			OutPin = EStructCastPin::Fail;
+			return;
+		}
+		P_NATIVE_BEGIN
+		if(Handle.IsValidIndex(Index))
+		{
+			Handle.PolyStructs.Insert(MakeShared<FPolyStruct>(Struct, StructProp->Struct), Index);
+			OutPin = EStructCastPin::Success;
+		}
+		else OutPin = EStructCastPin::Fail;
+		P_NATIVE_END
+	}
+
+	// Sets the the PolyStruct at the given index. Success if valid index
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "Struct", DisplayName = "Set Array Element (struct)", CompactNodeTitle = "SET ELEM", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void SetArrayElementStruct(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32& Struct, const int32 Index, EStructCastPin& OutPin);
+	DECLARE_FUNCTION(execSetArrayElementStruct)
+	{
+		FPolyStructHandle& Handle = GetPolyStructHandle(Stack);
+		void* Struct; FStructProperty* StructProp;
+		GetCustomStructParam(Stack, Struct, StructProp);
+		int32 Index = 0;
+		Stack.StepCompiledIn<FIntProperty>(&Index);
+		EStructCastPin& OutPin = GetStructCastPin(Stack);
+		P_FINISH
+		if(!ValidateCustomStructParam(Stack, StructProp))
+		{
+			OutPin = EStructCastPin::Fail;
+			return;
+		}
+		P_NATIVE_BEGIN
+		if(Handle.IsValidIndex(Index))
+		{
+			if(!Handle.PolyStructs[Index].IsValid())
+				Handle.PolyStructs[Index] = MakeShared<FPolyStruct>();
+
+			Handle[Index].SetStruct(Struct, StructProp->Struct);
+			OutPin = EStructCastPin::Success;
+		}
+		else OutPin = EStructCastPin::Fail;
 		P_NATIVE_END
 	}
 
@@ -320,16 +377,16 @@ public:
 	static void CastArray(const FPolyStructHandle& PolyStructHandle, TArray<int32>& OutArray, EStructCastPin& OutPin);
 	static FORCEINLINE void execCastArray(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractArray(Context, Stack, RESULT_PARAM); }
 
-	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "REMOVE INDEX"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void RemoveIndex(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32 Index) { PolyStructHandle.PolyStructs.RemoveAt(Index); }
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "REMOVE ITEM"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void RemoveItem(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32 Index) { if(PolyStructHandle.IsValidIndex(Index)) PolyStructHandle.PolyStructs.RemoveAt(Index, 1, true); }
 
 	// Gets a copy of the Poly Struct at the given index (if it is a valid index)
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "GET"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE void GetAtIndex(const FPolyStructHandle& PolyStructHandle, const int32 Index, FPolyStruct& OutPolyStruct) { if(const FPolyStruct* PolyStruct = PolyStructHandle.GetAt(Index)) OutPolyStruct = *PolyStruct; }
 
 	// Empties the array of Poly Structs from the Poly Struct Handle
-	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "EMPTY"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void Empty(UPARAM(ref) FPolyStructHandle& PolyStructHandle) { PolyStructHandle.PolyStructs.Empty(); }
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "EMPTY", DisplayName = "Empty (poly struct handle)"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void EmptyPolyStructHandle(UPARAM(ref) FPolyStructHandle& PolyStructHandle) { PolyStructHandle.PolyStructs.Empty(); }
 
 	// Whether there are any Poly Structs in the Poly Struct Handle
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "IS EMPTY"), Category = "Weapon System Function Library|Polymorphic Struct")

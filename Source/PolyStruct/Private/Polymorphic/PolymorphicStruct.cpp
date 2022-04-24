@@ -24,15 +24,23 @@ bool FPolyStruct::operator==(const FPolyStruct& Other) const
 {
 	if(!IsValid() && !Other.IsValid()) return true;
 	if(ScriptStruct != Other.ScriptStruct) return false;
-	bool bIdentical;
-	ScriptStruct->GetCppStructOps()->Identical(GetMemory(), Other.GetMemory(), PPF_None, bIdentical);
-	return bIdentical;
+	if(ScriptStruct->GetCppStructOps()->HasIdentical())
+	{
+		bool bIdentical;
+		ScriptStruct->GetCppStructOps()->Identical(GetMemory(), Other.GetMemory(), PPF_None, bIdentical);
+		return bIdentical;
+	}
+	
+	return FMemory::Memcmp(Memory, Other.Memory, GetSize()) == 0;
 }
 
 void FPolyStruct::SetStruct(const void* InStruct, const UScriptStruct* InScriptStruct)
 {
-	if(!InStruct || !InScriptStruct) return;
+	// Always empty, even if the other poly struct is invalid (to match)
 	Empty();
+	if(!InStruct || !InScriptStruct) return;
+
+	// Malloc memory based on structure size
 	ScriptStruct = (UScriptStruct*)InScriptStruct;
 	Memory = (uint8*)FMemory::Malloc(ScriptStruct->GetStructureSize());
 	ScriptStruct->CopyScriptStruct(Memory, InStruct);
@@ -95,7 +103,6 @@ bool FPolyStruct::Serialize(FArchive& Ar)
 
 bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 {
-	bOutSuccess = true;
 	TCheckedObjPtr<UScriptStruct> CheckedScriptStruct;
 	if(Ar.IsSaving())
 		CheckedScriptStruct = ScriptStruct;
@@ -130,6 +137,8 @@ bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess
 		// So empty to match
 		Empty();
 	}
+	
+	bOutSuccess = true;
 	return true;
 }
 
@@ -178,15 +187,26 @@ void FPolyStructHandle::CastStructs(TArray<T*>& Structs)
 bool FPolyStructHandle::operator==(const FPolyStructHandle& Other) const
 {
 	if(Num() != Other.Num()) return false;
-	for(int32 i = 0; i < Num(); i++) {
-		const bool bIsValidIdx = IsValidIndex(i);
-		const bool bOtherIsValidIdx = Other.IsValidIndex(i);
-		if(bIsValidIdx && bOtherIsValidIdx ? (*this)[i] != Other[i] :
-			bIsValidIdx != bOtherIsValidIdx) return false;
-	}
-		
+	for(int32 i = 0; i < Num(); i++)
+		if(PolyStructs[i].IsValid() != Other.PolyStructs[i].IsValid() ||
+			PolyStructs[i].IsValid() && Other.PolyStructs[i].IsValid() &&
+				(*this)[i] != Other[i]) return false;
+	for(int32 i = 0; i < Num(); i++)
+		if(const auto* ThisVec = Cast<FVector>((*this)[i]))
+			if(const auto* OtherVec = Cast<FVector>(Other[i]))
+				UE_LOG(LogTemp, Warning, TEXT("ThisVec == %s. OtherVec == %s"), *ThisVec->ToString(), *OtherVec->ToString());
+	
 	return true;
 }
+
+FPolyStructHandle& FPolyStructHandle::operator=(const FPolyStructHandle& Other)
+{
+	PolyStructs.SetNum(Other.Num());
+	for(int32 i = 0; i < Num(); i++)
+		PolyStructs[i] = Other.PolyStructs[i].IsValid() ? MakeShared<FPolyStruct>(Other[i]) : TSharedPtr<FPolyStruct>();
+	return *this;
+}
+
 
 void FPolyStruct::AddStructReferencedObjects(FReferenceCollector& Collector)
 {
@@ -204,7 +224,9 @@ bool FPolyStructHandle::Serialize(FArchive& Ar)
 
 	if(Ar.IsLoading())
 		PolyStructs.SetNum(NumStructs);
-	
+
+	if(PolyStructs.Num() <= 0) return true;
+
 	for(uint8 i = 0; i < NumStructs; i++)
 	{
 		bool bIsValidStruct;
@@ -218,14 +240,15 @@ bool FPolyStructHandle::Serialize(FArchive& Ar)
 			if(Ar.IsLoading() && !PolyStructs[i].IsValid())
 				PolyStructs[i] = MakeShared<FPolyStruct>();
 
-			FPolyStruct& Struct = *PolyStructs[i].Get();
+			FPolyStruct& Struct = (*this)[i];
 			Struct.Serialize(Ar);
 		}
 		else if(Ar.IsLoading())
 		{
-			PolyStructs[i] = nullptr;
+			PolyStructs[i].Reset();
 		}
 	}
+	
 	return true;
 }
 
@@ -253,14 +276,15 @@ bool FPolyStructHandle::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutS
 			if(Ar.IsLoading() && !PolyStructs[i].IsValid())
 				PolyStructs[i] = MakeShared<FPolyStruct>();
 
-			FPolyStruct& Struct = *PolyStructs[i].Get();
+			FPolyStruct& Struct = (*this)[i];
 			Struct.NetSerialize(Ar, Map, bOutSuccess);
 		}
 		else if(Ar.IsLoading())
 		{
-			PolyStructs[i] = nullptr;
+			PolyStructs[i].Reset();
 		}
 	}
+	bOutSuccess = true;
 	return true;
 }
 

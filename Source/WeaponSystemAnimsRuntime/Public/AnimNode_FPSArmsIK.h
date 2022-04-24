@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AnimNode_ProceduralAimOffset.h"
 #include "Animation/AnimNodeBase.h"
+#include "AnimGlobals.h"
 #include "AnimNode_FPSArmsIK.generated.h"
 
 /**
@@ -18,17 +20,61 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_FPSArmsIK : public FAnimNode_Base
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
 	FPoseLink BasePose;
+
+	//
+	// Bone references
+	//
+
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference RightHand;
+
+	/*UPROPERTY(EditAnywhere, Category = "Right Arm")
+	FBoneReference RightLowerArm;
+
+	UPROPERTY(EditAnywhere, Category = "Right Arm")
+	FBoneReference RightUpperArm;*/
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
-	FPoseLink ReferencePose;
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference LeftHand;
+
+	UPROPERTY(EditAnywhere, Category = "Bone References")
+	FBoneReference Head;
+
+	/*UPROPERTY(EditAnywhere, Category = "Left Arm")
+	FBoneReference LeftLowerArm;
+	
+	UPROPERTY(EditAnywhere, Category = "Left Arm")
+	FBoneReference LeftUpperArm;*/
+
+	// Cached arm bones
+	int32 RightLowerArmIndex = INDEX_NONE;
+	int32 RightUpperArmIndex = INDEX_NONE;
+	
+	int32 LeftLowerArmIndex = INDEX_NONE;
+	int32 LeftUpperArmIndex = INDEX_NONE;
+
+	int32 CachedRightUpperArmParentBoneIndex = INDEX_NONE;
+	int32 CachedLeftUpperArmParentBoneIndex = INDEX_NONE;
+
+	//
+	// Configurations
+	//
 
 	// The aim rotation. The Zero-Rotator being forward
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault, DisplayName = "Aim Rotation"), Category = "Configurations")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Aim Rotation"), Category = "Configurations")
 	FRotator CameraRelativeRotation = FRotator::ZeroRotator;
 
-	// The weapon's origin / sights relative to the dominant-hand.
+	//
+	//	Arms IK
+	//
+
+	// The weapon's origin relative to the dominant-hand. This will set the weapon's pivot / translational point.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault, DisplayName = "Weapon Origin Relative to Dominant Hand"), Category = "Arms IK")
-	FTransform WeaponRelativeTransform;
+	FTransform OriginRelativeTransform;
+
+	// The weapon's sights transform relative to the weapon origin transform. Set this if planning on aiming.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Weapon Sights Relative to Weapon Origin"), Category = "Arms IK")
+	FTransform SightsRelativeTransform;
 
 	// The offset applied to the arms relative to the weapon. Does affect aiming and does affect joint position.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault), Category = "Arms IK")
@@ -38,49 +84,92 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_FPSArmsIK : public FAnimNode_Base
 	// position apply the same value to the RightJointLocationOffset and LeftJointLocationOffset pins).
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
 	FTransform CustomWeaponOffsetTransform;
+	
+	// Right joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value
+	// and outward horizontal displacement is affected by Max-Value). Specifying "Open" on a range-boundary means that
+	// range will not be clamped. "Inclusive" and "Exclusive" range-boundary specifiers have no difference.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Right Joint Offset Clamp"), Category = "Arms IK")
+	FJointClampConfig RightJointClamp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
-	FTransform RightHandAdditiveTransform;
+	// Left joint location offset clamping in joint-space (inward horizontal displacement is affected by Min-Value
+	// and outward horizontal displacement is affected by Max-Value). Specifying "Open" on a range-boundary means that
+	// range will not be clamped. "Inclusive" and "Exclusive" range-boundary specifiers have no difference.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Left Joint Offset Clamp"), Category = "Arms IK")
+	FJointClampConfig LeftJointClamp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
-	FTransform LeftHandAdditiveTransform;
-
-	// Applies an offset onto the right joint (elbow) relative to weapon.
+	// Applies an offset onto the right joint (elbow) in weapon space.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
 	FVector RightJointLocationOffset;
 
-	// Applies an offset onto the left joint (elbow) relative to weapon.
+	// Applies an offset onto the left joint (elbow) in weapon space.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
 	FVector LeftJointLocationOffset;
 
-	// The aiming weight used to interpolate between aiming and not aiming. 0 when not aiming, 1 when aiming.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0", ClampMax = "1"), Category = "Arms IK")
-	float AimingValue = 0.f;
+	//
+	// Custom Hand Placement
+	//
 
-	// The distance between the sights and the camera when aiming.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
-	float AimOffset = 18.f;
+	// The additive offset to apply to the right hand on-top of the passed-in animation-pose. Useful
+	// for things like fore-grips and re-adjusting the grip. In hand-space.
+	// WARNING: Additive still applied during montages. Must reset variable if that is not a desired side-effect.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Custom Hand Placement")
+	FTransform RightHandAdditiveTransform;
+
+	// The additive offset to apply to the left hand on-top of the passed-in animation-pose. Useful
+	// for things like fore-grips and re-adjusting the grip. In hand-space.
+	// WARNING: Additive still applied during montages. Must reset variable if that is not a desired side-effect.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Custom Hand Placement")
+	FTransform LeftHandAdditiveTransform;
+
+	// The amount the hand additive transform affects the joint position.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0", ClampMax = "1"), Category = "Custom Hand Placement")
+	float RightHandAdditiveJointInfluence = 0.2f;
+
+	// The amount the hand additive transform affects the joint position.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0", ClampMax = "1"), Category = "Custom Hand Placement")
+	float LeftHandAdditiveJointInfluence = 0.2f;
+
+	//
+	// Aiming
+	//
+
+	// The aiming weight used to interpolate between aiming and not aiming. 0 when not aiming, 1 when aiming.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0"), Category = "Aiming")
+	float AimingValue = 0.f;
 
 	// The amount aiming offsets the joint positions. 1 making the joint moving one-to-one with the
 	// weapon when aiming and 0 making the joints as stationary as possible when aiming.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Arms IK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, ClampMin = "0", ClampMax = "1"), Category = "Aiming")
 	float AimingJointInfluence = 0.5f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Arms IK Enabled"), Category = "Alpha")
-	bool bIKEnabled = true;
+	//
+	// Alpha
+	//
 
-	// Whether or not this node does anything
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault), Category = "Alpha")
+	// Weapon location blend weight. Does not affect aiming. Usually should not be modified.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Weapon Location Alpha"), Category = "Alpha")
+	float WeaponLocationAlpha = 1.f;
+
+	// Weapon rotation blend weight. Does not affect aiming. Usually should not be modified.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Weapon Rotation Alpha"), Category = "Alpha")
+	float WeaponRotationAlpha = 1.f;
+
+	// The arms blend-weight.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Arms IK Alpha", ClampMin = "0", ClampMax = "1"), Category = "Alpha")
+	float ArmsAlpha = 1.f;
+
+	// The joint clamping blend-weight. Can lower this to make the clamping less abrupt.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault, DisplayName = "Arms Joint Clamping Alpha", ClampMin = "0", ClampMax = "1"), Category = "Alpha")
+	float ArmsJointAlpha = 1.f;
+
+	// This node's blend weight.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinShownByDefault, ClampMin = "0", ClampMax = "1"), Category = "Alpha")
 	float Alpha = 1.f;
 
-	// IK arms location blend weight. Does not affect aiming.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Alpha")
-	float LocationAlpha = 1.f;
+	//
+	// Configurations
+	//
 
-	// IK arms rotation blend weight. Does not affect aiming.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (PinHiddenByDefault), Category = "Alpha")
-	float RotationAlpha = 1.f;
-	
 	// The camera's relative location to it's attachment onto the head
 	UPROPERTY(EditAnywhere, Category = "Configurations")
 	FVector CameraRelativeLocation;
@@ -97,34 +186,10 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_FPSArmsIK : public FAnimNode_Base
 	UPROPERTY(EditAnywhere, Meta = (DisplayName = "Non-Dominant Arm Extension Threshold", ClampMin = "0", ClampMax = "1"), Category = "Configurations")
 	float MaxExtension = 0.95f;
 
-	UPROPERTY(EditAnywhere, Category = "Head")
-	FBoneReference Head;
+	UPROPERTY(EditAnywhere, Meta = (EditCondition = "MaxExtension < 1", DisplayName = "Arm Pull-Back Configuration"), Category = "Configurations")
+	FArmPullbackConfig ArmPullbackConfig;
 	
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightHand;
 
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightLowerArm;
-
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightUpperArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftHand;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftLowerArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftUpperArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Stable Bone")
-	FBoneReference StableBone;
-
-	int32 CachedRightUpperArmParentBoneIndex;
-	int32 CachedLeftUpperArmParentBoneIndex;
-	
- 
 	// FAnimNode_Base interface
 	virtual void Initialize_AnyThread(const FAnimationInitializeContext& Context) override;
 	virtual void CacheBones_AnyThread(const FAnimationCacheBonesContext& Context) override;
@@ -134,6 +199,16 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_FPSArmsIK : public FAnimNode_Base
 	// End of FAnimNode_Base interface
 
 	bool CanEvaluate() const;
+
+	//static void SortBones(TArray<FBoneTransform>& OutBoneTransforms);
+
+private:
+	template<typename T>
+	static void ClampRange(T& InOutValue, const FFloatRange& Range)
+	{
+		InOutValue = FMath::Clamp<T>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
+			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
+	}
 };
 
 

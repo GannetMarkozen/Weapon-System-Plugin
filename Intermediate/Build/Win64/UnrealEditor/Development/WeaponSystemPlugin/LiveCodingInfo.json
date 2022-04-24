@@ -3,6 +3,8 @@
 	{
 		"Module.WeaponSystemPlugin.cpp.obj": [
 			"WeaponSystemPlugin.cpp.obj",
+			"AttributesComponent.cpp.obj",
+			"Effect.cpp.obj",
 			"WeaponSystemAnimInstance.cpp.obj",
 			"ShooterCharacterBase.cpp.obj",
 			"TrueFPSCharacter.cpp.obj",
@@ -30,8 +32,10 @@
 		],
 		"Module.WeaponSystemPlugin.gen.1_of_3.cpp.obj": [
 			"AimingScript.gen.cpp.obj",
+			"AttributesComponent.gen.cpp.obj",
 			"CharacterInventoryComponent.gen.cpp.obj",
 			"CycleSightsScript.gen.cpp.obj",
+			"Effect.gen.cpp.obj",
 			"ForegripAttachment.gen.cpp.obj",
 			"Globals.gen.cpp.obj",
 			"HitscanScriptBase.gen.cpp.obj",

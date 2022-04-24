@@ -17,8 +17,6 @@ struct POLYSTRUCT_API FPolyStruct
 	FPolyStruct() = default;
 	FPolyStruct(const FPolyStruct& Other);
 	FPolyStruct(const void* InStruct, const UScriptStruct* InScriptStruct);
-	template<typename T>
-	FPolyStruct(T&& Struct) { SetStruct(&Struct, TBaseStructure<T>::Get()); }
 	~FPolyStruct();
 
 	// Factory function for making an FPolyStruct and initializing it from the Struct parameter
@@ -94,14 +92,51 @@ struct TStructOpsTypeTraits<FPolyStruct> : TStructOpsTypeTraitsBase2<FPolyStruct
 		WithCopy = true,
 		WithSerializer = true,
 		WithNetSerializer = true,
-		WithAddStructReferencedObjects = true,
 		WithIdenticalViaEquality = true,
+		WithAddStructReferencedObjects = true,
 	};
 };
 
 
+
+
+/*
+USTRUCT()
+struct POLYSTRUCT_API FPolyStructArrayProxy
+{
+	GENERATED_BODY()
+	
+	FORCEINLINE FPolyStructArrayProxy& operator=(const FPolyStructArrayProxy& Other) { PolyStructs = Other.PolyStructs; return *this; }
+	bool operator==(const FPolyStructArrayProxy& Other) const
+	{
+		if(Num() != Other.Num()) return false;
+		for(int32 i = 0; i < Num(); i++) if(PolyStructs[i] != Other.PolyStructs[i]) return false;
+		return true;
+	}
+
+	FORCEINLINE int32 Num() const { return PolyStructs.Num(); }
+
+	TArray<FPolyStruct> PolyStructs;
+};
+
+template<>
+struct TStructOpsTypeTraits<FPolyStructArrayProxy> : TStructOpsTypeTraitsBase2<FPolyStructArrayProxy>
+{
+	enum
+	{
+		WithCopy = true,
+		//WithSerializer = true,
+		WithNetSerializer = true,
+		WithIdenticalViaEquality = true,
+	};
+};*/
+
+
+
 /* An array of Poly Structs being passed around by-reference via Shared Pointers.
- * Avoids copying when being passed around in Blueprints. Supports net serialization
+ * Avoids copying when being passed around in Blueprints. Supports net serialization.
+ * Warning: Does not fully support dynamic replication (will not always update unless
+ * array size is changed or pointer is reassigned)
  */
 USTRUCT(BlueprintType, Meta = (DisplayName = "Polymorphic Struct Handle"))
 struct POLYSTRUCT_API FPolyStructHandle
@@ -109,20 +144,26 @@ struct POLYSTRUCT_API FPolyStructHandle
 	GENERATED_BODY()
 	
 	FPolyStructHandle() = default;
-	FPolyStructHandle(const FPolyStructHandle& Other) : PolyStructs(Other.PolyStructs) {}
+	FPolyStructHandle(const FPolyStructHandle& Other)
+	{
+		PolyStructs.SetNum(Other.Num());
+		for(int32 i = 0; i < Num(); i++) PolyStructs[i] = Other.PolyStructs[i].IsValid() ? MakeShared<FPolyStruct>(Other[i]) : TSharedPtr<FPolyStruct>();
+	}
 	FPolyStructHandle(const std::initializer_list<FPolyStruct>& PolyStructs) { *this = PolyStructs; }
 	explicit FPolyStructHandle(const FPolyStruct& PolyStruct) { Add(PolyStruct); }
 	explicit FPolyStructHandle(const TArray<FPolyStruct>& PolyStructs) { *this = PolyStructs; }
 
 	bool operator==(const FPolyStructHandle& Other) const;
 	FORCEINLINE bool operator!=(const FPolyStructHandle& Other) const { return !(*this == Other); }
-	FORCEINLINE FPolyStructHandle& operator=(const FPolyStructHandle& Other) { Empty(); PolyStructs = Other.PolyStructs; return *this; }
+
+	// Warning: Copies shared pointers. Will not share the same memory. Use SetShareWith to share the same memory
+	FPolyStructHandle& operator=(const FPolyStructHandle& Other);
 	FORCEINLINE FPolyStructHandle& operator=(const TArray<FPolyStruct>& InPolyStructs) { Empty(); for(const FPolyStruct& PolyStruct : InPolyStructs) { Add(PolyStruct); } return *this; }
 	FORCEINLINE FPolyStructHandle& operator=(const std::initializer_list<FPolyStruct>& InPolyStructs) { Empty(); for(const FPolyStruct& PolyStruct : InPolyStructs) { Add(PolyStruct); } return *this; }
 
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStruct& PolyStruct) { Add(PolyStruct); return *this; }
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStructHandle& Other) { Append(Other); return *this; }
-
+	
 	FORCEINLINE int32 Num() const { return PolyStructs.Num(); }
 	FORCEINLINE FPolyStruct& operator[](const int32 Index) { return *PolyStructs[Index].Get(); }
 	FORCEINLINE const FPolyStruct& operator[](const int32 Index) const { return *PolyStructs[Index].Get(); }
@@ -137,7 +178,7 @@ struct POLYSTRUCT_API FPolyStructHandle
 
 	FORCEINLINE void Empty() { PolyStructs.Empty(); }
 	FORCEINLINE bool IsEmpty() const { return PolyStructs.IsEmpty(); }
-	FORCEINLINE bool IsValidIndex(const int32 Index) const { return PolyStructs.IsValidIndex(Index) && PolyStructs[Index].IsValid(); }
+	FORCEINLINE bool IsValidIndex(const int32 Index) const { return PolyStructs.IsValidIndex(Index); }
 
 	// Returns valid pointer if Poly Struct exists at the index
 	FPolyStruct* GetAt(const int32 Index);
@@ -173,6 +214,7 @@ struct TStructOpsTypeTraits<FPolyStructHandle> : TStructOpsTypeTraitsBase2<FPoly
 		WithIdenticalViaEquality = true,
 	};
 };
+
 
 
 
@@ -242,27 +284,5 @@ namespace FPolyUtils
 }
 
 using namespace FPolyUtils;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

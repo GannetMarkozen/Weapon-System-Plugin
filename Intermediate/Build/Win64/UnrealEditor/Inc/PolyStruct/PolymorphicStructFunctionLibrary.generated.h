@@ -25,9 +25,9 @@ enum class EStructCastPin : uint8;
 	DECLARE_FUNCTION(execConv_PolyStructHandleToPolyStruct); \
 	DECLARE_FUNCTION(execLength); \
 	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execEmpty); \
+	DECLARE_FUNCTION(execEmptyPolyStructHandle); \
 	DECLARE_FUNCTION(execGetAtIndex); \
-	DECLARE_FUNCTION(execRemoveIndex); \
+	DECLARE_FUNCTION(execRemoveItem); \
 	DECLARE_FUNCTION(execAppendFromPolyHandle); \
 	DECLARE_FUNCTION(execAppendFromPolyArray); \
 	DECLARE_FUNCTION(execAdd); \
@@ -41,7 +41,7 @@ enum class EStructCastPin : uint8;
 	DECLARE_FUNCTION(execIsA); \
 	DECLARE_FUNCTION(execIsValidWithExecs); \
 	DECLARE_FUNCTION(execIsValid); \
-	DECLARE_FUNCTION(execInvalidate); \
+	DECLARE_FUNCTION(execEmptyPolyStruct); \
 	DECLARE_FUNCTION(execConv_PolyStructToBool); \
 	DECLARE_FUNCTION(execConv_PolyStructToString); \
 	DECLARE_FUNCTION(execConv_PolyStructToName); \
@@ -57,9 +57,9 @@ enum class EStructCastPin : uint8;
 	DECLARE_FUNCTION(execConv_PolyStructHandleToPolyStruct); \
 	DECLARE_FUNCTION(execLength); \
 	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execEmpty); \
+	DECLARE_FUNCTION(execEmptyPolyStructHandle); \
 	DECLARE_FUNCTION(execGetAtIndex); \
-	DECLARE_FUNCTION(execRemoveIndex); \
+	DECLARE_FUNCTION(execRemoveItem); \
 	DECLARE_FUNCTION(execAppendFromPolyHandle); \
 	DECLARE_FUNCTION(execAppendFromPolyArray); \
 	DECLARE_FUNCTION(execAdd); \
@@ -73,7 +73,7 @@ enum class EStructCastPin : uint8;
 	DECLARE_FUNCTION(execIsA); \
 	DECLARE_FUNCTION(execIsValidWithExecs); \
 	DECLARE_FUNCTION(execIsValid); \
-	DECLARE_FUNCTION(execInvalidate); \
+	DECLARE_FUNCTION(execEmptyPolyStruct); \
 	DECLARE_FUNCTION(execConv_PolyStructToBool); \
 	DECLARE_FUNCTION(execConv_PolyStructToString); \
 	DECLARE_FUNCTION(execConv_PolyStructToName); \
@@ -151,18 +151,18 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 template<> POLYSTRUCT_API UClass* StaticClass<class UPolyStructFunctionLibrary>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_RPC_WRAPPERS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_SPARSE_DATA
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execGetZeroIndex);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGetZeroIndex);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_INCLASS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPolyStructHack(); \
 	friend struct Z_Construct_UClass_UPolyStructHack_Statics; \
@@ -171,7 +171,7 @@ public: \
 	DECLARE_SERIALIZER(UPolyStructHack)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_INCLASS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_INCLASS \
 private: \
 	static void StaticRegisterNativesUPolyStructHack(); \
 	friend struct Z_Construct_UClass_UPolyStructHack_Statics; \
@@ -180,7 +180,7 @@ public: \
 	DECLARE_SERIALIZER(UPolyStructHack)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_STANDARD_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UPolyStructHack(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPolyStructHack) \
@@ -193,7 +193,7 @@ private: \
 public:
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_ENHANCED_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UPolyStructHack(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -206,25 +206,25 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPolyStructHack)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_376_PROLOG
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_GENERATED_BODY_LEGACY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_433_PROLOG
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_INCLASS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_STANDARD_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_RPC_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_INCLASS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_INCLASS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_379_ENHANCED_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_INCLASS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_436_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

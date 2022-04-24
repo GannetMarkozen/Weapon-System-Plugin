@@ -532,6 +532,7 @@ void UBPNode_PolyStructHandleAdd::ExpandNode(FKismetCompilerContext& CompilerCon
 	CompilerContext.MovePinLinksToIntermediate(*GetStructPin(), *Func->FindPin(TEXT("Struct"), EGPD_Input));
 	CompilerContext.MovePinLinksToIntermediate(*GetPolyPin(), *Func->FindPin(TEXT("PolyStructHandle"), EGPD_Input));
 	CompilerContext.MovePinLinksToIntermediate(*GetThenPin(), *Func->GetThenPin());
+	CompilerContext.MovePinLinksToIntermediate(*GetExecPin(), *Func->GetExecPin());
 	CompilerContext.MovePinLinksToIntermediate(*GetIndexPin(), *Func->GetReturnValuePin());
 	
 	BreakAllNodeLinks();

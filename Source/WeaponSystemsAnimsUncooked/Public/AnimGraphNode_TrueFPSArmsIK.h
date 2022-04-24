@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AnimGraphNode_TwoBoneIK.h"
-#include "AnimNode_TrueFPSArmsIK.h"
+#include "AnimNode_FPSArmsIK.h"
 #include "AnimGraphNode_TrueFPSArmsIK.generated.h"
 
 /**
@@ -16,7 +16,7 @@ class WEAPONSYSTEMANIMSUNCOOKED_API UAnimGraphNode_TrueFPSArmsIK : public UAnimG
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, Category = Settings)
-	FAnimNode_TrueFPSArmsIK Node;
+	FAnimNode_FPSArmsIK Node;
 	
 	virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override { return FText::FromString(TEXT("True FPS Arms IK")); }
 	virtual FText GetMenuCategory() const override { return FText::FromString(TEXT("Weapon System")); }
