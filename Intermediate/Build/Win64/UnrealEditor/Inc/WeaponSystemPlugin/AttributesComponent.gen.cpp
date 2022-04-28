@@ -13,11 +13,32 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent();
 	ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
-	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UEffect_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributeEffectBase_NoRegister();
+	POLYSTRUCT_API UScriptStruct* Z_Construct_UScriptStruct_FPolyStructHandle();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttribute();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
 // End Cross Module References
+	DEFINE_FUNCTION(UAttributesComponent::execFindAttributeByName)
+	{
+		P_GET_PROPERTY_REF(FNameProperty,Z_Param_Out_Name);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FAttributeHandle*)Z_Param__Result=P_THIS->FindAttributeByName(Z_Param_Out_Name);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAttributesComponent::execApplyEffect)
+	{
+		P_GET_OBJECT(UClass,Z_Param_Effect);
+		P_GET_STRUCT_REF(FPolyStructHandle,Z_Param_Out_Context);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ApplyEffect(Z_Param_Effect,Z_Param_Out_Context);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAttributesComponent::execOnRep_ActiveEffects)
 	{
-		P_GET_TARRAY_REF(UEffect*,Z_Param_Out_OldActiveEffects);
+		P_GET_TARRAY_REF(UAttributeEffectBase*,Z_Param_Out_OldActiveEffects);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->OnRep_ActiveEffects(Z_Param_Out_OldActiveEffects);
@@ -27,15 +48,153 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 	{
 		UClass* Class = UAttributesComponent::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "ApplyEffect", &UAttributesComponent::execApplyEffect },
+			{ "BP_MakeAttributeHandle", &UAttributesComponent::execBP_MakeAttributeHandle },
+			{ "FindAttributeByName", &UAttributesComponent::execFindAttributeByName },
 			{ "OnRep_ActiveEffects", &UAttributesComponent::execOnRep_ActiveEffects },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics
+	{
+		struct AttributesComponent_eventApplyEffect_Parms
+		{
+			TSubclassOf<UAttributeEffectBase>  Effect;
+			FPolyStructHandle Context;
+		};
+		static const UECodeGen_Private::FClassPropertyParams NewProp_Effect;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Context_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Context;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Effect = { "Effect", nullptr, (EPropertyFlags)0x0014000000000080, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventApplyEffect_Parms, Effect), Z_Construct_UClass_UAttributeEffectBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Context_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventApplyEffect_Parms, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Context_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Context_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Effect,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::NewProp_Context,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Attributes" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "ApplyEffect", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::AttributesComponent_eventApplyEffect_Parms), Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04420400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_ApplyEffect()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_ApplyEffect_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics
+	{
+		struct AttributesComponent_eventBP_MakeAttributeHandle_Parms
+		{
+			FAttribute Attribute;
+			FAttributeHandle ReturnValue;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Attribute;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::NewProp_Attribute = { "Attribute", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventBP_MakeAttributeHandle_Parms, Attribute), Z_Construct_UScriptStruct_FAttribute, METADATA_PARAMS(nullptr, 0) }; // 1994685381
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008008000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventBP_MakeAttributeHandle_Parms, ReturnValue), Z_Construct_UScriptStruct_FAttributeHandle, METADATA_PARAMS(nullptr, 0) }; // 4070662230
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::NewProp_Attribute,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::Function_MetaDataParams[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Attributes" },
+		{ "Comment", "// Creates an attribute handle from the attribute. Essentially allows passing the attribute by-reference\n" },
+		{ "CustomThunk", "true" },
+		{ "DisplayName", "Make Attribute Handle" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+		{ "ToolTip", "Creates an attribute handle from the attribute. Essentially allows passing the attribute by-reference" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "BP_MakeAttributeHandle", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::AttributesComponent_eventBP_MakeAttributeHandle_Parms), Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14440401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics
+	{
+		struct AttributesComponent_eventFindAttributeByName_Parms
+		{
+			FName Name;
+			FAttributeHandle ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Name_MetaData[];
+#endif
+		static const UECodeGen_Private::FNamePropertyParams NewProp_Name;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_Name_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_Name = { "Name", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventFindAttributeByName_Parms, Name), METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_Name_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_Name_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008008000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventFindAttributeByName_Parms, ReturnValue), Z_Construct_UScriptStruct_FAttributeHandle, METADATA_PARAMS(nullptr, 0) }; // 4070662230
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_Name,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Name" },
+		{ "Category", "Attributes" },
+		{ "Comment", "// Finds the attribute with this name. Returns an empty handle if invalid\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+		{ "ToolTip", "Finds the attribute with this name. Returns an empty handle if invalid" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "FindAttributeByName", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::AttributesComponent_eventFindAttributeByName_Parms), Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_FindAttributeByName()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_FindAttributeByName_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects_Statics
 	{
 		struct AttributesComponent_eventOnRep_ActiveEffects_Parms
 		{
-			TArray<UEffect*> OldActiveEffects;
+			TArray<UAttributeEffectBase*> OldActiveEffects;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_OldActiveEffects_Inner;
 #if WITH_METADATA
@@ -48,7 +207,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects_Statics::NewProp_OldActiveEffects_Inner = { "OldActiveEffects", nullptr, (EPropertyFlags)0x0000000000080000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UEffect_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects_Statics::NewProp_OldActiveEffects_Inner = { "OldActiveEffects", nullptr, (EPropertyFlags)0x0000000000080000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UAttributeEffectBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects_Statics::NewProp_OldActiveEffects_MetaData[] = {
 		{ "EditInline", "true" },
@@ -101,7 +260,10 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributesComponent_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects, "OnRep_ActiveEffects" }, // 1219708445
+		{ &Z_Construct_UFunction_UAttributesComponent_ApplyEffect, "ApplyEffect" }, // 3583032559
+		{ &Z_Construct_UFunction_UAttributesComponent_BP_MakeAttributeHandle, "BP_MakeAttributeHandle" }, // 2406546854
+		{ &Z_Construct_UFunction_UAttributesComponent_FindAttributeByName, "FindAttributeByName" }, // 3897539412
+		{ &Z_Construct_UFunction_UAttributesComponent_OnRep_ActiveEffects, "OnRep_ActiveEffects" }, // 3520110077
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributesComponent_Statics::Class_MetaDataParams[] = {
@@ -113,7 +275,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAttributesComponent_Statics::NewProp_ActiveEffects_Inner = { "ActiveEffects", nullptr, (EPropertyFlags)0x00000000000a0008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UEffect_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAttributesComponent_Statics::NewProp_ActiveEffects_Inner = { "ActiveEffects", nullptr, (EPropertyFlags)0x00000000000a0008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UAttributeEffectBase_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributesComponent_Statics::NewProp_ActiveEffects_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
@@ -173,9 +335,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributesComponent, UAttributesComponent::StaticClass, TEXT("UAttributesComponent"), &Z_Registration_Info_UClass_UAttributesComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesComponent), 3814956210U) },
+		{ Z_Construct_UClass_UAttributesComponent, UAttributesComponent::StaticClass, TEXT("UAttributesComponent"), &Z_Registration_Info_UClass_UAttributesComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesComponent), 3351169171U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_4030224518(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_2694667703(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

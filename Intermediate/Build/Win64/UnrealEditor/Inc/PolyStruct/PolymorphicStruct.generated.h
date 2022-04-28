@@ -13,14 +13,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define POLYSTRUCT_PolymorphicStruct_generated_h
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_15_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_16_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPolyStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> POLYSTRUCT_API UScriptStruct* StaticStruct<struct FPolyStruct>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_111_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_116_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPolyStructHandle_Statics; \
 	static class UScriptStruct* StaticStruct();
 

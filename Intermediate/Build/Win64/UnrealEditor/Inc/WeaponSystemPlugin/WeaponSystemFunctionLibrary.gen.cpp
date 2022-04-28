@@ -172,76 +172,15 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 	{
 		UClass* Class = UWeaponSystemFunctionLibrary::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
-			{ "BindDelegate", &UWeaponSystemFunctionLibrary::execBindDelegate },
 			{ "CachedPoseSnapshotIsValid", &UWeaponSystemFunctionLibrary::execCachedPoseSnapshotIsValid },
 			{ "CachePoseSnapshot", &UWeaponSystemFunctionLibrary::execCachePoseSnapshot },
-			{ "ExecuteDelegate", &UWeaponSystemFunctionLibrary::execExecuteDelegate },
-			{ "ExecuteDelegateWithParams", &UWeaponSystemFunctionLibrary::execExecuteDelegateWithParams },
 			{ "GetAnimationSequenceAsPoseSnapshot", &UWeaponSystemFunctionLibrary::execGetAnimationSequenceAsPoseSnapshot },
 			{ "GetBoneTransformFromAnimationSequence", &UWeaponSystemFunctionLibrary::execGetBoneTransformFromAnimationSequence },
 			{ "GetCachedPoseSnapshot", &UWeaponSystemFunctionLibrary::execGetCachedPoseSnapshot },
 			{ "GetDefaultObject", &UWeaponSystemFunctionLibrary::execGetDefaultObject },
-			{ "IsDelegateBound", &UWeaponSystemFunctionLibrary::execIsDelegateBound },
 			{ "RemoveCachedPoseSnapshot", &UWeaponSystemFunctionLibrary::execRemoveCachedPoseSnapshot },
-			{ "UnbindDelegate", &UWeaponSystemFunctionLibrary::execUnbindDelegate },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
-	}
-	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics
-	{
-		struct WeaponSystemFunctionLibrary_eventBindDelegate_Parms
-		{
-			int32 Delegate;
-			int32 Event;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Delegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Delegate;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Event_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Event;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Delegate_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventBindDelegate_Parms, Delegate), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Delegate_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Event_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Event = { "Event", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventBindDelegate_Parms, Event), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Event_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Event_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Delegate,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::NewProp_Event,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Weapon System Function Library|Delegates" },
-		{ "CustomStructureParam", "Delegate,Event" },
-		{ "CustomThunk", "true" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "BindDelegate", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::WeaponSystemFunctionLibrary_eventBindDelegate_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate_Statics::FuncParams);
-		}
-		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_CachedPoseSnapshotIsValid_Statics
 	{
@@ -358,128 +297,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_CachePoseSnapshot_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics
-	{
-		struct WeaponSystemFunctionLibrary_eventExecuteDelegate_Parms
-		{
-			int32 Delegate;
-			bool ReturnValue;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Delegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Delegate;
-		static void NewProp_ReturnValue_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_Delegate_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventExecuteDelegate_Parms, Delegate), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_Delegate_MetaData)) };
-	void Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_ReturnValue_SetBit(void* Obj)
-	{
-		((WeaponSystemFunctionLibrary_eventExecuteDelegate_Parms*)Obj)->ReturnValue = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(WeaponSystemFunctionLibrary_eventExecuteDelegate_Parms), &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_Delegate,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Weapon System Function Library|Delegates" },
-		{ "CustomStructureParam", "Delegate" },
-		{ "CustomThunk", "true" },
-		{ "DisplayName", "Execute Delegate (No Params)" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "ExecuteDelegate", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::WeaponSystemFunctionLibrary_eventExecuteDelegate_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics
-	{
-		struct WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms
-		{
-			int32 Delegate;
-			int32 Parameters;
-			bool ReturnValue;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Delegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Delegate;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Parameters_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Parameters;
-		static void NewProp_ReturnValue_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Delegate_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms, Delegate), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Delegate_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Parameters_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Parameters = { "Parameters", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms, Parameters), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Parameters_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Parameters_MetaData)) };
-	void Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_ReturnValue_SetBit(void* Obj)
-	{
-		((WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms*)Obj)->ReturnValue = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms), &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Delegate,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_Parameters,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Weapon System Function Library|Delegates" },
-		{ "Comment", "// Executes if bound. Returns whether executed or not.\n" },
-		{ "CustomStructureParam", "Delegate,Parameters" },
-		{ "CustomThunk", "true" },
-		{ "DisplayName", "Execute Delegate (With Params)" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
-		{ "ToolTip", "Executes if bound. Returns whether executed or not." },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "ExecuteDelegateWithParams", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::WeaponSystemFunctionLibrary_eventExecuteDelegateWithParams_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -756,59 +573,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics
-	{
-		struct WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms
-		{
-			int32 Delegate;
-			bool ReturnValue;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Delegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Delegate;
-		static void NewProp_ReturnValue_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_Delegate_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms, Delegate), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_Delegate_MetaData)) };
-	void Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_ReturnValue_SetBit(void* Obj)
-	{
-		((WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms*)Obj)->ReturnValue = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms), &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_Delegate,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Weapon System Function Library|Delegates" },
-		{ "CustomStructureParam", "Delegate" },
-		{ "CustomThunk", "true" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "IsDelegateBound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::WeaponSystemFunctionLibrary_eventIsDelegateBound_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_RemoveCachedPoseSnapshot_Statics
 	{
 		struct WeaponSystemFunctionLibrary_eventRemoveCachedPoseSnapshot_Parms
@@ -866,50 +630,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics
-	{
-		struct WeaponSystemFunctionLibrary_eventUnbindDelegate_Parms
-		{
-			int32 Delegate;
-		};
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Delegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Delegate;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::NewProp_Delegate_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(WeaponSystemFunctionLibrary_eventUnbindDelegate_Parms, Delegate), METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::NewProp_Delegate_MetaData)) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::NewProp_Delegate,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::Function_MetaDataParams[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Weapon System Function Library|Delegates" },
-		{ "CustomStructureParam", "Delegate" },
-		{ "CustomThunk", "true" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/WeaponSystemFunctionLibrary.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWeaponSystemFunctionLibrary, nullptr, "UnbindDelegate", nullptr, nullptr, sizeof(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::WeaponSystemFunctionLibrary_eventUnbindDelegate_Parms), Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04482401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWeaponSystemFunctionLibrary);
 	UClass* Z_Construct_UClass_UWeaponSystemFunctionLibrary_NoRegister()
 	{
@@ -930,18 +650,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UWeaponSystemFunctionLibrary_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_BindDelegate, "BindDelegate" }, // 3645808859
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_CachedPoseSnapshotIsValid, "CachedPoseSnapshotIsValid" }, // 3782381205
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_CachePoseSnapshot, "CachePoseSnapshot" }, // 2381678281
-		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegate, "ExecuteDelegate" }, // 96699461
-		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_ExecuteDelegateWithParams, "ExecuteDelegateWithParams" }, // 1017625590
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetAnimationSequenceAsPoseSnapshot, "GetAnimationSequenceAsPoseSnapshot" }, // 3210586264
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetBoneTransformFromAnimationSequence, "GetBoneTransformFromAnimationSequence" }, // 696949727
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetCachedPoseSnapshot, "GetCachedPoseSnapshot" }, // 1609293566
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_GetDefaultObject, "GetDefaultObject" }, // 1531005855
-		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_IsDelegateBound, "IsDelegateBound" }, // 3655323258
 		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_RemoveCachedPoseSnapshot, "RemoveCachedPoseSnapshot" }, // 404287591
-		{ &Z_Construct_UFunction_UWeaponSystemFunctionLibrary_UnbindDelegate, "UnbindDelegate" }, // 141766567
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponSystemFunctionLibrary_Statics::Class_MetaDataParams[] = {
@@ -990,9 +705,9 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemFunctionLibrary() {}
 		{ EBoneSpaceTransform_StaticEnum, TEXT("EBoneSpaceTransform"), &Z_Registration_Info_UEnum_EBoneSpaceTransform, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1195272254U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UWeaponSystemFunctionLibrary, UWeaponSystemFunctionLibrary::StaticClass, TEXT("UWeaponSystemFunctionLibrary"), &Z_Registration_Info_UClass_UWeaponSystemFunctionLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponSystemFunctionLibrary), 2179941578U) },
+		{ Z_Construct_UClass_UWeaponSystemFunctionLibrary, UWeaponSystemFunctionLibrary::StaticClass, TEXT("UWeaponSystemFunctionLibrary"), &Z_Registration_Info_UClass_UWeaponSystemFunctionLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponSystemFunctionLibrary), 2808580965U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_924633538(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_2544077722(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_WeaponSystemFunctionLibrary_h_Statics::EnumInfo));

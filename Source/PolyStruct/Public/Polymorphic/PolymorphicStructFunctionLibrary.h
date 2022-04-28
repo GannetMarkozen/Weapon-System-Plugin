@@ -374,8 +374,39 @@ public:
 
 	// Casts each Poly Struct and returns all valid casts as an array of Structs. Success if array is not empty. Use sparingly to avoid excessive casting and copying
 	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (ArrayParm = "OutArray", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "GET ARRAY"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static void CastArray(const FPolyStructHandle& PolyStructHandle, TArray<int32>& OutArray, EStructCastPin& OutPin);
-	static FORCEINLINE void execCastArray(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractArray(Context, Stack, RESULT_PARAM); }
+	static void GetArray(const FPolyStructHandle& PolyStructHandle, TArray<int32>& OutArray, EStructCastPin& OutPin);
+	static FORCEINLINE void execGetArray(UObject* Context, FFrame& Stack, void* const RESULT_PARAM) { execExtractArray(Context, Stack, RESULT_PARAM); }
+
+	// Searches the poly struct handle for any struct of the specified type and returns the first valid type along with it's index, (-1 otherwise)
+	UFUNCTION(BlueprintCallable, CustomThunk, Meta = (CustomStructureParam = "OutStruct", ExpandEnumAsExecs = "OutPin", CompactNodeTitle = "GET ANY"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static void GetAny(const FPolyStructHandle& PolyStructHandle, int32& OutStruct, int32& OutIndex, EStructCastPin& OutPin);
+	DECLARE_FUNCTION(execGetAny)
+	{
+		const FPolyStructHandle& Handle = GetPolyStructHandle(Stack);
+		void* Struct; FStructProperty* StructProp;
+		GetCustomStructParam(Stack, Struct, StructProp);
+		EStructCastPin& OutPin = GetStructCastPin(Stack);
+		Stack.StepCompiledIn<FIntProperty>(nullptr);
+		int32& OutIndex = *(int32*)Stack.MostRecentPropertyAddress = INDEX_NONE;
+		P_FINISH
+		if(!ValidateCustomStructParam(Stack, StructProp)) return;
+		P_NATIVE_BEGIN
+
+		for(int32 i = 0; i < Handle.Num(); i++)
+		{
+			const FPolyStruct* PolyStruct = Handle.GetAt(i);
+			if(!PolyStruct || !PolyStruct->IsA(StructProp->Struct)) continue;
+			
+			PolyStruct->ExtractStruct(Struct, StructProp->Struct);
+			OutPin = EStructCastPin::Success;
+			OutIndex = i;
+			return;
+		}
+
+		OutPin = EStructCastPin::Fail;
+		
+		P_NATIVE_END
+	}
 
 	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "REMOVE ITEM"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE void RemoveItem(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32 Index) { if(PolyStructHandle.IsValidIndex(Index)) PolyStructHandle.PolyStructs.RemoveAt(Index, 1, true); }

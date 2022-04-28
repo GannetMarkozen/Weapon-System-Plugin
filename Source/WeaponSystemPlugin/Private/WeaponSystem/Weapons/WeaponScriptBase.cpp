@@ -73,7 +73,8 @@ void UWeaponScriptBase::OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterIn
 {
 	BP_OwningWeaponUnequipped(Inventory);
 	
-	if(OwningWeaponBase->IsLocallyControlled())
+	//if(OwningWeaponBase->IsLocallyControlled())
+	if(Inventory->IsLocallyControlled())
 	{
 		if(UInputComponent* const InputComponent = GetInputComponentFromInventory(Inventory))
 		{

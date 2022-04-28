@@ -54,8 +54,13 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weapon.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponscript.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\aimingscript.generated.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\attribute.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\attributesystem\\attribute.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\attribute.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\attributescomponent.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\attributesystem\\attributescomponent.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstruct.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\attributescomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\characterinventorycomponent.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\cyclesightsscript.gen.cpp",
@@ -220,10 +225,7 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\private\\weaponsystem\\weapons\\attachments\\poseablehandcomponent.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\poseablehandcomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\replicatedobject.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\scriptbase.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\setupattachmentsscriptbase.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\scripts\\setupattachmentsscriptbase.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\setupattachmentsscriptbase.generated.h"
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\scriptbase.gen.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

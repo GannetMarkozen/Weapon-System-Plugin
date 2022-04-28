@@ -18,7 +18,7 @@ public:
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Script|Hitscan")
 	bool CanHitscan() const;
-	virtual FORCEINLINE bool CanHitscan_Implementation() const { return true; }
+	virtual FORCEINLINE bool CanHitscan_Implementation() const { return IsValid(GetOwningCharacter()); }
 	
 	UFUNCTION(BlueprintCallable, Category = "Script|Hitscan")
 	virtual void Hitscan();

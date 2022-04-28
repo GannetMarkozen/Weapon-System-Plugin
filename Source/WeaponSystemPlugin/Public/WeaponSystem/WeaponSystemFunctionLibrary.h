@@ -329,7 +329,7 @@ protected:
 	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Class", DeterminesOutputType = "Class", AllowPrivateAccess = "true"), Category = "Weapon System Function Library")
 	static FORCEINLINE class UObject* GetDefaultObject(const TSubclassOf<class UObject>& Class) { return Class ? Class->GetDefaultObject() : nullptr; }
 	
-	UFUNCTION(BlueprintCallable, CustomThunk, meta = (CustomStructureParam = "Delegate,Event", AllowPrivateAccess = "true"), Category = "Weapon System Function Library|Delegates")
+	/*UFUNCTION(BlueprintCallable, CustomThunk, meta = (CustomStructureParam = "Delegate,Event", AllowPrivateAccess = "true"), Category = "Weapon System Function Library|Delegates")
 	static FORCEINLINE void BindDelegate(const int32& Delegate, const int32& Event);
 	static FORCEINLINE void execBindDelegate(UObject* Context, FFrame& Stack, void* const RESULT_PARAM)
 	{

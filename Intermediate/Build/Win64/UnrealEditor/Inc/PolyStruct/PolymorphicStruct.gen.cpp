@@ -37,10 +37,10 @@ template<> POLYSTRUCT_API UScriptStruct* StaticStruct<FPolyStruct>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPolyStruct_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-		{ "Comment", "/* A polymorphic struct that can store any USTRUCT and be casted to\n * or extracted back into it's original type. Supports net serialization\n */" },
+		{ "Comment", "/*\n * A polymorphic struct that can store any USTRUCT and can be casted to\n * or extracted back into it's original type. Supports dynamic net serialization\n */" },
 		{ "DisplayName", "Polymorphic Struct" },
 		{ "ModuleRelativePath", "Public/Polymorphic/PolymorphicStruct.h" },
-		{ "ToolTip", "A polymorphic struct that can store any USTRUCT and be casted to\n* or extracted back into it's original type. Supports net serialization" },
+		{ "ToolTip", "* A polymorphic struct that can store any USTRUCT and can be casted to\n* or extracted back into it's original type. Supports dynamic net serialization" },
 	};
 #endif
 	void* Z_Construct_UScriptStruct_FPolyStruct_Statics::NewStructOps()
@@ -92,10 +92,10 @@ template<> POLYSTRUCT_API UScriptStruct* StaticStruct<FPolyStructHandle>()
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPolyStructHandle_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-		{ "Comment", "/* An array of Poly Structs being passed around by-reference via Shared Pointers.\n * Avoids copying when being passed around in Blueprints. Supports net serialization\n */" },
+		{ "Comment", "/*\n * An array of Poly Structs being passed around by-reference via Shared Pointers.\n * Avoids copying when being passed around (including Blueprints). Supports net serialization.\n * Warning: Does not fully support dynamic replication (will not always update unless\n * array size is changed or pointer is reassigned. It's preferable to use a standard\n * array of Poly Structs in that case anyways, which will update properly)\n */" },
 		{ "DisplayName", "Polymorphic Struct Handle" },
 		{ "ModuleRelativePath", "Public/Polymorphic/PolymorphicStruct.h" },
-		{ "ToolTip", "An array of Poly Structs being passed around by-reference via Shared Pointers.\n* Avoids copying when being passed around in Blueprints. Supports net serialization" },
+		{ "ToolTip", "* An array of Poly Structs being passed around by-reference via Shared Pointers.\n* Avoids copying when being passed around (including Blueprints). Supports net serialization.\n* Warning: Does not fully support dynamic replication (will not always update unless\n* array size is changed or pointer is reassigned. It's preferable to use a standard\n* array of Poly Structs in that case anyways, which will update properly)" },
 	};
 #endif
 	void* Z_Construct_UScriptStruct_FPolyStructHandle_Statics::NewStructOps()
@@ -128,10 +128,10 @@ template<> POLYSTRUCT_API UScriptStruct* StaticStruct<FPolyStructHandle>()
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_Statics::ScriptStructInfo[] = {
-		{ FPolyStruct::StaticStruct, Z_Construct_UScriptStruct_FPolyStruct_Statics::NewStructOps, TEXT("PolyStruct"), &Z_Registration_Info_UScriptStruct_PolyStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPolyStruct), 2220685724U) },
-		{ FPolyStructHandle::StaticStruct, Z_Construct_UScriptStruct_FPolyStructHandle_Statics::NewStructOps, TEXT("PolyStructHandle"), &Z_Registration_Info_UScriptStruct_PolyStructHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPolyStructHandle), 3562369970U) },
+		{ FPolyStruct::StaticStruct, Z_Construct_UScriptStruct_FPolyStruct_Statics::NewStructOps, TEXT("PolyStruct"), &Z_Registration_Info_UScriptStruct_PolyStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPolyStruct), 279423337U) },
+		{ FPolyStructHandle::StaticStruct, Z_Construct_UScriptStruct_FPolyStructHandle_Statics::NewStructOps, TEXT("PolyStructHandle"), &Z_Registration_Info_UScriptStruct_PolyStructHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPolyStructHandle), 2436832372U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_3820629838(TEXT("/Script/PolyStruct"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_2122432117(TEXT("/Script/PolyStruct"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_Statics::ScriptStructInfo),
 		nullptr, 0);

@@ -6,8 +6,9 @@
 #include "UObject/Object.h"
 #include "PolymorphicStruct.generated.h"
 
-/* A polymorphic struct that can store any USTRUCT and be casted to
- * or extracted back into it's original type. Supports net serialization
+/*
+ * A polymorphic struct that can store any USTRUCT and can be casted to
+ * or extracted back into it's original type. Supports dynamic net serialization
  */
 USTRUCT(BlueprintType, Meta = (DisplayName = "Polymorphic Struct"))
 struct POLYSTRUCT_API FPolyStruct
@@ -100,43 +101,14 @@ struct TStructOpsTypeTraits<FPolyStruct> : TStructOpsTypeTraitsBase2<FPolyStruct
 
 
 
+
+
 /*
-USTRUCT()
-struct POLYSTRUCT_API FPolyStructArrayProxy
-{
-	GENERATED_BODY()
-	
-	FORCEINLINE FPolyStructArrayProxy& operator=(const FPolyStructArrayProxy& Other) { PolyStructs = Other.PolyStructs; return *this; }
-	bool operator==(const FPolyStructArrayProxy& Other) const
-	{
-		if(Num() != Other.Num()) return false;
-		for(int32 i = 0; i < Num(); i++) if(PolyStructs[i] != Other.PolyStructs[i]) return false;
-		return true;
-	}
-
-	FORCEINLINE int32 Num() const { return PolyStructs.Num(); }
-
-	TArray<FPolyStruct> PolyStructs;
-};
-
-template<>
-struct TStructOpsTypeTraits<FPolyStructArrayProxy> : TStructOpsTypeTraitsBase2<FPolyStructArrayProxy>
-{
-	enum
-	{
-		WithCopy = true,
-		//WithSerializer = true,
-		WithNetSerializer = true,
-		WithIdenticalViaEquality = true,
-	};
-};*/
-
-
-
-/* An array of Poly Structs being passed around by-reference via Shared Pointers.
- * Avoids copying when being passed around in Blueprints. Supports net serialization.
+ * An array of Poly Structs being passed around by-reference via Shared Pointers.
+ * Avoids copying when being passed around (including Blueprints). Supports net serialization.
  * Warning: Does not fully support dynamic replication (will not always update unless
- * array size is changed or pointer is reassigned)
+ * array size is changed or pointer is reassigned. It's preferable to use a standard
+ * array of Poly Structs in that case anyways, which will update properly)
  */
 USTRUCT(BlueprintType, Meta = (DisplayName = "Polymorphic Struct Handle"))
 struct POLYSTRUCT_API FPolyStructHandle
@@ -144,11 +116,7 @@ struct POLYSTRUCT_API FPolyStructHandle
 	GENERATED_BODY()
 	
 	FPolyStructHandle() = default;
-	FPolyStructHandle(const FPolyStructHandle& Other)
-	{
-		PolyStructs.SetNum(Other.Num());
-		for(int32 i = 0; i < Num(); i++) PolyStructs[i] = Other.PolyStructs[i].IsValid() ? MakeShared<FPolyStruct>(Other[i]) : TSharedPtr<FPolyStruct>();
-	}
+	FPolyStructHandle(const FPolyStructHandle& Other) : PolyStructs(Other.PolyStructs) {}
 	FPolyStructHandle(const std::initializer_list<FPolyStruct>& PolyStructs) { *this = PolyStructs; }
 	explicit FPolyStructHandle(const FPolyStruct& PolyStruct) { Add(PolyStruct); }
 	explicit FPolyStructHandle(const TArray<FPolyStruct>& PolyStructs) { *this = PolyStructs; }

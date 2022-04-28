@@ -22,15 +22,15 @@ FPolyStruct::~FPolyStruct()
 
 bool FPolyStruct::operator==(const FPolyStruct& Other) const
 {
-	if(!IsValid() && !Other.IsValid()) return true;
-	if(ScriptStruct != Other.ScriptStruct) return false;
-	if(ScriptStruct->GetCppStructOps()->HasIdentical())
+	if(!IsValid() && !Other.IsValid()) return true;// Both invalid
+	if(ScriptStruct != Other.ScriptStruct) return false;// Not the same type or one is invalid
+	if(ScriptStruct->GetCppStructOps()->HasIdentical())// Check data for validity
 	{
-		bool bIdentical;
-		ScriptStruct->GetCppStructOps()->Identical(GetMemory(), Other.GetMemory(), PPF_None, bIdentical);
-		return bIdentical;
+		bool bOutIdentical;
+		ScriptStruct->GetCppStructOps()->Identical(GetMemory(), Other.GetMemory(), PPF_None, bOutIdentical);
+		return bOutIdentical;
 	}
-	
+	// Memory compare if no Has Identical
 	return FMemory::Memcmp(Memory, Other.Memory, GetSize()) == 0;
 }
 
@@ -48,8 +48,9 @@ void FPolyStruct::SetStruct(const void* InStruct, const UScriptStruct* InScriptS
 
 void FPolyStruct::SetStruct(const UScriptStruct* InScriptStruct)
 {
-	if(!InScriptStruct) return;
 	Empty();
+	if(!InScriptStruct) return;
+	
 	ScriptStruct = (UScriptStruct*)InScriptStruct;
 	Memory = (uint8*)FMemory::Malloc(ScriptStruct->GetStructureSize());
 	ScriptStruct->InitializeStruct(Memory);
@@ -58,7 +59,15 @@ void FPolyStruct::SetStruct(const UScriptStruct* InScriptStruct)
 bool FPolyStruct::ExtractStruct(void* const OutStruct, const UScriptStruct* InScriptStruct) const
 {
 	if(!IsValid() || !IsA(InScriptStruct)) return false;
-	FMemory::Memcpy(OutStruct, Memory, InScriptStruct->GetStructureSize());
+	if(InScriptStruct->GetCppStructOps()->HasCopy())
+	{
+		InScriptStruct->GetCppStructOps()->Copy(OutStruct, Memory, 1);
+	}
+	else
+	{
+		FMemory::Memcpy(OutStruct, Memory, InScriptStruct->GetStructureSize());
+	}
+	
 	return true;
 }
 
@@ -191,16 +200,17 @@ bool FPolyStructHandle::operator==(const FPolyStructHandle& Other) const
 		if(PolyStructs[i].IsValid() != Other.PolyStructs[i].IsValid() ||
 			PolyStructs[i].IsValid() && Other.PolyStructs[i].IsValid() &&
 				(*this)[i] != Other[i]) return false;
-	for(int32 i = 0; i < Num(); i++)
+	/*for(int32 i = 0; i < Num(); i++)
 		if(const auto* ThisVec = Cast<FVector>((*this)[i]))
 			if(const auto* OtherVec = Cast<FVector>(Other[i]))
-				UE_LOG(LogTemp, Warning, TEXT("ThisVec == %s. OtherVec == %s"), *ThisVec->ToString(), *OtherVec->ToString());
+				UE_LOG(LogTemp, Warning, TEXT("ThisVec == %s. OtherVec == %s"), *ThisVec->ToString(), *OtherVec->ToString());*/
 	
 	return true;
 }
 
 FPolyStructHandle& FPolyStructHandle::operator=(const FPolyStructHandle& Other)
 {
+	PolyStructs = Other.PolyStructs; return *this;
 	PolyStructs.SetNum(Other.Num());
 	for(int32 i = 0; i < Num(); i++)
 		PolyStructs[i] = Other.PolyStructs[i].IsValid() ? MakeShared<FPolyStruct>(Other[i]) : TSharedPtr<FPolyStruct>();
