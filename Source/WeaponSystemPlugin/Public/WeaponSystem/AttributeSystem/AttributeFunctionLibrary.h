@@ -20,11 +20,36 @@ class WEAPONSYSTEMPLUGIN_API UAttributeFunctionLibrary : public UBlueprintFuncti
 {
 	GENERATED_BODY()
 public:
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Attributes")
-	static UPARAM(ref) FAttributeHandle Conv_AttributeToAttributeHandle(UPARAM(ref) FAttribute& Attribute) { return Attribute.GetHandle(); }
-	
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Attributes")
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute to Attribute Handle"), Category = "Weapon System Function Library|Attributes")
+	static FAttributeHandle Conv_AttributeToAttributeHandle(const FAttribute& Attribute) { return Attribute.GetHandle(); }
+
+	// Warning: Copies attribute. Not direct reference
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute Handle to Attribute"), Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE FAttribute Conv_AttributeHandleToAttribute(const FAttributeHandle& AttributeHandle) { return AttributeHandle.IsValid() ? *AttributeHandle.Get() : FAttribute(); }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute to String"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE FString Conv_AttributeToString(const FAttribute& Attribute) { return Attribute.GetName(); }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute to Name"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE FName Conv_AttributeToName(const FAttribute& Attribute) { return Attribute.GetFName(); }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute Handle to String"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE FString Conv_AttributeHandleToString(const FAttributeHandle& Handle) { return Handle.GetUProperty() ? Handle.GetUProperty()->GetName() : FString(); }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Convert Attribute Handle to Name"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE FName Conv_AttributeHandleToName(const FAttributeHandle& Handle) { return Handle.GetUProperty() ? Handle.GetUProperty()->GetFName() : NAME_None; }
+
+	
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "=="), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE bool AttributeHandleEquals(const FAttributeHandle& A, const FAttributeHandle& B) { return A == B; }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "!=", DisplayName = "Attribute Handle Equals NOT"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE bool AttributeHandleEqualsNOT(const FAttributeHandle& A, const FAttributeHandle& B) { return !(A == B); }
+	
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", DisplayName = "Get Attribute Handle From Attribute"), Category = "Weapon System Function Library|Attributes")
+	static UPARAM(ref) FAttributeHandle& GetAttributeHandleFromAttribute(UPARAM(ref) FAttribute& Attribute) { return Attribute.GetHandle(); }
 
 	// Gets the value of the Attribute. 0 if invalid reference.
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")

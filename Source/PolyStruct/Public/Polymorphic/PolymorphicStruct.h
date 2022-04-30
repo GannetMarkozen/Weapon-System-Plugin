@@ -204,8 +204,8 @@ namespace FPolyUtils
 	template<typename To>
 	FORCEINLINE To* Cast(FPolyStruct* PolyStruct) { return PolyStruct ? PolyStruct->Get<To>() : nullptr; }
 
-#define LOG_FAIL {if(!PolyStruct.IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct.GetScriptStruct() ? PolyStruct.GetScriptStruct()->GetName() : "None"), *To::StaticStruct()->GetName());}
-#define LOG_FAIL_PTR {if(!PolyStruct || !PolyStruct->IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct && PolyStruct->GetScriptStruct() ? PolyStruct->GetScriptStruct()->GetName() : "None"), *To::StaticStruct()->GetName());}
+#define LOG_FAIL {if(!PolyStruct.IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct.GetScriptStruct() ? PolyStruct.GetScriptStruct()->GetFName() : "None"), *To::StaticStruct()->GetFName());}
+#define LOG_FAIL_PTR {if(!PolyStruct || !PolyStruct->IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct && PolyStruct->GetScriptStruct() ? PolyStruct->GetScriptStruct()->GetFName() : "None"), *To::StaticStruct()->GetFName());}
 	
 	// Asserts on a failed cast
 	template<typename To>

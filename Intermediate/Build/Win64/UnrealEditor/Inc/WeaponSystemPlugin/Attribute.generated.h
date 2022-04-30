@@ -21,7 +21,7 @@ struct FAttributeHandle;
 
 template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeHandle>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_54_DELEGATE \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_74_DELEGATE \
 struct _Script_WeaponSystemPlugin_eventAttributeValueChangedDelegate_Parms \
 { \
 	float NewValue; \
@@ -39,7 +39,7 @@ static inline void FAttributeValueChangedDelegate_DelegateWrapper(const FMultica
 }
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_55_DELEGATE \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_75_DELEGATE \
 struct _Script_WeaponSystemPlugin_eventAttributeValueChangedUniDelegate_Parms \
 { \
 	float NewValue; \
@@ -57,7 +57,7 @@ static inline void FAttributeValueChangedUniDelegate_DelegateWrapper(const FScri
 }
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_60_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_80_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAttribute_Statics; \
 	static class UScriptStruct* StaticStruct();
 

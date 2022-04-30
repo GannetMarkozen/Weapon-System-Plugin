@@ -6,6 +6,41 @@
 #include "WeaponSystem/AttributeSystem/AttributesComponent.h"
 
 
+bool FAttributeHandle::operator==(const FAttribute& Attribute) const
+{
+	return *this == Attribute.GetHandle();
+}
+
+bool FAttributeHandle::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
+{
+	FName PropName;
+	if(Ar.IsSaving())
+		PropName = GetFName();
+
+	// Replicate the property via FName because replication
+	// via ptr doesn't work for UProperties
+	Ar << Owner << PropName;
+
+	if(Ar.IsLoading())
+	{
+		if(PropName == NAME_None || !Owner.IsValid())
+		{
+			AttributeProp = nullptr;
+		}
+		else
+		{
+			AttributeProp = Owner->GetClass()->FindPropertyByName(PropName);
+		}
+	}
+	
+	return bOutSuccess = true;
+}
+
+/*
+ *
+ */
+
+
 bool FAttribute::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 {
 	if(Ar.IsSaving())
@@ -14,15 +49,9 @@ bool FAttribute::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 	}
 	else if(Ar.IsLoading())
 	{
-		const float OldValue = Value;
-		Ar << Value;
-		
-		if(Value != OldValue)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("%s: Value == %f. OldValue == %f"), *FString(GWorld && GWorld->GetNetMode() <= NM_ListenServer ? "SERVER" : "CLIENT"), Value, OldValue);
-			//OnAttributeChanged.Broadcast(Value, OldValue, Owner);
-			Broadcast(OldValue);
-		}
+		float NewValue;
+		Ar << NewValue;
+		SetValue(NewValue);
 	}
 
 	bOutSuccess = true;

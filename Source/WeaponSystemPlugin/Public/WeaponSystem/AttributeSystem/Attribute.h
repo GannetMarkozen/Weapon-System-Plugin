@@ -28,6 +28,9 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 	FORCEINLINE operator bool() const { return IsValid(); }
 	FORCEINLINE FAttribute* operator->() { return Get(); }
 	FORCEINLINE const FAttribute* operator->() const { return Get(); }
+
+	FORCEINLINE bool operator==(const FAttributeHandle& Other) const { return Owner == Other.Owner && AttributeProp == Other.AttributeProp; }
+	bool operator==(const FAttribute& Attribute) const;
 	
 	void Set(class UAttributesComponent* AttributesComponent, FProperty* AttributeProperty);
 	void Set(class UAttributesComponent* AttributesComponent, const FName& AttributeName);
@@ -40,12 +43,29 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 	FORCEINLINE UAttributesComponent* GetOwner() const { return Owner.Get(); }
 	FORCEINLINE FProperty* GetUProperty() const { return AttributeProp; }
 
+	FORCEINLINE FName GetFName() const { return AttributeProp ? AttributeProp->GetFName() : NAME_None; }
+	FORCEINLINE FString GetName() const { return AttributeProp ? AttributeProp->GetName() : FString(); }
+
+	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"))
 	TWeakObjectPtr<UAttributesComponent> Owner = nullptr;
 	
 	FProperty* AttributeProp = nullptr;
 };
+
+template<>
+struct TStructOpsTypeTraits<FAttributeHandle> : TStructOpsTypeTraitsBase2<FAttributeHandle>
+{
+	enum
+	{
+		WithCopy = true,
+		WithNetSerializer = true,
+		WithIdenticalViaEquality = true,
+	};
+};
+
 
 /**
  * 
@@ -76,15 +96,18 @@ public:
 	// Called whenever the attribute changes
 	FAttributeValueChangedDelegate OnAttributeChanged;
 	
-	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { Value = Other.Value; return *this; }
-	FORCEINLINE bool operator==(const FAttribute& Other) const { return Value == Other.Value; }
+	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { SetValue(Other.Value); Handle = Other.Handle; return *this; }
+	FORCEINLINE FAttribute& operator=(const float NewValue) { SetValue(NewValue); return *this; }
+	FORCEINLINE bool operator==(const FAttribute& Other) const { return Handle == Other.Handle && Value == Other.Value; }
+	FORCEINLINE bool operator==(const FAttributeHandle& OtherHandle) const { return Handle == OtherHandle; }
 
 	FORCEINLINE operator FAttributeHandle&() { return Handle; }
 	FORCEINLINE operator const FAttributeHandle&() const { return Handle; }
 
 	FORCEINLINE FAttributeHandle& GetHandle() { return Handle; }
 	FORCEINLINE const FAttributeHandle& GetHandle() const { return Handle; }
-	FORCEINLINE FName GetName() const { return Handle.IsValid() ? Handle->GetName() : NAME_None; }
+	FORCEINLINE FName GetFName() const { return Handle.GetFName(); }
+	FORCEINLINE FString GetName() const { return Handle.GetName(); }
 	FORCEINLINE UAttributesComponent* GetOwner() const { return Handle.IsValid() ? Handle->GetOwner() : nullptr; }
 	FORCEINLINE FProperty* GetUProperty() const { return Handle.IsValid() ? Handle->GetUProperty() : nullptr; }
 	

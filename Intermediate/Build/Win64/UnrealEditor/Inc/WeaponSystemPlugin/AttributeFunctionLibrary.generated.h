@@ -29,6 +29,13 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execGetAttribute); \
 	DECLARE_FUNCTION(execGetAttributeName); \
 	DECLARE_FUNCTION(execGetAttributeValue); \
+	DECLARE_FUNCTION(execGetAttributeHandleFromAttribute); \
+	DECLARE_FUNCTION(execAttributeHandleEqualsNOT); \
+	DECLARE_FUNCTION(execAttributeHandleEquals); \
+	DECLARE_FUNCTION(execConv_AttributeHandleToName); \
+	DECLARE_FUNCTION(execConv_AttributeHandleToString); \
+	DECLARE_FUNCTION(execConv_AttributeToName); \
+	DECLARE_FUNCTION(execConv_AttributeToString); \
 	DECLARE_FUNCTION(execConv_AttributeHandleToAttribute); \
 	DECLARE_FUNCTION(execConv_AttributeToAttributeHandle);
 
@@ -44,6 +51,13 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execGetAttribute); \
 	DECLARE_FUNCTION(execGetAttributeName); \
 	DECLARE_FUNCTION(execGetAttributeValue); \
+	DECLARE_FUNCTION(execGetAttributeHandleFromAttribute); \
+	DECLARE_FUNCTION(execAttributeHandleEqualsNOT); \
+	DECLARE_FUNCTION(execAttributeHandleEquals); \
+	DECLARE_FUNCTION(execConv_AttributeHandleToName); \
+	DECLARE_FUNCTION(execConv_AttributeHandleToString); \
+	DECLARE_FUNCTION(execConv_AttributeToName); \
+	DECLARE_FUNCTION(execConv_AttributeToString); \
 	DECLARE_FUNCTION(execConv_AttributeHandleToAttribute); \
 	DECLARE_FUNCTION(execConv_AttributeToAttributeHandle);
 
