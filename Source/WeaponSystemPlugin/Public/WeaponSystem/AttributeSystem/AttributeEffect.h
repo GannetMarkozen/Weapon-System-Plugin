@@ -10,6 +10,25 @@
 #include "AttributeEffect.generated.h"
 
 
+USTRUCT(BlueprintType, Meta = (DisplayName = "Attribute Modifier Parameters"))
+struct FAttributeModParams
+{
+	GENERATED_BODY()
+private:
+	// The name of the attribute to be modified
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Attribute Modifier")
+	FName Attribute;
+
+	// Effect calculations used to modify the attribute value
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced, Meta = (AllowPrivateAccess = "true"), Category = "Attribute Modifier")
+	TArray<class UAttributeEffectCalculation*> EffectCalculations;
+
+public:
+	FORCEINLINE const FName& GetAttributeName() const { return Attribute; }
+	FORCEINLINE const TArray<class UAttributeEffectCalculation*>& GetEffectCalculations() const { return EffectCalculations; }
+};
+
+
 /**
  * 
  */
@@ -22,13 +41,9 @@ public:
 	friend class UAttributesComponent;
 
 protected:
-	// The name of the attribute this effect is attempting to target
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Attribute Target Name", AllowPrivateAccess = "true"), Category = "Effect")
-	FName AttrTargetName;
-
-	// The modification type that is applied to the targeted Attribute calculated from the Modify Attribute function
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Modifier Type", AllowPrivateAccess = "true"), Category = "Effect")
-	EEffectModType EffectModType = EEffectModType::Additive;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Attribute Modifiers", AllowPrivateAccess = "true"), Category = "Effect")
+	TArray<FAttributeModParams> Modifiers;
 
 	// The duration of the effect. Forever being infinite until removed manually. Duration being for the duration time. And instant being instantaneous
 	// Note: Using an instant effect does not instance the Attribute Effect thus you should not store any variables. Treat the functions as static functions
@@ -43,7 +58,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Lifespan Duration", EditCondition = "EffectDurType == EEffectDuration::ForDuration"), Category = "Effect")
 	float Lifespan = 5.f;
 
-	// How this effect should be replicated
+	// How this effect should be replicated. Will make no difference if playing as server / playing in Standalone-Mode
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Effect Replication Condition"), Category = "Effect")
 	EEffectRepCond EffectRepCond = EEffectRepCond::ServerOnly;
 
@@ -53,49 +68,65 @@ protected:
 
 	// Whether or not this effect should be applied. Returns true by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	bool CanApplyEffect(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const;
-	virtual bool CanApplyEffect_Implementation(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const { return true; }
+	bool CanApplyEffect(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const;
+	virtual bool CanApplyEffect_Implementation( const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const { return true; }
 
 	// Called everytime an attribute is to be modified. Consider the Effect Modifier Type when calculating the output.
-	// The context can be modified to maintain / alter state
+	// The context can be modified to maintain / alter state. Should generally not be overridden
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	float ModifyAttribute(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
-	virtual float ModifyAttribute_Implementation(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const { return 0.f; }
+	void Modify(class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
+	virtual void Modify_Implementation(class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
-	virtual void OnEffectApplied(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const {}
+	virtual void OnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const {}
 
 	// Called when this effect is applied
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Applied"), Category = "Effect")
-	void BP_OnEffectApplied(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
+	void BP_OnEffectApplied(const class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
 
 	// Calls the C++ and BP implementation of OnEffectApplied
-	FORCEINLINE void CallOnEffectApplied(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+	FORCEINLINE void CallOnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
 	{
-		OnEffectApplied(Attribute, AttributesComponent, Context);
-		BP_OnEffectApplied(Attribute, AttributesComponent, Context);
+		OnEffectApplied(AttributesComponent, Context);
+		BP_OnEffectApplied(AttributesComponent, Context);
 	}
 
 	// Called when this effect is removed before being destroyed
-	virtual void OnEffectRemoved(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const {}
+	virtual void OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const {}
 
 	// Called when this effect is removed before being destroyed
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Removed"), Category = "Effect")
-	void BP_OnEffectRemoved(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
+	void BP_OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
 
 	// Calls the C++ and BP implementation of OnEffectRemoved
-	FORCEINLINE void CallOnEffectRemoved(const FAttributeHandle& Attribute, const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+	FORCEINLINE void CallOnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
 	{
-		OnEffectRemoved(Attribute, AttributesComponent, Context, Reason);
-		BP_OnEffectRemoved(Attribute, AttributesComponent, Context, Reason);
+		OnEffectRemoved(AttributesComponent, Context, Reason);
+		BP_OnEffectRemoved(AttributesComponent, Context, Reason);
 	}
 
 public:
-	FORCEINLINE EEffectModType GetModType() const { return EffectModType; }
-	FORCEINLINE const FName& GetAttributeTargetName() const { return AttrTargetName; }
+	//FORCEINLINE EEffectModType GetModType() const { return EffectModType; }
+	//FORCEINLINE const FName& GetAttributeTargetName() const { return AttrTargetName; }
+	FORCEINLINE const TArray<FAttributeModParams>& GetAttributeModParams() const { return Modifiers; }
 	FORCEINLINE EEffectDuration GetDurationType() const { return EffectDurType; }
 	FORCEINLINE EEffectRepCond GetRepCond() const { return EffectRepCond; }
 	FORCEINLINE const TArray<TSubclassOf<class UAttributeEffect>>& GetInheritedEffects() const { return InheritedEffects; }
+
+	// Gets all the modifying attributes present on the Attributes Component (all handles will be valid)
+	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Get All Modifying Attributes"), Category = "Effect")
+	void GetAllModAttributes(class UAttributesComponent* AttributesComponent, TArray<FAttributeHandle>& OutAttributes) const;
+
+	// Gets all the modifying attributes present on the Attributes Component (all handles will be valid)
+	FORCEINLINE TArray<FAttributeHandle> GetAllModAttributes(class UAttributesComponent* AttributesComponent) const
+	{
+		TArray<FAttributeHandle> Handles;
+		GetAllModAttributes(AttributesComponent, Handles);
+		return Handles;
+	}
+
+	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Has All Modifying Attributes"), Category = "Effect")
+	bool HasAllModAttributes(const class UAttributesComponent* AttributesComponent) const;
 
 private:
 	FTimerHandle IntervalTimerHandle;

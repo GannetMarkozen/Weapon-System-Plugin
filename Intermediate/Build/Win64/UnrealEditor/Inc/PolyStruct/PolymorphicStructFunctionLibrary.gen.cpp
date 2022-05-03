@@ -387,7 +387,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Add_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAdd_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Add_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAdd_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_Add_Statics::NewProp_PolyStruct_MetaData[] = {
 		{ "NativeConst", "" },
@@ -439,7 +439,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AddStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAddStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AddStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAddStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_AddStruct_Statics::NewProp_Struct_MetaData[] = {
 		{ "NativeConst", "" },
@@ -495,7 +495,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray_Statics::NewProp_PolyStructs_Inner = { "PolyStructs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FPolyStruct, METADATA_PARAMS(nullptr, 0) }; // 279423337
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray_Statics::NewProp_PolyStructs_MetaData[] = {
@@ -546,13 +546,13 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_OutPolyStructHandle = { "OutPolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyHandle_Parms, OutPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_OutPolyStructHandle = { "OutPolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyHandle_Parms, OutPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle = { "InPolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyHandle_Parms, InPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle = { "InPolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventAppendFromPolyHandle_Parms, InPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_OutPolyStructHandle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle_Statics::NewProp_InPolyStructHandle,
@@ -600,7 +600,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructHandleToPolyStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructHandleToPolyStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructHandleToPolyStruct_Parms, ReturnValue), Z_Construct_UScriptStruct_FPolyStruct, METADATA_PARAMS(nullptr, 0) }; // 279423337
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct_Statics::NewProp_PolyStructHandle,
@@ -753,7 +753,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_PolyStruct = { "PolyStruct", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructToPolyStructHandle_Parms, PolyStruct), Z_Construct_UScriptStruct_FPolyStruct, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_PolyStruct_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_PolyStruct_MetaData)) }; // 279423337
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructToPolyStructHandle_Parms, ReturnValue), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventConv_PolyStructToPolyStructHandle_Parms, ReturnValue), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_PolyStruct,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle_Statics::NewProp_ReturnValue,
@@ -926,7 +926,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventEmptyPolyStructHandle_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventEmptyPolyStructHandle_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle_Statics::NewProp_PolyStructHandle,
 	};
@@ -1108,7 +1108,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_OutArray_Inner = { "OutArray", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_OutArray = { "OutArray", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractArray_Parms, OutArray), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray_Statics::NewProp_OutPin_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
@@ -1173,7 +1173,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_OutStruct = { "OutStruct", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventExtractAt_Parms, OutStruct), METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt_Statics::NewProp_Index_MetaData[] = {
@@ -1350,7 +1350,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAny_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAny_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_OutStruct = { "OutStruct", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAny_Parms, OutStruct), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_OutIndex = { "OutIndex", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAny_Parms, OutIndex), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny_Statics::NewProp_OutPin_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
@@ -1411,7 +1411,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_OutArray_Inner = { "OutArray", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_OutArray = { "OutArray", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetArray_Parms, OutArray), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray_Statics::NewProp_OutPin_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
@@ -1476,7 +1476,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_OutStruct = { "OutStruct", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAt_Parms, OutStruct), METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt_Statics::NewProp_Index_MetaData[] = {
@@ -1543,7 +1543,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAtIndex_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventGetAtIndex_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex_Statics::NewProp_Index_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1756,7 +1756,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_InsertStructAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventInsertStructAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_InsertStructAt_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventInsertStructAt_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_InsertStructAt_Statics::NewProp_Struct_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1819,7 +1819,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Internal_AddStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventInternal_AddStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Internal_AddStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventInternal_AddStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_Internal_AddStruct_Statics::NewProp_Struct_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2002,7 +2002,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventIsEmpty_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventIsEmpty_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	void Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((PolyStructFunctionLibrary_eventIsEmpty_Parms*)Obj)->ReturnValue = 1;
@@ -2160,7 +2160,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventLength_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventLength_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventLength_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_Length_Statics::NewProp_PolyStructHandle,
@@ -2232,7 +2232,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle_Statics::NewProp_OutPolyStructHandle = { "OutPolyStructHandle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventMakeDefaultPolyStructHandle_Parms, OutPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle_Statics::NewProp_OutPolyStructHandle = { "OutPolyStructHandle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventMakeDefaultPolyStructHandle_Parms, OutPolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle_Statics::NewProp_OutPolyStructHandle,
 	};
@@ -2378,7 +2378,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructs = { "PolyStructs", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventMakePolyStructHandleFromArray_Parms, PolyStructs), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructs_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructs_MetaData)) }; // 279423337
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventMakePolyStructHandleFromArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventMakePolyStructHandleFromArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructs_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray_Statics::NewProp_PolyStructs,
@@ -2421,7 +2421,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_RemoveItem_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventRemoveItem_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_RemoveItem_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventRemoveItem_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_RemoveItem_Statics::NewProp_Index_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2475,7 +2475,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_SetArrayElementStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventSetArrayElementStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_SetArrayElementStruct_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventSetArrayElementStruct_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPolyStructFunctionLibrary_SetArrayElementStruct_Statics::NewProp_Struct_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2644,7 +2644,7 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventToArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2436832372
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle = { "PolyStructHandle", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventToArray_Parms, PolyStructHandle), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_PolyStructHandle_MetaData)) }; // 2519392893
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_OutPolyStructs_Inner = { "OutPolyStructs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FPolyStruct, METADATA_PARAMS(nullptr, 0) }; // 279423337
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::NewProp_OutPolyStructs = { "OutPolyStructs", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(PolyStructFunctionLibrary_eventToArray_Parms, OutPolyStructs), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) }; // 279423337
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray_Statics::PropPointers[] = {
@@ -2691,49 +2691,49 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_PolyStruct,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UPolyStructFunctionLibrary_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Add, "Add" }, // 4198334610
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AddStruct, "AddStruct" }, // 4225616872
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray, "AppendFromPolyArray" }, // 1372643105
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle, "AppendFromPolyHandle" }, // 1739223961
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct, "Conv_PolyStructHandleToPolyStruct" }, // 3928238003
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Add, "Add" }, // 3871712283
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AddStruct, "AddStruct" }, // 601272174
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyArray, "AppendFromPolyArray" }, // 2204081774
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_AppendFromPolyHandle, "AppendFromPolyHandle" }, // 626702078
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructHandleToPolyStruct, "Conv_PolyStructHandleToPolyStruct" }, // 2331716495
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToBool, "Conv_PolyStructToBool" }, // 3030107439
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToName, "Conv_PolyStructToName" }, // 3513879601
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle, "Conv_PolyStructToPolyStructHandle" }, // 1830233825
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToPolyStructHandle, "Conv_PolyStructToPolyStructHandle" }, // 2110130837
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToScriptStruct, "Conv_PolyStructToScriptStruct" }, // 2079505749
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Conv_PolyStructToString, "Conv_PolyStructToString" }, // 396158339
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStruct, "EmptyPolyStruct" }, // 2919805067
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle, "EmptyPolyStructHandle" }, // 1222474268
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_EmptyPolyStructHandle, "EmptyPolyStructHandle" }, // 3117310491
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Equals, "Equals" }, // 3922437934
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_EqualsNOT, "EqualsNOT" }, // 2852153251
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray, "ExtractArray" }, // 3718981507
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt, "ExtractAt" }, // 1017871212
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractArray, "ExtractArray" }, // 1206507849
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractAt, "ExtractAt" }, // 2811256400
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractStruct, "ExtractStruct" }, // 4056357013
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ExtractStructUnchecked, "ExtractStructUnchecked" }, // 377352075
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny, "GetAny" }, // 2710820013
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray, "GetArray" }, // 1412375060
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt, "GetAt" }, // 1307667781
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex, "GetAtIndex" }, // 430920210
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAny, "GetAny" }, // 1433697314
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetArray, "GetArray" }, // 484776280
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAt, "GetAt" }, // 1486837532
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetAtIndex, "GetAtIndex" }, // 2842227314
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetCopy, "GetCopy" }, // 3549196179
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetStructSize, "GetStructSize" }, // 3118753075
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_GetType, "GetType" }, // 3037198809
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_InsertStructAt, "InsertStructAt" }, // 613355238
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Internal_AddStruct, "Internal_AddStruct" }, // 232850629
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_InsertStructAt, "InsertStructAt" }, // 1605913459
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Internal_AddStruct, "Internal_AddStruct" }, // 2912131464
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsA, "IsA" }, // 377222621
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsAWithExecs, "IsAWithExecs" }, // 3614796335
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty, "IsEmpty" }, // 154909125
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsEmpty, "IsEmpty" }, // 3271256719
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsValid, "IsValid" }, // 2507760214
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_IsValidWithExecs, "IsValidWithExecs" }, // 1221767911
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Length, "Length" }, // 803944869
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_Length, "Length" }, // 3745340551
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultCustomStruct, "MakeDefaultCustomStruct" }, // 2053384709
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle, "MakeDefaultPolyStructHandle" }, // 2642067117
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakeDefaultPolyStructHandle, "MakeDefaultPolyStructHandle" }, // 2818408200
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStruct, "MakePolyStruct" }, // 2102805028
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructAndInitializeAs, "MakePolyStructAndInitializeAs" }, // 2591891581
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray, "MakePolyStructHandleFromArray" }, // 90728464
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_RemoveItem, "RemoveItem" }, // 606658113
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_SetArrayElementStruct, "SetArrayElementStruct" }, // 3710332688
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_MakePolyStructHandleFromArray, "MakePolyStructHandleFromArray" }, // 3366380948
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_RemoveItem, "RemoveItem" }, // 1827129071
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_SetArrayElementStruct, "SetArrayElementStruct" }, // 2221662004
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_SetAs, "SetAs" }, // 1056682027
 		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_SetPolyStruct, "SetPolyStruct" }, // 3570526109
-		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray, "ToArray" }, // 3044916332
+		{ &Z_Construct_UFunction_UPolyStructFunctionLibrary_ToArray, "ToArray" }, // 4098377174
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPolyStructFunctionLibrary_Statics::Class_MetaDataParams[] = {
@@ -3122,10 +3122,10 @@ void EmptyLinkFunctionForGeneratedCodePolymorphicStructFunctionLibrary() {}
 		{ EStructCastPin_StaticEnum, TEXT("EStructCastPin"), &Z_Registration_Info_UEnum_EStructCastPin, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2027713322U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPolyStructFunctionLibrary, UPolyStructFunctionLibrary::StaticClass, TEXT("UPolyStructFunctionLibrary"), &Z_Registration_Info_UClass_UPolyStructFunctionLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPolyStructFunctionLibrary), 284981527U) },
+		{ Z_Construct_UClass_UPolyStructFunctionLibrary, UPolyStructFunctionLibrary::StaticClass, TEXT("UPolyStructFunctionLibrary"), &Z_Registration_Info_UClass_UPolyStructFunctionLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPolyStructFunctionLibrary), 2636504146U) },
 		{ Z_Construct_UClass_UPolyStructHack, UPolyStructHack::StaticClass, TEXT("UPolyStructHack"), &Z_Registration_Info_UClass_UPolyStructHack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPolyStructHack), 396801935U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_1293166712(TEXT("/Script/PolyStruct"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_2721821253(TEXT("/Script/PolyStruct"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStructFunctionLibrary_h_Statics::EnumInfo));

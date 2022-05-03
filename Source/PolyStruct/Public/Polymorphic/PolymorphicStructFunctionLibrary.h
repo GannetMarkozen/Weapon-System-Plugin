@@ -385,14 +385,14 @@ public:
 		const FPolyStructHandle& Handle = GetPolyStructHandle(Stack);
 		void* Struct; FStructProperty* StructProp;
 		GetCustomStructParam(Stack, Struct, StructProp);
-		EStructCastPin& OutPin = GetStructCastPin(Stack);
 		Stack.StepCompiledIn<FIntProperty>(nullptr);
-		int32& OutIndex = *(int32*)Stack.MostRecentPropertyAddress = INDEX_NONE;
+		int32& OutIndex = *(int32*)Stack.MostRecentPropertyAddress;
+		EStructCastPin& OutPin = GetStructCastPin(Stack);
 		P_FINISH
 		if(!ValidateCustomStructParam(Stack, StructProp)) return;
 		P_NATIVE_BEGIN
 
-		for(int32 i = 0; i < Handle.Num(); i++)
+		/*for(int32 i = 0; i < Handle.Num(); i++)
 		{
 			const FPolyStruct* PolyStruct = Handle.GetAt(i);
 			if(!PolyStruct || !PolyStruct->IsA(StructProp->Struct)) continue;
@@ -402,8 +402,11 @@ public:
 			OutIndex = i;
 			return;
 		}
-
-		OutPin = EStructCastPin::Fail;
+		OutIndex = INDEX_NONE;
+		OutPin = EStructCastPin::Fail;*/
+		OutIndex = Handle.ExtractAny(Struct, StructProp->Struct);
+		OutPin = OutIndex != INDEX_NONE ? EStructCastPin::Success : EStructCastPin::Fail;
+		
 		
 		P_NATIVE_END
 	}

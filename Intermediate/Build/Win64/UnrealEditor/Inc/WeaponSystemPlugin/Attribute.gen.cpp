@@ -9,13 +9,152 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAttribute() {}
 // Cross Module References
-	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesInterface_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesInterface();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent_NoRegister();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttribute();
 // End Cross Module References
+	DEFINE_FUNCTION(IAttributesInterface::execGetAttributesComponent)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(UAttributesComponent**)Z_Param__Result=P_THIS->GetAttributesComponent_Implementation();
+		P_NATIVE_END;
+	}
+	UAttributesComponent* IAttributesInterface::GetAttributesComponent() const
+	{
+		check(0 && "Do not directly call Event functions in Interfaces. Call Execute_GetAttributesComponent instead.");
+		AttributesInterface_eventGetAttributesComponent_Parms Parms;
+		return Parms.ReturnValue;
+	}
+	void UAttributesInterface::StaticRegisterNativesUAttributesInterface()
+	{
+		UClass* Class = UAttributesInterface::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "GetAttributesComponent", &IAttributesInterface::execGetAttributesComponent },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesInterface_eventGetAttributesComponent_Parms, ReturnValue), Z_Construct_UClass_UAttributesComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::NewProp_ReturnValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::NewProp_ReturnValue_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::Function_MetaDataParams[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Attributes Interface" },
+		{ "Comment", "// Specify what Attributes Component to return\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
+		{ "ToolTip", "Specify what Attributes Component to return" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesInterface, nullptr, "GetAttributesComponent", nullptr, nullptr, sizeof(AttributesInterface_eventGetAttributesComponent_Parms), Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x5C080C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAttributesInterface);
+	UClass* Z_Construct_UClass_UAttributesInterface_NoRegister()
+	{
+		return UAttributesInterface::StaticClass();
+	}
+	struct Z_Construct_UClass_UAttributesInterface_Statics
+	{
+		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
+#endif
+		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
+		static const UECodeGen_Private::FClassParams ClassParams;
+	};
+	UObject* (*const Z_Construct_UClass_UAttributesInterface_Statics::DependentSingletons[])() = {
+		(UObject* (*)())Z_Construct_UClass_UInterface,
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributesInterface_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UAttributesInterface_GetAttributesComponent, "GetAttributesComponent" }, // 2755937877
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributesInterface_Statics::Class_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
+	};
+#endif
+	const FCppClassTypeInfoStatic Z_Construct_UClass_UAttributesInterface_Statics::StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<IAttributesInterface>::IsAbstract,
+	};
+	const UECodeGen_Private::FClassParams Z_Construct_UClass_UAttributesInterface_Statics::ClassParams = {
+		&UAttributesInterface::StaticClass,
+		nullptr,
+		&StaticCppClassTypeInfo,
+		DependentSingletons,
+		FuncInfo,
+		nullptr,
+		nullptr,
+		UE_ARRAY_COUNT(DependentSingletons),
+		UE_ARRAY_COUNT(FuncInfo),
+		0,
+		0,
+		0x000840A1u,
+		METADATA_PARAMS(Z_Construct_UClass_UAttributesInterface_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UAttributesInterface_Statics::Class_MetaDataParams))
+	};
+	UClass* Z_Construct_UClass_UAttributesInterface()
+	{
+		if (!Z_Registration_Info_UClass_UAttributesInterface.OuterSingleton)
+		{
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UAttributesInterface.OuterSingleton, Z_Construct_UClass_UAttributesInterface_Statics::ClassParams);
+		}
+		return Z_Registration_Info_UClass_UAttributesInterface.OuterSingleton;
+	}
+	template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<UAttributesInterface>()
+	{
+		return UAttributesInterface::StaticClass();
+	}
+	DEFINE_VTABLE_PTR_HELPER_CTOR(UAttributesInterface);
+	static FName NAME_UAttributesInterface_GetAttributesComponent = FName(TEXT("GetAttributesComponent"));
+	UAttributesComponent* IAttributesInterface::Execute_GetAttributesComponent(const UObject* O)
+	{
+		check(O != NULL);
+		check(O->GetClass()->ImplementsInterface(UAttributesInterface::StaticClass()));
+		AttributesInterface_eventGetAttributesComponent_Parms Parms;
+		UFunction* const Func = O->FindFunction(NAME_UAttributesInterface_GetAttributesComponent);
+		if (Func)
+		{
+			const_cast<UObject*>(O)->ProcessEvent(Func, &Parms);
+		}
+		else if (auto I = (const IAttributesInterface*)(O->GetNativeInterfaceAddress(UAttributesInterface::StaticClass())))
+		{
+			Parms.ReturnValue = I->GetAttributesComponent_Implementation();
+		}
+		return Parms.ReturnValue;
+	}
 	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AttributeHandle;
 class UScriptStruct* FAttributeHandle::StaticStruct()
 {
@@ -255,13 +394,17 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttribute>()
 	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics
 	{
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo[] = {
 		{ FAttributeHandle::StaticStruct, Z_Construct_UScriptStruct_FAttributeHandle_Statics::NewStructOps, TEXT("AttributeHandle"), &Z_Registration_Info_UScriptStruct_AttributeHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttributeHandle), 4070662230U) },
 		{ FAttribute::StaticStruct, Z_Construct_UScriptStruct_FAttribute_Statics::NewStructOps, TEXT("Attribute"), &Z_Registration_Info_UScriptStruct_Attribute, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttribute), 1994685381U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_976525587(TEXT("/Script/WeaponSystemPlugin"),
-		nullptr, 0,
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UAttributesInterface, UAttributesInterface::StaticClass, TEXT("UAttributesInterface"), &Z_Registration_Info_UClass_UAttributesInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesInterface), 2123240458U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_2337568832(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo),
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

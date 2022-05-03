@@ -11,17 +11,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UObject;
 struct FAttributeHandle;
 struct FAttribute;
+class AActor;
+class UAttributeEffect;
+struct FPolyStructHandle;
+enum class EStructCastPin : uint8;
+class UAttributesComponent;
 enum class EValidity : uint8;
 #ifdef WEAPONSYSTEMPLUGIN_AttributeFunctionLibrary_generated_h
 #error "AttributeFunctionLibrary.generated.h already included, missing '#pragma once' in AttributeFunctionLibrary.h"
 #endif
 #define WEAPONSYSTEMPLUGIN_AttributeFunctionLibrary_generated_h
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_RPC_WRAPPERS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_SPARSE_DATA
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execUnbindAllAttributeChangedFromHandle); \
 	DECLARE_FUNCTION(execUnbindAllAttributeChanged); \
+	DECLARE_FUNCTION(execHasAttribute); \
+	DECLARE_FUNCTION(execHasAttributesComponent); \
+	DECLARE_FUNCTION(execBP_ApplyEffectToTarget); \
+	DECLARE_FUNCTION(execBP_GetAttributeHandle); \
+	DECLARE_FUNCTION(execBP_GetAttributeComponentAs); \
+	DECLARE_FUNCTION(execBP_GetAttributesComponent); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromHandleByName); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromAttributeByName); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromHandle); \
@@ -40,10 +51,16 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execConv_AttributeToAttributeHandle);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execUnbindAllAttributeChangedFromHandle); \
 	DECLARE_FUNCTION(execUnbindAllAttributeChanged); \
+	DECLARE_FUNCTION(execHasAttribute); \
+	DECLARE_FUNCTION(execHasAttributesComponent); \
+	DECLARE_FUNCTION(execBP_ApplyEffectToTarget); \
+	DECLARE_FUNCTION(execBP_GetAttributeHandle); \
+	DECLARE_FUNCTION(execBP_GetAttributeComponentAs); \
+	DECLARE_FUNCTION(execBP_GetAttributesComponent); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromHandleByName); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromAttributeByName); \
 	DECLARE_FUNCTION(execBindAttributeChangedFromHandle); \
@@ -62,74 +79,74 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execConv_AttributeToAttributeHandle);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_INCLASS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesUAttributeFunctionLibrary(); \
-	friend struct Z_Construct_UClass_UAttributeFunctionLibrary_Statics; \
+	static void StaticRegisterNativesUAttributeUtils(); \
+	friend struct Z_Construct_UClass_UAttributeUtils_Statics; \
 public: \
-	DECLARE_CLASS(UAttributeFunctionLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAttributeFunctionLibrary)
+	DECLARE_CLASS(UAttributeUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAttributeUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_INCLASS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_INCLASS \
 private: \
-	static void StaticRegisterNativesUAttributeFunctionLibrary(); \
-	friend struct Z_Construct_UClass_UAttributeFunctionLibrary_Statics; \
+	static void StaticRegisterNativesUAttributeUtils(); \
+	friend struct Z_Construct_UClass_UAttributeUtils_Statics; \
 public: \
-	DECLARE_CLASS(UAttributeFunctionLibrary, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAttributeFunctionLibrary)
+	DECLARE_CLASS(UAttributeUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAttributeUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_STANDARD_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAttributeFunctionLibrary(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributeFunctionLibrary) \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributeFunctionLibrary); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributeFunctionLibrary); \
+	NO_API UAttributeUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributeUtils) \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributeUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributeUtils); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAttributeFunctionLibrary(UAttributeFunctionLibrary&&); \
-	NO_API UAttributeFunctionLibrary(const UAttributeFunctionLibrary&); \
+	NO_API UAttributeUtils(UAttributeUtils&&); \
+	NO_API UAttributeUtils(const UAttributeUtils&); \
 public:
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_ENHANCED_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAttributeFunctionLibrary(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
+	NO_API UAttributeUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAttributeFunctionLibrary(UAttributeFunctionLibrary&&); \
-	NO_API UAttributeFunctionLibrary(const UAttributeFunctionLibrary&); \
+	NO_API UAttributeUtils(UAttributeUtils&&); \
+	NO_API UAttributeUtils(const UAttributeUtils&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributeFunctionLibrary); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributeFunctionLibrary); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributeFunctionLibrary)
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributeUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributeUtils); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributeUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_18_PROLOG
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_GENERATED_BODY_LEGACY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_19_PROLOG
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_INCLASS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_STANDARD_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_RPC_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_INCLASS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_INCLASS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_21_ENHANCED_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_INCLASS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_22_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributeFunctionLibrary>();
+template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributeUtils>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h

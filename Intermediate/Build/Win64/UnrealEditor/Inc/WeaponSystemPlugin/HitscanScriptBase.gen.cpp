@@ -13,7 +13,10 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UHitscanScriptBase();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UWeaponScript();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributeEffect_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 	ENGINE_API UEnum* Z_Construct_UEnum_Engine_ECollisionChannel();
 	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
@@ -25,6 +28,14 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UBurstFireHitscanScriptBase_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UBurstFireHitscanScriptBase();
 // End Cross Module References
+	DEFINE_FUNCTION(UHitscanScriptBase::execApplyDamage)
+	{
+		P_GET_OBJECT(AActor,Z_Param_Target);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ApplyDamage_Implementation(Z_Param_Target);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UHitscanScriptBase::execCalculateSpreadMagnitude)
 	{
 		P_FINISH;
@@ -77,6 +88,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		*(bool*)Z_Param__Result=P_THIS->CanHitscan_Implementation();
 		P_NATIVE_END;
 	}
+	static FName NAME_UHitscanScriptBase_ApplyDamage = FName(TEXT("ApplyDamage"));
+	void UHitscanScriptBase::ApplyDamage(AActor* Target)
+	{
+		HitscanScriptBase_eventApplyDamage_Parms Parms;
+		Parms.Target=Target;
+		ProcessEvent(FindFunctionChecked(NAME_UHitscanScriptBase_ApplyDamage),&Parms);
+	}
 	static FName NAME_UHitscanScriptBase_CalculateSpreadMagnitude = FName(TEXT("CalculateSpreadMagnitude"));
 	float UHitscanScriptBase::CalculateSpreadMagnitude() const
 	{
@@ -121,6 +139,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	{
 		UClass* Class = UHitscanScriptBase::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "ApplyDamage", &UHitscanScriptBase::execApplyDamage },
 			{ "CalculateSpreadMagnitude", &UHitscanScriptBase::execCalculateSpreadMagnitude },
 			{ "CanHitscan", &UHitscanScriptBase::execCanHitscan },
 			{ "Hitscan", &UHitscanScriptBase::execHitscan },
@@ -130,6 +149,35 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 			{ "Server_Hitscan", &UHitscanScriptBase::execServer_Hitscan },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics
+	{
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Target;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::NewProp_Target = { "Target", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventApplyDamage_Parms, Target), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::NewProp_Target,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script|Hitscan" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UHitscanScriptBase, nullptr, "ApplyDamage", nullptr, nullptr, sizeof(HitscanScriptBase_eventApplyDamage_Parms), Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude_Statics
 	{
@@ -377,6 +425,14 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DamageEffect_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_DamageEffect;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HealthAttribute_MetaData[];
+#endif
+		static const UECodeGen_Private::FNamePropertyParams NewProp_HealthAttribute;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_RateOfFire_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_RateOfFire;
@@ -396,6 +452,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CollisionChannel_MetaData[];
 #endif
 		static const UECodeGen_Private::FBytePropertyParams NewProp_CollisionChannel;
+#if WITH_EDITORONLY_DATA
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bShowFiringDebugLines_MetaData[];
+#endif
+		static void NewProp_bShowFiringDebugLines_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bShowFiringDebugLines;
+#endif // WITH_EDITORONLY_DATA
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_FiringSound_MetaData[];
 #endif
@@ -413,6 +476,8 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_RecoilParams;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_EDITORONLY_DATA
+#endif // WITH_EDITORONLY_DATA
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -421,6 +486,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UHitscanScriptBase_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage, "ApplyDamage" }, // 2853844108
 		{ &Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude, "CalculateSpreadMagnitude" }, // 3055348107
 		{ &Z_Construct_UFunction_UHitscanScriptBase_CanHitscan, "CanHitscan" }, // 2598655845
 		{ &Z_Construct_UFunction_UHitscanScriptBase_Hitscan, "Hitscan" }, // 3964796463
@@ -436,6 +502,24 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_DamageEffect_MetaData[] = {
+		{ "Category", "Configurations|Gameplay" },
+		{ "Comment", "// The Attribute Effect that we will attempt to apply to a hit-target\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
+		{ "ToolTip", "The Attribute Effect that we will attempt to apply to a hit-target" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_DamageEffect = { "DamageEffect", nullptr, (EPropertyFlags)0x0014000000000015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, DamageEffect), Z_Construct_UClass_UAttributeEffect_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_DamageEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_DamageEffect_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_HealthAttribute_MetaData[] = {
+		{ "Category", "Configurations|Gameplay" },
+		{ "Comment", "// Will check for this attribute before attempting to apply damage\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
+		{ "ToolTip", "Will check for this attribute before attempting to apply damage" },
+	};
+#endif
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_HealthAttribute = { "HealthAttribute", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, HealthAttribute), METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_HealthAttribute_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_HealthAttribute_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RateOfFire_MetaData[] = {
 		{ "Category", "Configurations|Firing" },
@@ -478,6 +562,21 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	};
 #endif
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel = { "CollisionChannel", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, CollisionChannel), Z_Construct_UEnum_Engine_ECollisionChannel, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel_MetaData)) }; // 727872708
+#if WITH_EDITORONLY_DATA
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines_MetaData[] = {
+		{ "Category", "Configurations|Firing" },
+		{ "Comment", "// Show firing debug lines. Only applies to editor-builds\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
+		{ "ToolTip", "Show firing debug lines. Only applies to editor-builds" },
+	};
+#endif
+	void Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines_SetBit(void* Obj)
+	{
+		((UHitscanScriptBase*)Obj)->bShowFiringDebugLines = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines = { "bShowFiringDebugLines", nullptr, (EPropertyFlags)0x0010000800000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHitscanScriptBase), &Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines_MetaData)) };
+#endif // WITH_EDITORONLY_DATA
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_FiringSound_MetaData[] = {
 		{ "Category", "Configurations|Cosmetic" },
@@ -508,11 +607,16 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams = { "RecoilParams", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHitscanScriptBase, RecoilParams), Z_Construct_UScriptStruct_FRecoilParams, METADATA_PARAMS(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RecoilParams_MetaData)) }; // 188766316
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHitscanScriptBase_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_DamageEffect,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_HealthAttribute,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_RateOfFire,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_Range,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_NumShots,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_Spread,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_CollisionChannel,
+#if WITH_EDITORONLY_DATA
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_bShowFiringDebugLines,
+#endif // WITH_EDITORONLY_DATA
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_FiringSound,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_MuzzleFlash,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHitscanScriptBase_Statics::NewProp_BulletTracer,
@@ -1021,11 +1125,11 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UHitscanScriptBase, UHitscanScriptBase::StaticClass, TEXT("UHitscanScriptBase"), &Z_Registration_Info_UClass_UHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UHitscanScriptBase), 4112050022U) },
-		{ Z_Construct_UClass_USemiAutoHitscanScriptBase, USemiAutoHitscanScriptBase::StaticClass, TEXT("USemiAutoHitscanScriptBase"), &Z_Registration_Info_UClass_USemiAutoHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USemiAutoHitscanScriptBase), 2940624888U) },
-		{ Z_Construct_UClass_UBurstFireHitscanScriptBase, UBurstFireHitscanScriptBase::StaticClass, TEXT("UBurstFireHitscanScriptBase"), &Z_Registration_Info_UClass_UBurstFireHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBurstFireHitscanScriptBase), 218587694U) },
+		{ Z_Construct_UClass_UHitscanScriptBase, UHitscanScriptBase::StaticClass, TEXT("UHitscanScriptBase"), &Z_Registration_Info_UClass_UHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UHitscanScriptBase), 1916231896U) },
+		{ Z_Construct_UClass_USemiAutoHitscanScriptBase, USemiAutoHitscanScriptBase::StaticClass, TEXT("USemiAutoHitscanScriptBase"), &Z_Registration_Info_UClass_USemiAutoHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USemiAutoHitscanScriptBase), 4050302628U) },
+		{ Z_Construct_UClass_UBurstFireHitscanScriptBase, UBurstFireHitscanScriptBase::StaticClass, TEXT("UBurstFireHitscanScriptBase"), &Z_Registration_Info_UClass_UBurstFireHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBurstFireHitscanScriptBase), 4146585982U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_3121941167(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_1952777598(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

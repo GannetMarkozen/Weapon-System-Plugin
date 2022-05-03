@@ -8,7 +8,7 @@
 UENUM(BlueprintType, Meta = (DisplayName = "Effect Duration"))
 enum class EEffectDuration : uint8
 {
-	Instant				UMETA(DisplayName="Instant",Tooltip="This effect will be instantaneous and have no duration. Will not be instanced"),
+	Instant				UMETA(DisplayName="Instant",Tooltip="This effect will be instantaneous and have no duration"),
 	ForDuration			UMETA(DisplayName="For-Duration",Tooltip="This effect will run for it's duration unless manully ended"),
 	Infinite			UMETA(DisplayName="Infinite",Tooltip="This effect will run forever until manually ended"),
 };
@@ -24,6 +24,7 @@ enum class EEffectRepCond : uint8
 UENUM(BlueprintType, Meta = (DisplayName = "Effect Modifier Type"))
 enum class EEffectModType : uint8
 {
+	None				UMETA(DisplayName="None",Tooltip="Does nothing. The attribute will remain unchanged regardless of the value"),
 	Overriding			UMETA(DisplayName="Overriding",Tooltip="Overrides current attribute value with the new one"),
 	Additive			UMETA(DisplayName="Additive",Tooltip="Adds to the current attribute value"),
 	Multiplicative		UMETA(DisplayName="Multiplicative",Tooltip="Multiplies the current attribute value")

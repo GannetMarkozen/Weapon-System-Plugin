@@ -5,6 +5,7 @@
 			"WeaponSystemPlugin.cpp.obj",
 			"Attribute.cpp.obj",
 			"AttributeEffect.cpp.obj",
+			"AttributeEffectCalculation.cpp.obj",
 			"AttributeFunctionLibrary.cpp.obj",
 			"AttributesComponent.cpp.obj",
 			"WeaponSystemAnimInstance.cpp.obj",
@@ -36,14 +37,15 @@
 			"AimingScript.gen.cpp.obj",
 			"Attribute.gen.cpp.obj",
 			"AttributeEffect.gen.cpp.obj",
+			"AttributeEffectCalculation.gen.cpp.obj",
 			"AttributeEffectParams.gen.cpp.obj",
 			"AttributeFunctionLibrary.gen.cpp.obj",
 			"AttributesComponent.gen.cpp.obj",
-			"CharacterInventoryComponent.gen.cpp.obj",
-			"CycleSightsScript.gen.cpp.obj",
-			"ForegripAttachment.gen.cpp.obj"
+			"CharacterInventoryComponent.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.2_of_4.cpp.obj": [
+			"CycleSightsScript.gen.cpp.obj",
+			"ForegripAttachment.gen.cpp.obj",
 			"Globals.gen.cpp.obj",
 			"HitscanScriptBase.gen.cpp.obj",
 			"Interfaces.gen.cpp.obj",

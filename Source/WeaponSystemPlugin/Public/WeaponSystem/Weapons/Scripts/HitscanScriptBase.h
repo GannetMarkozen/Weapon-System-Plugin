@@ -45,6 +45,18 @@ public:
 	float CalculateSpreadMagnitude() const;
 	virtual FORCEINLINE float CalculateSpreadMagnitude_Implementation() const { return 1.f; }
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Script|Hitscan")
+	void ApplyDamage(class AActor* Target);
+	virtual void ApplyDamage_Implementation(class AActor* Target);
+
+	// The Attribute Effect that we will attempt to apply to a hit-target
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Gameplay")
+	TSubclassOf<class UAttributeEffect> DamageEffect;
+
+	// Will check for this attribute before attempting to apply damage
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Gameplay")
+	FName HealthAttribute = "Health";
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Firing")
 	float RateOfFire = 0.25f;
 
@@ -62,6 +74,12 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Configurations|Firing")
 	TEnumAsByte<ECollisionChannel> CollisionChannel = ECC_Visibility;
+
+#if WITH_EDITORONLY_DATA
+	// Show firing debug lines. Only applies to editor-builds
+	UPROPERTY(EditAnywhere, Category = "Configurations|Firing")
+	bool bShowFiringDebugLines = false;
+#endif
 
 	UPROPERTY(EditAnywhere, Category = "Configurations|Cosmetic")
 	class USoundBase* FiringSound;

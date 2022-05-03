@@ -53,7 +53,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectParams() {}
 		{ "Infinite.Tooltip", "This effect will run forever until manually ended" },
 		{ "Instant.DisplayName", "Instant" },
 		{ "Instant.Name", "EEffectDuration::Instant" },
-		{ "Instant.Tooltip", "This effect will be instantaneous and have no duration. Will not be instanced" },
+		{ "Instant.Tooltip", "This effect will be instantaneous and have no duration" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributeEffectParams.h" },
 	};
 #endif
@@ -161,6 +161,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectParams() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_WeaponSystemPlugin_EEffectModType_Statics::Enumerators[] = {
+		{ "EEffectModType::None", (int64)EEffectModType::None },
 		{ "EEffectModType::Overriding", (int64)EEffectModType::Overriding },
 		{ "EEffectModType::Additive", (int64)EEffectModType::Additive },
 		{ "EEffectModType::Multiplicative", (int64)EEffectModType::Multiplicative },
@@ -176,6 +177,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectParams() {}
 		{ "Multiplicative.DisplayName", "Multiplicative" },
 		{ "Multiplicative.Name", "EEffectModType::Multiplicative" },
 		{ "Multiplicative.Tooltip", "Multiplies the current attribute value" },
+		{ "None.DisplayName", "None" },
+		{ "None.Name", "EEffectModType::None" },
+		{ "None.Tooltip", "Does nothing. The attribute will remain unchanged regardless of the value" },
 		{ "Overriding.DisplayName", "Overriding" },
 		{ "Overriding.Name", "EEffectModType::Overriding" },
 		{ "Overriding.Tooltip", "Overrides current attribute value with the new one" },
@@ -272,12 +276,12 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectParams() {}
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectParams_h_Statics::EnumInfo[] = {
-		{ EEffectDuration_StaticEnum, TEXT("EEffectDuration"), &Z_Registration_Info_UEnum_EEffectDuration, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1785194202U) },
+		{ EEffectDuration_StaticEnum, TEXT("EEffectDuration"), &Z_Registration_Info_UEnum_EEffectDuration, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4066429253U) },
 		{ EEffectRepCond_StaticEnum, TEXT("EEffectRepCond"), &Z_Registration_Info_UEnum_EEffectRepCond, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3222879814U) },
-		{ EEffectModType_StaticEnum, TEXT("EEffectModType"), &Z_Registration_Info_UEnum_EEffectModType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2448245670U) },
+		{ EEffectModType_StaticEnum, TEXT("EEffectModType"), &Z_Registration_Info_UEnum_EEffectModType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 347396436U) },
 		{ EEffectRemovalReason_StaticEnum, TEXT("EEffectRemovalReason"), &Z_Registration_Info_UEnum_EEffectRemovalReason, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3942470696U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectParams_h_323753026(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectParams_h_4129696416(TEXT("/Script/WeaponSystemPlugin"),
 		nullptr, 0,
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectParams_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectParams_h_Statics::EnumInfo));

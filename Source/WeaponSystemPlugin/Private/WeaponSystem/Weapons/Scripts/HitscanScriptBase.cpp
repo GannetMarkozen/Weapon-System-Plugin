@@ -5,6 +5,7 @@
 #include "DrawDebugHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "WeaponSystem/AttributeSystem/AttributeFunctionLibrary.h"
 
 void UHitscanScriptBase::Hitscan()
 {
@@ -18,19 +19,25 @@ void UHitscanScriptBase::Hitscan()
 	TArray<FHitResult> Hits;
 	for(int32 i = 0; i < NumShots; i++)
 	{
-		const FRotator& RandRot = Rotation + FRotator(FMath::FRandRange(-Spread.Y, Spread.Y) * SpreadMagnitude, FMath::RandRange(-Spread.X, Spread.X) * SpreadMagnitude, 0.f);
-		const FVector& End = Start + Rotation.Vector() * Range;
+		const float AbsX = abs(Spread.X);
+		const float AbsY = abs(Spread.Y);
+		const FRotator RandRot = Rotation + FRotator(FMath::FRandRange(-AbsY, AbsY) * SpreadMagnitude, FMath::RandRange(-AbsX, AbsX) * SpreadMagnitude, 0.f);
+		const FVector End = Start + RandRot.Vector() * Range;
 		FCollisionQueryParams Params;
 		Params.AddIgnoredActors(TArray<AActor*>({ OwningWeapon, GetOwningCharacter() }));
 		
 		FHitResult Hit;
 		GetWorld()->LineTraceSingleByChannel(Hit, Start, End, CollisionChannel, Params);
+		
 		if(!Hit.IsValidBlockingHit())
 		{
 			Hit.Distance = Range;
 			Hit.Location = End;
 		}
-		//DrawDebugLine(GetWorld(), Start, Hit.Location, Hit.IsValidBlockingHit() ? FColor::Green : FColor::Red, false, 3.f);
+#if WITH_EDITORONLY_DATA
+		if(bShowFiringDebugLines)
+			DrawDebugLine(GetWorld(), Start, Hit.Location, Hit.IsValidBlockingHit() ? FColor::Green : FColor::Red, false, 3.f);
+#endif
 		Hits.Add(Hit);
 	}
 
@@ -53,7 +60,9 @@ void UHitscanScriptBase::Server_Hitscan_Implementation(const TArray<FHitResult>&
 	TMap<AActor*, float> AccumulativeDamage;
 	for(const FHitResult& Hit : Hits)
 	{
-		if(!Hit.GetActor() || !Hit.GetActor()->Implements<UDamageInterface>()) continue;
+		//if(!Hit.GetActor() || !Hit.GetActor()->Implements<UDamageInterface>()) continue;
+		//PRINT(TEXT("%s: Hit %s"), *FString(HasAuthority() ? "SERVER" : "CLIENT"), *FString(Hit.GetActor() ? Hit.GetActor()->GetName() : "NULL"));
+		if(!Hit.GetActor() || !UAttributeUtils::HasAttribute(Hit.GetActor(), HealthAttribute)) continue;
 		
 		constexpr float TempDamageValue = 10.f;
 		if(float* DamageValue = AccumulativeDamage.Find(Hit.GetActor()))
@@ -73,13 +82,29 @@ void UHitscanScriptBase::Server_Hitscan_Implementation(const TArray<FHitResult>&
 		float* DamageValue = AccumulativeDamage.Find(DamageableActor);
 		if(!DamageValue) continue;
 		
-		IDamageInterface::Execute_ApplyDamage(DamageableActor, *DamageValue, (DamageableActor->GetActorLocation() - GetOwningCharacter()->Camera->GetComponentLocation()).GetSafeNormal(), 1.f);
+		//IDamageInterface::Execute_ApplyDamage(DamageableActor, *DamageValue, (DamageableActor->GetActorLocation() - GetOwningCharacter()->Camera->GetComponentLocation()).GetSafeNormal(), 1.f);
+		ApplyDamage(DamageableActor);
 	}
 
 	Multi_Hitscan(Hits);
 	PlayFiringEffect();
 	PlayImpactEffect(Hits);
 }
+
+void UHitscanScriptBase::ApplyDamage_Implementation(AActor* Target)
+{
+	FPolyStructHandle Context;
+	const bool bSuccess = UAttributeUtils::ApplyEffectToTarget(Target, GetOwningCharacter(), DamageEffect, Context);
+	if(bSuccess)
+	{
+		PRINT(TEXT("%s: Success"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
+	}
+	else
+	{
+		PRINT(TEXT("%s: Fail"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
+	}
+}
+
 
 void UHitscanScriptBase::Multi_Hitscan_Implementation(const TArray<FHitResult>& Hits)
 {

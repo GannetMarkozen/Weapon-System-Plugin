@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Attribute.h"
 #include "AttributesComponent.h"
+#include "Polymorphic/PolymorphicStructFunctionLibrary.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "AttributeFunctionLibrary.generated.h"
 
@@ -16,7 +17,7 @@ enum class EValidity : uint8
 };
 
 UCLASS()
-class WEAPONSYSTEMPLUGIN_API UAttributeFunctionLibrary : public UBlueprintFunctionLibrary
+class WEAPONSYSTEMPLUGIN_API UAttributeUtils : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
@@ -91,6 +92,62 @@ public:
 		Delegate.BindUFunction(Target, FunctionName);
 		Handle->OnAttributeChanged.Add(Delegate);
 	}
+
+	
+
+	// Will find an Attribute Component from the target. Will fail if there is none. Will first check if the target
+	// inherits from the Attributes Interface then check if it is an Actor that has an Attributes Component
+	static class UAttributesComponent* GetAttributesComponent(class UObject* Target);
+
+	template<typename T>
+	FORCEINLINE static class UAttributesComponent* GetAttributesComponent(class UObject* Target) { return Cast<T>(GetAttributesComponent(Target)); }
+
+	static FAttributeHandle GetAttributeHandle(class UObject* Target, const FName& AttributeName);
+
+	static FORCEINLINE bool ApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> EffectClass, FPolyStructHandle& Context)
+	{
+		auto* AttrComp = GetAttributesComponent(Target);
+		if(!AttrComp) return false;
+		return AttrComp->ApplyEffect(EffectClass, Instigator, Context);
+	}
+
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attributes Component", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE class UAttributesComponent* BP_GetAttributesComponent(class UObject* Target, EStructCastPin& OutPin)
+	{
+		auto* AttrComp = GetAttributesComponent(Target);
+		OutPin = AttrComp ? EStructCastPin::Success : EStructCastPin::Fail;
+		return AttrComp;
+	}
+	
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attributes Component As", ExpandEnumAsExecs = "OutPin", DeterminesOutputType = "Class"), Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE class UAttributesComponent* BP_GetAttributeComponentAs(class UObject* Target, const TSubclassOf<UAttributesComponent> Class, EStructCastPin& OutPin)
+	{
+		OutPin = EStructCastPin::Fail;
+		auto* AttrComp = GetAttributesComponent(Target);
+		if(!AttrComp || !AttrComp->IsA(Class)) return nullptr;
+		OutPin = EStructCastPin::Success;
+		return AttrComp;
+	}
+
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attribute Handle", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "AttributeName"), Category = "Weapon System Function Library|Attributes")
+	static UPARAM(ref) FAttributeHandle BP_GetAttributeHandle(class UObject* Target, const FName& AttributeName, EStructCastPin& OutPin)
+	{
+		const FAttributeHandle Handle = GetAttributeHandle(Target, AttributeName);
+		OutPin = Handle.IsValid() ? EStructCastPin::Success : EStructCastPin::Fail;
+		return Handle;
+	}
+
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Apply Effect To Target", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "Context"), Category = "Weapon System Function Library|Attributes")
+	static void BP_ApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> Effect, UPARAM(ref) FPolyStructHandle& Context, EStructCastPin& OutPin)
+	{
+		OutPin = ApplyEffectToTarget(Target, Instigator, Effect, Context) ? EStructCastPin::Success : EStructCastPin::Fail;
+	}
+
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
+	static FORCEINLINE bool HasAttributesComponent(const class UObject* Target) { return GetAttributesComponent((UObject*)Target) != nullptr; }
+
+	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "AttributeName"), Category = "Weapon System Function Libarary|Attributes")
+	static FORCEINLINE bool HasAttribute(const class UObject* Target, const FName& AttributeName) { return GetAttributeHandle((UObject*)Target, AttributeName).IsValid(); }
 
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Unbind All Attribute Changed", DefaultToSelf = "Target"), Category = "Weapon System Function Library|Attributes")
 	static void UnbindAllAttributeChanged(UObject* Target, UPARAM(ref) FAttribute& Attribute) { Attribute.OnAttributeChanged.RemoveAll(Target); }

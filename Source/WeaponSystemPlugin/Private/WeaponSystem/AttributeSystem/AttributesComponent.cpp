@@ -31,20 +31,177 @@ void UAttributesComponent::BeginPlay()
 	}
 }
 
-void UAttributesComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+void UAttributesComponent::BindAllAttributesChanged(const FAttributeValueChangedUniDelegate& Delegate)
 {
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	//DOREPLIFETIME_CONDITION(ThisClass, ActiveEffects, COND_OwnerOnly);
+	for(TFieldIterator<FStructProperty> Itr(GetClass()); Itr; ++Itr)
+	{
+		if(!Itr->Struct->IsChildOf(FAttribute::StaticStruct())) continue;
+		Itr->ContainerPtrToValuePtr<FAttribute>(this)->OnAttributeChanged.Add(Delegate);
+	}
 }
 
-void UAttributesComponent::PreReplication(IRepChangedPropertyTracker& ChangedPropertyTracker)
-{
-	Super::PreReplication(ChangedPropertyTracker);
 
-	for(UAttributeEffect* Effect : ActiveEffects) if(Effect) Effect->CallPreReplication();
+bool UAttributesComponent::ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+{
+	if(!Effect || !Instigator || !Effect.GetDefaultObject()->CanApplyEffect(this, Context)) return false;
+	if(HasAuthority())
+	{
+		Internal_ApplyEffect(Effect, Instigator, Context);
+		return true;
+	}
+
+	switch(Effect.GetDefaultObject()->GetRepCond())
+	{
+	case EEffectRepCond::LocalOnly:
+		Internal_ApplyEffect(Effect, Instigator, Context);
+		break;
+	case EEffectRepCond::ServerOnly:
+		Server_ApplyEffect(Effect, Instigator, Context);
+		break;
+	case EEffectRepCond::LocalPredicted:
+		LocalPredicted_ApplyEffect(Effect, Instigator, Context);
+		break;
+	}
+
+	return true;
 }
 
+void UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+{
+	const UAttributeEffect* EffectDefObj = Effect.GetDefaultObject();
+	if(EffectDefObj->GetDurationType() == EEffectDuration::Instant)// Instant-effect simply calls modify and other functions for it's "lifespan"
+	{
+		EffectDefObj->OnEffectApplied(this, Context);
+		EffectDefObj->Modify(this, Context);
+		EffectDefObj->OnEffectRemoved(this, Context, EEffectRemovalReason::LifespanEnd);
+	}
+	else// Latent-effect gets added to an array of active effects and calls modify every interval until removed via lifespan or manually
+	{
+		const TSharedPtr<FActiveEffect> ActiveEffect = MakeShared<FActiveEffect>(Effect, Context);
+		ActiveEffects.Add(ActiveEffect);
+
+		EffectDefObj->OnEffectApplied(this, ActiveEffect->Context);
+		EffectDefObj->Modify(this, ActiveEffect->Context);
+
+		auto CallModifyAtIntervalLambda = [=](){ EffectDefObj->Modify(this, ActiveEffect->Context); };
+
+		const float Interval = EffectDefObj->IntervalDuration;
+		GetWorld()->GetTimerManager().SetTimer(ActiveEffect->IntervalTimerHandle, CallModifyAtIntervalLambda, Interval, true);
+
+		// If has lifespan
+		if(EffectDefObj->GetDurationType() == EEffectDuration::ForDuration)
+		{
+			auto CallRemoveAtLifespanEndLambda = [=](){ Internal_RemoveActiveEffect(ActiveEffects.Find(ActiveEffect), EEffectRemovalReason::LifespanEnd); };
+			
+			// If Lifespan is perfectly divisible by Interval. Make Lifespan slightly
+			// larger so it is ensured to be called after the Interval has ended
+			float Lifespan = EffectDefObj->Lifespan;
+			if(std::fmodf(Lifespan / Interval, 1) == 0) Lifespan = std::nextafterf(Lifespan, 1.f);
+			GetWorld()->GetTimerManager().SetTimer(ActiveEffect->LifespanTimerHandle, CallRemoveAtLifespanEndLambda, Lifespan, false);
+		}
+	}
+}
+
+void UAttributesComponent::Internal_RemoveActiveEffect(const int32 Index, const EEffectRemovalReason Reason)
+{
+	if(!ActiveEffects.IsValidIndex(Index)) return;
+	checkf(ActiveEffects[Index].IsValid() || ActiveEffects[Index]->GetEffect(), TEXT("Active Effect at %i is invalid???"), Index);
+
+	const FPolyStructHandle& Context = ActiveEffects[Index]->Context;
+	ActiveEffects[Index]->GetEffect().GetDefaultObject()->OnEffectRemoved(this, Context, Reason);
+
+	GetWorld()->GetTimerManager().ClearTimer(ActiveEffects[Index]->IntervalTimerHandle);
+	GetWorld()->GetTimerManager().ClearTimer(ActiveEffects[Index]->LifespanTimerHandle);
+	
+	ActiveEffects.RemoveAt(Index);
+}
+
+
+
+
+
+
+void UAttributesComponent::LocalPredicted_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+{
+	Internal_ApplyEffect(Effect, Instigator, Context);
+	Server_ApplyEffect_LocalPredicted(Effect, Instigator, Context, MakePredictionKey());
+	
+	/*
+	UNetConnection* Connection = Instigator->GetNetConnection();
+	checkf(Connection, TEXT("Connection is invalid"));
+	
+	UActorChannel** ActorChannelPtr = Connection->FindActorChannel((AActor*)Instigator);
+	checkf(ActorChannelPtr && *ActorChannelPtr, TEXT("Actor channel is invalid"));
+
+	UFunction* Function = FindFunctionChecked(GET_FUNCTION_NAME_CHECKED(ThisClass, Server_ApplyEffect_LocalPredicted));
+	
+	const FClassNetCache* ClassCache = GetWorld()->GetNetDriver()->NetCache.Get()->GetClassNetCache(GetClass());
+	const FFieldNetCache* FieldCache = ClassCache->GetFromField(Function);
+
+	TTuple<UClass*, AActor*, FPolyStructHandle, FEffectNetPredKey> Params(Effect, (AActor*)Instigator, Context, MakePredictionKey());
+	FFrame Stack(this, Function, &Params);
+	
+	GetWorld()->GetNetDriver()->ProcessRemoteFunctionForChannel(*ActorChannelPtr, ClassCache, FieldCache, this, Connection, Function, &Params, nullptr, &Stack, HasAuthority());*/
+}
+
+void UAttributesComponent::Server_ApplyEffect_LocalPredicted_Implementation(UClass* Effect, const AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey)
+{
+	// Update client on whether the effect application was successful / unsuccessful
+	if(ApplyEffect(Effect, Instigator, (FPolyStructHandle&)Context))
+	{
+		Client_ApplyEffect_LocalPredicted_Success(Effect, Instigator, PredictionKey);
+	}
+	else
+	{
+		Client_ApplyEffect_LocalPredicted_Fail(Effect, Instigator, PredictionKey);
+	}
+}
+
+void UAttributesComponent::Client_ApplyEffect_LocalPredicted_Success_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey)
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s: %s: Success"), *FString(HasAuthority() ? "Server" : "Client"), *FString(GetOwner() ? GetOwner()->GetName() : "NULL"));
+	const TWeakPtr<FActiveEffect>* LocalPredictedEffectPtr = LocalPredictedEffects.Find(PredictionKey);
+	LocalPredictedEffects.Remove(PredictionKey);
+	if(!LocalPredictedEffectPtr || !LocalPredictedEffectPtr->IsValid()) return;
+	
+	Internal_RemoveActiveEffect(ActiveEffects.Find(LocalPredictedEffectPtr->Pin()), EEffectRemovalReason::NetPredSuccess);
+}
+
+void UAttributesComponent::Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey)
+{
+	PRINT(TEXT("Failed"));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 bool UAttributesComponent::ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, FPolyStructHandle& Context)
 {
 	if(!Effect) return false;
@@ -52,11 +209,12 @@ bool UAttributesComponent::ApplyEffect(const TSubclassOf<UAttributeEffect> Effec
 	checkf(EffectDefObj, TEXT("Apply Effect: The effect parameter is not a UAttributeEffect"));
 
 	// Ensure this effect can be applied
-	const FAttributeHandle ModAttribute = FindAttributeByName(EffectDefObj->AttrTargetName);
-	if(!EffectDefObj->CanApplyEffect(ModAttribute, this, Context)) return false;
+	//const FAttributeHandle ModAttribute = FindAttributeByName(EffectDefObj->AttrTargetName);
+	//if(!ModAttribute.IsValid() || !EffectDefObj->CanApplyEffect(ModAttribute, this, Context)) return false;
+	if(!EffectDefObj->CanApplyEffect(this, Context)) return false;
 
 	// Where the effect is actually applied
-	CallApplyEffect(Effect, EffectDefObj, ModAttribute, Context);
+	CallApplyEffect(Effect, Context);
 
 	// Also attempt to apply inherited effects
 	for(const TSubclassOf<UAttributeEffect> InheritedEffect : EffectDefObj->GetInheritedEffects())
@@ -74,42 +232,42 @@ int32 UAttributesComponent::RemoveEffectsByClass(const TSubclassOf<UAttributeEff
 	for(UAttributeEffect* Effect : ActiveEffects)
 	{
 		if(!Effect || !Effect->IsA(EffectClass)) continue;
-		CallOnActiveEffectRemoved(Effect, FindAttributeByName(Effect->GetAttributeTargetName()), FPolyStructHandle(), EEffectRemovalReason::ManualRemoval);
+		CallOnActiveEffectRemoved(Effect, FPolyStructHandle(), EEffectRemovalReason::ManualRemoval);
 		NumRemoved++;
 	}
 	return NumRemoved;
 }
 
 
-void UAttributesComponent::CallApplyEffect(const TSubclassOf<UAttributeEffect> EffectClass, const UAttributeEffect* EffectDefObj, const FAttributeHandle& ModAttribute, FPolyStructHandle& Context)
+void UAttributesComponent::CallApplyEffect(const TSubclassOf<UAttributeEffect> EffectClass, FPolyStructHandle& Context)
 {
 	if(HasAuthority())// Nothing to do if called on the server
 	{
-		Internal_ApplyEffect(EffectClass, EffectDefObj, ModAttribute, Context);
+		Internal_ApplyEffect(EffectClass, Context);
 		return;
 	}
 
-	switch(EffectDefObj->GetRepCond())
+	switch(EffectClass.GetDefaultObject()->GetRepCond())
 	{
 	case EEffectRepCond::LocalOnly:
-		Internal_ApplyEffect(EffectClass, EffectDefObj, ModAttribute, Context);
+		Internal_ApplyEffect(EffectClass, Context);
 		break;
 	case EEffectRepCond::ServerOnly:
-		Server_Internal_ApplyEffect(EffectClass, ModAttribute, Context);
+		Server_Internal_ApplyEffect(EffectClass, Context);
 		break;
 	case EEffectRepCond::LocalPredicted:
-		Internal_ApplyEffect_NetPrediction(EffectClass, ModAttribute, Context);
+		Internal_ApplyEffect_NetPrediction(EffectClass, Context);
 		break;
 	}
 }
 
 
-UAttributeEffect* UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> EffectClass, const UAttributeEffect* EffectDefObj, const FAttributeHandle& ModAttribute, FPolyStructHandle& Context)
+UAttributeEffect* UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> EffectClass, FPolyStructHandle& Context)
 {
-	if(EffectDefObj->GetDurationType() == EEffectDuration::Instant)
+	if(EffectClass.GetDefaultObject()->GetDurationType() == EEffectDuration::Instant)
 	{
 		// Call applied effect
-		CallOnEffectApplied(EffectDefObj, ModAttribute, Context);
+		CallOnEffectApplied(EffectClass, Context);
 
 		// Modify attribute value
 		ModifyAttribute(EffectClass, EffectDefObj, ModAttribute, Context);
@@ -146,10 +304,10 @@ UAttributeEffect* UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<U
 	return nullptr;
 }
 
-void UAttributesComponent::CallOnEffectApplied(const UAttributeEffect* Effect, const FAttributeHandle& Attribute, FPolyStructHandle& Context) const
+void UAttributesComponent::CallOnEffectApplied(const UAttributeEffect* Effect, FPolyStructHandle& Context) const
 {
 	if(!Effect) return;
-	Effect->CallOnEffectApplied(Attribute, this, Context);
+	Effect->CallOnEffectApplied(this, Context);
 	OnEffectApplied(Effect, Context);
 	BP_OnEffectApplied(Effect, Context);
 }
@@ -166,7 +324,7 @@ void UAttributesComponent::ModifyAttribute(const TSubclassOf<UAttributeEffect> E
 {
 	if(!Effect || !EffectClass || !ModAttribute.IsValid()) return;
 	
-	const float ModValue = Effect->ModifyAttribute(ModAttribute, this, Context);
+	const float ModValue = Effect->Modify(ModAttribute, this, Context);
 	const float OriginalValue = ModAttribute->GetValue();
 	float NewValue = OriginalValue;
 
@@ -194,27 +352,27 @@ void UAttributesComponent::ModifyAttribute(const TSubclassOf<UAttributeEffect> E
 
 
 
-void UAttributesComponent::OnActiveEffectInterval(const UAttributeEffect* ActiveEffect, const FAttributeHandle& Attribute, FPolyStructHandle& Context)
+void UAttributesComponent::OnActiveEffectInterval(const UAttributeEffect* ActiveEffect, FPolyStructHandle& Context)
 {
 	CallModifyAttribute(ActiveEffect, Context);
 }
 
-void UAttributesComponent::OnActiveEffectRemoved(UAttributeEffect* ActiveEffect, const FAttributeHandle& Attribute, const FPolyStructHandle& Context, const EEffectRemovalReason Reason)
+void UAttributesComponent::OnActiveEffectRemoved(UAttributeEffect* ActiveEffect, const FPolyStructHandle& Context, const EEffectRemovalReason Reason)
 {
 	const int32 NumRemoved = ActiveEffects.Remove(ActiveEffect);
 	if(!NumRemoved || !ActiveEffect) return;
 	
-	ActiveEffect->CallOnEffectRemoved(Attribute, this, Context, Reason);
+	ActiveEffect->CallOnEffectRemoved(this, Context, Reason);
 	
 	GetWorld()->GetTimerManager().ClearTimer(ActiveEffect->IntervalTimerHandle);
 	GetWorld()->GetTimerManager().ClearTimer(ActiveEffect->LifespanTimerHandle);
 	ActiveEffect->Destroy();
 }
 
-void UAttributesComponent::Internal_ApplyEffect_NetPrediction(const TSubclassOf<UAttributeEffect> EffectClass, const FAttributeHandle& ModAttribute, FPolyStructHandle& Context)
+void UAttributesComponent::Internal_ApplyEffect_NetPrediction(const TSubclassOf<UAttributeEffect> EffectClass, FPolyStructHandle& Context)
 {
 	// Apply effect locally
-	UAttributeEffect* NewEffect = Internal_ApplyEffect(EffectClass, EffectClass.GetDefaultObject(), ModAttribute, Context);
+	UAttributeEffect* NewEffect = Internal_ApplyEffect(EffectClass, Context);
 	
 	// Cache effect in predicted effects map
 	const FEffectNetPredKey PredictionKey = MakePredictionKey();
@@ -222,21 +380,20 @@ void UAttributesComponent::Internal_ApplyEffect_NetPrediction(const TSubclassOf<
 		LocalPredictedEffects.Add(PredictionKey, NewEffect);
 
 	// Try apply effect server-side. Await response from server for success / fail to apply
-	Server_Internal_ApplyEffect_NetPrediction(EffectClass, ModAttribute, Context, PredictionKey);
+	Server_Internal_ApplyEffect_NetPrediction(EffectClass, Context, PredictionKey);
 }
 
 
-void UAttributesComponent::Server_Internal_ApplyEffect_NetPrediction_Implementation(UClass* EffectClass, const FAttributeHandle& ModAttribute, const FPolyStructHandle& Context, const FEffectNetPredKey Key)
+void UAttributesComponent::Server_Internal_ApplyEffect_NetPrediction_Implementation(UClass* EffectClass, const FPolyStructHandle& Context, const FEffectNetPredKey Key)
 {
 	// If can't apply effect
-	if(!EffectClass->GetDefaultObject<UAttributeEffect>()->CanApplyEffect(ModAttribute, this, Context))
+	if(!EffectClass->GetDefaultObject<UAttributeEffect>()->CanApplyEffect(this, Context))
 	{
-		checkf(ModAttribute.IsValid(), TEXT("Mod attribute is invalid on the server"));
-		Client_Internal_ApplyEffect_Fail(ModAttribute, ModAttribute->GetValue(), Key);
+		Client_Internal_ApplyEffect_Fail(ModAttribute->GetValue(), Key);
 		return;
 	}
 	// If can apply effect
-	Internal_ApplyEffect(EffectClass, EffectClass->GetDefaultObject<UAttributeEffect>(), ModAttribute, (FPolyStructHandle&)Context);
+	Internal_ApplyEffect(EffectClass, (FPolyStructHandle&)Context);
 	Client_Internal_ApplyEffect_Success(Key);
 }
 
@@ -251,16 +408,16 @@ void UAttributesComponent::Client_Internal_ApplyEffect_Success_Implementation(co
 		ClearCurrentPredictionKey();
 
 	if(!LocalPredictedEffect) return;
-	OnActiveEffectRemoved(LocalPredictedEffect, FindAttributeByName(LocalPredictedEffect->GetAttributeTargetName()), FPolyStructHandle(), EEffectRemovalReason::NetPredSuccess);
+	OnActiveEffectRemoved(LocalPredictedEffect, FPolyStructHandle(), EEffectRemovalReason::NetPredSuccess);
 }
 
-void UAttributesComponent::Client_Internal_ApplyEffect_Fail_Implementation(const FAttributeHandle& Attribute, const float CorrectValue, const FEffectNetPredKey Key)
+void UAttributesComponent::Client_Internal_ApplyEffect_Fail_Implementation(const float CorrectValue, const FEffectNetPredKey Key)
 {
 	if(const TWeakObjectPtr<UAttributeEffect>* LocalPredictedEffectPtr = LocalPredictedEffects.Find(Key))
 	{
 		if(UAttributeEffect* LocalPredictedEffect = LocalPredictedEffectPtr->Get())
 		{
-			OnActiveEffectRemoved(LocalPredictedEffect, Attribute, FPolyStructHandle(), EEffectRemovalReason::NetPredFail);
+			OnActiveEffectRemoved(LocalPredictedEffect, FPolyStructHandle(), EEffectRemovalReason::NetPredFail);
 		}
 
 		LocalPredictedEffects.Remove(Key);
@@ -268,10 +425,10 @@ void UAttributesComponent::Client_Internal_ApplyEffect_Fail_Implementation(const
 			ClearCurrentPredictionKey();
 	}
 
-	checkf(Attribute.IsValid(), TEXT("Attribute is invalid on the client"));
-	const_cast<FAttribute*>(Attribute.Get())->SetValue(CorrectValue);
+	//checkf(Attribute.IsValid(), TEXT("Attribute is invalid on the client"));
+	//const_cast<FAttribute*>(Attribute.Get())->SetValue(CorrectValue);
 }
-
+*/
 
 
 

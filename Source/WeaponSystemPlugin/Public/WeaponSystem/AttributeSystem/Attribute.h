@@ -9,6 +9,25 @@
 #include "Attribute.generated.h"
 
 
+UINTERFACE(MinimalAPI)
+class UAttributesInterface : public UInterface
+{
+	GENERATED_BODY()
+};
+
+class WEAPONSYSTEMPLUGIN_API IAttributesInterface
+{
+	GENERATED_BODY()
+protected:
+	// Specify what Attributes Component to return
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Meta = (AllowPrivateAccess = "true"), Category = "Attributes Interface")
+	class UAttributesComponent* GetAttributesComponent() const;
+	virtual class UAttributesComponent* GetAttributesComponent_Implementation() const { return nullptr; }
+};
+
+
+
+
 struct FAttribute;
 
 /*
@@ -28,6 +47,8 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 	FORCEINLINE operator bool() const { return IsValid(); }
 	FORCEINLINE FAttribute* operator->() { return Get(); }
 	FORCEINLINE const FAttribute* operator->() const { return Get(); }
+	FORCEINLINE FAttribute& operator*() { return *Get(); }
+	FORCEINLINE const FAttribute& operator*() const { return *Get(); }
 
 	FORCEINLINE bool operator==(const FAttributeHandle& Other) const { return Owner == Other.Owner && AttributeProp == Other.AttributeProp; }
 	bool operator==(const FAttribute& Attribute) const;
@@ -89,7 +110,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Attributes")
 	FAttributeHandle Handle;
 
-	// OnAttributeChanged.Broadcast(Value, OldValue, Handle);
+	// Manually broadcast the current state of the Attribute
 	FORCEINLINE void Broadcast(const float OldValue) { OnAttributeChanged.Broadcast(Value, OldValue, Handle); }
 	
 public:

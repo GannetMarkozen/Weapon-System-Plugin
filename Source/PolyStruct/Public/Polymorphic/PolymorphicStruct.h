@@ -106,7 +106,7 @@ struct TStructOpsTypeTraits<FPolyStruct> : TStructOpsTypeTraitsBase2<FPolyStruct
 /*
  * An array of Poly Structs being passed around by-reference via Shared Pointers.
  * Avoids copying when being passed around (including Blueprints). Supports net serialization.
- * Warning: Does not fully support dynamic replication (will not always update unless
+ * Warning: Does not fully support dynamic replication fully (will not always update unless
  * array size is changed or pointer is reassigned. It's preferable to use a standard
  * array of Poly Structs in that case anyways, which will update properly)
  */
@@ -155,6 +155,13 @@ struct POLYSTRUCT_API FPolyStructHandle
 	bool ExtractStructAt(void* const OutStruct, const UScriptStruct* ScriptStruct, const int32 Index = 0) const;
 	template<typename T>
 	FORCEINLINE bool ExtractStructAt(T& Struct, const int32 Index = 0) const { return ExtractStructAt(&Struct, TBaseStructure<T>::Get(), Index); }
+
+	// Will extract the data into the OutStruct if a valid type exists and will return the index of that struct
+	int32 ExtractAny(void* const OutStruct, const UScriptStruct* ScriptStruct) const;
+
+	// Will extract the data into the Struct if a valid type exists and will return the index of that struct
+	template<typename T>
+	FORCEINLINE int32 ExtractAny(T& Struct) const { return ExtractAny(&Struct, TBaseStructure<T>::Get()); }
 
 	// Returns an array of valid struct casts
 	template<typename T>

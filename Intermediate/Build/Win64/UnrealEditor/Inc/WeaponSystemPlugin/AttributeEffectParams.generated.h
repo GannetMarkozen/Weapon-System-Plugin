@@ -34,6 +34,7 @@ enum class EEffectRepCond : uint8;
 template<> WEAPONSYSTEMPLUGIN_API UEnum* StaticEnum<EEffectRepCond>();
 
 #define FOREACH_ENUM_EEFFECTMODTYPE(op) \
+	op(EEffectModType::None) \
 	op(EEffectModType::Overriding) \
 	op(EEffectModType::Additive) \
 	op(EEffectModType::Multiplicative) 

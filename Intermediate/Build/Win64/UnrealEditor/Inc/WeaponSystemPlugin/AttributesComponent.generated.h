@@ -8,226 +8,91 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UAttributesComponent;
-struct FAttributeHandle;
-struct FEffectNetPredKey;
 class UObject;
+class AActor;
+struct FEffectNetPredKey;
 struct FPolyStructHandle;
 class UAttributeEffect;
-enum class EEffectRemovalReason : uint8;
+struct FAttributeHandle;
 #ifdef WEAPONSYSTEMPLUGIN_AttributesComponent_generated_h
 #error "AttributesComponent.generated.h already included, missing '#pragma once' in AttributesComponent.h"
 #endif
 #define WEAPONSYSTEMPLUGIN_AttributesComponent_generated_h
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_RPC_WRAPPERS \
-	virtual UAttributesComponent* GetAttributesComponent_Implementation() const { return NULL; }; \
- \
-	DECLARE_FUNCTION(execGetAttributesComponent);
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execGetAttributesComponent);
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_EVENT_PARMS \
-	struct AttributesInterface_eventGetAttributesComponent_Parms \
-	{ \
-		UAttributesComponent* ReturnValue; \
- \
-		/** Constructor, initializes return property only **/ \
-		AttributesInterface_eventGetAttributesComponent_Parms() \
-			: ReturnValue(NULL) \
-		{ \
-		} \
-	};
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_CALLBACK_WRAPPERS
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_STANDARD_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-	DEFINE_ABSTRACT_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributesInterface) \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(WEAPONSYSTEMPLUGIN_API, UAttributesInterface); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributesInterface); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(UAttributesInterface&&); \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(const UAttributesInterface&); \
-public:
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(UAttributesInterface&&); \
-	WEAPONSYSTEMPLUGIN_API UAttributesInterface(const UAttributesInterface&); \
-public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(WEAPONSYSTEMPLUGIN_API, UAttributesInterface); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributesInterface); \
-	DEFINE_ABSTRACT_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributesInterface)
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_GENERATED_UINTERFACE_BODY() \
-private: \
-	static void StaticRegisterNativesUAttributesInterface(); \
-	friend struct Z_Construct_UClass_UAttributesInterface_Statics; \
-public: \
-	DECLARE_CLASS(UAttributesInterface, UInterface, COMPILED_IN_FLAGS(CLASS_Abstract | CLASS_Interface), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), WEAPONSYSTEMPLUGIN_API) \
-	DECLARE_SERIALIZER(UAttributesInterface)
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_GENERATED_BODY_LEGACY \
-		PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_GENERATED_UINTERFACE_BODY() \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_STANDARD_CONSTRUCTORS \
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_GENERATED_BODY \
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_GENERATED_UINTERFACE_BODY() \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_ENHANCED_CONSTRUCTORS \
-private: \
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_INCLASS_IINTERFACE_NO_PURE_DECLS \
-protected: \
-	virtual ~IAttributesInterface() {} \
-public: \
-	typedef UAttributesInterface UClassType; \
-	typedef IAttributesInterface ThisClass; \
-	static UAttributesComponent* Execute_GetAttributesComponent(const UObject* O); \
-	virtual UObject* _getUObject() const { return nullptr; }
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_INCLASS_IINTERFACE \
-protected: \
-	virtual ~IAttributesInterface() {} \
-public: \
-	typedef UAttributesInterface UClassType; \
-	typedef IAttributesInterface ThisClass; \
-	static UAttributesComponent* Execute_GetAttributesComponent(const UObject* O); \
-	virtual UObject* _getUObject() const { return nullptr; }
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_14_PROLOG \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_EVENT_PARMS
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_22_GENERATED_BODY_LEGACY \
-PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_CALLBACK_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_INCLASS_IINTERFACE \
-public: \
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_22_GENERATED_BODY \
-PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_CALLBACK_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_17_INCLASS_IINTERFACE_NO_PURE_DECLS \
-private: \
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
-template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributesInterface>();
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_34_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEffectNetPredKey_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FEffectNetPredKey>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_RPC_WRAPPERS \
-	virtual void Client_Internal_ApplyEffect_Fail_Implementation(FAttributeHandle const& Attribute, const float CorrectValue, const FEffectNetPredKey Key); \
-	virtual void Client_Internal_ApplyEffect_Success_Implementation(const FEffectNetPredKey Key); \
-	virtual void Server_Internal_ApplyEffect_NetPrediction_Implementation(UClass* EffectClass, FAttributeHandle const& ModAttribute, FPolyStructHandle const& Context, const FEffectNetPredKey Key); \
-	virtual void Server_Internal_ApplyEffect_Implementation(UClass* EffectClass, FAttributeHandle const& ModAttribute, FPolyStructHandle const& Context); \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_37_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FActiveEffect_Statics; \
+	static class UScriptStruct* StaticStruct();
+
+
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FActiveEffect>();
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_SPARSE_DATA
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_RPC_WRAPPERS \
+	virtual void Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey); \
+	virtual void Client_ApplyEffect_LocalPredicted_Success_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey); \
+	virtual void Server_ApplyEffect_LocalPredicted_Implementation(UClass* Effect, const AActor* Instigator, FPolyStructHandle const& Context, const FEffectNetPredKey PredictionKey); \
+	virtual void Server_ApplyEffect_Implementation(UClass* Effect, const AActor* Instigator, FPolyStructHandle const& Context); \
  \
-	DECLARE_FUNCTION(execHasAuthority); \
-	DECLARE_FUNCTION(execClient_Internal_ApplyEffect_Fail); \
-	DECLARE_FUNCTION(execClient_Internal_ApplyEffect_Success); \
-	DECLARE_FUNCTION(execServer_Internal_ApplyEffect_NetPrediction); \
-	DECLARE_FUNCTION(execServer_Internal_ApplyEffect); \
+	DECLARE_FUNCTION(execClient_ApplyEffect_LocalPredicted_Fail); \
+	DECLARE_FUNCTION(execClient_ApplyEffect_LocalPredicted_Success); \
+	DECLARE_FUNCTION(execServer_ApplyEffect_LocalPredicted); \
+	DECLARE_FUNCTION(execServer_ApplyEffect); \
+	DECLARE_FUNCTION(execApplyEffect); \
+	DECLARE_FUNCTION(execBindAllAttributesChanged); \
 	DECLARE_FUNCTION(execFindAttributeByName); \
-	DECLARE_FUNCTION(execRemoveEffectsByClass); \
-	DECLARE_FUNCTION(execApplyEffect);
+	DECLARE_FUNCTION(execHasAuthority);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void Server_ApplyEffect_LocalPredicted_Implementation(UClass* Effect, const AActor* Instigator, FPolyStructHandle const& Context, const FEffectNetPredKey PredictionKey); \
  \
-	DECLARE_FUNCTION(execHasAuthority); \
-	DECLARE_FUNCTION(execClient_Internal_ApplyEffect_Fail); \
-	DECLARE_FUNCTION(execClient_Internal_ApplyEffect_Success); \
-	DECLARE_FUNCTION(execServer_Internal_ApplyEffect_NetPrediction); \
-	DECLARE_FUNCTION(execServer_Internal_ApplyEffect); \
+	DECLARE_FUNCTION(execClient_ApplyEffect_LocalPredicted_Fail); \
+	DECLARE_FUNCTION(execClient_ApplyEffect_LocalPredicted_Success); \
+	DECLARE_FUNCTION(execServer_ApplyEffect_LocalPredicted); \
+	DECLARE_FUNCTION(execServer_ApplyEffect); \
+	DECLARE_FUNCTION(execApplyEffect); \
+	DECLARE_FUNCTION(execBindAllAttributesChanged); \
 	DECLARE_FUNCTION(execFindAttributeByName); \
-	DECLARE_FUNCTION(execRemoveEffectsByClass); \
-	DECLARE_FUNCTION(execApplyEffect);
+	DECLARE_FUNCTION(execHasAuthority);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_EVENT_PARMS \
-	struct AttributesComponent_eventBP_OnActiveEffectRemoved_Parms \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_EVENT_PARMS \
+	struct AttributesComponent_eventClient_ApplyEffect_LocalPredicted_Fail_Parms \
 	{ \
-		UAttributeEffect* ActiveEffect; \
-		FAttributeHandle Attribute; \
-		FPolyStructHandle Context; \
-		EEffectRemovalReason Reason; \
+		UClass* Effect; \
+		const AActor* Instigator; \
+		FEffectNetPredKey PredictionKey; \
 	}; \
-	struct AttributesComponent_eventBP_OnEffectApplied_Parms \
+	struct AttributesComponent_eventClient_ApplyEffect_LocalPredicted_Success_Parms \
 	{ \
-		const UAttributeEffect* Effect; \
-		FPolyStructHandle Context; \
+		UClass* Effect; \
+		const AActor* Instigator; \
+		FEffectNetPredKey PredictionKey; \
 	}; \
-	struct AttributesComponent_eventBP_PreModifyAttribute_Parms \
+	struct AttributesComponent_eventServer_ApplyEffect_Parms \
 	{ \
-		FAttributeHandle Attribute; \
-		const UAttributeEffect* Effect; \
-		FPolyStructHandle Context; \
-		float InValue; \
-		float OutValue; \
-	}; \
-	struct AttributesComponent_eventClient_Internal_ApplyEffect_Fail_Parms \
-	{ \
-		FAttributeHandle Attribute; \
-		float CorrectValue; \
-		FEffectNetPredKey Key; \
-	}; \
-	struct AttributesComponent_eventClient_Internal_ApplyEffect_Success_Parms \
-	{ \
-		FEffectNetPredKey Key; \
-	}; \
-	struct AttributesComponent_eventServer_Internal_ApplyEffect_Parms \
-	{ \
-		UClass* EffectClass; \
-		FAttributeHandle ModAttribute; \
+		UClass* Effect; \
+		const AActor* Instigator; \
 		FPolyStructHandle Context; \
 	}; \
-	struct AttributesComponent_eventServer_Internal_ApplyEffect_NetPrediction_Parms \
+	struct AttributesComponent_eventServer_ApplyEffect_LocalPredicted_Parms \
 	{ \
-		UClass* EffectClass; \
-		FAttributeHandle ModAttribute; \
+		UClass* Effect; \
+		const AActor* Instigator; \
 		FPolyStructHandle Context; \
-		FEffectNetPredKey Key; \
+		FEffectNetPredKey PredictionKey; \
 	};
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_CALLBACK_WRAPPERS
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_INCLASS_NO_PURE_DECLS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_CALLBACK_WRAPPERS
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUAttributesComponent(); \
 	friend struct Z_Construct_UClass_UAttributesComponent_Statics; \
@@ -236,7 +101,7 @@ public: \
 	DECLARE_SERIALIZER(UAttributesComponent)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_INCLASS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_INCLASS \
 private: \
 	static void StaticRegisterNativesUAttributesComponent(); \
 	friend struct Z_Construct_UClass_UAttributesComponent_Statics; \
@@ -245,7 +110,7 @@ public: \
 	DECLARE_SERIALIZER(UAttributesComponent)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_STANDARD_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UAttributesComponent(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributesComponent) \
@@ -258,7 +123,7 @@ private: \
 public:
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_ENHANCED_CONSTRUCTORS \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UAttributesComponent(UAttributesComponent&&); \
@@ -269,35 +134,115 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UAttributesComponent)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_52_PROLOG \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_EVENT_PARMS
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_59_PROLOG \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_EVENT_PARMS
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_GENERATED_BODY_LEGACY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_CALLBACK_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_INCLASS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_STANDARD_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_RPC_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_CALLBACK_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_INCLASS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_CALLBACK_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_INCLASS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_55_ENHANCED_CONSTRUCTORS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_CALLBACK_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_INCLASS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_62_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributesComponent>();
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_SPARSE_DATA
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execSomething);
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execSomething);
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUAttributesComponentRepUtils(); \
+	friend struct Z_Construct_UClass_UAttributesComponentRepUtils_Statics; \
+public: \
+	DECLARE_CLASS(UAttributesComponentRepUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAttributesComponentRepUtils)
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_INCLASS \
+private: \
+	static void StaticRegisterNativesUAttributesComponentRepUtils(); \
+	friend struct Z_Construct_UClass_UAttributesComponentRepUtils_Statics; \
+public: \
+	DECLARE_CLASS(UAttributesComponentRepUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAttributesComponentRepUtils)
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_STANDARD_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAttributesComponentRepUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributesComponentRepUtils) \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributesComponentRepUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributesComponentRepUtils); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UAttributesComponentRepUtils(UAttributesComponentRepUtils&&); \
+	NO_API UAttributesComponentRepUtils(const UAttributesComponentRepUtils&); \
+public:
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAttributesComponentRepUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UAttributesComponentRepUtils(UAttributesComponentRepUtils&&); \
+	NO_API UAttributesComponentRepUtils(const UAttributesComponentRepUtils&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAttributesComponentRepUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAttributesComponentRepUtils); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAttributesComponentRepUtils)
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_119_PROLOG
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_GENERATED_BODY_LEGACY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_RPC_WRAPPERS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_INCLASS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_STANDARD_CONSTRUCTORS \
+public: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_SPARSE_DATA \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_INCLASS_NO_PURE_DECLS \
+	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_122_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributesComponentRepUtils>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h

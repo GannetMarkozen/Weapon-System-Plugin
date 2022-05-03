@@ -59,7 +59,7 @@ void FPolyStruct::SetStruct(const UScriptStruct* InScriptStruct)
 bool FPolyStruct::ExtractStruct(void* const OutStruct, const UScriptStruct* InScriptStruct) const
 {
 	if(!IsValid() || !IsA(InScriptStruct)) return false;
-	if(InScriptStruct->GetCppStructOps()->HasCopy())
+	if(InScriptStruct->GetCppStructOps() && InScriptStruct->GetCppStructOps()->HasCopy())
 	{
 		InScriptStruct->GetCppStructOps()->Copy(OutStruct, Memory, 1);
 	}
@@ -183,6 +183,16 @@ bool FPolyStructHandle::ExtractStructAt(void* const OutStruct, const UScriptStru
 	if(!PolyStruct) return false;
 	return PolyStruct->ExtractStruct(OutStruct, ScriptStruct);
 }
+
+int32 FPolyStructHandle::ExtractAny(void* const OutStruct, const UScriptStruct* ScriptStruct) const
+{
+	for(int32 i = 0; i < Num(); i++)
+	{
+		if(ExtractStructAt(OutStruct, ScriptStruct, i)) return i;
+	}
+	return INDEX_NONE;
+}
+
 
 template <typename T>
 void FPolyStructHandle::CastStructs(TArray<T*>& Structs)
