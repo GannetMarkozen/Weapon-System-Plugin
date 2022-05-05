@@ -122,8 +122,10 @@ void UHitscanScriptBase::PlayFiringEffect_Implementation()
 
 	if(MuzzleFlash)
 		UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, OwningWeapon->GetMesh(), FName("Muzzle"), MuzzleTransform.GetLocation(), MuzzleTransform.Rotator(), FVector(1.f), EAttachLocation::KeepWorldPosition);
-	
-	GetOwningCharacter()->AddRecoilInstance(RecoilParams);
+
+	FRecoilParams CustomMagnitudeRecoilParams = RecoilParams;
+	CustomMagnitudeRecoilParams.Magnitude = CalculateRecoilMagnitude();
+	GetOwningCharacter()->AddRecoilInstance(CustomMagnitudeRecoilParams);
 }
 
 void UHitscanScriptBase::PlayImpactEffect_Implementation(const TArray<FHitResult>& Hits)

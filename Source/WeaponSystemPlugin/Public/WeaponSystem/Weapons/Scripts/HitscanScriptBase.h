@@ -45,6 +45,11 @@ public:
 	float CalculateSpreadMagnitude() const;
 	virtual FORCEINLINE float CalculateSpreadMagnitude_Implementation() const { return 1.f; }
 
+	// Add your own custom calculation for the magnitude of the recoil
+	UFUNCTION(BlueprintNativeEvent, Category = "Script|Hitscan")
+	float CalculateRecoilMagnitude() const;
+	virtual float CalculateRecoilMagnitude_Implementation() const { return 1.f; }
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Script|Hitscan")
 	void ApplyDamage(class AActor* Target);
 	virtual void ApplyDamage_Implementation(class AActor* Target);
