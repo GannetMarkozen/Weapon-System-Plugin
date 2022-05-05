@@ -26,12 +26,12 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_38_SPARSE_DATA
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_38_RPC_WRAPPERS \
-	virtual void Modify_Implementation(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const; \
+	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const; \
 	virtual bool CanApplyEffect_Implementation(const UAttributesComponent* AttributesComponent, FPolyStructHandle const& Context) const; \
  \
 	DECLARE_FUNCTION(execHasAllModAttributes); \
 	DECLARE_FUNCTION(execGetAllModAttributes); \
-	DECLARE_FUNCTION(execModify); \
+	DECLARE_FUNCTION(execModifyAttributes); \
 	DECLARE_FUNCTION(execCanApplyEffect);
 
 
@@ -39,7 +39,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
  \
 	DECLARE_FUNCTION(execHasAllModAttributes); \
 	DECLARE_FUNCTION(execGetAllModAttributes); \
-	DECLARE_FUNCTION(execModify); \
+	DECLARE_FUNCTION(execModifyAttributes); \
 	DECLARE_FUNCTION(execCanApplyEffect);
 
 
@@ -67,7 +67,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
 		{ \
 		} \
 	}; \
-	struct AttributeEffect_eventModify_Parms \
+	struct AttributeEffect_eventModifyAttributes_Parms \
 	{ \
 		UAttributesComponent* AttributesComponent; \
 		FPolyStructHandle Context; \
@@ -80,7 +80,7 @@ private: \
 	static void StaticRegisterNativesUAttributeEffect(); \
 	friend struct Z_Construct_UClass_UAttributeEffect_Statics; \
 public: \
-	DECLARE_CLASS(UAttributeEffect, UScriptBase, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(UAttributeEffect, UObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(UAttributeEffect)
 
 
@@ -89,7 +89,7 @@ private: \
 	static void StaticRegisterNativesUAttributeEffect(); \
 	friend struct Z_Construct_UClass_UAttributeEffect_Statics; \
 public: \
-	DECLARE_CLASS(UAttributeEffect, UScriptBase, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_CLASS(UAttributeEffect, UObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
 	DECLARE_SERIALIZER(UAttributeEffect)
 
 

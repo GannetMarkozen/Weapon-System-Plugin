@@ -152,6 +152,9 @@ struct POLYSTRUCT_API FPolyStructHandle
 	FPolyStruct* GetAt(const int32 Index);
 	const FPolyStruct* GetAt(const int32 Index) const;
 
+	template<typename To>
+	To* GetAny() const;
+
 	bool ExtractStructAt(void* const OutStruct, const UScriptStruct* ScriptStruct, const int32 Index = 0) const;
 	template<typename T>
 	FORCEINLINE bool ExtractStructAt(T& Struct, const int32 Index = 0) const { return ExtractStructAt(&Struct, TBaseStructure<T>::Get(), Index); }

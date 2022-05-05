@@ -29,7 +29,7 @@ bool UAttributeEffect::HasAllModAttributes(const UAttributesComponent* Attribute
 	return true;
 }
 
-void UAttributeEffect::Modify_Implementation(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
 {
 	if(!AttributesComponent) return;
 	for(const FAttributeModParams& Modifier : Modifiers)
@@ -37,18 +37,20 @@ void UAttributeEffect::Modify_Implementation(UAttributesComponent* AttributesCom
 		FAttributeHandle Attribute = AttributesComponent->FindAttributeByName(Modifier.GetAttributeName());
 		if(!Attribute.IsValid()) continue;
 
+		const float AttributeValue = Attribute->GetValue();
+		
 		// Init NewValue as the CurrentValue
-		float NewValue = Attribute->GetValue();
+		float CurrentModValue = AttributeValue;
 
-		// Modify value by each calculator
+		// Modify attributes value by each calculator
 		for(const UAttributeEffectCalculation* ModifierCalculation : Modifier.GetEffectCalculations())
 		{
 			if(!ModifierCalculation || !ModifierCalculation->CanModifyAttribute(Attribute, this, AttributesComponent, Context)) continue;
-			ModifierCalculation->CallModify(NewValue, Attribute, this, AttributesComponent, Context);// Modifies the NewValue
+			ModifierCalculation->CallModify(CurrentModValue, AttributeValue, Attribute, this, AttributesComponent, Context);// Modifies the NewValue
 		}
 
 		// Set the new value
-		Attribute->SetValue(NewValue);
+		Attribute->SetValue(CurrentModValue);
 	}
 }
 

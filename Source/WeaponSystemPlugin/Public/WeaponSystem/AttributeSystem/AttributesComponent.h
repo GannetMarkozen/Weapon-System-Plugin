@@ -8,6 +8,7 @@
 #include "Polymorphic/PolymorphicStruct.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "AttributeEffectParams.h"
+#include "WeaponSystem/AttributeSystem/AttributeEffect.h"
 #include "AttributesComponent.generated.h"
 
 
@@ -24,11 +25,27 @@ struct WEAPONSYSTEMPLUGIN_API FEffectNetPredKey
 	FORCEINLINE FEffectNetPredKey& operator=(const uint32 OtherKey) { Key = OtherKey; return *this; }
 	FORCEINLINE FEffectNetPredKey operator++(int) { const FEffectNetPredKey OldKey = Key; Key++; return OldKey; }
 	FORCEINLINE bool operator==(const FEffectNetPredKey& Other) const { return Key == Other.Key; }
+	FORCEINLINE operator uint32&() { return Key; }
+	FORCEINLINE operator const uint32&() const { return Key; }
 
 	friend FORCEINLINE uint32 GetTypeHash(const FEffectNetPredKey& Other) { return Other.Key; }
 
-	UPROPERTY()
+	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
+	{
+		Ar.SerializeBits(&Key, sizeof uint32);
+		return bOutSuccess = true;
+	}
+	
 	uint32 Key = 0;
+};
+
+template<>
+struct TStructOpsTypeTraits<FEffectNetPredKey> : TStructOpsTypeTraitsBase2<FEffectNetPredKey>
+{
+	enum
+	{
+		WithNetSerializer = true,
+	};
 };
 
 USTRUCT()
@@ -45,6 +62,7 @@ struct WEAPONSYSTEMPLUGIN_API FActiveEffect
 
 	FORCEINLINE TSubclassOf<class UAttributeEffect> GetEffect() const { return Effect; }
 	FORCEINLINE const FPolyStructHandle& GetContext() const { return Context; }
+
 	
 protected:
 	TSubclassOf<class UAttributeEffect> Effect;
@@ -56,6 +74,42 @@ public:
 };
 
 
+USTRUCT()
+struct WEAPONSYSTEMPLUGIN_API FAttributeValuePairs
+{
+	GENERATED_BODY()
+
+	TArray<TPair<FAttributeHandle, float>> AttributeValues;
+	FORCEINLINE FAttributeValuePairs& operator=(const FAttributeValuePairs& Other) { AttributeValues = Other.AttributeValues; return *this; }
+	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
+	{
+		uint8 Num;
+		if(Ar.IsSaving()) Num = AttributeValues.Num();
+		Ar << Num;
+		if(Ar.IsLoading()) AttributeValues.SetNum(Num);
+		for(TPair<FAttributeHandle, float>& AttributeValue : AttributeValues)
+		{
+			AttributeValue.Get<0>().NetSerialize(Ar, Map, bOutSuccess);
+			Ar << AttributeValue.Get<1>();
+		}
+		return true;
+	}
+};
+
+template<>
+struct TStructOpsTypeTraits<FAttributeValuePairs> : TStructOpsTypeTraitsBase2<FAttributeValuePairs>
+{
+	enum
+	{
+		WithCopy = true,
+		WithNetSerializer = true,
+	};
+};
+
+
+/*
+ *
+ */
 UCLASS(BlueprintType, Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent
 {
@@ -63,7 +117,7 @@ class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent
 
 public:
 	UAttributesComponent();
-
+	
 protected:
 	virtual void BeginPlay() override;
 	
@@ -112,20 +166,20 @@ protected:
 	UFUNCTION(Client, Reliable)
 	void Client_ApplyEffect_LocalPredicted_Fail(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
 	virtual void Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
-};
 
-
-
-UCLASS()
-class WEAPONSYSTEMPLUGIN_API UAttributesComponentRepUtils : public UBlueprintFunctionLibrary
-{
-	GENERATED_BODY()
 public:
-	UFUNCTION(BlueprintCallable)
-	static void Something(int32 Number)
-	{
-		PRINT(TEXT("%s: Something %i"), *FString(GWorld && GWorld->GetNetMode() <= NM_ListenServer ? "SERVER" : "CLIENT"), Number);
-	}
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	FORCEINLINE void SyncAttribute(const FAttributeHandle& Attribute) { SyncAttributes({Attribute}); }
+
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	FORCEINLINE void SyncAttributes(const TArray<FAttributeHandle>& Attributes) { Server_SyncAttributes(Attributes); }
+
+protected:
+	UFUNCTION(Server, Reliable)
+	void Server_SyncAttributes(const TArray<FAttributeHandle>& Attributes);
+
+	UFUNCTION(Client, Reliable)
+	void Client_SyncAttributes(const FAttributeValuePairs& AttributeValues);
 };
 
 

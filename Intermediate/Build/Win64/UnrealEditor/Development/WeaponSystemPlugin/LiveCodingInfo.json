@@ -11,6 +11,8 @@
 			"WeaponSystemAnimInstance.cpp.obj",
 			"ShooterCharacterBase.cpp.obj",
 			"TrueFPSCharacter.cpp.obj",
+			"WeaponSystemPlayerController.cpp.obj",
+			"WeaponSystemGameInstance.cpp.obj",
 			"CharacterInventoryComponent.cpp.obj",
 			"InventoryComponent.cpp.obj",
 			"ReplicatedObject.cpp.obj",
@@ -71,6 +73,8 @@
 			"WeaponScriptBase.gen.cpp.obj",
 			"WeaponSystemAnimInstance.gen.cpp.obj",
 			"WeaponSystemFunctionLibrary.gen.cpp.obj",
+			"WeaponSystemGameInstance.gen.cpp.obj",
+			"WeaponSystemPlayerController.gen.cpp.obj",
 			"WeaponSystemPlugin.init.gen.cpp.obj"
 		]
 	}

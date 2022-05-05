@@ -194,6 +194,15 @@ int32 FPolyStructHandle::ExtractAny(void* const OutStruct, const UScriptStruct* 
 }
 
 
+template<typename To>
+To* FPolyStructHandle::GetAny() const
+{
+	for(int32 i = 0; i < PolyStructs.Num(); i++)
+		if(To* Struct = Cast<To>(GetAt(i)))
+			return Struct;
+	return nullptr;
+}
+
 template <typename T>
 void FPolyStructHandle::CastStructs(TArray<T*>& Structs)
 {
@@ -210,21 +219,18 @@ bool FPolyStructHandle::operator==(const FPolyStructHandle& Other) const
 		if(PolyStructs[i].IsValid() != Other.PolyStructs[i].IsValid() ||
 			PolyStructs[i].IsValid() && Other.PolyStructs[i].IsValid() &&
 				(*this)[i] != Other[i]) return false;
-	/*for(int32 i = 0; i < Num(); i++)
-		if(const auto* ThisVec = Cast<FVector>((*this)[i]))
-			if(const auto* OtherVec = Cast<FVector>(Other[i]))
-				UE_LOG(LogTemp, Warning, TEXT("ThisVec == %s. OtherVec == %s"), *ThisVec->ToString(), *OtherVec->ToString());*/
 	
 	return true;
 }
 
 FPolyStructHandle& FPolyStructHandle::operator=(const FPolyStructHandle& Other)
 {
-	PolyStructs = Other.PolyStructs; return *this;
-	PolyStructs.SetNum(Other.Num());
+	PolyStructs = Other.PolyStructs;
+	return *this;
+	/*PolyStructs.SetNum(Other.Num());
 	for(int32 i = 0; i < Num(); i++)
 		PolyStructs[i] = Other.PolyStructs[i].IsValid() ? MakeShared<FPolyStruct>(Other[i]) : TSharedPtr<FPolyStruct>();
-	return *this;
+	return *this;*/
 }
 
 

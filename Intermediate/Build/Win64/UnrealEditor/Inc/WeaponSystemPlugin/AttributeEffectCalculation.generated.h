@@ -20,16 +20,16 @@ enum class EEffectModType : uint8;
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_18_SPARSE_DATA
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_18_RPC_WRAPPERS \
-	virtual void Modify_Implementation(const float CurrentValue, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutValue) const; \
+	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModValue) const; \
 	virtual bool CanModifyAttribute_Implementation(FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle const& Context) const; \
  \
-	DECLARE_FUNCTION(execModify); \
+	DECLARE_FUNCTION(execModifyAttribute); \
 	DECLARE_FUNCTION(execCanModifyAttribute);
 
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execModify); \
+	DECLARE_FUNCTION(execModifyAttribute); \
 	DECLARE_FUNCTION(execCanModifyAttribute);
 
 
@@ -48,15 +48,16 @@ enum class EEffectModType : uint8;
 		{ \
 		} \
 	}; \
-	struct AttributeEffectCalculation_eventModify_Parms \
+	struct AttributeEffectCalculation_eventModifyAttribute_Parms \
 	{ \
-		float CurrentValue; \
+		float AttributeValue; \
+		float CurrentModValue; \
 		FAttributeHandle Attribute; \
 		const UAttributeEffect* Effect; \
 		const UAttributesComponent* AttributesComponent; \
 		FPolyStructHandle Context; \
 		EEffectModType OutModificationType; \
-		float OutValue; \
+		float OutModValue; \
 	};
 
 

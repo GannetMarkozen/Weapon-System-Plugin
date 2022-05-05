@@ -12,11 +12,13 @@
  *  Each calculation in the array modifies the Attribute sequentially.
  *  NOTE: This is a non-instanced object so do not attempt to modify member-variables
  */
-UCLASS(Abstract, DefaultToInstanced, EditInlineNew, Meta = (NotBlueprintSpawnable))
+UCLASS(Abstract, Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Meta = (NotBlueprintSpawnable))
 class WEAPONSYSTEMPLUGIN_API UAttributeEffectCalculation : public UObject
 {
 	GENERATED_BODY()
+	
 	friend class UAttributeEffect;
+	
 protected:
 	// Whether or not we should attempt to modify the attribute. True by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect Calculation")
@@ -24,29 +26,29 @@ protected:
 	virtual bool CanModifyAttribute_Implementation(const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, const struct FPolyStructHandle& Context) const { return true; }
 
 	// Called when modifying an attribute
-	UFUNCTION(BlueprintNativeEvent, Category = "Effect Calculation")
-	void Modify(const float CurrentValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
-		UPARAM(ref) struct FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutValue) const;
+	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect Calculation")
+	void ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
+		UPARAM(ref) struct FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModificationValue) const;
 
 	// Called when modifying an attribute
-	virtual void Modify_Implementation(const float CurrentValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
-		struct FPolyStructHandle& Context, EEffectModType& OutModType, float& OutValue) const { OutModType = EEffectModType::None; }
+	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
+		struct FPolyStructHandle& Context, EEffectModType& OutModType, float& OutModValue) const { OutModType = EEffectModType::None; }
 
-	// Calls Modify and applies the ModValue and ModType to the InOutNewValue parameter
-	FORCEINLINE void CallModify(float& InOutNewValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, struct FPolyStructHandle& Context) const
+	// Calls ModifyAttributes and applies the ModValue and ModType to the InOutModValue parameter
+	FORCEINLINE void CallModify(float& InOutModValue, const float AttributeValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, struct FPolyStructHandle& Context) const
 	{
 		float ModifyValue; EEffectModType ModType;
-		Modify(InOutNewValue, Attribute, Effect, AttributesComponent, Context, ModType, ModifyValue);
+		ModifyAttribute(AttributeValue, InOutModValue, Attribute, Effect, AttributesComponent, Context, ModType, ModifyValue);
 		switch(ModType)
 		{
 		case EEffectModType::Additive:
-			InOutNewValue += ModifyValue;
+			InOutModValue += ModifyValue;
 			break;
 		case EEffectModType::Multiplicative:
-			InOutNewValue *= ModifyValue;
+			InOutModValue *= ModifyValue;
 			break;
 		case EEffectModType::Overriding:
-			InOutNewValue = ModifyValue;
+			InOutModValue = ModifyValue;
 			break;
 		default:
 			break;

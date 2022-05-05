@@ -324,6 +324,16 @@ public:
 				Object->PreReplication(*FindOrCreatePropertyTracker(Object).Get());
 	}
 
+	/*
+	static void ProcessRemoteFunctionForChannel(AActor* NetOwner, UObject* TargetObj, UFunction* Function, const bool bIsServer, void* Params, FOutParmRec* OutParams = nullptr);
+
+	template<typename... ParamTypes>
+	static void ProcessRemoteFunctionForChannel(AActor* NetOwner, UObject* TargetObj, UFunction* Function, const bool bIsServer, ParamTypes... Params)
+	{
+		TTuple<ParamTypes...> ParamsTuple(Params...);
+		ProcessRemoteFunctionForChannel(NetOwner, TargetObj, Function, bIsServer, &ParamsTuple, nullptr);
+	}
+	*/
 
 protected:
 	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Class", DeterminesOutputType = "Class", AllowPrivateAccess = "true"), Category = "Weapon System Function Library")

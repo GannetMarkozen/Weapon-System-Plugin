@@ -3,4 +3,6 @@
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponScriptBase.gen.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemAnimInstance.gen.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemFunctionLibrary.gen.cpp"
+#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemGameInstance.gen.cpp"
+#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemPlayerController.gen.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Intermediate/Build/Win64/UnrealEditor/Inc/WeaponSystemPlugin/WeaponSystemPlugin.init.gen.cpp"

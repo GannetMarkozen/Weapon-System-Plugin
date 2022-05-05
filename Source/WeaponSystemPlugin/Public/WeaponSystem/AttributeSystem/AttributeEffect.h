@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Attribute.h"
 #include "Polymorphic/PolymorphicStruct.h"
-#include "WeaponSystem/ScriptBase.h"
+#include "UObject/Object.h"
 #include "AttributeEffectParams.h"
 #include "AttributeEffect.generated.h"
 
@@ -32,8 +32,8 @@ public:
 /**
  * 
  */
-UCLASS(Abstract)
-class WEAPONSYSTEMPLUGIN_API UAttributeEffect : public UScriptBase
+UCLASS(Abstract, Blueprintable, BlueprintType)
+class WEAPONSYSTEMPLUGIN_API UAttributeEffect : public UObject
 {
 	GENERATED_BODY()
 public:
@@ -44,6 +44,10 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Attribute Modifiers", AllowPrivateAccess = "true"), Category = "Effect")
 	TArray<FAttributeModParams> Modifiers;
+
+	// How this effect should be replicated. Will make no difference if playing as server / playing in Standalone-Mode
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Effect Replication Condition"), Category = "Effect")
+	EEffectRepCond EffectRepCond = EEffectRepCond::ServerOnly;
 
 	// The duration of the effect. Forever being infinite until removed manually. Duration being for the duration time. And instant being instantaneous
 	// Note: Using an instant effect does not instance the Attribute Effect thus you should not store any variables. Treat the functions as static functions
@@ -57,15 +61,7 @@ protected:
 	// The total lifespan of this effect
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Lifespan Duration", EditCondition = "EffectDurType == EEffectDuration::ForDuration"), Category = "Effect")
 	float Lifespan = 5.f;
-
-	// How this effect should be replicated. Will make no difference if playing as server / playing in Standalone-Mode
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Effect Replication Condition"), Category = "Effect")
-	EEffectRepCond EffectRepCond = EEffectRepCond::ServerOnly;
-
-	// Other effects attempted to be applied if this one is successfully applied
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Inherited Effects"), Category = "Effect")
-	TArray<TSubclassOf<class UAttributeEffect>> InheritedEffects;
-
+	
 	// Whether or not this effect should be applied. Returns true by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
 	bool CanApplyEffect(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const;
@@ -73,9 +69,9 @@ protected:
 
 	// Called everytime an attribute is to be modified. Consider the Effect Modifier Type when calculating the output.
 	// The context can be modified to maintain / alter state. Should generally not be overridden
-	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	void Modify(class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
-	virtual void Modify_Implementation(class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
+	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect")
+	void ModifyAttributes(class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
+	virtual void ModifyAttributes_Implementation(class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
 	virtual void OnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const {}
@@ -106,12 +102,9 @@ protected:
 	}
 
 public:
-	//FORCEINLINE EEffectModType GetModType() const { return EffectModType; }
-	//FORCEINLINE const FName& GetAttributeTargetName() const { return AttrTargetName; }
 	FORCEINLINE const TArray<FAttributeModParams>& GetAttributeModParams() const { return Modifiers; }
 	FORCEINLINE EEffectDuration GetDurationType() const { return EffectDurType; }
 	FORCEINLINE EEffectRepCond GetRepCond() const { return EffectRepCond; }
-	FORCEINLINE const TArray<TSubclassOf<class UAttributeEffect>>& GetInheritedEffects() const { return InheritedEffects; }
 
 	// Gets all the modifying attributes present on the Attributes Component (all handles will be valid)
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Get All Modifying Attributes"), Category = "Effect")
