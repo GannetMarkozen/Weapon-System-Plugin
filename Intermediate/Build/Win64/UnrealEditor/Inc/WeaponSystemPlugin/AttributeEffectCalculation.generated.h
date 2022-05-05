@@ -20,7 +20,7 @@ enum class EEffectModType : uint8;
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_18_SPARSE_DATA
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_18_RPC_WRAPPERS \
-	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModValue) const; \
+	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModificationValue, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModificationValue) const; \
 	virtual bool CanModifyAttribute_Implementation(FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle const& Context) const; \
  \
 	DECLARE_FUNCTION(execModifyAttribute); \
@@ -51,13 +51,13 @@ enum class EEffectModType : uint8;
 	struct AttributeEffectCalculation_eventModifyAttribute_Parms \
 	{ \
 		float AttributeValue; \
-		float CurrentModValue; \
+		float CurrentModificationValue; \
 		FAttributeHandle Attribute; \
 		const UAttributeEffect* Effect; \
 		const UAttributesComponent* AttributesComponent; \
 		FPolyStructHandle Context; \
 		EEffectModType OutModificationType; \
-		float OutModValue; \
+		float OutModificationValue; \
 	};
 
 

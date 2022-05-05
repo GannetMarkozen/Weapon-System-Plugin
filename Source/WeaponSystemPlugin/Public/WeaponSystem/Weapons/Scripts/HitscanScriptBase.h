@@ -51,8 +51,8 @@ public:
 	virtual float CalculateRecoilMagnitude_Implementation() const { return 1.f; }
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Script|Hitscan")
-	void ApplyDamage(class AActor* Target);
-	virtual void ApplyDamage_Implementation(class AActor* Target);
+	void TryApplyDamage(const FHitResult& Hit);
+	virtual void TryApplyDamage_Implementation(const FHitResult& Hit) {}
 
 	// The Attribute Effect that we will attempt to apply to a hit-target
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Gameplay")

@@ -57,7 +57,7 @@ void UHitscanScriptBase::Server_Hitscan_Implementation(const TArray<FHitResult>&
 {
 	if(!CanHitscan()) return;
 
-	TMap<AActor*, float> AccumulativeDamage;
+	/*TMap<AActor*, float> AccumulativeDamage;
 	for(const FHitResult& Hit : Hits)
 	{
 		//if(!Hit.GetActor() || !Hit.GetActor()->Implements<UDamageInterface>()) continue;
@@ -83,26 +83,17 @@ void UHitscanScriptBase::Server_Hitscan_Implementation(const TArray<FHitResult>&
 		if(!DamageValue) continue;
 		
 		//IDamageInterface::Execute_ApplyDamage(DamageableActor, *DamageValue, (DamageableActor->GetActorLocation() - GetOwningCharacter()->Camera->GetComponentLocation()).GetSafeNormal(), 1.f);
-		ApplyDamage(DamageableActor);
+		TryApplyDamage(DamageableActor);
+	}*/
+	for(const FHitResult& Hit : Hits)
+	{
+		if(!UAttributeUtils::HasAttributesComponent(Hit.GetActor())) continue;
+		TryApplyDamage(Hit);
 	}
 
 	Multi_Hitscan(Hits);
 	PlayFiringEffect();
 	PlayImpactEffect(Hits);
-}
-
-void UHitscanScriptBase::ApplyDamage_Implementation(AActor* Target)
-{
-	FPolyStructHandle Context;
-	const bool bSuccess = UAttributeUtils::ApplyEffectToTarget(Target, GetOwningCharacter(), DamageEffect, Context);
-	if(bSuccess)
-	{
-		PRINT(TEXT("%s: Success"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
-	}
-	else
-	{
-		PRINT(TEXT("%s: Fail"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
-	}
 }
 
 

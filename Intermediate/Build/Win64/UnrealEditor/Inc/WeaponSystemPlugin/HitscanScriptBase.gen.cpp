@@ -36,6 +36,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		P_THIS->ApplyDamage_Implementation(Z_Param_Target);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UHitscanScriptBase::execCalculateRecoilMagnitude)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(float*)Z_Param__Result=P_THIS->CalculateRecoilMagnitude_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UHitscanScriptBase::execCalculateSpreadMagnitude)
 	{
 		P_FINISH;
@@ -95,6 +102,13 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		Parms.Target=Target;
 		ProcessEvent(FindFunctionChecked(NAME_UHitscanScriptBase_ApplyDamage),&Parms);
 	}
+	static FName NAME_UHitscanScriptBase_CalculateRecoilMagnitude = FName(TEXT("CalculateRecoilMagnitude"));
+	float UHitscanScriptBase::CalculateRecoilMagnitude() const
+	{
+		HitscanScriptBase_eventCalculateRecoilMagnitude_Parms Parms;
+		const_cast<UHitscanScriptBase*>(this)->ProcessEvent(FindFunctionChecked(NAME_UHitscanScriptBase_CalculateRecoilMagnitude),&Parms);
+		return Parms.ReturnValue;
+	}
 	static FName NAME_UHitscanScriptBase_CalculateSpreadMagnitude = FName(TEXT("CalculateSpreadMagnitude"));
 	float UHitscanScriptBase::CalculateSpreadMagnitude() const
 	{
@@ -140,6 +154,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		UClass* Class = UHitscanScriptBase::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "ApplyDamage", &UHitscanScriptBase::execApplyDamage },
+			{ "CalculateRecoilMagnitude", &UHitscanScriptBase::execCalculateRecoilMagnitude },
 			{ "CalculateSpreadMagnitude", &UHitscanScriptBase::execCalculateSpreadMagnitude },
 			{ "CanHitscan", &UHitscanScriptBase::execCanHitscan },
 			{ "Hitscan", &UHitscanScriptBase::execHitscan },
@@ -176,6 +191,37 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics
+	{
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HitscanScriptBase_eventCalculateRecoilMagnitude_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script|Hitscan" },
+		{ "Comment", "// Add your own custom calculation for the magnitude of the recoil\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/HitscanScriptBase.h" },
+		{ "ToolTip", "Add your own custom calculation for the magnitude of the recoil" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UHitscanScriptBase, nullptr, "CalculateRecoilMagnitude", nullptr, nullptr, sizeof(HitscanScriptBase_eventCalculateRecoilMagnitude_Parms), Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x48020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -487,6 +533,7 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UHitscanScriptBase_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UHitscanScriptBase_ApplyDamage, "ApplyDamage" }, // 2853844108
+		{ &Z_Construct_UFunction_UHitscanScriptBase_CalculateRecoilMagnitude, "CalculateRecoilMagnitude" }, // 521662430
 		{ &Z_Construct_UFunction_UHitscanScriptBase_CalculateSpreadMagnitude, "CalculateSpreadMagnitude" }, // 3055348107
 		{ &Z_Construct_UFunction_UHitscanScriptBase_CanHitscan, "CanHitscan" }, // 2598655845
 		{ &Z_Construct_UFunction_UHitscanScriptBase_Hitscan, "Hitscan" }, // 3964796463
@@ -1125,11 +1172,11 @@ void EmptyLinkFunctionForGeneratedCodeHitscanScriptBase() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UHitscanScriptBase, UHitscanScriptBase::StaticClass, TEXT("UHitscanScriptBase"), &Z_Registration_Info_UClass_UHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UHitscanScriptBase), 1916231896U) },
-		{ Z_Construct_UClass_USemiAutoHitscanScriptBase, USemiAutoHitscanScriptBase::StaticClass, TEXT("USemiAutoHitscanScriptBase"), &Z_Registration_Info_UClass_USemiAutoHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USemiAutoHitscanScriptBase), 4050302628U) },
-		{ Z_Construct_UClass_UBurstFireHitscanScriptBase, UBurstFireHitscanScriptBase::StaticClass, TEXT("UBurstFireHitscanScriptBase"), &Z_Registration_Info_UClass_UBurstFireHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBurstFireHitscanScriptBase), 4146585982U) },
+		{ Z_Construct_UClass_UHitscanScriptBase, UHitscanScriptBase::StaticClass, TEXT("UHitscanScriptBase"), &Z_Registration_Info_UClass_UHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UHitscanScriptBase), 2418057379U) },
+		{ Z_Construct_UClass_USemiAutoHitscanScriptBase, USemiAutoHitscanScriptBase::StaticClass, TEXT("USemiAutoHitscanScriptBase"), &Z_Registration_Info_UClass_USemiAutoHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USemiAutoHitscanScriptBase), 2268487058U) },
+		{ Z_Construct_UClass_UBurstFireHitscanScriptBase, UBurstFireHitscanScriptBase::StaticClass, TEXT("UBurstFireHitscanScriptBase"), &Z_Registration_Info_UClass_UBurstFireHitscanScriptBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBurstFireHitscanScriptBase), 3953383932U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_1952777598(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_3749261348(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_HitscanScriptBase_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
