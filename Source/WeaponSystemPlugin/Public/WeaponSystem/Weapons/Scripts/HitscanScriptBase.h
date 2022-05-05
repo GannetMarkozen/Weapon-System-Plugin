@@ -54,14 +54,6 @@ public:
 	void TryApplyDamage(const FHitResult& Hit);
 	virtual void TryApplyDamage_Implementation(const FHitResult& Hit) {}
 
-	// The Attribute Effect that we will attempt to apply to a hit-target
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Gameplay")
-	TSubclassOf<class UAttributeEffect> DamageEffect;
-
-	// Will check for this attribute before attempting to apply damage
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Gameplay")
-	FName HealthAttribute = "Health";
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Firing")
 	float RateOfFire = 0.25f;
 
