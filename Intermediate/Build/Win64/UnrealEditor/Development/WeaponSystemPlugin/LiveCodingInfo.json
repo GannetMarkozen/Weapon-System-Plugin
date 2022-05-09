@@ -3,6 +3,7 @@
 	{
 		"Module.WeaponSystemPlugin.cpp.obj": [
 			"WeaponSystemPlugin.cpp.obj",
+			"AggregateTagContainer.cpp.obj",
 			"Attribute.cpp.obj",
 			"AttributeEffect.cpp.obj",
 			"AttributeEffectCalculation.cpp.obj",
@@ -36,6 +37,7 @@
 			"WeaponScriptBase.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.1_of_4.cpp.obj": [
+			"AggregateTagContainer.gen.cpp.obj",
 			"AimingScript.gen.cpp.obj",
 			"Attribute.gen.cpp.obj",
 			"AttributeEffect.gen.cpp.obj",

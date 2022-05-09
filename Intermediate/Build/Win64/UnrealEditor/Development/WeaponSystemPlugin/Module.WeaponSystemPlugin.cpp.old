@@ -6,7 +6,6 @@
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/AttributeSystem/AttributeFunctionLibrary.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/AttributeSystem/AttributesComponent.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/Anim/WeaponSystemAnimInstance.cpp"
-#include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/NetworkPrediction/NetParams.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/NetworkPrediction/WeaponSystemPlayerController.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/ShooterCharacterBase.cpp"
 #include "C:/Users/azart/Documents/Unreal Projects/AnimeShooter/Plugins/WeaponSystemPlugin/Source/WeaponSystemPlugin/Private/WeaponSystem/Character/TrueFPSCharacter.cpp"

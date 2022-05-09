@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent();
 	ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
+	GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTagContainer();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_EEffectRepCond();
 	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_EEffectModType();
@@ -26,6 +27,8 @@ void EmptyLinkFunctionForGeneratedCodeAttributesComponent() {}
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributeEffect_NoRegister();
 	POLYSTRUCT_API UScriptStruct* Z_Construct_UScriptStruct_FPolyStructHandle();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAggregateTagContainer();
+	GAMEPLAYTAGS_API UClass* Z_Construct_UClass_UGameplayTagAssetInterface_NoRegister();
 // End Cross Module References
 	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_EffectNetPredKey;
 class UScriptStruct* FEffectNetPredKey::StaticStruct()
@@ -231,6 +234,21 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		}
 		return Z_Registration_Info_UScriptStruct_InstantNumericEffectNetValue.InnerSingleton;
 	}
+	DEFINE_FUNCTION(UAttributesComponent::execOnRep_OwnedTags)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->OnRep_OwnedTags();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAttributesComponent::execAppendTags)
+	{
+		P_GET_STRUCT(FGameplayTagContainer,Z_Param_Tags);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AppendTags(Z_Param_Tags);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAttributesComponent::execClient_SyncAttributes)
 	{
 		P_GET_STRUCT(FAttributeValuePairs,Z_Param_AttributeValues);
@@ -369,6 +387,14 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		*(FAttributeHandle*)Z_Param__Result=P_THIS->FindAttributeByName(Z_Param_Out_Name);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UAttributesComponent::execGetAllActiveEffects)
+	{
+		P_GET_TARRAY_REF(TSubclassOf<UAttributeEffect> ,Z_Param_Out_OutEffects);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->GetAllActiveEffects(Z_Param_Out_OutEffects);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAttributesComponent::execHasAuthority)
 	{
 		P_FINISH;
@@ -431,15 +457,18 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 	{
 		UClass* Class = UAttributesComponent::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "AppendTags", &UAttributesComponent::execAppendTags },
 			{ "ApplyInstantNumericEffect", &UAttributesComponent::execApplyInstantNumericEffect },
 			{ "BindAllAttributesChanged", &UAttributesComponent::execBindAllAttributesChanged },
 			{ "Client_ApplyEffect_LocalPredicted_Fail", &UAttributesComponent::execClient_ApplyEffect_LocalPredicted_Fail },
 			{ "Client_ApplyEffect_LocalPredicted_Success", &UAttributesComponent::execClient_ApplyEffect_LocalPredicted_Success },
 			{ "Client_SyncAttributes", &UAttributesComponent::execClient_SyncAttributes },
 			{ "FindAttributeByName", &UAttributesComponent::execFindAttributeByName },
+			{ "GetAllActiveEffects", &UAttributesComponent::execGetAllActiveEffects },
 			{ "HasAuthority", &UAttributesComponent::execHasAuthority },
 			{ "Internal_ApplyInstantNumericEffect", &UAttributesComponent::execInternal_ApplyInstantNumericEffect },
 			{ "Net_ApplyInstantNumericEffect", &UAttributesComponent::execNet_ApplyInstantNumericEffect },
+			{ "OnRep_OwnedTags", &UAttributesComponent::execOnRep_OwnedTags },
 			{ "RemoveActiveEffectsByClass", &UAttributesComponent::execRemoveActiveEffectsByClass },
 			{ "Server_ApplyEffect", &UAttributesComponent::execServer_ApplyEffect },
 			{ "Server_ApplyEffect_LocalPredicted", &UAttributesComponent::execServer_ApplyEffect_LocalPredicted },
@@ -449,6 +478,46 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 			{ "TryApplyEffect", &UAttributesComponent::execTryApplyEffect },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics
+	{
+		struct AttributesComponent_eventAppendTags_Parms
+		{
+			FGameplayTagContainer Tags;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tags_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Tags;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::NewProp_Tags_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::NewProp_Tags = { "Tags", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventAppendTags_Parms, Tags), Z_Construct_UScriptStruct_FGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::NewProp_Tags_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::NewProp_Tags_MetaData)) }; // 506667518
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::NewProp_Tags,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "AppendTags", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::AttributesComponent_eventAppendTags_Parms), Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_AppendTags()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_AppendTags_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_UAttributesComponent_ApplyInstantNumericEffect_Statics
 	{
@@ -777,6 +846,42 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics
+	{
+		struct AttributesComponent_eventGetAllActiveEffects_Parms
+		{
+			TArray<TSubclassOf<UAttributeEffect> > OutEffects;
+		};
+		static const UECodeGen_Private::FClassPropertyParams NewProp_OutEffects_Inner;
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_OutEffects;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::NewProp_OutEffects_Inner = { "OutEffects", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UAttributeEffect_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::NewProp_OutEffects = { "OutEffects", nullptr, (EPropertyFlags)0x0014000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributesComponent_eventGetAllActiveEffects_Parms, OutEffects), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::NewProp_OutEffects_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::NewProp_OutEffects,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Effect" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "GetAllActiveEffects", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::AttributesComponent_eventGetAllActiveEffects_Parms), Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UAttributesComponent_HasAuthority_Statics
 	{
 		struct AttributesComponent_eventHasAuthority_Parms
@@ -918,6 +1023,28 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_Net_ApplyInstantNumericEffect_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAttributesComponent, nullptr, "OnRep_OwnedTags", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1307,6 +1434,12 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwnedTags_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_OwnedTags;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -1315,15 +1448,18 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributesComponent_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UAttributesComponent_AppendTags, "AppendTags" }, // 2073935520
 		{ &Z_Construct_UFunction_UAttributesComponent_ApplyInstantNumericEffect, "ApplyInstantNumericEffect" }, // 1704363719
 		{ &Z_Construct_UFunction_UAttributesComponent_BindAllAttributesChanged, "BindAllAttributesChanged" }, // 832846685
 		{ &Z_Construct_UFunction_UAttributesComponent_Client_ApplyEffect_LocalPredicted_Fail, "Client_ApplyEffect_LocalPredicted_Fail" }, // 1994945601
 		{ &Z_Construct_UFunction_UAttributesComponent_Client_ApplyEffect_LocalPredicted_Success, "Client_ApplyEffect_LocalPredicted_Success" }, // 3117004166
 		{ &Z_Construct_UFunction_UAttributesComponent_Client_SyncAttributes, "Client_SyncAttributes" }, // 3661267779
 		{ &Z_Construct_UFunction_UAttributesComponent_FindAttributeByName, "FindAttributeByName" }, // 1018912684
+		{ &Z_Construct_UFunction_UAttributesComponent_GetAllActiveEffects, "GetAllActiveEffects" }, // 1827627065
 		{ &Z_Construct_UFunction_UAttributesComponent_HasAuthority, "HasAuthority" }, // 3489321914
 		{ &Z_Construct_UFunction_UAttributesComponent_Internal_ApplyInstantNumericEffect, "Internal_ApplyInstantNumericEffect" }, // 1052052507
 		{ &Z_Construct_UFunction_UAttributesComponent_Net_ApplyInstantNumericEffect, "Net_ApplyInstantNumericEffect" }, // 2928413411
+		{ &Z_Construct_UFunction_UAttributesComponent_OnRep_OwnedTags, "OnRep_OwnedTags" }, // 236879407
 		{ &Z_Construct_UFunction_UAttributesComponent_RemoveActiveEffectsByClass, "RemoveActiveEffectsByClass" }, // 83552102
 		{ &Z_Construct_UFunction_UAttributesComponent_Server_ApplyEffect, "Server_ApplyEffect" }, // 1868281744
 		{ &Z_Construct_UFunction_UAttributesComponent_Server_ApplyEffect_LocalPredicted, "Server_ApplyEffect_LocalPredicted" }, // 863820304
@@ -1343,6 +1479,22 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributesComponent_Statics::NewProp_OwnedTags_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "State" },
+		{ "Comment", "// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributesComponent.h" },
+		{ "ToolTip", "Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAttributesComponent_Statics::NewProp_OwnedTags = { "OwnedTags", "OnRep_OwnedTags", (EPropertyFlags)0x0020080100000025, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAttributesComponent, OwnedTags), Z_Construct_UScriptStruct_FAggregateTagContainer, METADATA_PARAMS(Z_Construct_UClass_UAttributesComponent_Statics::NewProp_OwnedTags_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAttributesComponent_Statics::NewProp_OwnedTags_MetaData)) }; // 1331765142
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAttributesComponent_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAttributesComponent_Statics::NewProp_OwnedTags,
+	};
+		const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_UAttributesComponent_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UGameplayTagAssetInterface_NoRegister, (int32)VTABLE_OFFSET(UAttributesComponent, IGameplayTagAssetInterface), false },  // 2897640864
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UAttributesComponent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UAttributesComponent>::IsAbstract,
 	};
@@ -1352,12 +1504,12 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		FuncInfo,
-		nullptr,
-		nullptr,
+		Z_Construct_UClass_UAttributesComponent_Statics::PropPointers,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
 		UE_ARRAY_COUNT(FuncInfo),
-		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UAttributesComponent_Statics::PropPointers),
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x00B000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_UAttributesComponent_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UAttributesComponent_Statics::Class_MetaDataParams))
 	};
@@ -1373,6 +1525,16 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 	{
 		return UAttributesComponent::StaticClass();
 	}
+
+	void UAttributesComponent::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
+	{
+		static const FName Name_OwnedTags(TEXT("OwnedTags"));
+
+		const bool bIsValid = true
+			&& Name_OwnedTags == ClassReps[(int32)ENetFields_Private::OwnedTags].Property->GetFName();
+
+		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in UAttributesComponent"));
+	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UAttributesComponent);
 	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics
 	{
@@ -1386,9 +1548,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FInstantNumericEff
 		{ FInstantNumericEffectNetValue::StaticStruct, Z_Construct_UScriptStruct_FInstantNumericEffectNetValue_Statics::NewStructOps, TEXT("InstantNumericEffectNetValue"), &Z_Registration_Info_UScriptStruct_InstantNumericEffectNetValue, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FInstantNumericEffectNetValue), 819096624U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributesComponent, UAttributesComponent::StaticClass, TEXT("UAttributesComponent"), &Z_Registration_Info_UClass_UAttributesComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesComponent), 2922860397U) },
+		{ Z_Construct_UClass_UAttributesComponent, UAttributesComponent::StaticClass, TEXT("UAttributesComponent"), &Z_Registration_Info_UClass_UAttributesComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesComponent), 3268789035U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_481962553(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_4107360041(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributesComponent_h_Statics::ScriptStructInfo),
 		nullptr, 0);

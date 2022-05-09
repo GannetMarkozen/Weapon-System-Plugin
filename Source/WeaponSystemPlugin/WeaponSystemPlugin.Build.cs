@@ -25,7 +25,7 @@ public class WeaponSystemPlugin : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "InputCore", "AnimationCore", "AnimGraphRuntime", "AnimGraph", "PolyStruct"
+				"Core", "InputCore", "AnimationCore", "AnimGraphRuntime", "AnimGraph", "GameplayTags", "PolyStruct"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);

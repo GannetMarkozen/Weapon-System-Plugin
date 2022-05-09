@@ -21,7 +21,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimSequence_NoRegister();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FQuat();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveVector_NoRegister();
 // End Cross Module References
@@ -463,10 +462,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_AnimPose;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_TargetPelvisRotation_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_TargetPelvisRotation;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_RootYawOffset_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_RootYawOffset;
@@ -604,6 +599,10 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_VelocityInterpSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_VelocityInterpSpeed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LandingImpactBobMultiplier_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_LandingImpactBobMultiplier;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -676,13 +675,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_AnimPose = { "AnimPose", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UWeaponSystemAnimInstance, AnimPose), Z_Construct_UClass_UAnimSequence_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_AnimPose_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_AnimPose_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_TargetPelvisRotation_MetaData[] = {
-		{ "Category", "Anim|IK" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/Character/Anim/WeaponSystemAnimInstance.h" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_TargetPelvisRotation = { "TargetPelvisRotation", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UWeaponSystemAnimInstance, TargetPelvisRotation), Z_Construct_UScriptStruct_FQuat, METADATA_PARAMS(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_TargetPelvisRotation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_TargetPelvisRotation_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_RootYawOffset_MetaData[] = {
 		{ "Category", "Anim|Stationary" },
@@ -951,13 +943,19 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_VelocityInterpSpeed = { "VelocityInterpSpeed", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UWeaponSystemAnimInstance, VelocityInterpSpeed), METADATA_PARAMS(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_VelocityInterpSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_VelocityInterpSpeed_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_LandingImpactBobMultiplier_MetaData[] = {
+		{ "Category", "Configurations" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/Anim/WeaponSystemAnimInstance.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_LandingImpactBobMultiplier = { "LandingImpactBobMultiplier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UWeaponSystemAnimInstance, LandingImpactBobMultiplier), METADATA_PARAMS(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_LandingImpactBobMultiplier_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_LandingImpactBobMultiplier_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_Character,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_Mesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_CurrentWeapon,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_bCurrentWeaponIsValid,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_AnimPose,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_TargetPelvisRotation,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_RootYawOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_bIsTurningInPlace,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_StationaryYawThreshold,
@@ -992,6 +990,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_AccumulativeRotationInterpSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_NonLocalCameraRotationInterpSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_VelocityInterpSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::NewProp_LandingImpactBobMultiplier,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UWeaponSystemAnimInstance_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UWeaponSystemAnimInstance>::IsAbstract,
@@ -1029,9 +1028,9 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemAnimInstance() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UWeaponSystemAnimInstance, UWeaponSystemAnimInstance::StaticClass, TEXT("UWeaponSystemAnimInstance"), &Z_Registration_Info_UClass_UWeaponSystemAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponSystemAnimInstance), 513859819U) },
+		{ Z_Construct_UClass_UWeaponSystemAnimInstance, UWeaponSystemAnimInstance::StaticClass, TEXT("UWeaponSystemAnimInstance"), &Z_Registration_Info_UClass_UWeaponSystemAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWeaponSystemAnimInstance), 2244414267U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_2590031727(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_1156740961(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_Anim_WeaponSystemAnimInstance_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

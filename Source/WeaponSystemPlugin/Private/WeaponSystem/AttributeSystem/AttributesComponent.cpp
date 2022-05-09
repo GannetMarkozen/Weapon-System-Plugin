@@ -5,6 +5,7 @@
 
 #include "Engine/ActorChannel.h"
 #include "GameFramework/Character.h"
+#include "Net/UnrealNetwork.h"
 #include "WeaponSystem/AttributeSystem/AttributeFunctionLibrary.h"
 #include "WeaponSystem/Character/NetworkPrediction/WeaponSystemPlayerController.h"
 
@@ -30,6 +31,15 @@ void UAttributesComponent::BeginPlay()
 		Attr.Handle.Set(this, *Itr);
 	}
 }
+
+void UAttributesComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// Replicate OwnedTags state
+	DOREPLIFETIME(ThisClass, OwnedTags);
+}
+
 
 void UAttributesComponent::BindAllAttributesChanged(const FAttributeValueChangedUniDelegate& Delegate)
 {
@@ -250,7 +260,7 @@ void UAttributesComponent::ApplyInstantNumericEffect(const FName& AttributeName,
 			"Instigator must be valid and have an owning Weapon System Player Controller"));
 		return;
 	}
-#endif
+#endif// WITH_EDITOR
 
 	if(HasAuthority())
 	{
@@ -297,6 +307,11 @@ void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHa
 	const_cast<FAttributeHandle&>(Attribute)->SetValue(NewValue);
 }
 
+
+void UAttributesComponent::OnRep_OwnedTags()
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s: Tags == %s"), *FString(__FUNCTION__), *OwnedTags.ToString());
+}
 
 
 

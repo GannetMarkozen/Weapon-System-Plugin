@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AggregateTagContainer.h"
 #include "Attribute.h"
 #include "Components/ActorComponent.h"
 #include "Polymorphic/PolymorphicStruct.h"
 #include "WeaponSystem/WeaponSystemFunctionLibrary.h"
 #include "AttributeEffectParams.h"
+#include "GameplayTagAssetInterface.h"
 #include "WeaponSystem/AttributeSystem/AttributeEffect.h"
 #include "AttributesComponent.generated.h"
 
@@ -141,7 +143,7 @@ struct TStructOpsTypeTraits<FInstantNumericEffectNetValue> : TStructOpsTypeTrait
  *
  */
 UCLASS(BlueprintType, Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent
+class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent, public IGameplayTagAssetInterface
 {
 	GENERATED_BODY()
 
@@ -150,6 +152,7 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 	mutable FEffectNetPredKey CurrentKey = 0;
 	FORCEINLINE FEffectNetPredKey MakePredictionKey() const { return CurrentKey++; }
@@ -158,9 +161,21 @@ protected:
 	TArray<TSharedPtr<FActiveEffect>> ActiveEffects;
 	TMap<FEffectNetPredKey, TWeakPtr<FActiveEffect>> LocalPredictedEffects;
 
+	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_OwnedTags, Meta = (AllowPrivateAccess = "true"), Category = "State")
+	FAggregateTagContainer OwnedTags;
+
 public:
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool HasAuthority() const { return GetOwner() && GetOwner()->HasAuthority(); }
+
+	UFUNCTION(BlueprintPure, Category = "Effect")
+	void GetAllActiveEffects(TArray<TSubclassOf<class UAttributeEffect>>& OutEffects) const
+	{
+		for(const TSharedPtr<FActiveEffect>& ActiveEffectPtr : ActiveEffects)
+			if(ActiveEffectPtr.IsValid() && ActiveEffectPtr->Effect.Get())
+				OutEffects.Add(ActiveEffectPtr->Effect); 
+	}
 
 	// Finds the attribute by name. If none exists this will return an invalid handle
 	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Name"), Category = "Attributes")
@@ -185,6 +200,13 @@ public:
 	// Remove all active effects from Class. Should take the Effect's Replication Condition into account when calling this
 	UFUNCTION(BlueprintCallable, Category = "Effect")
 	int32 RemoveActiveEffectsByClass(const TSubclassOf<class UAttributeEffect> Class, const bool bIncludeChildren = true);
+
+	// IGameplayTagAssetInterface begin
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override { TagContainer = OwnedTags; }
+	virtual bool HasMatchingGameplayTag(FGameplayTag TagToCheck) const override { return OwnedTags.HasTag(TagToCheck); }
+	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAll(TagContainer); }
+	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAny(TagContainer); }
+	// IGameplayTagAssetInterface end
 
 protected:
 	virtual void Internal_ApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
@@ -228,6 +250,22 @@ protected:
 
 	UFUNCTION(Client, Reliable)
 	void Client_SyncAttributes(const FAttributeValuePairs& AttributeValues);
+
+
+
+
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void AppendTags(const FGameplayTagContainer Tags)
+	{
+		OwnedTags.AppendTags(Tags);
+		UE_LOG(LogTemp, Warning, TEXT("Local Append Tags: Tags == %s"), *OwnedTags.ToString());
+	}
+	
+protected:	
+	UFUNCTION()
+	virtual void OnRep_OwnedTags();
 };
 
 
