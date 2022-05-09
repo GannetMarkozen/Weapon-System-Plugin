@@ -49,13 +49,12 @@ void UWeaponSystemAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	BP_UpdateVariables(DeltaTime);
 	
 	UpdateTurnInPlace(DeltaTime);
-
+	
 	// Calculate OutOffsetLocation and OutOffsetRotation variables
 	FVector OutOffsetLocation = FVector::ZeroVector;
 	FRotator OutOffsetRotation = FRotator::ZeroRotator;
 	UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation);
 	BP_UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation, OutOffsetLocation, OutOffsetRotation);
-	//BP_UpdateOffsetTransform(DeltaTime, OutOffsetLocation, OutOffsetRotation);
 
 	// Update the OffsetTransform with the updated offset location and rotation
 	OffsetTransform = Character->GetWeaponOffsetTransform() * FTransform(OutOffsetRotation, OutOffsetLocation);
@@ -71,20 +70,16 @@ void UWeaponSystemAnimInstance::PostUpdateAnimation(const float DeltaTime)
 	LastVelocity = Character->GetCharacterMovement()->Velocity;
 }
 
-
-void UWeaponSystemAnimInstance::NativePostEvaluateAnimation()
-{
-	Super::NativePostEvaluateAnimation();
-}
-
-
-
 void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 {
 	if(Character->IsLocallyControlled())
 	{
 		const APlayerController* PlayerController = Character->GetController<APlayerController>();
-		if(!PlayerController) return;
+		if(!PlayerController)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Owning Pawn is not controlled by a valid Player Controller!"));
+			return;
+		}
 		
 #if ENGINE_MAJOR_VERSION < 5
 		const FRotator AddRot(Character->CurrentPitchInputValue * PlayerController->InputPitchScale,
@@ -94,13 +89,10 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 			Character->CurrentYawInputValue * PlayerController->InputYawScale_DEPRECATED, Character->CurrentRollInputValue * PlayerController->InputRollScale_DEPRECATED);
 #endif
 		
-		const FRotator& PreCalculatedCameraRot = Character->Camera->GetComponentRotation() + AddRot;
-			/*FRotator(Character->CurrentPitchInputValue * PlayerController->InputPitchScale,
-				Character->CurrentYawInputValue * PlayerController->InputYawScale, Character->CurrentRollInputValue * PlayerController->InputRollScale);*/
+		const FRotator PreCalculatedCameraRot = Character->Camera->GetComponentRotation() + AddRot;
 
 		constexpr float ClampAngle = 89.9f;
 		CameraRotation = FRotator(FMath::ClampAngle(PreCalculatedCameraRot.Pitch, -ClampAngle, ClampAngle), PreCalculatedCameraRot.Yaw, PreCalculatedCameraRot.Roll);
-		//RelativeCameraRotation = FTransform(CameraRotation).GetRelativeTransform(Mesh->GetSocketTransform(FName("root"), RTS_Component).Inverse() * Mesh->GetSocketTransform(FName("root"))).Rotator();
 	}
 	else
 	{
@@ -141,10 +133,6 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 	
 	AimingValue = Character->ADSValue;
 	
-	//const FTransform& RootOffset = Mesh->GetSocketTransform(FName("root"), RTS_Component).Inverse() * Mesh->GetSocketTransform(FName("ik_hand_root"));
-	//RelativeCameraTransform = CameraTransform.GetRelativeTransform(RootOffset);
-	
-
 	/*
 	 *	ACCUMULATIVE OFFSET VARS
 	 */
@@ -175,7 +163,7 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 	{
 		const FVector OrientationDifference = UKismetMathLibrary::RotateAngleAxis(Velocity - LastVelocity * 10.f, Character->GetControlRotation().Yaw, FVector::UpVector);//UKismetMathLibrary::Quat_RotateVector(FRotator(0.f, Character->GetControlRotation().Yaw, 0.f).Quaternion(), Velocity - LastVelocity * 10.f);
 		const FVector ClampedDifference =  UKismetMathLibrary::ClampVectorSize(OrientationDifference, 0.f, 30000.f);
-		VelocityTarget += FVector(ClampedDifference.X / 3.f, ClampedDifference.Y / 3.f, ClampedDifference.Z);
+		VelocityTarget += FVector(ClampedDifference.X / 3.f, ClampedDifference.Y / 3.f, ClampedDifference.Z) * LandingImpactBobMultiplier;
 	}
 	
 	VelocityInterp = UKismetMathLibrary::VInterpTo(VelocityInterp, VelocityTarget, DeltaTime, 3.f);
@@ -183,10 +171,6 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 
 void UWeaponSystemAnimInstance::UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation)
 {
-	// Add onto offsets and then apply onto offset transform for IK
-	//FVector OutOffsetLocation = FVector::ZeroVector;
-	//FRotator OutOffsetRotation = FRotator::ZeroRotator;
-
 	// Get inverse to apply the opposite of the rotational influence to the weapon sway
 	const FRotator AccumulativeRotationInterpInverse = AccumulativeRotationInterp.GetInverse();
 
@@ -213,7 +197,7 @@ void UWeaponSystemAnimInstance::UpdateOffsetTransform(const float DeltaTime, FVe
 	// Apply idle vector curve anim to offset location
 	if(IdleWeaponSwayCurve)
 	{
-		const FVector& SwayOffset = IdleWeaponSwayCurve->GetVectorValue(GetWorld()->GetTimeSeconds()) * 8.f * FMath::Max<float>(1.f - AimingValue, 0.1f);
+		const FVector SwayOffset = IdleWeaponSwayCurve->GetVectorValue(GetWorld()->GetTimeSeconds()) * 8.f * FMath::Max<float>(1.f - AimingValue, 0.1f);
 		OutOffsetLocation += SwayOffset;
 		OutOffsetRotation += FRotator(SwayOffset.Z * 0.3f, SwayOffset.Y * 0.5f, SwayOffset.Y * 1.2f);
 	}
@@ -221,13 +205,10 @@ void UWeaponSystemAnimInstance::UpdateOffsetTransform(const float DeltaTime, FVe
 	// Apply movement offset to offset location
 	if(MovementWeaponSwayCurve)
 	{
-		const FVector& SwayOffset = MovementWeaponSwayCurve->GetVectorValue(MovementWeaponSwayProgressTime) * (MovementSpeedInterp / MaxMoveSpeed) * 5.f * FMath::Max<float>(1.f - AimingValue, 0.1f);
+		const FVector SwayOffset = MovementWeaponSwayCurve->GetVectorValue(MovementWeaponSwayProgressTime) * (MovementSpeedInterp / MaxMoveSpeed) * 5.f * FMath::Max<float>(1.f - AimingValue, 0.1f);
 		OutOffsetLocation += SwayOffset * 0.7f;
 		OutOffsetRotation += FRotator(SwayOffset.Z * 0.5f, SwayOffset.Y * 0.8f, SwayOffset.Y * 1.f);
 	}
-	
-	//OffsetTransform = Character->GetWeaponOffsetTransform() * FTransform(OutOffsetRotation, OutOffsetLocation, FVector(1.f));
-	//UE_LOG(LogTemp, Warning, TEXT("OffsetTransform == %s"), *FTransform(OffsetRotation, OffsetLocation, FVector(1.f)).ToString());
 }
 
 

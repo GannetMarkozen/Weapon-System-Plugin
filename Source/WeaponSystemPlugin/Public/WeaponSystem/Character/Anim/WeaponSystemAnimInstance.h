@@ -23,7 +23,6 @@ public:
 protected:
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float DeltaTime) override;
-	virtual void NativePostEvaluateAnimation() override;
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
 	// Called after all the logic this update has been ran
@@ -95,9 +94,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Anim|IK")
 	class UAnimSequence* AnimPose;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Anim|IK")
-	FQuat TargetPelvisRotation;
 
 	/*
 	 *	STATIONARY ANIM 
@@ -235,5 +231,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
 	float VelocityInterpSpeed = 10.f;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
+	float LandingImpactBobMultiplier = 1.f;
 };
