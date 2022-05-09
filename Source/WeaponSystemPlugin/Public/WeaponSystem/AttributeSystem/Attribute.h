@@ -50,6 +50,7 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 	FORCEINLINE FAttribute& operator*() { return *Get(); }
 	FORCEINLINE const FAttribute& operator*() const { return *Get(); }
 
+	FORCEINLINE FAttributeHandle& operator=(const FAttributeHandle& Other) { Owner = Other.Owner; AttributeProp = Other.AttributeProp; return *this; }
 	FORCEINLINE bool operator==(const FAttributeHandle& Other) const { return Owner == Other.Owner && AttributeProp == Other.AttributeProp; }
 	bool operator==(const FAttribute& Attribute) const;
 	

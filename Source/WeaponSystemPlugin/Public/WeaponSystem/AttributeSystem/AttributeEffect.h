@@ -32,7 +32,7 @@ public:
 /**
  * 
  */
-UCLASS(Abstract, Blueprintable, BlueprintType)
+UCLASS(Abstract, Blueprintable, BlueprintType, Const)
 class WEAPONSYSTEMPLUGIN_API UAttributeEffect : public UObject
 {
 	GENERATED_BODY()
@@ -41,7 +41,8 @@ public:
 	friend class UAttributesComponent;
 
 protected:
-	
+	// Modifiers with an Attribute to modify and an array of Attribute Effect Calculations that will be ran sequentially
+	// to modify the Attribute's value when this Effect is successfully applied
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Attribute Modifiers", AllowPrivateAccess = "true"), Category = "Effect")
 	TArray<FAttributeModParams> Modifiers;
 

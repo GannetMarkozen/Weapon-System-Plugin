@@ -587,8 +587,10 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModParam
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributeEffect_Statics::NewProp_Modifiers_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Effect" },
+		{ "Comment", "// Modifiers with an Attribute to modify and an array of Attribute Effect Calculations that will be ran sequentially\n// to modify the Attribute's value when this Effect is successfully applied\n" },
 		{ "DisplayName", "Effect Attribute Modifiers" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AttributeEffect.h" },
+		{ "ToolTip", "Modifiers with an Attribute to modify and an array of Attribute Effect Calculations that will be ran sequentially\nto modify the Attribute's value when this Effect is successfully applied" },
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UAttributeEffect_Statics::NewProp_Modifiers = { "Modifiers", nullptr, (EPropertyFlags)0x0020088000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UAttributeEffect, Modifiers), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UAttributeEffect_Statics::NewProp_Modifiers_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UAttributeEffect_Statics::NewProp_Modifiers_MetaData)) }; // 1368514135
@@ -665,7 +667,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModParam
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UAttributeEffect_Statics::PropPointers),
 		0,
-		0x009000A1u,
+		0x009100A1u,
 		METADATA_PARAMS(Z_Construct_UClass_UAttributeEffect_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UAttributeEffect_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_UAttributeEffect()
@@ -690,9 +692,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModParam
 		{ FAttributeModParams::StaticStruct, Z_Construct_UScriptStruct_FAttributeModParams_Statics::NewStructOps, TEXT("AttributeModParams"), &Z_Registration_Info_UScriptStruct_AttributeModParams, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttributeModParams), 1368514135U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributeEffect, UAttributeEffect::StaticClass, TEXT("UAttributeEffect"), &Z_Registration_Info_UClass_UAttributeEffect, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffect), 4029937877U) },
+		{ Z_Construct_UClass_UAttributeEffect, UAttributeEffect::StaticClass, TEXT("UAttributeEffect"), &Z_Registration_Info_UClass_UAttributeEffect, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffect), 3587524196U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_1668668256(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_4255724790(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_Statics::ScriptStructInfo),
 		nullptr, 0);

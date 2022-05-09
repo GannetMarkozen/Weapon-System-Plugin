@@ -12,7 +12,7 @@
  *  Each calculation in the array modifies the Attribute sequentially.
  *  NOTE: This is a non-instanced object so do not attempt to modify member-variables
  */
-UCLASS(Abstract, Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Meta = (NotBlueprintSpawnable))
+UCLASS(Abstract, Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Const, Meta = (NotBlueprintSpawnable))
 class WEAPONSYSTEMPLUGIN_API UAttributeEffectCalculation : public UObject
 {
 	GENERATED_BODY()

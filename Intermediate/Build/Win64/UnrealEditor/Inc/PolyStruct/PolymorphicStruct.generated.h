@@ -20,7 +20,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> POLYSTRUCT_API UScriptStruct* StaticStruct<struct FPolyStruct>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_116_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_PolyStruct_Public_Polymorphic_PolymorphicStruct_h_115_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPolyStructHandle_Statics; \
 	static class UScriptStruct* StaticStruct();
 

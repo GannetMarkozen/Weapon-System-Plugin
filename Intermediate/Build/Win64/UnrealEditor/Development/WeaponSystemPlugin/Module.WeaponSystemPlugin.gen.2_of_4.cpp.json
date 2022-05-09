@@ -6,6 +6,11 @@
         "PCH": "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\intermediate\\build\\win64\\animeshootereditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\weaponsystemplugin\\definitions.weaponsystemplugin.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\characterinventorycomponent.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\characterinventorycomponent.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\inventorycomponent.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\inventorycomponent.generated.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\characterinventorycomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\cyclesightsscript.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\scripts\\cyclesightsscript.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\components\\timelinecomponent.h",
@@ -19,10 +24,6 @@
             "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\rootmotionsource.generated.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\character.generated.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\characterinventorycomponent.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\inventorycomponent.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\inventorycomponent.generated.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\characterinventorycomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\globals.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\globals.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\shootercharacterbase.generated.h",
@@ -213,8 +214,7 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\scriptbase.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\setupattachmentsscriptbase.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\scripts\\setupattachmentsscriptbase.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\setupattachmentsscriptbase.generated.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\shootercharacterbase.gen.cpp"
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\setupattachmentsscriptbase.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

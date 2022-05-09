@@ -11,8 +11,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UObject;
 struct FAttributeHandle;
 struct FAttribute;
-class AActor;
 class UAttributeEffect;
+class AActor;
 struct FPolyStructHandle;
 enum class EStructCastPin : uint8;
 class UAttributesComponent;
@@ -29,7 +29,7 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execUnbindAllAttributeChanged); \
 	DECLARE_FUNCTION(execHasAttribute); \
 	DECLARE_FUNCTION(execHasAttributesComponent); \
-	DECLARE_FUNCTION(execBP_ApplyEffectToTarget); \
+	DECLARE_FUNCTION(execBP_TryApplyEffectToTarget); \
 	DECLARE_FUNCTION(execBP_GetAttributeHandle); \
 	DECLARE_FUNCTION(execBP_GetAttributeComponentAs); \
 	DECLARE_FUNCTION(execBP_GetAttributesComponent); \
@@ -57,7 +57,7 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execUnbindAllAttributeChanged); \
 	DECLARE_FUNCTION(execHasAttribute); \
 	DECLARE_FUNCTION(execHasAttributesComponent); \
-	DECLARE_FUNCTION(execBP_ApplyEffectToTarget); \
+	DECLARE_FUNCTION(execBP_TryApplyEffectToTarget); \
 	DECLARE_FUNCTION(execBP_GetAttributeHandle); \
 	DECLARE_FUNCTION(execBP_GetAttributeComponentAs); \
 	DECLARE_FUNCTION(execBP_GetAttributesComponent); \

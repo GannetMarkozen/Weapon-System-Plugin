@@ -6,6 +6,9 @@
         "PCH": "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\intermediate\\build\\win64\\animeshootereditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\weaponsystemplugin\\definitions.weaponsystemplugin.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weapondropbase.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\weapondropbase.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weapondropbase.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponscript.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\weaponscript.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\weapon.h",
@@ -59,7 +62,9 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\gamemode\\weaponsystemgameinstance.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponsystemgameinstance.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponsystemplayercontroller.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\character\\weaponsystemplayercontroller.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\character\\networkprediction\\weaponsystemplayercontroller.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstruct.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponsystemplayercontroller.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponsystemplugin.init.gen.cpp"
         ],

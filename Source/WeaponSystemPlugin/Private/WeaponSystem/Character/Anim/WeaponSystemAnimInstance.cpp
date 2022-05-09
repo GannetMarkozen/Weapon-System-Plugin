@@ -167,14 +167,14 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 
 	MovementSpeedInterp = UKismetMathLibrary::FInterpTo(MovementSpeedInterp, bIsFalling ? 0.f : Character->GetCharacterMovement()->Velocity.Size(), DeltaTime, 3.f);
 
-	const FVector& Velocity = Character->GetCharacterMovement()->Velocity;
-	const FVector& Difference = (Velocity - LastVelocity) * DeltaTime;
+	const FVector Velocity = Character->GetCharacterMovement()->Velocity;
+	const FVector Difference = (Velocity - LastVelocity) * DeltaTime;
 	
 	VelocityTarget = UKismetMathLibrary::VInterpTo(VelocityTarget, Character->GetCharacterMovement()->Velocity, DeltaTime, VelocityInterpSpeed);
-	if(Difference.Size() * DeltaTime > 400.f / 60.f)
+	if(Difference.Size() > 400.f / 60.f)
 	{
-		const FVector& OrientationDifference = UKismetMathLibrary::RotateAngleAxis(Velocity - LastVelocity * 10.f, Character->GetControlRotation().Yaw, FVector::UpVector);//UKismetMathLibrary::Quat_RotateVector(FRotator(0.f, Character->GetControlRotation().Yaw, 0.f).Quaternion(), Velocity - LastVelocity * 10.f);
-		const FVector& ClampedDifference =  UKismetMathLibrary::ClampVectorSize(OrientationDifference, 0.f, 30000.f);
+		const FVector OrientationDifference = UKismetMathLibrary::RotateAngleAxis(Velocity - LastVelocity * 10.f, Character->GetControlRotation().Yaw, FVector::UpVector);//UKismetMathLibrary::Quat_RotateVector(FRotator(0.f, Character->GetControlRotation().Yaw, 0.f).Quaternion(), Velocity - LastVelocity * 10.f);
+		const FVector ClampedDifference =  UKismetMathLibrary::ClampVectorSize(OrientationDifference, 0.f, 30000.f);
 		VelocityTarget += FVector(ClampedDifference.X / 3.f, ClampedDifference.Y / 3.f, ClampedDifference.Z);
 	}
 	

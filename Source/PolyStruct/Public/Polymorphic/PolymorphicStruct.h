@@ -102,7 +102,6 @@ struct TStructOpsTypeTraits<FPolyStruct> : TStructOpsTypeTraitsBase2<FPolyStruct
 
 
 
-
 /*
  * An array of Poly Structs being passed around by-reference via Shared Pointers.
  * Avoids copying when being passed around (including Blueprints). Supports net serialization.

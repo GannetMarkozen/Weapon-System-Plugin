@@ -104,11 +104,11 @@ public:
 
 	static FAttributeHandle GetAttributeHandle(class UObject* Target, const FName& AttributeName);
 
-	static FORCEINLINE bool ApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> EffectClass, FPolyStructHandle& Context)
+	static FORCEINLINE bool TryApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> EffectClass, FPolyStructHandle& Context)
 	{
 		auto* AttrComp = GetAttributesComponent(Target);
 		if(!AttrComp) return false;
-		return AttrComp->ApplyEffect(EffectClass, Instigator, Context);
+		return AttrComp->TryApplyEffect(EffectClass, Instigator, Context);
 	}
 
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attributes Component", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Attributes")
@@ -137,10 +137,10 @@ public:
 		return Handle;
 	}
 
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Apply Effect To Target", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "Context"), Category = "Weapon System Function Library|Attributes")
-	static void BP_ApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> Effect, UPARAM(ref) FPolyStructHandle& Context, EStructCastPin& OutPin)
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Try Apply Effect To Target", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "Context"), Category = "Weapon System Function Library|Attributes")
+	static void BP_TryApplyEffectToTarget(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, class UObject* Target, UPARAM(ref) FPolyStructHandle& Context, EStructCastPin& OutPin)
 	{
-		OutPin = ApplyEffectToTarget(Target, Instigator, Effect, Context) ? EStructCastPin::Success : EStructCastPin::Fail;
+		OutPin = TryApplyEffectToTarget(Target, Instigator, Effect, Context) ? EStructCastPin::Success : EStructCastPin::Fail;
 	}
 
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
