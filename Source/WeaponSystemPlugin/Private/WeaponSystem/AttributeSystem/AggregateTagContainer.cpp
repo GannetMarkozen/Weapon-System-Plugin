@@ -4,7 +4,7 @@
 
 bool FAggregateTagContainer::operator==(const FAggregateTagContainer& Other) const
 {
-	if(OwnedTags != Other.OwnedTags || TagCount.Num() != Other.TagCount.Num() ||
+	if(/*OwnedTags != Other.OwnedTags || */TagCount.Num() != Other.TagCount.Num() ||
 		ExactTagCount.Num() != Other.ExactTagCount.Num()) return false;
 	
 	TArray<FGameplayTag> Keys;
@@ -19,7 +19,7 @@ bool FAggregateTagContainer::operator==(const FAggregateTagContainer& Other) con
 
 void FAggregateTagContainer::Empty()
 {
-	OwnedTags.Reset();
+	//OwnedTags.Reset();
 	TagCount.Empty();
 	ExactTagCount.Empty();
 }
@@ -56,7 +56,7 @@ void FAggregateTagContainer::Internal_AppendTagsToMap(const FGameplayTagContaine
 
 FString FAggregateTagContainer::ToString(const bool bExact) const
 {
-	if(OwnedTags.IsEmpty()) return FString(TEXT("{}"));
+	//if(OwnedTags.IsEmpty()) return FString(TEXT("{}"));
 	FString String = TEXT("{ ");
 	const TMap<FGameplayTag, uint32>& Map = bExact ? ExactTagCount : TagCount;
 	TArray<FGameplayTag> Tags;
@@ -71,6 +71,34 @@ FString FAggregateTagContainer::ToString(const bool bExact) const
 	return String;
 }
 
+TArray<FGameplayTag> FAggregateTagContainer::GetExactTags() const
+{
+	TArray<FGameplayTag> ExactTags;
+	ExactTagCount.GetKeys(ExactTags);
+	return ExactTags;
+}
+
+TArray<FGameplayTag> FAggregateTagContainer::GetAllTags() const
+{
+	TArray<FGameplayTag> Tags;
+	TagCount.GetKeys(Tags);
+	return Tags;
+}
+
+FGameplayTagContainer FAggregateTagContainer::MakeTagContainer() const
+{
+	FGameplayTagContainer Container;
+	TArray<FGameplayTag> ExactTags = GetExactTags();
+	for(const FGameplayTag& ExactTag : ExactTags)
+	{
+		Container.AddTag(ExactTag);
+	}
+	return Container;
+}
+
+
+
+/*
 bool FAggregateTagContainer::Serialize(FArchive& Ar)
 {
 	if(Ar.IsSaving())
@@ -110,14 +138,12 @@ bool FAggregateTagContainer::Serialize(FArchive& Ar)
 
 	return true;
 }
-
+*/
 
 bool FAggregateTagContainer::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 {
 	if(Ar.IsLoading())
 		Empty();
-	
-	OwnedTags.NetSerialize(Ar, Map, bOutSuccess);
 	
 	// Net serialize ExactTagCount map
 	TArray<FGameplayTag> ExactTags;
@@ -155,13 +181,11 @@ bool FAggregateTagContainer::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& 
 
 void FAggregateTagContainer::AddTag(const FGameplayTag& Tag, const int32 Num)
 {
-	OwnedTags.AddTag(Tag);
 	Internal_AddTagToMap(Tag, Num);
 }
 
 void FAggregateTagContainer::AppendTags(const FGameplayTagContainer& Tags, const int32 Num)
 {
-	OwnedTags.AppendTags(Tags);
 	Internal_AppendTagsToMap(Tags, Num);
 }
 
@@ -178,7 +202,7 @@ void FAggregateTagContainer::RemoveTag(const FGameplayTag& Tag, const int32 Num,
 			if(*Count == 0)
 			{
 				ExactTagCount.Remove(Tag);
-				OwnedTags.RemoveTag(Tag);
+				//OwnedTags.RemoveTag(Tag);
 			}
 
 			TArray<FGameplayTag> Tags;
@@ -207,7 +231,6 @@ void FAggregateTagContainer::RemoveTag(const FGameplayTag& Tag, const int32 Num,
 			if(Count == 0)
 			{
 				ExactTagCount.Remove(ExactTag);
-				OwnedTags.RemoveTag(ExactTag);
 			}
 
 			TArray<FGameplayTag> Tags;

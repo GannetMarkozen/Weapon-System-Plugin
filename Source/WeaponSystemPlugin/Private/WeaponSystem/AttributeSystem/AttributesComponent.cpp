@@ -308,13 +308,6 @@ void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHa
 }
 
 
-void UAttributesComponent::OnRep_OwnedTags()
-{
-	UE_LOG(LogTemp, Warning, TEXT("%s: Tags == %s"), *FString(__FUNCTION__), *OwnedTags.ToString(false));
-}
-
-
-
 
 
 

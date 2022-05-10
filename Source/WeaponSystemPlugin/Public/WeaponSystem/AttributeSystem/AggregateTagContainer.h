@@ -26,27 +26,34 @@ struct WEAPONSYSTEMPLUGIN_API FAggregateTagValue
  *	Adding / removing tags will first increment / decrement the count for that tag before removing
  *	once the count reaches 0. An example is if you had 2 Item.Pickaxe and 5 of Item.Shovel
  *	you will have a count of 7 for GetTagCount("Item") and 0 for GetTagCountExact("Item")
- *	(because there are no tags explicitly called just "Item"). Supports dynamic Net Serialization.
- *	Contains delegate to bind for when a tag count has changed
+ *	(because there are no tags explicitly called just "Item"). Theoretically should be fairly slow at
+ *	Adding / Removing tags but fast at getting the desired tag's count. Supports dynamic Net Serialization.
  */
-USTRUCT(BlueprintType, Meta = (DisplayName = "Aggregate Gameplay Tag Container", ShortTooltip = "Gameplay Tag Container with a numeric tag counter"))
+USTRUCT(BlueprintType, Meta = (ShortTooltip = "Gameplay Tag Container with a numeric tag counter"))
 struct WEAPONSYSTEMPLUGIN_API FAggregateTagContainer
 {
 	GENERATED_BODY()
 
 	FAggregateTagContainer() = default;
-	FAggregateTagContainer(const FGameplayTagContainer& Tags) : OwnedTags(Tags) {}
-	FAggregateTagContainer(const FAggregateTagContainer& Other) : OwnedTags(Other.OwnedTags), TagCount(Other.TagCount) {}
+	FAggregateTagContainer(const FAggregateTagContainer& Other) : TagCount(Other.TagCount), ExactTagCount(Other.ExactTagCount) {}
+	FAggregateTagContainer(FAggregateTagContainer&& Other) noexcept : TagCount(MoveTemp(Other.TagCount)), ExactTagCount(MoveTemp(Other.ExactTagCount)) {}
+	FAggregateTagContainer(const FGameplayTagContainer& Tags, const uint32 Count = 1) { AppendTags(Tags, Count); }
 	
 	bool operator==(const FAggregateTagContainer& Other) const;
-	FORCEINLINE FAggregateTagContainer& operator=(const FAggregateTagContainer& Other) { OwnedTags = Other.OwnedTags; TagCount = Other.TagCount; ExactTagCount = Other.ExactTagCount; return *this; }
-	FORCEINLINE operator const FGameplayTagContainer&() const { return OwnedTags; }
+	FORCEINLINE FAggregateTagContainer& operator=(const FAggregateTagContainer& Other) { TagCount = Other.TagCount; ExactTagCount = Other.ExactTagCount; return *this; }
+	FORCEINLINE operator FGameplayTagContainer() const { return MakeTagContainer(); }
+	
+	FORCEINLINE bool HasTag(const FGameplayTag& Tag) const { return GetAllTags().Contains(Tag); }
+	FORCEINLINE bool HasAll(const FGameplayTagContainer& Tags) const { return MakeTagContainer().HasAll(Tags); }
+	FORCEINLINE bool HasAny(const FGameplayTagContainer& Tags) const { return MakeTagContainer().HasAny(Tags); }
+	FORCEINLINE bool IsEmpty() const { return ExactTagCount.IsEmpty(); }
 
-	FORCEINLINE const FGameplayTagContainer& GetTags() const { return OwnedTags; }
-	FORCEINLINE bool HasTag(const FGameplayTag& Tag) const { return OwnedTags.HasTag(Tag); }
-	FORCEINLINE bool HasAll(const FGameplayTagContainer& Tags) const { return OwnedTags.HasAll(Tags); }
-	FORCEINLINE bool HasAny(const FGameplayTagContainer& Tags) const { return OwnedTags.HasAny(Tags); }
-	FORCEINLINE bool IsEmpty() const { return OwnedTags.IsEmpty(); }
+	FORCEINLINE const TMap<FGameplayTag, uint32>& GetTagCountMap() const { return TagCount; }
+	FORCEINLINE const TMap<FGameplayTag, uint32>& GetExactTagCountMap() const { return ExactTagCount; }
+	
+	TArray<FGameplayTag> GetExactTags() const;
+	TArray<FGameplayTag> GetAllTags() const;
+	FGameplayTagContainer MakeTagContainer() const;
 
 	void Empty();
 	void InitializeContainer(const TArray<FAggregateTagValue>& Values);
@@ -58,21 +65,17 @@ struct WEAPONSYSTEMPLUGIN_API FAggregateTagContainer
 	uint32 GetTagCountExact(const FGameplayTag& Tag) const;
 	FString ToString(const bool bExact = true) const;
 	
-	bool Serialize(FArchive& Ar);
+	//bool Serialize(FArchive& Ar);
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
-	
+
 protected:
 	void Internal_AddTagToMap(const FGameplayTag& Tag, const int32 Num);
 	void Internal_AppendTagsToMap(const FGameplayTagContainer& Tags, const int32 Num);
 
-	// The tags this container owns. By default every tag added
-	// in the properties window has a tag count of 1. Currently no way
-	// of setting a custom count value in the properties window so use
-	// Initialize Container to set the container at Runtime
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"))
-	FGameplayTagContainer OwnedTags;
-	
+	// All tag counts, including parents
 	TMap<FGameplayTag, uint32> TagCount;
+
+	// Exact tag count. Only count of specific tag
 	TMap<FGameplayTag, uint32> ExactTagCount;
 };
 
@@ -82,7 +85,7 @@ struct TStructOpsTypeTraits<FAggregateTagContainer> : TStructOpsTypeTraitsBase2<
 	enum
 	{
 		WithCopy = true,
-		WithSerializer = true,
+		//WithSerializer = true,
 		WithNetSerializer = true,
 		WithIdenticalViaEquality = true,
 	};
@@ -90,10 +93,11 @@ struct TStructOpsTypeTraits<FAggregateTagContainer> : TStructOpsTypeTraitsBase2<
 
 
 /*
- *	An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.
- *	Broadcasts changes on Net Serialized as well. Useful for tracking state
+ *	An Aggregate Tag Container with a delegate for broadcasting changes. More expensive for
+ *	Adding / Removing tags than the Aggregate Tag Container. Broadcasts changes on Net Serialized as well.
+ *	Useful for tracking state
  */
-USTRUCT(BlueprintType, Meta = (DisplayName = "Aggregate Gameplay Tag Container Notify"))
+USTRUCT(BlueprintType, Meta = (ShortTooltip = "Aggregate Tag Container with a delegate for change events"))
 struct WEAPONSYSTEMPLUGIN_API FAggregateTagContainerNotify : public FAggregateTagContainer
 {
 	GENERATED_BODY()
@@ -101,8 +105,14 @@ protected:
 	typedef FAggregateTagContainer Super;
 	typedef FAggregateTagContainerNotify ThisStruct;
 public:
+	FAggregateTagContainerNotify() = default;
+	FAggregateTagContainerNotify(const FAggregateTagContainer& Other) : Super(Other) {}
+	FAggregateTagContainerNotify(FAggregateTagContainer&& Other) : Super(Other) {}
+	FAggregateTagContainerNotify(const FGameplayTagContainer& Tags, const uint32 Count = 1) : Super(Tags, Count) {}
+	
 	FORCEINLINE bool operator==(const ThisStruct& Other) const { return Super::operator==(Other); }
 	FORCEINLINE ThisStruct& operator=(const ThisStruct& Other) { return (ThisStruct&)Super::operator=(Other); }
+	FORCEINLINE ThisStruct& operator=(const FGameplayTagContainer& Tags) { Empty(); AppendTags(Tags, 1); return *this; }
 
 	template<typename UserClass>
 	void BindOnChanged(const FGameplayTag& Tag, UserClass* Target, TMemFunPtrType<false, UserClass, void(const FAggregateTagContainer&, const FGameplayTag&, int32, int32)> Function) const;
@@ -162,28 +172,13 @@ public:
 		Internal_BroadcastChanges(OldTags);
 		return bReturnVal;
 	}
-	FORCEINLINE bool Serialize(FArchive& Ar)
-	{
-		if(Ar.IsSaving() || Bindings.IsEmpty()) return Super::Serialize(Ar);
-		const auto OldTags = TagCount;
-		const bool bReturnVal = Super::Serialize(Ar);
-		Internal_BroadcastChanges(OldTags);
-		return bReturnVal;
-	}
 
 protected:
 	void Internal_BroadcastChanges(const TMap<FGameplayTag, uint32>& OldTagCount) const;
 	void Internal_Broadcast(const FGameplayTag& Tag, const float CurrentValue, const float OldValue) const;
-	//{
-	//	ChangedDelegate.Broadcast(*this, Tag, CurrentValue, OldValue);
-	//}
 
 	typedef TDelegate<void(const FAggregateTagContainerNotify&, const FGameplayTag&, int32, int32)> CallbackDelegate;
 	mutable TArray<TPair<FGameplayTag, CallbackDelegate>> Bindings;
-
-public:
-	//UPROPERTY(BlueprintAssignable, NotReplicated)
-	//FAggregateContainerChangedDelegate ChangedDelegate;
 };
 
 template<>
@@ -192,7 +187,7 @@ struct TStructOpsTypeTraits<FAggregateTagContainerNotify> : TStructOpsTypeTraits
 	enum
 	{
 		WithCopy = true,
-		WithSerializer = true,
+		//WithSerializer = true,
 		WithNetSerializer = true,
 		WithIdenticalViaEquality = true,
 	};
@@ -226,7 +221,7 @@ class WEAPONSYSTEMPLUGIN_API UAggregateTagContainerUtils final : public UBluepri
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags to Tag Container"), Category = "Weapon System Function Library|Aggregate Tag Container")
-	static FGameplayTagContainer Conv_AggregateTagContainerToGameplayTagContainer(const FAggregateTagContainer& TagContainer) { return TagContainer.GetTags(); }
+	static FGameplayTagContainer Conv_AggregateTagContainerToGameplayTagContainer(const FAggregateTagContainer& TagContainer) { return TagContainer.MakeTagContainer(); }
 
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags to String"), Category = "Weapon System Function Library|Aggregate Tag Container")
 	static FString Conv_AggregateTagContainerToString(const FAggregateTagContainer& TagContainer) { return TagContainer.ToString(); }
@@ -283,7 +278,7 @@ public:
 	static void Unbind(const FAggregateTagContainerNotify& TagContainer, const FAggregateContainerChangedUniDelegate& Delegate) { TagContainer.RemoveScriptDelegate(Delegate); }
 	
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags to Tag Container"), Category = "Weapon System Function Library|Aggregate Tag Container Notify")
-	static FGameplayTagContainer Conv_AggregateTagContainerToGameplayTagContainer(const FAggregateTagContainerNotify& TagContainer) { return TagContainer.GetTags(); }
+	static FGameplayTagContainer Conv_AggregateTagContainerToGameplayTagContainer(const FAggregateTagContainerNotify& TagContainer) { return TagContainer.MakeTagContainer(); }
 
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags to String"), Category = "Weapon System Function Library|Aggregate Tag Container Notify")
 	static FString Conv_AggregateTagContainerToString(const FAggregateTagContainerNotify& TagContainer) { return TagContainer.ToString(); }

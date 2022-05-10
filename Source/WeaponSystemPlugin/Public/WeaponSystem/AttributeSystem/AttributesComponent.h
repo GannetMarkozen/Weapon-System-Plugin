@@ -162,8 +162,9 @@ protected:
 	TMap<FEffectNetPredKey, TWeakPtr<FActiveEffect>> LocalPredictedEffects;
 
 public:
-	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_OwnedTags, Category = "State")
+	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags.
+	// Bind delegate to listen for specific tag count changes
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "State")
 	FAggregateTagContainerNotify OwnedTags;
 	
 	UFUNCTION(BlueprintPure)
@@ -202,7 +203,7 @@ public:
 	int32 RemoveActiveEffectsByClass(const TSubclassOf<class UAttributeEffect> Class, const bool bIncludeChildren = true);
 
 	// IGameplayTagAssetInterface begin
-	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override { TagContainer = OwnedTags; }
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override { TagContainer = OwnedTags.MakeTagContainer(); }
 	virtual bool HasMatchingGameplayTag(FGameplayTag TagToCheck) const override { return OwnedTags.HasTag(TagToCheck); }
 	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAll(TagContainer); }
 	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAny(TagContainer); }
@@ -250,22 +251,6 @@ protected:
 
 	UFUNCTION(Client, Reliable)
 	void Client_SyncAttributes(const FAttributeValuePairs& AttributeValues);
-
-
-
-
-
-public:
-	UFUNCTION(BlueprintCallable)
-	void AppendTags(const FGameplayTagContainer Tags)
-	{
-		OwnedTags.AppendTags(Tags);
-		UE_LOG(LogTemp, Warning, TEXT("Local Append Tags: Tags == %s"), *OwnedTags.ToString());
-	}
-	
-protected:	
-	UFUNCTION()
-	virtual void OnRep_OwnedTags();
 };
 
 
