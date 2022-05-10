@@ -36,17 +36,17 @@
 			"WeaponScript.cpp.obj",
 			"WeaponScriptBase.cpp.obj"
 		],
-		"Module.WeaponSystemPlugin.gen.1_of_4.cpp.obj": [
+		"Module.WeaponSystemPlugin.gen.1_of_5.cpp.obj": [
 			"AggregateTagContainer.gen.cpp.obj",
 			"AimingScript.gen.cpp.obj",
 			"Attribute.gen.cpp.obj",
 			"AttributeEffect.gen.cpp.obj",
 			"AttributeEffectCalculation.gen.cpp.obj",
 			"AttributeEffectParams.gen.cpp.obj",
-			"AttributeFunctionLibrary.gen.cpp.obj",
-			"AttributesComponent.gen.cpp.obj"
+			"AttributeFunctionLibrary.gen.cpp.obj"
 		],
-		"Module.WeaponSystemPlugin.gen.2_of_4.cpp.obj": [
+		"Module.WeaponSystemPlugin.gen.2_of_5.cpp.obj": [
+			"AttributesComponent.gen.cpp.obj",
 			"CharacterInventoryComponent.gen.cpp.obj",
 			"CycleSightsScript.gen.cpp.obj",
 			"ForegripAttachment.gen.cpp.obj",
@@ -54,26 +54,28 @@
 			"HitscanScriptBase.gen.cpp.obj",
 			"Interfaces.gen.cpp.obj",
 			"InventoryComponent.gen.cpp.obj",
-			"PoseableHandComponent.gen.cpp.obj",
+			"PoseableHandComponent.gen.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.3_of_5.cpp.obj": [
 			"ReplicatedObject.gen.cpp.obj",
 			"ScriptBase.gen.cpp.obj",
-			"SetupAttachmentsScriptBase.gen.cpp.obj"
-		],
-		"Module.WeaponSystemPlugin.gen.3_of_4.cpp.obj": [
+			"SetupAttachmentsScriptBase.gen.cpp.obj",
 			"ShooterCharacterBase.gen.cpp.obj",
 			"SightsAttachment.gen.cpp.obj",
 			"TrueFPSCharacter.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",
 			"Weapon.gen.cpp.obj",
-			"WeaponAttachmentBase.gen.cpp.obj",
-			"WeaponAttachmentPoint.gen.cpp.obj",
-			"WeaponBase.gen.cpp.obj"
+			"WeaponAttachmentBase.gen.cpp.obj"
 		],
-		"Module.WeaponSystemPlugin.gen.4_of_4.cpp.obj": [
+		"Module.WeaponSystemPlugin.gen.4_of_5.cpp.obj": [
+			"WeaponAttachmentPoint.gen.cpp.obj",
+			"WeaponBase.gen.cpp.obj",
 			"WeaponDropBase.gen.cpp.obj",
 			"WeaponScript.gen.cpp.obj",
 			"WeaponScriptBase.gen.cpp.obj",
-			"WeaponSystemAnimInstance.gen.cpp.obj",
+			"WeaponSystemAnimInstance.gen.cpp.obj"
+		],
+		"Module.WeaponSystemPlugin.gen.5_of_5.cpp.obj": [
 			"WeaponSystemFunctionLibrary.gen.cpp.obj",
 			"WeaponSystemGameInstance.gen.cpp.obj",
 			"WeaponSystemPlayerController.gen.cpp.obj",

@@ -163,7 +163,7 @@ protected:
 
 	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_OwnedTags, Meta = (AllowPrivateAccess = "true"), Category = "State")
-	FAggregateTagContainer OwnedTags;
+	FAggregateTagContainerNotify OwnedTags;
 
 public:
 	UFUNCTION(BlueprintPure)
