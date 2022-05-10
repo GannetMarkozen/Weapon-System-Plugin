@@ -54,6 +54,25 @@ void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* Att
 	}
 }
 
+// Default implementation
+void UAttributeEffect::OnEffectApplied(const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+{
+	FAggregateTagContainerNotify& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
+	Container.AppendTags(AppliedTags.Tags, AppliedTags.Count);
+	Container.AppendTags(LifespanTags.Tags, LifespanTags.Count);
+	Container.RemoveTags(RemovedTags.Tags, RemovedTags.Count);
+}
+
+// Default implementation
+void UAttributeEffect::OnEffectRemoved(const UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+{
+	if(Reason != EEffectRemovalReason::NetPredSuccess)
+	{
+		FAggregateTagContainerNotify& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
+		Container.RemoveTags(LifespanTags.Tags, LifespanTags.Count);
+	}
+}
+
 
 
 

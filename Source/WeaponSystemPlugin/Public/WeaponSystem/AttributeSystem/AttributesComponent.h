@@ -161,11 +161,11 @@ protected:
 	TArray<TSharedPtr<FActiveEffect>> ActiveEffects;
 	TMap<FEffectNetPredKey, TWeakPtr<FActiveEffect>> LocalPredictedEffects;
 
-	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_OwnedTags, Meta = (AllowPrivateAccess = "true"), Category = "State")
-	FAggregateTagContainerNotify OwnedTags;
-
 public:
+	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, ReplicatedUsing = OnRep_OwnedTags, Category = "State")
+	FAggregateTagContainerNotify OwnedTags;
+	
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool HasAuthority() const { return GetOwner() && GetOwner()->HasAuthority(); }
 

@@ -89,10 +89,6 @@ struct TStructOpsTypeTraits<FAggregateTagContainer> : TStructOpsTypeTraitsBase2<
 };
 
 
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FAggregateContainerChangedDelegate, const FAggregateTagContainer&, TagContainer, const FGameplayTag&, Tag, int32, CurrentCount, int32, OldCount);
-DECLARE_DYNAMIC_DELEGATE_FourParams(FAggregateContainerChangedUniDelegate, const FAggregateTagContainer&, TagContainer, const FGameplayTag&, Tag, int32, CurrentCount, int32, OldCount);
-
 /*
  *	An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.
  *	Broadcasts changes on Net Serialized as well. Useful for tracking state
@@ -111,49 +107,56 @@ public:
 	template<typename UserClass>
 	void BindOnChanged(const FGameplayTag& Tag, UserClass* Target, TMemFunPtrType<false, UserClass, void(const FAggregateTagContainer&, const FGameplayTag&, int32, int32)> Function) const;
 	void BindUFunction(const FGameplayTag& Tag, class UObject* Target, const FName& FunctionName) const;
-	void BindScriptDelegate(const FGameplayTag& Tag, const FAggregateContainerChangedUniDelegate& Delegate) const;
+	void BindScriptDelegate(const FGameplayTag& Tag, const class FAggregateContainerChangedUniDelegate& Delegate) const;
 	void RemoveAll(class UObject* Target) const;
 	void Remove(class UObject* Target, const FGameplayTag& Tag) const;
-	void RemoveScriptDelegate(const FAggregateContainerChangedUniDelegate& Delegate) const;
+	void RemoveScriptDelegate(const class FAggregateContainerChangedUniDelegate& Delegate) const;
 
 	FORCEINLINE void AddTag(const FGameplayTag& Tag, const int32 Num = 1)
 	{
+		if(Bindings.IsEmpty()) return Super::AddTag(Tag, Num);
 		const auto OldTags = TagCount;
 		Super::AddTag(Tag, Num);
 		Internal_BroadcastChanges(OldTags);
 	}
 	FORCEINLINE void AppendTags(const FGameplayTagContainer& Tags, const int32 Num = 1)
 	{
+		if(Bindings.IsEmpty()) return Super::AppendTags(Tags, Num);
 		const auto OldTags = TagCount;
 		Super::AppendTags(Tags, Num);
 		Internal_BroadcastChanges(OldTags);
 	}
 	FORCEINLINE void RemoveTag(const FGameplayTag& Tag, const int32 Num = 1, const bool bExact = false)
 	{
+		if(Bindings.IsEmpty()) return Super::RemoveTag(Tag, Num, bExact);
 		const auto OldTags = TagCount;
 		Super::RemoveTag(Tag, Num, bExact);
 		Internal_BroadcastChanges(OldTags);
 	}
-	FORCEINLINE void RemoveTags(const FGameplayTagContainer& Tag, const int32 Num = 1, const bool bExact = false)
+	FORCEINLINE void RemoveTags(const FGameplayTagContainer& Tags, const int32 Num = 1, const bool bExact = false)
 	{
+		if(Bindings.IsEmpty()) return Super::RemoveTags(Tags, Num, bExact);
 		const auto OldTags = TagCount;
-		Super::RemoveTags(Tag, Num, bExact);
+		Super::RemoveTags(Tags, Num, bExact);
 		Internal_BroadcastChanges(OldTags);
 	}
 	FORCEINLINE void Empty()
 	{
+		if(Bindings.IsEmpty()) return Super::Empty();
 		const auto OldTags = TagCount;
 		Super::Empty();
 		Internal_BroadcastChanges(OldTags);
 	}
 	FORCEINLINE void InitializeContainer(const TArray<FAggregateTagValue>& Values)
 	{
+		if(Bindings.IsEmpty()) return Super::InitializeContainer(Values);
 		const auto OldTags = TagCount;
 		Super::InitializeContainer(Values);
 		Internal_BroadcastChanges(OldTags);
 	}
 	FORCEINLINE bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 	{
+		if(Bindings.IsEmpty()) return Super::NetSerialize(Ar, Map, bOutSuccess);
 		const auto OldTags = TagCount;
 		const bool bReturnVal = Super::NetSerialize(Ar, Map, bOutSuccess);
 		Internal_BroadcastChanges(OldTags);
@@ -161,7 +164,7 @@ public:
 	}
 	FORCEINLINE bool Serialize(FArchive& Ar)
 	{
-		if(Ar.IsSaving()) return Super::Serialize(Ar);
+		if(Ar.IsSaving() || Bindings.IsEmpty()) return Super::Serialize(Ar);
 		const auto OldTags = TagCount;
 		const bool bReturnVal = Super::Serialize(Ar);
 		Internal_BroadcastChanges(OldTags);
@@ -175,12 +178,12 @@ protected:
 	//	ChangedDelegate.Broadcast(*this, Tag, CurrentValue, OldValue);
 	//}
 
-	typedef TDelegate<void(const FAggregateTagContainer&, const FGameplayTag&, int32, int32)> CallbackDelegate;
+	typedef TDelegate<void(const FAggregateTagContainerNotify&, const FGameplayTag&, int32, int32)> CallbackDelegate;
 	mutable TArray<TPair<FGameplayTag, CallbackDelegate>> Bindings;
 
 public:
-	UPROPERTY(BlueprintAssignable, NotReplicated)
-	FAggregateContainerChangedDelegate ChangedDelegate;
+	//UPROPERTY(BlueprintAssignable, NotReplicated)
+	//FAggregateContainerChangedDelegate ChangedDelegate;
 };
 
 template<>
@@ -194,6 +197,8 @@ struct TStructOpsTypeTraits<FAggregateTagContainerNotify> : TStructOpsTypeTraits
 		WithIdenticalViaEquality = true,
 	};
 };
+
+DECLARE_DYNAMIC_DELEGATE_FourParams(FAggregateContainerChangedUniDelegate, const FAggregateTagContainerNotify&, TagContainer, const FGameplayTag&, Tag, int32, CurrentCount, int32, OldCount);
 
 
 
@@ -282,6 +287,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags to String"), Category = "Weapon System Function Library|Aggregate Tag Container Notify")
 	static FString Conv_AggregateTagContainerToString(const FAggregateTagContainerNotify& TagContainer) { return TagContainer.ToString(); }
+
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Aggregate Tags Notify to Aggregate Tags"), Category = "Weapon System Function Library|Aggregate Tag Container Notify")
+	static FAggregateTagContainer Conv_AggregateTagContainerNotifyToAggregateTagContainer(const FAggregateTagContainerNotify& TagContainer) { return static_cast<const FAggregateTagContainer&>(TagContainer); }
 
 	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Values"), Category = "Weapon System Function Library|Aggregate Tag Container Notify")
 	static void MakeLiteralAggregateTagContainer(const TArray<FAggregateTagValue>& Values, FAggregateTagContainerNotify& OutTagContainer) { OutTagContainer.InitializeContainer(Values); }

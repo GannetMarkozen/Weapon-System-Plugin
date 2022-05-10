@@ -7,6 +7,7 @@
 #include "Polymorphic/PolymorphicStruct.h"
 #include "UObject/Object.h"
 #include "AttributeEffectParams.h"
+#include "GameplayTagContainer.h"
 #include "AttributeEffect.generated.h"
 
 
@@ -28,6 +29,17 @@ public:
 	FORCEINLINE const TArray<class UAttributeEffectCalculation*>& GetEffectCalculations() const { return EffectCalculations; }
 };
 
+USTRUCT(BlueprintType, Meta = (DisplayName = "Aggregate Tag Modifier"))
+struct FAggregateTagMod
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FGameplayTagContainer Tags;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "1"))
+	int32 Count = 1;
+};
 
 /**
  * 
@@ -43,25 +55,37 @@ public:
 protected:
 	// Modifiers with an Attribute to modify and an array of Attribute Effect Calculations that will be ran sequentially
 	// to modify the Attribute's value when this Effect is successfully applied
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Attribute Modifiers", AllowPrivateAccess = "true"), Category = "Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Attribute Modifiers", AllowPrivateAccess = "true"), Category = "Configurations")
 	TArray<FAttributeModParams> Modifiers;
 
 	// How this effect should be replicated. Will make no difference if playing as server / playing in Standalone-Mode
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Effect Replication Condition"), Category = "Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayName = "Effect Replication Condition"), Category = "Configurations")
 	EEffectRepCond EffectRepCond = EEffectRepCond::ServerOnly;
 
 	// The duration of the effect. Forever being infinite until removed manually. Duration being for the duration time. And instant being instantaneous
 	// Note: Using an instant effect does not instance the Attribute Effect thus you should not store any variables. Treat the functions as static functions
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Duration Type", AllowPrivateAccess = "true"), Category = "Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (DisplayName = "Effect Duration Type", AllowPrivateAccess = "true"), Category = "Configurations")
 	EEffectDuration EffectDurType = EEffectDuration::Instant;
 
 	// The delay in-between effect applications for latent-effects
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Interval Duration", EditCondition = "EffectDurType != EEffectDuration::Instant"), Category = "Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Interval Duration", EditCondition = "EffectDurType != EEffectDuration::Instant"), Category = "Configurations")
 	float IntervalDuration = 0.25f;
 
 	// The total lifespan of this effect
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Lifespan Duration", EditCondition = "EffectDurType == EEffectDuration::ForDuration"), Category = "Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Lifespan Duration", EditCondition = "EffectDurType == EEffectDuration::ForDuration"), Category = "Configurations")
 	float Lifespan = 5.f;
+
+	// Tags applied when this Effect is successfully applied
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
+	FAggregateTagMod AppliedTags;
+
+	// Tags applied when this Effect is successfully applied. Removed at Lifespan End
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
+	FAggregateTagMod LifespanTags;
+
+	// Tags removed when this Effect is successfully applied
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
+	FAggregateTagMod RemovedTags;
 	
 	// Whether or not this effect should be applied. Returns true by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
@@ -75,7 +99,7 @@ protected:
 	virtual void ModifyAttributes_Implementation(class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
-	virtual void OnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const {}
+	virtual void OnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Applied"), Category = "Effect")
@@ -89,7 +113,7 @@ protected:
 	}
 
 	// Called when this effect is removed before being destroyed
-	virtual void OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const {}
+	virtual void OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
 
 	// Called when this effect is removed before being destroyed
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Removed"), Category = "Effect")

@@ -14,9 +14,8 @@ void EmptyLinkFunctionForGeneratedCodeAggregateTagContainer() {}
 	GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTag();
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAggregateTagContainer();
 	GAMEPLAYTAGS_API UScriptStruct* Z_Construct_UScriptStruct_FGameplayTagContainer();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature();
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAggregateTagContainerNotify();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAggregateTagContainerUtils_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAggregateTagContainerUtils();
 	ENGINE_API UClass* Z_Construct_UClass_UBlueprintFunctionLibrary();
@@ -177,71 +176,69 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		}
 		return Z_Registration_Info_UScriptStruct_AggregateTagContainer.InnerSingleton;
 	}
-	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics
+
+static_assert(std::is_polymorphic<FAggregateTagContainerNotify>() == std::is_polymorphic<FAggregateTagContainer>(), "USTRUCT FAggregateTagContainerNotify cannot be polymorphic unless super FAggregateTagContainer is polymorphic");
+
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify;
+class UScriptStruct* FAggregateTagContainerNotify::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton)
 	{
-		struct _Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms
-		{
-			FAggregateTagContainer TagContainer;
-			FGameplayTag Tag;
-			int32 CurrentCount;
-			int32 OldCount;
-		};
+		Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FAggregateTagContainerNotify, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("AggregateTagContainerNotify"));
+	}
+	return Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton;
+}
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagContainerNotify>()
+{
+	return FAggregateTagContainerNotify::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics
+	{
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_TagContainer_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
 #endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_TagContainer;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tag_MetaData[];
-#endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Tag;
-		static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentCount;
-		static const UECodeGen_Private::FIntPropertyParams NewProp_OldCount;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
+		static void* NewStructOps();
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainer, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData)) }; // 2135736671
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_Tag_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_Tag = { "Tag", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms, Tag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_Tag_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_Tag_MetaData)) }; // 802167388
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_CurrentCount = { "CurrentCount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms, CurrentCount), METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_OldCount = { "OldCount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms, OldCount), METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_TagContainer,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_Tag,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_CurrentCount,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::NewProp_OldCount,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Comment", "/*\n *\x09""An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.\n *\x09""Broadcasts changes on Net Serialized as well. Useful for tracking state\n */" },
+		{ "DisplayName", "Aggregate Gameplay Tag Container Notify" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "*     An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.\n*     Broadcasts changes on Net Serialized as well. Useful for tracking state" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_WeaponSystemPlugin, nullptr, "AggregateContainerChangedDelegate__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::_Script_WeaponSystemPlugin_eventAggregateContainerChangedDelegate_Parms), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature()
+	void* Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewStructOps()
 	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FAggregateTagContainerNotify>();
+	}
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
+		Z_Construct_UScriptStruct_FAggregateTagContainer,
+		&NewStructOps,
+		"AggregateTagContainerNotify",
+		sizeof(FAggregateTagContainerNotify),
+		alignof(FAggregateTagContainerNotify),
+		nullptr,
+		0,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000201),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FAggregateTagContainerNotify()
+	{
+		if (!Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton)
 		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature_Statics::FuncParams);
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton, Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::ReturnStructParams);
 		}
-		return ReturnFunction;
+		return Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton;
 	}
 	struct Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics
 	{
 		struct _Script_WeaponSystemPlugin_eventAggregateContainerChangedUniDelegate_Parms
 		{
-			FAggregateTagContainer TagContainer;
+			FAggregateTagContainerNotify TagContainer;
 			FGameplayTag Tag;
 			int32 CurrentCount;
 			int32 OldCount;
@@ -267,7 +264,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedUniDelegate_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainer, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData)) }; // 2135736671
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateContainerChangedUniDelegate_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -296,78 +293,6 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature_Statics::FuncParams);
 		}
 		return ReturnFunction;
-	}
-
-static_assert(std::is_polymorphic<FAggregateTagContainerNotify>() == std::is_polymorphic<FAggregateTagContainer>(), "USTRUCT FAggregateTagContainerNotify cannot be polymorphic unless super FAggregateTagContainer is polymorphic");
-
-	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify;
-class UScriptStruct* FAggregateTagContainerNotify::StaticStruct()
-{
-	if (!Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton)
-	{
-		Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FAggregateTagContainerNotify, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("AggregateTagContainerNotify"));
-	}
-	return Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.OuterSingleton;
-}
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagContainerNotify>()
-{
-	return FAggregateTagContainerNotify::StaticStruct();
-}
-	struct Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
-#endif
-		static void* NewStructOps();
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ChangedDelegate_MetaData[];
-#endif
-		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_ChangedDelegate;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-		static const UECodeGen_Private::FStructParams ReturnStructParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams[] = {
-		{ "BlueprintType", "true" },
-		{ "Comment", "/*\n *\x09""An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.\n *\x09""Broadcasts changes on Net Serialized as well. Useful for tracking state\n */" },
-		{ "DisplayName", "Aggregate Gameplay Tag Container Notify" },
-		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
-		{ "ToolTip", "*     An Aggregate Tag Container with a delegate for broadcasting changes. Slightly more expensive.\n*     Broadcasts changes on Net Serialized as well. Useful for tracking state" },
-	};
-#endif
-	void* Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewStructOps()
-	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FAggregateTagContainerNotify>();
-	}
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewProp_ChangedDelegate_MetaData[] = {
-		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
-	};
-#endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewProp_ChangedDelegate = { "ChangedDelegate", nullptr, (EPropertyFlags)0x0010000090080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAggregateTagContainerNotify, ChangedDelegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewProp_ChangedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewProp_ChangedDelegate_MetaData)) }; // 320482434
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewProp_ChangedDelegate,
-	};
-	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::ReturnStructParams = {
-		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
-		Z_Construct_UScriptStruct_FAggregateTagContainer,
-		&NewStructOps,
-		"AggregateTagContainerNotify",
-		sizeof(FAggregateTagContainerNotify),
-		alignof(FAggregateTagContainerNotify),
-		Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::PropPointers),
-		RF_Public|RF_Transient|RF_MarkAsNative,
-		EStructFlags(0x00000205),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::Struct_MetaDataParams))
-	};
-	UScriptStruct* Z_Construct_UScriptStruct_FAggregateTagContainerNotify()
-	{
-		if (!Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton)
-		{
-			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton, Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::ReturnStructParams);
-		}
-		return Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify.InnerSingleton;
 	}
 	DEFINE_FUNCTION(UAggregateTagContainerUtils::execIsEmpty)
 	{
@@ -1521,6 +1446,14 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		UAggregateTagContainerNotifyUtils::MakeLiteralAggregateTagContainer(Z_Param_Out_Values,Z_Param_Out_OutTagContainer);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UAggregateTagContainerNotifyUtils::execConv_AggregateTagContainerNotifyToAggregateTagContainer)
+	{
+		P_GET_STRUCT_REF(FAggregateTagContainerNotify,Z_Param_Out_TagContainer);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FAggregateTagContainer*)Z_Param__Result=UAggregateTagContainerNotifyUtils::Conv_AggregateTagContainerNotifyToAggregateTagContainer(Z_Param_Out_TagContainer);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAggregateTagContainerNotifyUtils::execConv_AggregateTagContainerToString)
 	{
 		P_GET_STRUCT_REF(FAggregateTagContainerNotify,Z_Param_Out_TagContainer);
@@ -1572,6 +1505,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 			{ "AddTag", &UAggregateTagContainerNotifyUtils::execAddTag },
 			{ "AppendTags", &UAggregateTagContainerNotifyUtils::execAppendTags },
 			{ "BindOnChanged", &UAggregateTagContainerNotifyUtils::execBindOnChanged },
+			{ "Conv_AggregateTagContainerNotifyToAggregateTagContainer", &UAggregateTagContainerNotifyUtils::execConv_AggregateTagContainerNotifyToAggregateTagContainer },
 			{ "Conv_AggregateTagContainerToGameplayTagContainer", &UAggregateTagContainerNotifyUtils::execConv_AggregateTagContainerToGameplayTagContainer },
 			{ "Conv_AggregateTagContainerToString", &UAggregateTagContainerNotifyUtils::execConv_AggregateTagContainerToString },
 			{ "Empty", &UAggregateTagContainerNotifyUtils::execEmpty },
@@ -1612,7 +1546,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AddTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventAddTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AddTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventAddTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AddTag_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1671,7 +1605,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AppendTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventAppendTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AppendTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventAppendTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AppendTags_Statics::NewProp_Tags_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1738,7 +1672,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventBindOnChanged_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventBindOnChanged_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1750,7 +1684,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventBindOnChanged_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate_MetaData)) }; // 100498640
+	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventBindOnChanged_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Delegate_MetaData)) }; // 1415283655
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_TagContainer,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::NewProp_Tag,
@@ -1770,6 +1704,54 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics
+	{
+		struct AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerNotifyToAggregateTagContainer_Parms
+		{
+			FAggregateTagContainerNotify TagContainer;
+			FAggregateTagContainer ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TagContainer_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_TagContainer;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_TagContainer_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerNotifyToAggregateTagContainer_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerNotifyToAggregateTagContainer_Parms, ReturnValue), Z_Construct_UScriptStruct_FAggregateTagContainer, METADATA_PARAMS(nullptr, 0) }; // 2135736671
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_TagContainer,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::Function_MetaDataParams[] = {
+		{ "BlueprintAutocast", "" },
+		{ "Category", "Weapon System Function Library|Aggregate Tag Container Notify" },
+		{ "CompactNodeTitle", "->" },
+		{ "DisplayName", "Aggregate Tags Notify to Aggregate Tags" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateTagContainerNotifyUtils, nullptr, "Conv_AggregateTagContainerNotifyToAggregateTagContainer", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerNotifyToAggregateTagContainer_Parms), Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1796,7 +1778,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToGameplayTagContainer_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToGameplayTagContainer_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToGameplayTagContainer_Parms, ReturnValue), Z_Construct_UScriptStruct_FGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 506667518
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer_Statics::NewProp_TagContainer,
@@ -1844,7 +1826,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToString_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToString_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventConv_AggregateTagContainerToString_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString_Statics::NewProp_TagContainer,
@@ -1882,7 +1864,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventEmpty_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventEmpty_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty_Statics::NewProp_TagContainer,
 	};
@@ -1936,7 +1918,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventGetNumTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventGetNumTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2009,7 +1991,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasAll_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasAll_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll_Statics::NewProp_Tags_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2072,7 +2054,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasAny_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasAny_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny_Statics::NewProp_Tags_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2135,7 +2117,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventHasTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2188,7 +2170,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventInitializeContainer_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventInitializeContainer_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer_Statics::NewProp_Values_Inner = { "Values", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateTagValue, METADATA_PARAMS(nullptr, 0) }; // 2586575391
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer_Statics::NewProp_Values_MetaData[] = {
@@ -2242,7 +2224,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventIsEmpty_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventIsEmpty_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 	void Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((AggregateTagContainerNotifyUtils_eventIsEmpty_Parms*)Obj)->ReturnValue = 1;
@@ -2294,7 +2276,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_Values = { "Values", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventMakeLiteralAggregateTagContainer_Parms, Values), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_Values_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_Values_MetaData)) }; // 2586575391
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_OutTagContainer = { "OutTagContainer", nullptr, (EPropertyFlags)0x0010008000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventMakeLiteralAggregateTagContainer_Parms, OutTagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_OutTagContainer = { "OutTagContainer", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventMakeLiteralAggregateTagContainer_Parms, OutTagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_Values_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer_Statics::NewProp_Values,
@@ -2346,7 +2328,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventRemoveTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTag_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventRemoveTag_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTag_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2423,7 +2405,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventRemoveTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTags_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventRemoveTags_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(nullptr, 0) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTags_Statics::NewProp_Tags_MetaData[] = {
 		{ "NativeConst", "" },
@@ -2497,13 +2479,13 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbind_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbind_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbind_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate_MetaData)) }; // 100498640
+	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbind_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate_MetaData)) }; // 1415283655
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_TagContainer,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind_Statics::NewProp_Delegate,
@@ -2548,7 +2530,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbindAll_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer_MetaData)) }; // 1334623594
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer = { "TagContainer", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateTagContainerNotifyUtils_eventUnbindAll_Parms, TagContainer), Z_Construct_UScriptStruct_FAggregateTagContainerNotify, METADATA_PARAMS(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer_MetaData)) }; // 1981050962
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_Target,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll_Statics::NewProp_TagContainer,
@@ -2590,23 +2572,24 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAggregateTagContainerNotifyUtils_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AddTag, "AddTag" }, // 2848592828
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AppendTags, "AppendTags" }, // 3421016484
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged, "BindOnChanged" }, // 2440510510
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer, "Conv_AggregateTagContainerToGameplayTagContainer" }, // 3147178907
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString, "Conv_AggregateTagContainerToString" }, // 3707924398
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty, "Empty" }, // 198887535
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags, "GetNumTags" }, // 4057212517
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll, "HasAll" }, // 397109230
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny, "HasAny" }, // 3220606770
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag, "HasTag" }, // 2250574561
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer, "InitializeContainer" }, // 681696750
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty, "IsEmpty" }, // 996429852
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer, "MakeLiteralAggregateTagContainer" }, // 2898906342
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTag, "RemoveTag" }, // 237155105
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTags, "RemoveTags" }, // 122554784
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind, "Unbind" }, // 1496826542
-		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll, "UnbindAll" }, // 2798441849
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AddTag, "AddTag" }, // 1964264526
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_AppendTags, "AppendTags" }, // 741557419
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_BindOnChanged, "BindOnChanged" }, // 2228406603
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerNotifyToAggregateTagContainer, "Conv_AggregateTagContainerNotifyToAggregateTagContainer" }, // 355977066
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToGameplayTagContainer, "Conv_AggregateTagContainerToGameplayTagContainer" }, // 899088602
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Conv_AggregateTagContainerToString, "Conv_AggregateTagContainerToString" }, // 445904140
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Empty, "Empty" }, // 1685675360
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_GetNumTags, "GetNumTags" }, // 925557574
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAll, "HasAll" }, // 3156849925
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasAny, "HasAny" }, // 3927343237
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_HasTag, "HasTag" }, // 2910034187
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_InitializeContainer, "InitializeContainer" }, // 2026859749
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_IsEmpty, "IsEmpty" }, // 814886893
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_MakeLiteralAggregateTagContainer, "MakeLiteralAggregateTagContainer" }, // 969689477
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTag, "RemoveTag" }, // 525218205
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_RemoveTags, "RemoveTags" }, // 433764
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_Unbind, "Unbind" }, // 1068729966
+		{ &Z_Construct_UFunction_UAggregateTagContainerNotifyUtils_UnbindAll, "UnbindAll" }, // 445891295
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAggregateTagContainerNotifyUtils_Statics::Class_MetaDataParams[] = {
@@ -2654,13 +2637,13 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateTagConta
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo[] = {
 		{ FAggregateTagValue::StaticStruct, Z_Construct_UScriptStruct_FAggregateTagValue_Statics::NewStructOps, TEXT("AggregateTagValue"), &Z_Registration_Info_UScriptStruct_AggregateTagValue, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateTagValue), 2586575391U) },
 		{ FAggregateTagContainer::StaticStruct, Z_Construct_UScriptStruct_FAggregateTagContainer_Statics::NewStructOps, TEXT("AggregateTagContainer"), &Z_Registration_Info_UScriptStruct_AggregateTagContainer, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateTagContainer), 2135736671U) },
-		{ FAggregateTagContainerNotify::StaticStruct, Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewStructOps, TEXT("AggregateTagContainerNotify"), &Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateTagContainerNotify), 1334623594U) },
+		{ FAggregateTagContainerNotify::StaticStruct, Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics::NewStructOps, TEXT("AggregateTagContainerNotify"), &Z_Registration_Info_UScriptStruct_AggregateTagContainerNotify, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateTagContainerNotify), 1981050962U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UAggregateTagContainerUtils, UAggregateTagContainerUtils::StaticClass, TEXT("UAggregateTagContainerUtils"), &Z_Registration_Info_UClass_UAggregateTagContainerUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAggregateTagContainerUtils), 2444772284U) },
-		{ Z_Construct_UClass_UAggregateTagContainerNotifyUtils, UAggregateTagContainerNotifyUtils::StaticClass, TEXT("UAggregateTagContainerNotifyUtils"), &Z_Registration_Info_UClass_UAggregateTagContainerNotifyUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAggregateTagContainerNotifyUtils), 3007539231U) },
+		{ Z_Construct_UClass_UAggregateTagContainerNotifyUtils, UAggregateTagContainerNotifyUtils::StaticClass, TEXT("UAggregateTagContainerNotifyUtils"), &Z_Registration_Info_UClass_UAggregateTagContainerNotifyUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAggregateTagContainerNotifyUtils), 560572706U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_2566374877(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_2873656608(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo),
 		nullptr, 0);
