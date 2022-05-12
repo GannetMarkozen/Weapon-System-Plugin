@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-WeaponSystemAnimsRuntime.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\Module.WeaponSystemAnimsRuntime.cpp.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\Module.WeaponSystemAnimsRuntime.gen.cpp.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\Default.rc2.res"
+/OUT:"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\UnrealEditor-WeaponSystemAnimsRuntime.lib"

@@ -21,12 +21,15 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(const float DeltaTime) override;
 	virtual bool CanTick_Implementation() const override { return true; }
-	virtual void SetupInput(class UInputComponent* InputComponent) override
+
+	// The input will bind to the Start Aiming and Stop Aiming events
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Input"), Category = "Script|Aiming")
+	FORCEINLINE void SetupActionBinding(const FName& Input)
 	{
-		Super::SetupInput(InputComponent);
-		SetupBinding(this, &ThisClass::StartAiming, EInputBinding::SecondaryFire, IE_Pressed);
-		SetupBinding(this, &ThisClass::StopAiming, EInputBinding::SecondaryFire, IE_Released);
+		SetupBindingByInputName(this, &ThisClass::StartAiming, Input, IE_Pressed);
+		SetupBindingByInputName(this, &ThisClass::StopAiming, Input, IE_Released);
 	}
+	
 	
 	virtual void OwningWeaponUnequipped(AWeaponBase* Weapon, UCharacterInventoryComponent* Inventory) override
 	{// If unequipped, stop aiming
@@ -36,7 +39,10 @@ protected:
 		AimingTimeline.SetPlaybackPosition(0.f, false, true);
 	}
 
+	UFUNCTION(BlueprintCallable, Category = "Script|Aiming")
 	virtual void StartAiming();
+
+	UFUNCTION(BlueprintCallable, Category = "Script|Aiming")
 	virtual void StopAiming();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Script|Aiming")

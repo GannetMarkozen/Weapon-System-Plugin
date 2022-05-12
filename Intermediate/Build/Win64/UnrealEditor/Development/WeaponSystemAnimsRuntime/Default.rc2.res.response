@@ -58,10 +58,11 @@
 /DNDEBUG=1
 /DUE_BUILD_DEVELOPMENT=1
 /DORIGINAL_FILE_NAME="UnrealEditor-WeaponSystemAnimsRuntime.dll"
-/DBUILT_FROM_CHANGELIST=19505902
-/DBUILD_VERSION=++UE5+Release-5.0-CL-19505902
+/DBUILT_FROM_CHANGELIST=19764885
+/DBUILD_VERSION=++UE5+Release-5.0-CL-19764885
 /DBUILD_ICON_FILE_NAME="\"..\\Build\\Windows\\Resources\\Default.ico\""
-/DPROJECT_COPYRIGHT_STRING="Copyright 2022, Gannet Markozen, All rights reserved"
-/DPROJECT_PRODUCT_IDENTIFIER=AnimeShooter
-/fo "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\Default.rc2.res"
+/DPROJECT_COPYRIGHT_STRING="Fill out your copyright notice in the Description page of Project Settings."
+/DPROJECT_PRODUCT_NAME="Third Person BP Game Template"
+/DPROJECT_PRODUCT_IDENTIFIER=WeaponSystemExample
+/fo "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsRuntime\Default.rc2.res"
 "..\Build\Windows\Resources\Default.rc2"

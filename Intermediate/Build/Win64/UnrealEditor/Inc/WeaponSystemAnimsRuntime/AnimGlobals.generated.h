@@ -13,14 +13,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define WEAPONSYSTEMANIMSRUNTIME_AnimGlobals_generated_h
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h_19_GENERATED_BODY \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h_19_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FArmPullbackConfig_Statics; \
 	WEAPONSYSTEMANIMSRUNTIME_API static class UScriptStruct* StaticStruct();
 
 
 template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FArmPullbackConfig>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h_32_GENERATED_BODY \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h_32_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FJointClampConfig_Statics; \
 	WEAPONSYSTEMANIMSRUNTIME_API static class UScriptStruct* StaticStruct();
 
@@ -28,7 +28,7 @@ template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FArmP
 template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<struct FJointClampConfig>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h
+#define CURRENT_FILE_ID FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimGlobals_h
 
 
 #define FOREACH_ENUM_EARMPULLBACKCONFIG(op) \

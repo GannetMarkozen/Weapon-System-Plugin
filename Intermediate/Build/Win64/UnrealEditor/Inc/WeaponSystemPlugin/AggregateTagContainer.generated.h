@@ -8,280 +8,159 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-struct FAggregateTagContainerNotify;
+struct FAggregateGameplayTagContainer;
 struct FGameplayTag;
-struct FAggregateTagContainer;
-struct FGameplayTagContainer;
-struct FAggregateTagValue;
+struct FAggregateGameplayTagValue;
 class UObject;
+struct FGameplayTagContainer;
 #ifdef WEAPONSYSTEMPLUGIN_AggregateTagContainer_generated_h
 #error "AggregateTagContainer.generated.h already included, missing '#pragma once' in AggregateTagContainer.h"
 #endif
 #define WEAPONSYSTEMPLUGIN_AggregateTagContainer_generated_h
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_11_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FAggregateTagValue_Statics; \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_11_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FAggregateGameplayTagValue_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAggregateTagValue>();
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAggregateGameplayTagValue>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_35_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FAggregateTagContainer_Statics; \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_66_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAggregateTagContainer>();
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAggregateGameplayTagContainer>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_103_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FAggregateTagContainerNotify_Statics; \
-	static class UScriptStruct* StaticStruct(); \
-	typedef FAggregateTagContainer Super;
-
-
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAggregateTagContainerNotify>();
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_196_DELEGATE \
-struct _Script_WeaponSystemPlugin_eventAggregateContainerChangedUniDelegate_Parms \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_154_DELEGATE \
+struct _Script_WeaponSystemPlugin_eventAggregateDynamicDelegate_Parms \
 { \
-	FAggregateTagContainerNotify TagContainer; \
+	FAggregateGameplayTagContainer Container; \
 	FGameplayTag Tag; \
 	int32 CurrentCount; \
 	int32 OldCount; \
 }; \
-static inline void FAggregateContainerChangedUniDelegate_DelegateWrapper(const FScriptDelegate& AggregateContainerChangedUniDelegate, FAggregateTagContainerNotify const& TagContainer, FGameplayTag const& Tag, int32 CurrentCount, int32 OldCount) \
+static inline void FAggregateDynamicDelegate_DelegateWrapper(const FScriptDelegate& AggregateDynamicDelegate, FAggregateGameplayTagContainer const& Container, FGameplayTag const& Tag, int32 CurrentCount, int32 OldCount) \
 { \
-	_Script_WeaponSystemPlugin_eventAggregateContainerChangedUniDelegate_Parms Parms; \
-	Parms.TagContainer=TagContainer; \
+	_Script_WeaponSystemPlugin_eventAggregateDynamicDelegate_Parms Parms; \
+	Parms.Container=Container; \
 	Parms.Tag=Tag; \
 	Parms.CurrentCount=CurrentCount; \
 	Parms.OldCount=OldCount; \
-	AggregateContainerChangedUniDelegate.ProcessDelegate<UObject>(&Parms); \
+	AggregateDynamicDelegate.ProcessDelegate<UObject>(&Parms); \
 }
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_RPC_WRAPPERS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_SPARSE_DATA
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execHasAll); \
-	DECLARE_FUNCTION(execHasAny); \
-	DECLARE_FUNCTION(execHasTag); \
-	DECLARE_FUNCTION(execGetNumTags); \
+	DECLARE_FUNCTION(execGetAggregateTagValues); \
+	DECLARE_FUNCTION(execGetExactTagValues); \
+	DECLARE_FUNCTION(execGetTagCountExact); \
+	DECLARE_FUNCTION(execGetTagCount); \
+	DECLARE_FUNCTION(execUnbind); \
+	DECLARE_FUNCTION(execUnbindAll); \
+	DECLARE_FUNCTION(execBindTagCountChanged); \
+	DECLARE_FUNCTION(execRemoveTagsExact); \
+	DECLARE_FUNCTION(execRemoveTagExact); \
 	DECLARE_FUNCTION(execRemoveTag); \
-	DECLARE_FUNCTION(execRemoveTags); \
-	DECLARE_FUNCTION(execInitializeContainer); \
-	DECLARE_FUNCTION(execAddTag); \
 	DECLARE_FUNCTION(execAppendTags); \
-	DECLARE_FUNCTION(execEmpty); \
-	DECLARE_FUNCTION(execMakeLiteralAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToString); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToGameplayTagContainer);
+	DECLARE_FUNCTION(execAddTag); \
+	DECLARE_FUNCTION(execConv_AggregateGameplayTagContainerToGameplayTagContainer); \
+	DECLARE_FUNCTION(execGetAggregateTagCountDebugString); \
+	DECLARE_FUNCTION(execConv_AggregateGameplayTagContainerToString);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execHasAll); \
-	DECLARE_FUNCTION(execHasAny); \
-	DECLARE_FUNCTION(execHasTag); \
-	DECLARE_FUNCTION(execGetNumTags); \
+	DECLARE_FUNCTION(execGetAggregateTagValues); \
+	DECLARE_FUNCTION(execGetExactTagValues); \
+	DECLARE_FUNCTION(execGetTagCountExact); \
+	DECLARE_FUNCTION(execGetTagCount); \
+	DECLARE_FUNCTION(execUnbind); \
+	DECLARE_FUNCTION(execUnbindAll); \
+	DECLARE_FUNCTION(execBindTagCountChanged); \
+	DECLARE_FUNCTION(execRemoveTagsExact); \
+	DECLARE_FUNCTION(execRemoveTagExact); \
 	DECLARE_FUNCTION(execRemoveTag); \
-	DECLARE_FUNCTION(execRemoveTags); \
-	DECLARE_FUNCTION(execInitializeContainer); \
-	DECLARE_FUNCTION(execAddTag); \
 	DECLARE_FUNCTION(execAppendTags); \
-	DECLARE_FUNCTION(execEmpty); \
-	DECLARE_FUNCTION(execMakeLiteralAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToString); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToGameplayTagContainer);
+	DECLARE_FUNCTION(execAddTag); \
+	DECLARE_FUNCTION(execConv_AggregateGameplayTagContainerToGameplayTagContainer); \
+	DECLARE_FUNCTION(execGetAggregateTagCountDebugString); \
+	DECLARE_FUNCTION(execConv_AggregateGameplayTagContainerToString);
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_INCLASS_NO_PURE_DECLS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesUAggregateTagContainerUtils(); \
-	friend struct Z_Construct_UClass_UAggregateTagContainerUtils_Statics; \
+	static void StaticRegisterNativesUAggregateGameplayTagContainerUtils(); \
+	friend struct Z_Construct_UClass_UAggregateGameplayTagContainerUtils_Statics; \
 public: \
-	DECLARE_CLASS(UAggregateTagContainerUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAggregateTagContainerUtils)
+	DECLARE_CLASS(UAggregateGameplayTagContainerUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAggregateGameplayTagContainerUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_INCLASS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_INCLASS \
 private: \
-	static void StaticRegisterNativesUAggregateTagContainerUtils(); \
-	friend struct Z_Construct_UClass_UAggregateTagContainerUtils_Statics; \
+	static void StaticRegisterNativesUAggregateGameplayTagContainerUtils(); \
+	friend struct Z_Construct_UClass_UAggregateGameplayTagContainerUtils_Statics; \
 public: \
-	DECLARE_CLASS(UAggregateTagContainerUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAggregateTagContainerUtils)
+	DECLARE_CLASS(UAggregateGameplayTagContainerUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
+	DECLARE_SERIALIZER(UAggregateGameplayTagContainerUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_STANDARD_CONSTRUCTORS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAggregateTagContainerUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateTagContainerUtils) \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateTagContainerUtils); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateTagContainerUtils); \
+	NO_API UAggregateGameplayTagContainerUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateGameplayTagContainerUtils) \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateGameplayTagContainerUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateGameplayTagContainerUtils); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAggregateTagContainerUtils(UAggregateTagContainerUtils&&); \
-	NO_API UAggregateTagContainerUtils(const UAggregateTagContainerUtils&); \
+	NO_API UAggregateGameplayTagContainerUtils(UAggregateGameplayTagContainerUtils&&); \
+	NO_API UAggregateGameplayTagContainerUtils(const UAggregateGameplayTagContainerUtils&); \
 public:
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_ENHANCED_CONSTRUCTORS \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAggregateTagContainerUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
+	NO_API UAggregateGameplayTagContainerUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAggregateTagContainerUtils(UAggregateTagContainerUtils&&); \
-	NO_API UAggregateTagContainerUtils(const UAggregateTagContainerUtils&); \
+	NO_API UAggregateGameplayTagContainerUtils(UAggregateGameplayTagContainerUtils&&); \
+	NO_API UAggregateGameplayTagContainerUtils(const UAggregateGameplayTagContainerUtils&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateTagContainerUtils); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateTagContainerUtils); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateTagContainerUtils)
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateGameplayTagContainerUtils); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateGameplayTagContainerUtils); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateGameplayTagContainerUtils)
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_218_PROLOG
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_GENERATED_BODY_LEGACY \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_156_PROLOG
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_INCLASS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_STANDARD_CONSTRUCTORS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_SPARSE_DATA \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_RPC_WRAPPERS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_INCLASS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_GENERATED_BODY \
+#define FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_INCLASS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_221_ENHANCED_CONSTRUCTORS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_SPARSE_DATA \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_INCLASS_NO_PURE_DECLS \
+	FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_159_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAggregateTagContainerUtils>();
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_SPARSE_DATA
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execHasAll); \
-	DECLARE_FUNCTION(execHasAny); \
-	DECLARE_FUNCTION(execHasTag); \
-	DECLARE_FUNCTION(execGetNumTags); \
-	DECLARE_FUNCTION(execRemoveTag); \
-	DECLARE_FUNCTION(execRemoveTags); \
-	DECLARE_FUNCTION(execInitializeContainer); \
-	DECLARE_FUNCTION(execAddTag); \
-	DECLARE_FUNCTION(execAppendTags); \
-	DECLARE_FUNCTION(execEmpty); \
-	DECLARE_FUNCTION(execMakeLiteralAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerNotifyToAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToString); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToGameplayTagContainer); \
-	DECLARE_FUNCTION(execUnbind); \
-	DECLARE_FUNCTION(execUnbindAll); \
-	DECLARE_FUNCTION(execBindOnChanged);
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execIsEmpty); \
-	DECLARE_FUNCTION(execHasAll); \
-	DECLARE_FUNCTION(execHasAny); \
-	DECLARE_FUNCTION(execHasTag); \
-	DECLARE_FUNCTION(execGetNumTags); \
-	DECLARE_FUNCTION(execRemoveTag); \
-	DECLARE_FUNCTION(execRemoveTags); \
-	DECLARE_FUNCTION(execInitializeContainer); \
-	DECLARE_FUNCTION(execAddTag); \
-	DECLARE_FUNCTION(execAppendTags); \
-	DECLARE_FUNCTION(execEmpty); \
-	DECLARE_FUNCTION(execMakeLiteralAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerNotifyToAggregateTagContainer); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToString); \
-	DECLARE_FUNCTION(execConv_AggregateTagContainerToGameplayTagContainer); \
-	DECLARE_FUNCTION(execUnbind); \
-	DECLARE_FUNCTION(execUnbindAll); \
-	DECLARE_FUNCTION(execBindOnChanged);
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_INCLASS_NO_PURE_DECLS \
-private: \
-	static void StaticRegisterNativesUAggregateTagContainerNotifyUtils(); \
-	friend struct Z_Construct_UClass_UAggregateTagContainerNotifyUtils_Statics; \
-public: \
-	DECLARE_CLASS(UAggregateTagContainerNotifyUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAggregateTagContainerNotifyUtils)
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_INCLASS \
-private: \
-	static void StaticRegisterNativesUAggregateTagContainerNotifyUtils(); \
-	friend struct Z_Construct_UClass_UAggregateTagContainerNotifyUtils_Statics; \
-public: \
-	DECLARE_CLASS(UAggregateTagContainerNotifyUtils, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/WeaponSystemPlugin"), NO_API) \
-	DECLARE_SERIALIZER(UAggregateTagContainerNotifyUtils)
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_STANDARD_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAggregateTagContainerNotifyUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateTagContainerNotifyUtils) \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateTagContainerNotifyUtils); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateTagContainerNotifyUtils); \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAggregateTagContainerNotifyUtils(UAggregateTagContainerNotifyUtils&&); \
-	NO_API UAggregateTagContainerNotifyUtils(const UAggregateTagContainerNotifyUtils&); \
-public:
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UAggregateTagContainerNotifyUtils(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
-private: \
-	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UAggregateTagContainerNotifyUtils(UAggregateTagContainerNotifyUtils&&); \
-	NO_API UAggregateTagContainerNotifyUtils(const UAggregateTagContainerNotifyUtils&); \
-public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UAggregateTagContainerNotifyUtils); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAggregateTagContainerNotifyUtils); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UAggregateTagContainerNotifyUtils)
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_266_PROLOG
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_GENERATED_BODY_LEGACY \
-PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_RPC_WRAPPERS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_INCLASS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_STANDARD_CONSTRUCTORS \
-public: \
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_GENERATED_BODY \
-PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-public: \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_SPARSE_DATA \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_INCLASS_NO_PURE_DECLS \
-	FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_269_ENHANCED_CONSTRUCTORS \
-private: \
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
-
-template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAggregateTagContainerNotifyUtils>();
+template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAggregateGameplayTagContainerUtils>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h
+#define CURRENT_FILE_ID FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,9 +1,9 @@
-"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp"
+"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp"
 /I .
-/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStruct\Private"
-/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStruct"
-/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source"
-/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStruct\Public"
+/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source\PolyStruct\Private"
+/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStruct"
+/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source"
+/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source\PolyStruct\Public"
 /I Runtime
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
@@ -275,12 +275,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/FI"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/FI"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Definitions.PolyStruct.h"
-/Yu"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-/Fo"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp.obj"
-/sourceDependencies "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp.json"
+/FI"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/FI"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Definitions.PolyStruct.h"
+/Yu"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+/Fo"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp.obj"
+/sourceDependencies "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStruct\Module.PolyStruct.cpp.json"
 /Zc:inline
 /nologo
 /Oi

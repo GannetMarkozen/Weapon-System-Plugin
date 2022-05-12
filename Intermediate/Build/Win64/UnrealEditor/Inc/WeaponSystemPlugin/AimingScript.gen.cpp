@@ -64,6 +64,28 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 		*(bool*)Z_Param__Result=P_THIS->CanAim_Implementation();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UAimingScript::execStopAiming)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StopAiming();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAimingScript::execStartAiming)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StartAiming();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAimingScript::execSetupActionBinding)
+	{
+		P_GET_PROPERTY_REF(FNameProperty,Z_Param_Out_Input);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetupActionBinding(Z_Param_Out_Input);
+		P_NATIVE_END;
+	}
 	static FName NAME_UAimingScript_AimingComplete = FName(TEXT("AimingComplete"));
 	void UAimingScript::AimingComplete()
 	{
@@ -112,6 +134,9 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 			{ "Multi_StopAiming", &UAimingScript::execMulti_StopAiming },
 			{ "Server_StartAiming", &UAimingScript::execServer_StartAiming },
 			{ "Server_StopAiming", &UAimingScript::execServer_StopAiming },
+			{ "SetupActionBinding", &UAimingScript::execSetupActionBinding },
+			{ "StartAiming", &UAimingScript::execStartAiming },
+			{ "StopAiming", &UAimingScript::execStopAiming },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -282,6 +307,96 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics
+	{
+		struct AimingScript_eventSetupActionBinding_Parms
+		{
+			FName Input;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Input_MetaData[];
+#endif
+		static const UECodeGen_Private::FNamePropertyParams NewProp_Input;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::NewProp_Input_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::NewProp_Input = { "Input", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AimingScript_eventSetupActionBinding_Parms, Input), METADATA_PARAMS(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::NewProp_Input_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::NewProp_Input_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::NewProp_Input,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Input" },
+		{ "Category", "Script|Aiming" },
+		{ "Comment", "// The input will bind to the Start Aiming and Stop Aiming events\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/AimingScript.h" },
+		{ "ToolTip", "The input will bind to the Start Aiming and Stop Aiming events" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAimingScript, nullptr, "SetupActionBinding", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::AimingScript_eventSetupActionBinding_Parms), Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAimingScript_SetupActionBinding()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAimingScript_SetupActionBinding_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAimingScript_StartAiming_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAimingScript_StartAiming_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script|Aiming" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/AimingScript.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAimingScript_StartAiming_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAimingScript, nullptr, "StartAiming", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAimingScript_StartAiming_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAimingScript_StartAiming_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAimingScript_StartAiming()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAimingScript_StartAiming_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAimingScript_StopAiming_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAimingScript_StopAiming_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Script|Aiming" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Weapons/Scripts/AimingScript.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAimingScript_StopAiming_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAimingScript, nullptr, "StopAiming", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAimingScript_StopAiming_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAimingScript_StopAiming_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAimingScript_StopAiming()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAimingScript_StopAiming_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAimingScript);
 	UClass* Z_Construct_UClass_UAimingScript_NoRegister()
 	{
@@ -318,6 +433,9 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 		{ &Z_Construct_UFunction_UAimingScript_Multi_StopAiming, "Multi_StopAiming" }, // 641442082
 		{ &Z_Construct_UFunction_UAimingScript_Server_StartAiming, "Server_StartAiming" }, // 268617342
 		{ &Z_Construct_UFunction_UAimingScript_Server_StopAiming, "Server_StopAiming" }, // 1577048312
+		{ &Z_Construct_UFunction_UAimingScript_SetupActionBinding, "SetupActionBinding" }, // 1591900295
+		{ &Z_Construct_UFunction_UAimingScript_StartAiming, "StartAiming" }, // 2971421541
+		{ &Z_Construct_UFunction_UAimingScript_StopAiming, "StopAiming" }, // 1757230761
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAimingScript_Statics::Class_MetaDataParams[] = {
@@ -375,15 +493,15 @@ void EmptyLinkFunctionForGeneratedCodeAimingScript() {}
 		return UAimingScript::StaticClass();
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UAimingScript);
-	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics
+	struct Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAimingScript, UAimingScript::StaticClass, TEXT("UAimingScript"), &Z_Registration_Info_UClass_UAimingScript, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAimingScript), 4013840813U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UAimingScript, UAimingScript::StaticClass, TEXT("UAimingScript"), &Z_Registration_Info_UClass_UAimingScript, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAimingScript), 1986299768U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_2336248696(TEXT("/Script/WeaponSystemPlugin"),
-		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_3756947759(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Weapons_Scripts_AimingScript_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-WeaponSystemAnimsUncooked.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsUncooked\Module.WeaponSystemAnimsUncooked.cpp.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsUncooked\Module.WeaponSystemAnimsUncooked.gen.cpp.obj"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsUncooked\Default.rc2.res"
+/OUT:"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\WeaponSystemAnimsUncooked\UnrealEditor-WeaponSystemAnimsUncooked.lib"

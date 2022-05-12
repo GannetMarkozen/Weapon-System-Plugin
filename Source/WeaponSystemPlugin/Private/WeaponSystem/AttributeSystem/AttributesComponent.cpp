@@ -64,7 +64,7 @@ int32 UAttributesComponent::RemoveActiveEffectsByClass(const TSubclassOf<UAttrib
 }
 
 
-bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+bool UAttributesComponent::Internal_TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
 {
 	if(!Effect || !Effect.GetDefaultObject()->CanApplyEffect(this, Context)) return false;
 	
@@ -83,7 +83,8 @@ bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Ef
 		return true;
 	}
 
-	switch(Effect.GetDefaultObject()->GetRepCond())
+	const EEffectRepCond RepCond = Effect.GetDefaultObject()->GetRepCond();
+	switch(RepCond)
 	{
 	case EEffectRepCond::LocalOnly:
 		Internal_ApplyEffect(Effect, Instigator, Context);
@@ -303,7 +304,8 @@ void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHa
 	default:
 		break;
 	}
-	
+
+	CallPreModifyAttribute(Attribute, FPolyStructHandle(), NewValue);
 	const_cast<FAttributeHandle&>(Attribute)->SetValue(NewValue);
 }
 

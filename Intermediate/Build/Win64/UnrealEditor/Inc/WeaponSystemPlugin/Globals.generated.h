@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define WEAPONSYSTEMPLUGIN_Globals_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Globals_h
+#define CURRENT_FILE_ID FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Globals_h
 
 
 #define FOREACH_ENUM_ELATERALITY(op) \

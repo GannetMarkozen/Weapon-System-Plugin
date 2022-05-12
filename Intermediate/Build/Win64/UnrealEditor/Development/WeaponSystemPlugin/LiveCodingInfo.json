@@ -9,6 +9,7 @@
 			"AttributeEffectCalculation.cpp.obj",
 			"AttributeFunctionLibrary.cpp.obj",
 			"AttributesComponent.cpp.obj",
+			"StackableTagContainer.cpp.obj",
 			"WeaponSystemAnimInstance.cpp.obj",
 			"WeaponSystemPlayerController.cpp.obj",
 			"ShooterCharacterBase.cpp.obj",

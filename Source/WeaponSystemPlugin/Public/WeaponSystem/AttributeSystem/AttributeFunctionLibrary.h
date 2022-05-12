@@ -60,6 +60,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE FName GetAttributeName(const FAttributeHandle& AttributeHandle) { return AttributeHandle.IsValid() ? AttributeHandle.GetUProperty()->GetFName() : NAME_None; }
 
+	// Manually sets the value of the attribute. Not recommended for complex calculations. Use Attribute System for complex calculations
+	UFUNCTION(BlueprintCallable, Category = "Weapon System Function Library|Attributes")
+	static void SetAttributeValue(UPARAM(ref) FAttributeHandle& AttributeHandle, const float NewValue) { if(AttributeHandle.IsValid()) AttributeHandle->SetValue(NewValue); }
+
 	// Gets a copy of the attribute (not sure why this would be useful)
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attribute (a copy)", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE void GetAttribute(const FAttributeHandle& AttributeHandle, FAttribute& OutAttribute, EValidity& OutPin)

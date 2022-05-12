@@ -65,6 +65,8 @@ struct WEAPONSYSTEMPLUGIN_API FActiveEffect
 	FORCEINLINE TSubclassOf<class UAttributeEffect> GetEffect() const { return Effect; }
 	FORCEINLINE const FPolyStructHandle& GetContext() const { return Context; }
 
+	// Used for cancelling inherited effects on failed
+	TArray<FEffectNetPredKey> InheritedEffectKeys;
 	
 protected:
 	TSubclassOf<class UAttributeEffect> Effect;
@@ -143,12 +145,13 @@ struct TStructOpsTypeTraits<FInstantNumericEffectNetValue> : TStructOpsTypeTrait
  *
  */
 UCLASS(BlueprintType, Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent, public IGameplayTagAssetInterface
+class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
 	UAttributesComponent();
+	friend class UAttributeEffect;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -164,8 +167,9 @@ protected:
 public:
 	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags.
 	// Bind delegate to listen for specific tag count changes
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "State")
-	FAggregateTagContainerNotify OwnedTags;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Configurations")
+	FAggregateGameplayTagContainer OwnedTags;
+	//FAggregateTagContainerNotify OwnedTags;
 	
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool HasAuthority() const { return GetOwner() && GetOwner()->HasAuthority(); }
@@ -184,13 +188,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	void BindAllAttributesChanged(const FAttributeValueChangedUniDelegate& Delegate);
-
-
 	
 	
 	// Attempts to apply the effect with optional context for custom calculations
 	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "Instigator", AutoCreateRefTerm = "Context"), Category = "Effect")
-	bool TryApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, UPARAM(ref) FPolyStructHandle& Context);
+	bool TryApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, UPARAM(ref) FPolyStructHandle& Context)
+	{
+		return Internal_TryApplyEffect(Effect, Instigator, Context);
+	}
 
 	// Apply a basic numeric value effect. Less flexibility but more convenient for simple non-latent Attribute modifications. Local-Prediction simply
 	// applies the effect locally and server-side. No checking so not recommended
@@ -203,13 +208,14 @@ public:
 	int32 RemoveActiveEffectsByClass(const TSubclassOf<class UAttributeEffect> Class, const bool bIncludeChildren = true);
 
 	// IGameplayTagAssetInterface begin
-	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override { TagContainer = OwnedTags.MakeTagContainer(); }
-	virtual bool HasMatchingGameplayTag(FGameplayTag TagToCheck) const override { return OwnedTags.HasTag(TagToCheck); }
-	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAll(TagContainer); }
-	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer) const override { return OwnedTags.HasAny(TagContainer); }
+	/*virtual void GetTags_Implementation(FAggregateTagContainer& OutTags) const override { OutTags = (FAggregateTagContainer&)OwnedTags; }
+	virtual int32 GetTagCount_Implementation(const FGameplayTag& Tag, const bool bExact = false) const override { return OwnedTags.GetTagCount(Tag, bExact); }
+	virtual bool HasTag_Implementation(const FGameplayTag& Tag, const bool bExact = false) const override { return OwnedTags.HasTag(Tag, bExact); }
+	virtual bool HasAny_Implementation(const FGameplayTagContainer& Tags, const bool bExact = false) const override { return OwnedTags.HasAny(Tags, bExact); }*/
 	// IGameplayTagAssetInterface end
 
 protected:
+	bool Internal_TryApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
 	virtual void Internal_ApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
 	virtual void Internal_RemoveActiveEffect(const int32 Index, const EEffectRemovalReason Reason = EEffectRemovalReason::LifespanEnd);
 
@@ -251,6 +257,20 @@ protected:
 
 	UFUNCTION(Client, Reliable)
 	void Client_SyncAttributes(const FAttributeValuePairs& AttributeValues);
+
+	// Called before modifying an attribute with the given OutValue. This is where clamping should occur
+	virtual void PreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, float& InOutValue) const {}
+
+	// Called before modifying an attribute with the given OutValue. This is where clamping should occur
+	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Pre Modify Attribute"), Category = "Attributes")
+	void BP_PreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, const float InValue, float& OutValue) const;
+
+	// Calls both BP and C++ implementations of PreModifyAttribute
+	FORCEINLINE void CallPreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, float& InOutValue) const
+	{
+		PreModifyAttribute(Attribute, Context, InOutValue);
+		BP_PreModifyAttribute(Attribute, Context, InOutValue, InOutValue);
+	}
 };
 
 

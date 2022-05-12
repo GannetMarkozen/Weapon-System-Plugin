@@ -7,7 +7,7 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
-	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature();
+	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelegate__DelegateSignature();
@@ -24,7 +24,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 		if (!Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton)
 		{
 			static UObject* (*const SingletonFuncArray[])() = {
-				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateContainerChangedUniDelegate__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_WeaponSystemPlugin_CurrentWeaponChangedDelegate__DelegateSignature,
@@ -41,13 +41,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponSystemPlugin_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x55B8CEEF,
-				0xF16DF518,
+				0x4419F719,
+				0x4C037D86,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_WeaponSystemPlugin.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemPlugin(Z_Construct_UPackage__Script_WeaponSystemPlugin, TEXT("/Script/WeaponSystemPlugin"), Z_Registration_Info_UPackage__Script_WeaponSystemPlugin, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x55B8CEEF, 0xF16DF518));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_WeaponSystemPlugin(Z_Construct_UPackage__Script_WeaponSystemPlugin, TEXT("/Script/WeaponSystemPlugin"), Z_Registration_Info_UPackage__Script_WeaponSystemPlugin, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x4419F719, 0x4C037D86));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

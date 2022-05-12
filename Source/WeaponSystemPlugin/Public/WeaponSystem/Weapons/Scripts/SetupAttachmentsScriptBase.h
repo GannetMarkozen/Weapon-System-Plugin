@@ -27,7 +27,6 @@ protected:
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "InputName"), Category = "Script|Setup Attachments")
 	FORCEINLINE void SetupActivationBinding(const FName& InputName, const TEnumAsByte<EInputEvent> InputEvent = IE_Pressed)
 	{
-		//SetupBindingByInputName(this, &ThisClass::SetupAttachments, InputName, InputEvent);
 		if(!OwningWeapon || !GetOwningCharacter()) return;
 		FInputActionBinding Binding(InputName, InputEvent);
 		Binding.ActionDelegate.GetDelegateForManualSet().BindUObject(this, &ThisClass::SetupAttachments);
