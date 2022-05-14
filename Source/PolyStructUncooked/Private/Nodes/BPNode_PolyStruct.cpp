@@ -92,12 +92,12 @@ bool UBPNode_PolyStructGet::IsConnectionDisallowed(const UEdGraphPin* MyPin, con
 		OutReason = LOCTEXT("InvalidStructParam", "Struct cannot be in a container.").ToString();
 		return true;
 	}
-	UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
+	/*UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
 	if(PinClass && (PinClass->IsChildOf(FPolyStruct::StaticStruct()) || PinClass->IsChildOf(FPolyStructHandle::StaticStruct())))
 	{
 		OutReason = LOCTEXT("InvalidStructParam", "Can not be a Poly Struct type.").ToString();
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -246,12 +246,12 @@ bool UBPNode_PolyStructExtract::IsConnectionDisallowed(const UEdGraphPin* MyPin,
 		OutReason = LOCTEXT("InvalidStructParam", "Struct cannot be in a container.").ToString();
 		return true;
 	}
-	UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
+	/*UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
 	if(PinClass && (PinClass->IsChildOf(FPolyStruct::StaticStruct()) || PinClass->IsChildOf(FPolyStructHandle::StaticStruct())))
 	{
 		OutReason = LOCTEXT("InvalidStructParam", "Can not be a Poly Struct type.").ToString();
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -404,12 +404,12 @@ bool UBPNode_PolyStructSet::IsConnectionDisallowed(const UEdGraphPin* MyPin, con
 		OutReason = LOCTEXT("InvalidStructParam", "Struct cannot be in a container.").ToString();
 		return true;
 	}
-	UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
+	/*UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
 	if(PinClass && (PinClass->IsChildOf(FPolyStruct::StaticStruct()) || PinClass->IsChildOf(FPolyStructHandle::StaticStruct())))
 	{
 		OutReason = LOCTEXT("InvalidStructParam", "Can not be a Poly Struct type.").ToString();
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -551,12 +551,12 @@ bool UBPNode_PolyStructHandleAdd::IsConnectionDisallowed(const UEdGraphPin* MyPi
 		OutReason = LOCTEXT("InvalidStructParam", "Struct cannot be in a container.").ToString();
 		return true;
 	}
-	UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
+	/*UScriptStruct* PinClass = Cast<UScriptStruct>(OtherPin->PinType.PinSubCategoryObject);
 	if(PinClass && (PinClass->IsChildOf(FPolyStruct::StaticStruct()) || PinClass->IsChildOf(FPolyStructHandle::StaticStruct())))
 	{
 		OutReason = LOCTEXT("InvalidStructParam", "Can not be a Poly Struct type.").ToString();
 		return true;
-	}
+	}*/
 	return false;
 }
 

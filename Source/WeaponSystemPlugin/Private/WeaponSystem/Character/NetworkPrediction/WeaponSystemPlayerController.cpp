@@ -5,7 +5,7 @@
 #include "Polymorphic/PolymorphicStruct.h"
 #include "WeaponSystem/AttributeSystem/AttributesComponent.h"
 
-
+/*
 void FNetParams::Set(const UFunction* InFunction, const uint8* InParams)
 {
 	Invalidate();
@@ -178,7 +178,7 @@ bool FNetParams::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 
 AWeaponSystemPlayerController::AWeaponSystemPlayerController()
 {
-	SetReplicates(true);
+	bReplicates = true;
 }
 
 
@@ -194,7 +194,7 @@ AWeaponSystemPlayerController* AWeaponSystemPlayerController::StaticGetOwningPla
 	return nullptr;
 }
 
-void AWeaponSystemPlayerController::CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams, const ENetAuthority Authority, const ENetReliability Reliability)
+void AWeaponSystemPlayerController::CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams, const ENetAuthority Authority, const ENetReliability Reliability)
 {
 	if(!Target || !NetParams.IsValid())
 	{
@@ -206,31 +206,32 @@ void AWeaponSystemPlayerController::CallRemoteFunctionOnObject(UObject* Target, 
 	{
 		if(Reliability == Reliable)
 		{
-			Server_Reliable_CallRemoteFunctionOnObject(Target, NetParams);
+			Server_Reliable_CallRemoteFunctionOnObject(Target, Function, NetParams);
 		}
 		else
 		{
-			Server_Unreliable_CallRemoteFunctionOnObject(Target, NetParams);
+			Server_Unreliable_CallRemoteFunctionOnObject(Target, Function, NetParams);
 		}
 	}
 	else
 	{
 		if(Reliability == Reliable)
 		{
-			Client_Reliable_CallRemoteFunctionOnObject(Target, NetParams);
+			Client_Reliable_CallRemoteFunctionOnObject(Target, Function, NetParams);
 		}
 		else
 		{
-			Client_Unreliable_CallRemoteFunctionOnObject(Target, NetParams);
+			Client_Unreliable_CallRemoteFunctionOnObject(Target, Function, NetParams);
 		}
 	}
 }
 
-void AWeaponSystemPlayerController::Remote_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams)
+void AWeaponSystemPlayerController::Remote_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 {
 	check(Target);
-	check(NetParams.IsValid());
-	Target->ProcessEvent(NetParams.GetFunction(), NetParams.GetMemory());
+	check(Function);
+	check((Function->NumParms != 0) == NetParams.IsValid());
+	Target->ProcessEvent(Function, (uint8*)NetParams.GetMemory());
 }
 
 

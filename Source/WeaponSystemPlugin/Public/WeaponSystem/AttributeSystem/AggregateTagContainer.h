@@ -46,10 +46,18 @@ struct WEAPONSYSTEMPLUGIN_API FAggregateDelegate
 		Binding.Delegate.BindUObject(Target, MemFuncPtr);
 		return Binding;
 	}
+
+	template<typename FunctorType, typename... Args>
+	FORCEINLINE static FAggregateDelegate MakeLambda(const FGameplayTag& Tag, FunctorType&& Lambda, Args... Vars)
+	{
+		TDelegate<void(const FAggregateGameplayTagContainer&, const FGameplayTag&, int32, int32)> NewDelegate;
+		NewDelegate.BindLambda<FunctorType, Args...>(Lambda, Vars...);
+		return FAggregateDelegate(Tag, NewDelegate);
+	}
 	
 	FORCEINLINE static FAggregateDelegate MakeUFunction(const FGameplayTag& Tag, UObject* Target, const FName& FuncName)
 	{
-		TDelegate<void(const struct FAggregateGameplayTagContainer&, const FGameplayTag&, int32, int32)> NewDelegate;
+		TDelegate<void(const FAggregateGameplayTagContainer&, const FGameplayTag&, int32, int32)> NewDelegate;
 		NewDelegate.BindUFunction(Target, FuncName);
 		return FAggregateDelegate(Tag, NewDelegate);
 	}
@@ -59,8 +67,16 @@ struct WEAPONSYSTEMPLUGIN_API FAggregateDelegate
 	TDelegate<void(const struct FAggregateGameplayTagContainer&, const FGameplayTag&, int32, int32)> Delegate;
 };
 
-
-USTRUCT(BlueprintType)
+/*
+ *	A gameplay tag container with an associated tag count. Adding tags will add to the tag count within the container.
+ *	There is an "exact tag count" and an "aggregate tag count". The exact tag count refers to the actual number of an
+ *	exact tag within the container whereas the aggregate tag count refers to the overall count of exact tags and
+ *	derived tags within the container. Like if there was 1 Item.Key and 1 Item.SoupCan, the aggregate tag count for
+ *	Item would be 2, whereas the exact tag count would be 0 because there are no tags explicitly named Item. But there
+ *	would be 1 exact tag for either Item.Key or Item.SoupCan. Comes built-in with a delegate for broadcasting specific
+ *	tag-count changes. Net Serializable.
+ */
+USTRUCT(BlueprintType, Meta = (ShortTooltip = "Gameplay tag container with a count associated with each gameplay tag"))
 struct WEAPONSYSTEMPLUGIN_API FAggregateGameplayTagContainer
 {
 	GENERATED_BODY()
@@ -82,9 +98,9 @@ public:
 	FORCEINLINE const TArray<Value>& GetAggregateTagValues() const { return AggregateTagCount; }
 	FORCEINLINE bool IsEmpty() const { return TagCount.IsEmpty(); }
 	FORCEINLINE int32 Num() const { return TagCount.Num(); }
+	FORCEINLINE bool HasAny(const FGameplayTagContainer& Tags) const { return AggregateTagCount.FindByPredicate([&Tags](const Value& Value)->bool{ return Tags.HasTagExact(Value.Tag); }) != nullptr; }
+	FORCEINLINE bool HasAnyExact(const FGameplayTagContainer& Tags) const { return TagCount.FindByPredicate([&Tags](const Value& Value)->bool{ return Tags.HasTagExact(Value.Tag); }) != nullptr; }
 	FORCEINLINE bool HasTag(const FGameplayTag& Tag) const { return AggregateTagCount.Contains(Tag); }
-	bool HasAny(const FGameplayTagContainer& Tags) const { for(const auto& AggrVal : AggregateTagCount) if(Tags.HasTagExact(AggrVal.Tag)) return true; return false; }
-	bool HasAnyExact(const FGameplayTagContainer& Tags) const { for(const auto& Val : TagCount) if(Tags.HasTagExact(Val.Tag)) return true; return false; }
 	FORCEINLINE bool HasTagExact(const FGameplayTag& Tag) const { return TagCount.Contains(Tag); }
 	FORCEINLINE int32 GetTagCount(const FGameplayTag& Tag) const { const Value* Val = FindAggregate(Tag); return Val ? Val->Count : 0; }
 	FORCEINLINE int32 GetTagCountExact(const FGameplayTag& Tag) const { const Value* Val = FindExact(Tag); return Val ? Val->Count : 0; }
@@ -95,19 +111,32 @@ public:
 	void RemoveTag(const FGameplayTag& Tag, const int32 Count = 1);
 	void RemoveTagExact(const FGameplayTag& Tag, const int32 Count = 1);
 	void AppendTags(const FGameplayTagContainer& Tags, const int32 Count = 1);
-	void AppendTags(const TArray<Value>& Tags);
+	void AppendTags(const TArray<FAggregateGameplayTagValue>& Tags);
 	void RemoveTags(const FGameplayTagContainer& Tags, const int32 Count = 1);
 	void RemoveTagsExact(const FGameplayTagContainer& Tags, const int32 Count = 1);
-	void RemoveTagsExact(const TArray<Value>& Tags);
+	void RemoveTagsExact(const TArray<FAggregateGameplayTagValue>& Tags);
+	void Empty();
 
 	template<typename UserClass, bool bConst>
 	void BindUObject(const FGameplayTag& Tag, UserClass* Target, const TMemFunPtrType<bConst, UserClass, void(const ThisStruct&, const FGameplayTag&, int32, int32)> MemFuncPtr) const;
 	void BindUFunction(const FGameplayTag& Tag, UObject* Target, const FName& FuncName) const;
 	void UnbindAll(const UObject* Target) const;
 	void Unbind(const FGameplayTag& Tag, const UObject* Target) const;
-
+	template<typename FunctorType, typename... Args>
+	void BindLambda(const FGameplayTag& Tag, FunctorType&& Lambda, Args... Vars) const;
 	void PostSerialize(const FArchive& Ar);
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+	
+	FORCEINLINE void AppendTags(const FAggregateGameplayTagContainer& Other) { AppendTags(Other.TagCount); }
+	FORCEINLINE void RemoveTagAll(const FGameplayTag& Tag) { RemoveTag(Tag, INT32_MAX); }
+	FORCEINLINE void RemoveTagExactAll(const FGameplayTag& Tag) { RemoveTagExact(Tag, INT32_MAX); }
+	FORCEINLINE void RemoveTagsAll(const FGameplayTagContainer& Tags) { RemoveTags(Tags, INT32_MAX); }
+	FORCEINLINE void RemoveTagsExactAll(const FGameplayTagContainer& Tags) { RemoveTagsExact(Tags, INT32_MAX); }
+	
+	FORCEINLINE friend ThisStruct& operator+=(ThisStruct& Container, const Value& Value) { Container.AddTag(Value.Tag, Value.Count); return Container; }
+	FORCEINLINE friend ThisStruct& operator+=(ThisStruct& Container, const ThisStruct& Other) { Container.AppendTags(Other); return Container; }
+	FORCEINLINE friend ThisStruct& operator+=(ThisStruct& Container, const FGameplayTag& Tag) { Container.AddTag(Tag); return Container; }
+	FORCEINLINE friend ThisStruct& operator+=(ThisStruct& Container, const FGameplayTagContainer& Tags) { Container.AppendTags(Tags); return Container; }
 	
 protected:
 	FORCEINLINE Value& FindExactOrAdd(const FGameplayTag& Tag) { Value* ValuePtr = FindExact(Tag); return ValuePtr ? *ValuePtr : TagCount.Add_GetRef(Value(Tag, 0)); }
@@ -131,7 +160,7 @@ protected:
 
 	// All exact and parent tags with aggregated tag counts.
 	// Cached for increased search speed. Not editable
-	UPROPERTY(VisibleAnywhere, Transient, Meta = (DisplayName = "Aggregate Gameplay Tag Count"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Transient, Meta = (AllowPrivateAccess = "true", DisplayName = "Aggregate Gameplay Tag Count"))
 	TArray<FAggregateGameplayTagValue> AggregateTagCount;
 
 	// Binding bindings for changed event
@@ -149,6 +178,25 @@ struct TStructOpsTypeTraits<FAggregateGameplayTagContainer> : TStructOpsTypeTrai
 		WithIdenticalViaEquality = true,
 	};
 };
+
+FORCEINLINE FArchive& operator<<(FArchive& Ar, FAggregateGameplayTagContainer& Container)
+{
+	if(Ar.IsNetArchive())
+	{
+		bool bTemp;
+		Container.NetSerialize(Ar, nullptr, bTemp);
+	}
+	else
+	{
+		static UScriptStruct* ScriptStruct = FAggregateGameplayTagContainer::StaticStruct();
+		ScriptStruct->SerializeItem(Ar, &Container, nullptr);
+		if(Ar.IsLoading())
+			Container.PostSerialize(Ar);
+	}
+	return Ar;
+}
+
+
 
 
 DECLARE_DYNAMIC_DELEGATE_FourParams(FAggregateDynamicDelegate, const FAggregateGameplayTagContainer&, Container, const FGameplayTag&, Tag, int32, CurrentCount, int32, OldCount);
@@ -169,6 +217,9 @@ public:
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "To Gameplay Tag Container"), Category = "Weapon System Function Library|Aggregate Container")
 	static FGameplayTagContainer Conv_AggregateGameplayTagContainerToGameplayTagContainer(const FAggregateGameplayTagContainer& Container) { return Container.MakeTagContainer(); }
 
+	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Make AggregateGameplayTagContainer", Keywords = "aggregate,gameplay,tag,container"), Category = "Weapon System Function Library|Aggregate Container")
+	static void MakeAggregateGameplayTagContainer(const TArray<FAggregateGameplayTagValue>& Values, FAggregateGameplayTagContainer& OutContainer) { OutContainer.AppendTags(Values); }
+
 	// Adds a specific tag to the container by the count amount
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag"), Category = "Weapon System Function Library|Aggregate Container")
 	static void AddTag(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTag& Tag, const int32 Count = 1) { Container.AddTag(Tag, Count); }
@@ -184,8 +235,29 @@ public:
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag"), Category = "Weapon System Function Library|Aggregate Container")
 	static void RemoveTagExact(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTag& Tag, const int32 Count = 1) { Container.RemoveTagExact(Tag, Count); }
 
+	// Remove the specified number of exact tags
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tags"), Category = "Weapon System Function Library|Aggregate Container")
 	static void RemoveTagsExact(UPARAM(ref) FAggregateGameplayTagContainer& Container, const TArray<FAggregateGameplayTagValue>& Tags) { Container.RemoveTagsExact(Tags); }
+
+	// Remove all of the specified tag and it's derived tags
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag", DisplayName = "Remove Tag (all)"), Category = "Weapon System Function Library|Aggregate Container")
+	static void RemoveTagAll(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTag& Tag) { Container.RemoveTagAll(Tag); }
+
+	// Remove all of the specified tag
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag", DisplayName = "Remove Tag Exact (all)"), Category = "Weapon System Function Library|Aggregate Container")
+	static void RemoveTagExactAll(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTag& Tag) { Container.RemoveTagExactAll(Tag); }
+
+	// Remove all of the specified tags and their derived tags
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tags", DisplayName = "Remove Tags (all)"), Category = "Weapon System Function Library|Aggregate Container")
+	static void RemoveTagsAll(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTagContainer& Tags) { Container.RemoveTagsAll(Tags); }
+
+	// Remove all of the specified tags
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tags", DisplayName = "Remove Tags Exact (all)"), Category = "Weapon System Function Library|Aggregate Container")
+	static void RemoveTagsExactAll(UPARAM(ref) FAggregateGameplayTagContainer& Container, const FGameplayTagContainer& Tags) { Container.RemoveTagsExactAll(Tags); }
+
+	// Removes all tags from the container
+	UFUNCTION(BlueprintCallable, Category = "Weapon System Function Library|Aggregate Container")
+	static void Empty(UPARAM(ref) FAggregateGameplayTagContainer& Container) { Container.Empty(); }
 
 	// Bind an event that's called whenever the tag count for the specified tag changes (aggregated from child tags, not exact)
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag"), Category = "Weapon System Function Library|Aggregate Container")

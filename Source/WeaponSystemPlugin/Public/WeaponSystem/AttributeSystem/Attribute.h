@@ -3,10 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
-#include "UObject/PropertyAccessUtil.h"
 #include "UObject/WeakFieldPtr.h"
+#include "PolyStruct/Public/Polymorphic/PolymorphicStruct.h"
 #include "Attribute.generated.h"
+
+struct FAttribute;
+class UAttributeEffect;
 
 
 UINTERFACE(MinimalAPI)
@@ -26,9 +28,30 @@ protected:
 };
 
 
+USTRUCT(BlueprintType)
+struct WEAPONSYSTEMPLUGIN_API FAttributeModContext
+{
+	GENERATED_BODY()
+
+	FAttributeModContext() = default;
+	FAttributeModContext(const TSubclassOf<UAttributeEffect> EffectClass, const FPolyStructHandle& Context)
+		: EffectClass(EffectClass), Context(Context) {}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UAttributeEffect> EffectClass = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FPolyStructHandle Context;	
+
+	bool HasData() const;
+	FORCEINLINE bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
+	{
+		Ar << EffectClass;
+		return Context.NetSerialize(Ar, Map, bOutSuccess);
+	}
+};
 
 
-struct FAttribute;
 
 /*
  *	A handle that carries around an Attribute by weak pointer
@@ -39,6 +62,8 @@ USTRUCT(BlueprintType)
 struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 {
 	GENERATED_BODY()
+
+	friend struct FAttribute;
 
 	FAttributeHandle() = default;
 	FAttributeHandle(class UAttributesComponent* AttributesComponent, FProperty* AttributeProperty) { Set(AttributesComponent, AttributeProperty); }
@@ -69,6 +94,8 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeHandle
 	FORCEINLINE FString GetName() const { return AttributeProp ? AttributeProp->GetName() : FString(); }
 
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+	FORCEINLINE friend FArchive& operator<<(FArchive& Ar, FAttributeHandle& Handle) { bool bTemp; Handle.NetSerialize(Ar, nullptr, bTemp); return Ar; }
+	FORCEINLINE friend uint32 GetTypeHash(const FAttributeHandle& Handle) { return GetTypeHash(Handle.AttributeProp ? Handle.AttributeProp->GetFName() : NAME_None); }
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"))
@@ -93,8 +120,10 @@ struct TStructOpsTypeTraits<FAttributeHandle> : TStructOpsTypeTraitsBase2<FAttri
  * 
 */
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
+//DECLARE_DYNAMIC_DELEGATE_ThreeParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FAttributeModContext&, ModificationContext);
+DECLARE_DYNAMIC_DELEGATE_FourParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FAttributeModContext&, ModificationContext);
 
 USTRUCT(BlueprintType)
 struct WEAPONSYSTEMPLUGIN_API FAttribute
@@ -108,18 +137,18 @@ protected:
 	float Value = 0.f;
 
 	// A handle that is a reference to this attribute
-	UPROPERTY(BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"), Category = "Attributes")
+	UPROPERTY(BlueprintReadOnly, NotReplicated, Meta = (AllowPrivateAccess = "true"), Category = "Attributes")
 	FAttributeHandle Handle;
 
 	// Manually broadcast the current state of the Attribute
-	FORCEINLINE void Broadcast(const float OldValue) { OnAttributeChanged.Broadcast(Value, OldValue, Handle); }
+	FORCEINLINE void Broadcast(const float OldValue, const FAttributeModContext& ModContext) { OnAttributeChanged.Broadcast(Value, OldValue, Handle, ModContext); }
 	
 public:
 	// Called whenever the attribute changes
 	FAttributeValueChangedDelegate OnAttributeChanged;
 	
-	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { SetValue(Other.Value); Handle = Other.Handle; return *this; }
-	FORCEINLINE FAttribute& operator=(const float NewValue) { SetValue(NewValue); return *this; }
+	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { SetValue(Other.Value, FAttributeModContext()); Handle = Other.Handle; return *this; }
+	FORCEINLINE FAttribute& operator=(const float NewValue) { SetValue(NewValue, FAttributeModContext()); return *this; }
 	FORCEINLINE bool operator==(const FAttribute& Other) const { return Handle == Other.Handle && Value == Other.Value; }
 	FORCEINLINE bool operator==(const FAttributeHandle& OtherHandle) const { return Handle == OtherHandle; }
 
@@ -130,19 +159,26 @@ public:
 	FORCEINLINE const FAttributeHandle& GetHandle() const { return Handle; }
 	FORCEINLINE FName GetFName() const { return Handle.GetFName(); }
 	FORCEINLINE FString GetName() const { return Handle.GetName(); }
-	FORCEINLINE UAttributesComponent* GetOwner() const { return Handle.IsValid() ? Handle->GetOwner() : nullptr; }
-	FORCEINLINE FProperty* GetUProperty() const { return Handle.IsValid() ? Handle->GetUProperty() : nullptr; }
+	FORCEINLINE UAttributesComponent* GetOwner() const { return Handle.IsValid() ? Handle.GetOwner() : nullptr; }
+	FORCEINLINE FProperty* GetUProperty() const { return Handle.IsValid() ? Handle.GetUProperty() : nullptr; }
 	
 	FORCEINLINE float GetValue() const { return Value; }
-	FORCEINLINE void SetValue(const float NewValue)
+	FORCEINLINE void SetValue(const float NewValue, const FAttributeModContext& ModContext = FAttributeModContext())
 	{
 		if(NewValue == Value) return;
 		const float OldValue = Value;
 		Value = NewValue;
-		Broadcast(OldValue);
+		Broadcast(OldValue, ModContext);
 	}
 
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+	FORCEINLINE friend FArchive& operator<<(FArchive& Ar, FAttribute& Attr) { bool bTemp; Attr.NetSerialize(Ar, nullptr, bTemp); return Ar; }
+	FORCEINLINE friend uint32 GetTypeHash(const FAttribute& Attribute) { return GetTypeHash(Attribute.Handle); }
+	
+private:
+	// Count the number of times net serialized to then remove the
+	// context element when the required number of replications is met
+	uint8 NumContextReplications = 0;
 };
 
 template<>

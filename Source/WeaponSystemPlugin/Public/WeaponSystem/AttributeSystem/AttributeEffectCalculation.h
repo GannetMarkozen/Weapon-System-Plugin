@@ -27,18 +27,18 @@ protected:
 
 	// Called when modifying an attribute
 	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect Calculation")
-	void ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
+	void ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const float Magnitude, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
 		UPARAM(ref) struct FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModificationValue) const;
 
 	// Called when modifying an attribute
-	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
+	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, const float Magnitude, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
 		struct FPolyStructHandle& Context, EEffectModType& OutModType, float& OutModValue) const { OutModType = EEffectModType::None; }
 
 	// Calls ModifyAttributes and applies the ModValue and ModType to the InOutModValue parameter
-	FORCEINLINE void CallModify(float& InOutModValue, const float AttributeValue, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, struct FPolyStructHandle& Context) const
+	FORCEINLINE void CallModify(float& InOutModValue, const float AttributeValue, const float Magnitude, const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, struct FPolyStructHandle& Context) const
 	{
 		float ModifyValue; EEffectModType ModType;
-		ModifyAttribute(AttributeValue, InOutModValue, Attribute, Effect, AttributesComponent, Context, ModType, ModifyValue);
+		ModifyAttribute(AttributeValue, InOutModValue, Magnitude, Attribute, Effect, AttributesComponent, Context, ModType, ModifyValue);
 		switch(ModType)
 		{
 		case EEffectModType::Additive:

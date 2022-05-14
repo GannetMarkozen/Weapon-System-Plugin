@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AggregateTagContainer.h"
 #include "Attribute.h"
 #include "Polymorphic/PolymorphicStruct.h"
 #include "UObject/Object.h"
@@ -27,18 +28,6 @@ private:
 public:
 	FORCEINLINE const FName& GetAttributeName() const { return Attribute; }
 	FORCEINLINE const TArray<class UAttributeEffectCalculation*>& GetEffectCalculations() const { return EffectCalculations; }
-};
-
-USTRUCT(BlueprintType, Meta = (DisplayName = "Aggregate Tag Modifier"))
-struct FAggregateTagMod
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FGameplayTagContainer Tags;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "1"))
-	int32 Count = 1;
 };
 
 /**
@@ -77,50 +66,50 @@ protected:
 
 	// Tags applied when this Effect is successfully applied
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
-	FAggregateTagMod AppliedTags;
+	TArray<FAggregateGameplayTagValue> AppliedTags;
 
 	// Tags applied when this Effect is successfully applied. Removed at Lifespan End
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
-	FAggregateTagMod LifespanTags;
+	TArray<FAggregateGameplayTagValue> LifespanTags;
 
 	// Tags removed when this Effect is successfully applied
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
-	FAggregateTagMod RemovedTags;
+	TArray<FAggregateGameplayTagValue> RemovedTags;
 	
 	// Whether or not this effect should be applied. Returns true by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	bool CanApplyEffect(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const;
-	virtual bool CanApplyEffect_Implementation( const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context) const { return true; }
+	bool CanApplyEffect(const class UAttributesComponent* AttributesComponent, const float Magnitude, const FPolyStructHandle& Context) const;
+	virtual bool CanApplyEffect_Implementation( const class UAttributesComponent* AttributesComponent, const float Magnitude, const FPolyStructHandle& Context) const { return true; }
 
 	// Called everytime an attribute is to be modified. Consider the Effect Modifier Type when calculating the output.
 	// The context can be modified to maintain / alter state. Should generally not be overridden
 	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect")
-	void ModifyAttributes(class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
-	virtual void ModifyAttributes_Implementation(class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
+	void ModifyAttributes(UAttributesComponent* AttributesComponent, const float Magnitude, UPARAM(ref) FPolyStructHandle& Context) const;
+	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
-	virtual void OnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
+	virtual void OnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
 
 	// Called when this effect is applied
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Applied"), Category = "Effect")
-	void BP_OnEffectApplied(const class UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
+	void BP_OnEffectApplied(UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
 
 	// Calls the C++ and BP implementation of OnEffectApplied
-	FORCEINLINE void CallOnEffectApplied(const class UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+	FORCEINLINE void CallOnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
 	{
 		OnEffectApplied(AttributesComponent, Context);
 		BP_OnEffectApplied(AttributesComponent, Context);
 	}
 
 	// Called when this effect is removed before being destroyed
-	virtual void OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
+	virtual void OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
 
 	// Called when this effect is removed before being destroyed
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Removed"), Category = "Effect")
-	void BP_OnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
+	void BP_OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
 
 	// Calls the C++ and BP implementation of OnEffectRemoved
-	FORCEINLINE void CallOnEffectRemoved(const class UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+	FORCEINLINE void CallOnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
 	{
 		OnEffectRemoved(AttributesComponent, Context, Reason);
 		BP_OnEffectRemoved(AttributesComponent, Context, Reason);
@@ -145,10 +134,6 @@ public:
 
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Has All Modifying Attributes"), Category = "Effect")
 	bool HasAllModAttributes(const class UAttributesComponent* AttributesComponent) const;
-
-private:
-	FTimerHandle IntervalTimerHandle;
-	FTimerHandle LifespanTimerHandle;
 };
 
 

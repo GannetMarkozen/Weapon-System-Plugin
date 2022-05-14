@@ -169,23 +169,22 @@ public:
 
 	// Implicit Polymorphic Struct to type name conversion
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE FName Conv_PolyStructToName(const FPolyStruct& PolyStruct) { return PolyStruct.IsValid() ? PolyStruct.GetScriptStruct()->GetFName() : NAME_None; }
+	static FORCEINLINE FName Conv_PolyStructToName(const FPolyStruct& PolyStruct) { return PolyStruct.GetFName(); }
 
 	// Implicit Polymorphic Struct to type string conversion
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE FString Conv_PolyStructToString(const FPolyStruct& PolyStruct) { return PolyStruct.IsValid() ? PolyStruct.GetScriptStruct()->GetName() : FString(); }
+	static FORCEINLINE FString Conv_PolyStructToString(const FPolyStruct& PolyStruct) { return PolyStruct.ToString(); }
 
 	// Implicit Polymorphic Struct "Is Valid" conversion
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE bool Conv_PolyStructToBool(const FPolyStruct& PolyStruct) { return PolyStruct.IsValid(); }
-	
 
 	// Empties the data and invalidates the struct
 	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "EMPTY", DisplayName = "Empty (poly struct)"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE void EmptyPolyStruct(UPARAM(ref) FPolyStruct& PolyStruct) { PolyStruct.Empty(); }
 
 	// Whether or not the Polymorphic Struct contains any data
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "IS VALID"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE bool IsValid(const FPolyStruct& PolyStruct) { return PolyStruct.IsValid(); }
 
 	// Whether or not the Polymorphic Struct contains any data
@@ -219,7 +218,17 @@ public:
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE FPolyStructHandle Conv_PolyStructToPolyStructHandle(const FPolyStruct& PolyStruct) { return FPolyStructHandle(PolyStruct); }
 	
+	/*
+	 *
+	 *
+	 *
+	 *
+	 *
+	 */
 
+	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast, DisplayName = "Poly Struct Handle To String"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FString Conv_PolyStructHandleToString(const FPolyStructHandle& PolyStructHandle) { return PolyStructHandle.ToString(); }
+	
 	// Makes a Poly Struct Container and initializes it with an array of Poly Structs
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Make PolyStructHandle"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE void MakePolyStructHandleFromArray(UPARAM(DisplayName=">>") const TArray<FPolyStruct>& PolyStructs, FPolyStructHandle& PolyStructHandle) { PolyStructHandle = PolyStructs; }
@@ -391,22 +400,9 @@ public:
 		P_FINISH
 		if(!ValidateCustomStructParam(Stack, StructProp)) return;
 		P_NATIVE_BEGIN
-
-		/*for(int32 i = 0; i < Handle.Num(); i++)
-		{
-			const FPolyStruct* PolyStruct = Handle.GetAt(i);
-			if(!PolyStruct || !PolyStruct->IsA(StructProp->Struct)) continue;
-			
-			PolyStruct->ExtractStruct(Struct, StructProp->Struct);
-			OutPin = EStructCastPin::Success;
-			OutIndex = i;
-			return;
-		}
-		OutIndex = INDEX_NONE;
-		OutPin = EStructCastPin::Fail;*/
+		
 		OutIndex = Handle.ExtractAny(Struct, StructProp->Struct);
 		OutPin = OutIndex != INDEX_NONE ? EStructCastPin::Success : EStructCastPin::Fail;
-		
 		
 		P_NATIVE_END
 	}
@@ -423,8 +419,11 @@ public:
 	static FORCEINLINE void EmptyPolyStructHandle(UPARAM(ref) FPolyStructHandle& PolyStructHandle) { PolyStructHandle.PolyStructs.Empty(); }
 
 	// Whether there are any Poly Structs in the Poly Struct Handle
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "IS EMPTY"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE bool IsEmpty(const FPolyStructHandle& PolyStructHandle) { return PolyStructHandle.IsEmpty(); }
+
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE bool HasData(const FPolyStructHandle& PolyStructHandle) { return !PolyStructHandle.IsEmpty(); }
 
 	// The number of Poly Structs in the Poly Struct Container
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "LENGTH"), Category = "Weapon System Function Library|Polymorphic Struct")

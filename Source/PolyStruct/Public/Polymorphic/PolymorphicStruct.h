@@ -35,12 +35,14 @@ struct POLYSTRUCT_API FPolyStruct
 	bool operator==(const FPolyStruct& Other) const;
 	FORCEINLINE bool operator!=(const FPolyStruct& Other) const { return !(*this == Other); }
 	FORCEINLINE bool operator==(const UScriptStruct* Struct) const { return ScriptStruct == Struct; }
-	FORCEINLINE bool operator!=(const UScriptStruct* Struct) const { return !(*this == Struct); } 
+	FORCEINLINE bool operator!=(const UScriptStruct* Struct) const { return !(*this == Struct); }
 
 	FORCEINLINE uint8* GetMemory() { return Memory; }
 	FORCEINLINE const uint8* GetMemory() const { return Memory; }
 	FORCEINLINE UScriptStruct* GetScriptStruct() const { return ScriptStruct; }
 
+	FORCEINLINE FString ToString() const { return ScriptStruct ? ScriptStruct->GetName() : TEXT("None"); }
+	FORCEINLINE FName GetFName() const { return ScriptStruct ? ScriptStruct->GetFName() : NAME_None; }
 	FORCEINLINE int32 GetSize() const { return ScriptStruct ? ScriptStruct->GetStructureSize() : 0; }
 	FORCEINLINE bool IsValid() const { return Memory && ScriptStruct; }
 	FORCEINLINE operator bool() const { return IsValid(); }
@@ -123,14 +125,15 @@ struct POLYSTRUCT_API FPolyStructHandle
 	bool operator==(const FPolyStructHandle& Other) const;
 	FORCEINLINE bool operator!=(const FPolyStructHandle& Other) const { return !(*this == Other); }
 
-	// Warning: Copies shared pointers. Will not share the same memory. Use SetShareWith to share the same memory
+	// Passes Poly Structs by TSharedPtr so no copying
 	FPolyStructHandle& operator=(const FPolyStructHandle& Other);
 	FORCEINLINE FPolyStructHandle& operator=(const TArray<FPolyStruct>& InPolyStructs) { Empty(); for(const FPolyStruct& PolyStruct : InPolyStructs) { Add(PolyStruct); } return *this; }
 	FORCEINLINE FPolyStructHandle& operator=(const std::initializer_list<FPolyStruct>& InPolyStructs) { Empty(); for(const FPolyStruct& PolyStruct : InPolyStructs) { Add(PolyStruct); } return *this; }
 
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStruct& PolyStruct) { Add(PolyStruct); return *this; }
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStructHandle& Other) { Append(Other); return *this; }
-	
+
+	FString ToString() const;
 	FORCEINLINE int32 Num() const { return PolyStructs.Num(); }
 	FORCEINLINE FPolyStruct& operator[](const int32 Index) { return *PolyStructs[Index].Get(); }
 	FORCEINLINE const FPolyStruct& operator[](const int32 Index) const { return *PolyStructs[Index].Get(); }
@@ -213,8 +216,8 @@ namespace FPolyUtils
 	template<typename To>
 	FORCEINLINE To* Cast(FPolyStruct* PolyStruct) { return PolyStruct ? PolyStruct->Get<To>() : nullptr; }
 
-#define LOG_FAIL {if(!PolyStruct.IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct.GetScriptStruct() ? PolyStruct.GetScriptStruct()->GetFName() : "None"), *To::StaticStruct()->GetFName());}
-#define LOG_FAIL_PTR {if(!PolyStruct || !PolyStruct->IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct && PolyStruct->GetScriptStruct() ? PolyStruct->GetScriptStruct()->GetFName() : "None"), *To::StaticStruct()->GetFName());}
+#define LOG_FAIL {if(!PolyStruct.IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *PolyStruct.ToString(), *TBaseStructure<To>::Get()->GetName());}
+#define LOG_FAIL_PTR {if(!PolyStruct || !PolyStruct->IsA<To>()) LowLevelFatalError(TEXT("Failed to cast FPolyStruct memory from %s to %s"), *FString(PolyStruct ? PolyStruct->ToString() : "None"), *TBaseStructure<To>::Get()->GetName());}
 	
 	// Asserts on a failed cast
 	template<typename To>

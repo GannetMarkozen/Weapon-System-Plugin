@@ -29,7 +29,7 @@ bool UAttributeEffect::HasAllModAttributes(const UAttributesComponent* Attribute
 	return true;
 }
 
-void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle& Context) const
 {
 	if(!AttributesComponent) return;
 	for(const FAttributeModParams& Modifier : Modifiers)
@@ -46,37 +46,42 @@ void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* Att
 		for(const UAttributeEffectCalculation* ModifierCalculation : Modifier.GetEffectCalculations())
 		{
 			if(!ModifierCalculation || !ModifierCalculation->CanModifyAttribute(Attribute, this, AttributesComponent, Context)) continue;
-			ModifierCalculation->CallModify(CurrentModValue, AttributeValue, Attribute, this, AttributesComponent, Context);// Modifies the NewValue
+			ModifierCalculation->CallModify(CurrentModValue, AttributeValue, Magnitude, Attribute, this, AttributesComponent, Context);// Modifies the NewValue
 		}
 
 		// Call PreModifyAttribute before applying the final value
-		AttributesComponent->CallPreModifyAttribute(Attribute, Context, CurrentModValue);
+		AttributesComponent->CallPreModifyAttribute(Attribute, this, Context, CurrentModValue);
 		
 		// Set the new value
-		Attribute->SetValue(CurrentModValue);
+		AttributesComponent->SetAttributeValue(Attribute, CurrentModValue, FAttributeModContext(GetClass(), Context));
+		//Attribute->SetValue(CurrentModValue);
 	}
 }
 
 // Default implementation
-void UAttributeEffect::OnEffectApplied(const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+void UAttributeEffect::OnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
 {
-	//FAggregateTagContainerNotify& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
-	FAggregateGameplayTagContainer& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
-	Container.AppendTags(AppliedTags.Tags, AppliedTags.Count);
-	Container.AppendTags(LifespanTags.Tags, LifespanTags.Count);
-	Container.RemoveTags(RemovedTags.Tags, RemovedTags.Count);
+	if(!AttributesComponent) return;
+	FAggregateGameplayTagContainer& Container = AttributesComponent->OwnedTags;
+	//Container.AppendTags(AppliedTags.Tags, AppliedTags.Count);
+	//Container.AppendTags(LifespanTags.Tags, LifespanTags.Count);
+	//Container.RemoveTags(RemovedTags.Tags, RemovedTags.Count);
+	Container.AppendTags(AppliedTags);
+	Container.AppendTags(LifespanTags);
+	Container.RemoveTagsExact(RemovedTags);
 }
 
 // Default implementation
-void UAttributeEffect::OnEffectRemoved(const UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+void UAttributeEffect::OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
 {
+	if(!AttributesComponent) return;
 	if(Reason != EEffectRemovalReason::NetPredSuccess)
 	{
-		//FAggregateTagContainerNotify& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
-		FAggregateGameplayTagContainer& Container = const_cast<UAttributesComponent*>(AttributesComponent)->OwnedTags;
-		Container.RemoveTags(LifespanTags.Tags, LifespanTags.Count);
+		FAggregateGameplayTagContainer& Container = AttributesComponent->OwnedTags;
+		//Container.RemoveTags(LifespanTags.Tags, LifespanTags.Count);
+		Container.RemoveTagsExact(RemovedTags);
 	}
-}
+} 
 
 
 

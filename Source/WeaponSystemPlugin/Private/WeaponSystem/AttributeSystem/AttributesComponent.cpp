@@ -23,7 +23,7 @@ void UAttributesComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Init all attributes' handles
+	// Init all attribute handles
 	for(TFieldIterator<FStructProperty> Itr(GetClass()); Itr; ++Itr)
 	{
 		if(!Itr->Struct->IsChildOf(FAttribute::StaticStruct())) continue;
@@ -64,9 +64,9 @@ int32 UAttributesComponent::RemoveActiveEffectsByClass(const TSubclassOf<UAttrib
 }
 
 
-bool UAttributesComponent::Internal_TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
 {
-	if(!Effect || !Effect.GetDefaultObject()->CanApplyEffect(this, Context)) return false;
+	if(!Effect || !Effect.GetDefaultObject()->CanApplyEffect(this, Magnitude, Context)) return false;
 	
 #if WITH_EDITOR// Editor notification only
 	if(Effect.GetDefaultObject()->GetRepCond() == EEffectRepCond::LocalPredicted && !HasAuthority() && !AWeaponSystemPlayerController::StaticGetOwningPlayerController((AActor*)Instigator))
@@ -79,45 +79,43 @@ bool UAttributesComponent::Internal_TryApplyEffect(const TSubclassOf<UAttributeE
 	
 	if(HasAuthority())
 	{
-		Internal_ApplyEffect(Effect, Instigator, Context);
+		Internal_ApplyEffect(Effect, Magnitude, Instigator, Context);
 		return true;
 	}
-
-	const EEffectRepCond RepCond = Effect.GetDefaultObject()->GetRepCond();
-	switch(RepCond)
+	
+	switch(Effect.GetDefaultObject()->GetRepCond())
 	{
 	case EEffectRepCond::LocalOnly:
-		Internal_ApplyEffect(Effect, Instigator, Context);
+		Internal_ApplyEffect(Effect, Magnitude, Instigator, Context);
 		break;
 	case EEffectRepCond::ServerOnly:
-		Server_ApplyEffect(Effect, Instigator, Context);
+		static UFunction* Function(FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Server_ApplyEffect)));
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, Function, FServerApplyEffectNetParams(Effect, Magnitude, (AActor*)Instigator, Context));
 		break;
 	case EEffectRepCond::LocalPredicted:
-		LocalPredicted_ApplyEffect(Effect, Instigator, Context);
+		LocalPredicted_ApplyEffect(Effect, Magnitude, Instigator, Context);
 		break;
 	}
 
 	return true;
 }
 
-void UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+void UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
 {
 	const UAttributeEffect* EffectDefObj = Effect.GetDefaultObject();
 	if(EffectDefObj->GetDurationType() == EEffectDuration::Instant)// Instant-effect simply calls modify and other functions for it's "lifespan"
 	{
-		EffectDefObj->OnEffectApplied(this, Context);
-		EffectDefObj->ModifyAttributes(this, Context);
-		EffectDefObj->OnEffectRemoved(this, Context, EEffectRemovalReason::LifespanEnd);
+		EffectDefObj->ModifyAttributes(this, Magnitude, Context);
 	}
 	else// Latent-effect gets added to an array of active effects and calls modify every interval until removed via lifespan or manually
 	{
-		const TSharedPtr<FActiveEffect> ActiveEffect = MakeShared<FActiveEffect>(Effect, Context);
+		const TSharedPtr<FActiveEffect> ActiveEffect = MakeShared<FActiveEffect>(Effect, Magnitude, Context);
 		ActiveEffects.Add(ActiveEffect);
 
 		EffectDefObj->OnEffectApplied(this, ActiveEffect->Context);
-		EffectDefObj->ModifyAttributes(this, ActiveEffect->Context);
+		EffectDefObj->ModifyAttributes(this, Magnitude, ActiveEffect->Context);// This where the value of the Attribute is modified
 
-		auto CallModifyAtIntervalLambda = [=](){ EffectDefObj->ModifyAttributes(this, ActiveEffect->Context); };
+		auto CallModifyAtIntervalLambda = [=](){ EffectDefObj->ModifyAttributes(this, ActiveEffect->Magnitude, ActiveEffect->Context); };
 
 		const float Interval = EffectDefObj->IntervalDuration;
 		GetWorld()->GetTimerManager().SetTimer(ActiveEffect->IntervalTimerHandle, CallModifyAtIntervalLambda, Interval, true);
@@ -155,34 +153,31 @@ void UAttributesComponent::Internal_RemoveActiveEffect(const int32 Index, const 
 
 
 
-void UAttributesComponent::LocalPredicted_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const AActor* Instigator, FPolyStructHandle& Context)
+void UAttributesComponent::LocalPredicted_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
 {
-	Internal_ApplyEffect(Effect, Instigator, Context);
+	Internal_ApplyEffect(Effect, Magnitude, Instigator, Context);
 
-	const FEffectNetPredKey PredictionKey = MakePredictionKey();
-	LocalPredictedEffects.Add(PredictionKey, ActiveEffects[ActiveEffects.Num() - 1]);// Add latest effect to map of locally predicted effects
+	const FEffectNetPredKey PredictionKey = Effect.GetDefaultObject()->GetDurationType() != EEffectDuration::Instant ? MakePredictionKey() : FEffectNetPredKey(MAX_uint8);
+	if(PredictionKey.Key != MAX_uint8 && !ActiveEffects.IsEmpty())
+		LocalPredictedEffects.Add(PredictionKey, ActiveEffects[ActiveEffects.Num() - 1]);// Add latest effect to map of locally predicted effects
 
-	AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Server_ApplyEffect_LocalPredicted)),
-		Effect.Get(), Instigator, Context, PredictionKey);
+	static UFunction* Function(FindFunctionChecked(GET_FUNCTION_NAME_CHECKED(ThisClass, Server_ApplyEffect_LocalPredicted)));
+	AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, Function, FServerLocalPredictedNetParams(Effect.Get(), Magnitude, (AActor*)Instigator, Context, PredictionKey));
 }
 
-void UAttributesComponent::Server_ApplyEffect_LocalPredicted_Implementation(UClass* Effect, const AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey)
+void UAttributesComponent::Server_ApplyEffect_LocalPredicted(UClass* Effect, const float Magnitude, const AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey)
 {
-	if(!Effect) PRINT(TEXT("Effect is NULL"));
-	if(!Instigator) PRINT(TEXT("Instigator is NULL"));
-	if(Context.IsEmpty()) PRINT(TEXT("Context is empty"));
-
-	if(TryApplyEffect(Effect, Instigator, const_cast<FPolyStructHandle&>(Context)))
+	if(TryApplyEffect(Effect, Magnitude, Instigator, const_cast<FPolyStructHandle&>(Context)))
 	{
-		PRINT(TEXT("Success"));
-		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_ApplyEffect_LocalPredicted_Success)),
-			Effect, Instigator, PredictionKey);
+		static UFunction* SuccessFunction(FindFunctionChecked(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_ApplyEffect_LocalPredicted_Success)));
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, SuccessFunction, FLocalPredictionResultNetParams(Effect, (AActor*)Instigator, PredictionKey));
 	}
 	else
 	{
-		PRINT(TEXT("Failed"));
-		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_ApplyEffect_LocalPredicted_Fail)),
-			Effect, Instigator, PredictionKey);
+		UE_LOG(LogTemp, Log, TEXT("Local Prediction Failed for Effect %s. Prediction Key %i"), *FString(Effect ? Effect->GetName() : "None"), (int32)PredictionKey.Key);
+		
+		static UFunction* FailFunction(FindFunctionChecked(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_ApplyEffect_LocalPredicted_Fail)));
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, FailFunction, FLocalPredictionResultNetParams(Effect, (AActor*)Instigator, PredictionKey));
 
 		const TArray<FAttributeHandle> Attributes = Effect->GetDefaultObject<UAttributeEffect>()->GetAllModAttributes(this);
 		FAttributeValuePairs AttributeValues;
@@ -191,9 +186,10 @@ void UAttributesComponent::Server_ApplyEffect_LocalPredicted_Implementation(UCla
 		{
 			AttributeValues.AttributeValues[i] = TPair<FAttributeHandle, float>(Attributes[i], Attributes[i]->GetValue());
 		}
-		Client_SyncAttributes(AttributeValues);
-		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_SyncAttributes)),
-			AttributeValues);
+		//Client_SyncAttributes(AttributeValues);
+
+		static UFunction* SyncFunction(FindFunctionChecked(GET_FUNCTION_NAME_CHECKED(ThisClass, Client_SyncAttributes)));
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject(const_cast<AActor*>(Instigator), this, SyncFunction, AttributeValues);
 	}
 }
 
@@ -212,14 +208,15 @@ void UAttributesComponent::Client_ApplyEffect_LocalPredicted_Success_Implementat
 void UAttributesComponent::Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey)
 {
 	const TWeakPtr<FActiveEffect>* LocalPredictedEffectPtr = LocalPredictedEffects.Find(PredictionKey);
-	LocalPredictedEffects.Remove(PredictionKey);
-	if(LocalPredictedEffects.IsEmpty()) ClearCurrentPredictionKey();
 	if(!LocalPredictedEffectPtr || !LocalPredictedEffectPtr->IsValid()) return;
 
 	const int32 LocalPredictedEffectIndex = ActiveEffects.Find(LocalPredictedEffectPtr->Pin());
 	Internal_RemoveActiveEffect(LocalPredictedEffectIndex, EEffectRemovalReason::NetPredFail);
-	
 	UE_LOG(LogTemp, Log, TEXT("Locally predicted effect %s failed"), *Effect->GetName());
+
+	LocalPredictedEffects.Remove(PredictionKey);
+	if(LocalPredictedEffects.IsEmpty())
+		ClearCurrentPredictionKey();
 }
 
 void UAttributesComponent::Server_SyncAttributes_Implementation(const TArray<FAttributeHandle>& Attributes)
@@ -238,7 +235,8 @@ void UAttributesComponent::Client_SyncAttributes_Implementation(const FAttribute
 	for(TPair<FAttributeHandle, float>& Value : const_cast<FAttributeValuePairs&>(AttributeValues).AttributeValues)
 	{
 		checkf(Value.Get<0>().IsValid(), TEXT("Attribute is invalid on Client"));
-		Value.Get<0>()->SetValue(Value.Get<1>());
+		//Value.Get<0>()->SetValue(Value.Get<1>());
+		SetAttributeValue(Value.Get<0>(), Value.Get<1>(), FAttributeModContext());
 	}
 }
 
@@ -250,7 +248,8 @@ void UAttributesComponent::Client_SyncAttributes_Implementation(const FAttribute
 
 
 
-void UAttributesComponent::ApplyInstantNumericEffect(const FName& AttributeName, const AActor* Instigator, const EEffectRepCond ReplicationCondition, const EEffectModType ModificationType, const float Magnitude)
+void UAttributesComponent::ApplyInstantNumericEffect(const FName& AttributeName, const float Magnitude, const EEffectModType ModificationType,
+	const EEffectRepCond ReplicationCondition, const AActor* Instigator, FPolyStructHandle& Context)
 {
 	const FAttributeHandle Attribute = FindAttributeByName(AttributeName);
 	if(!Attribute.IsValid()) return;
@@ -265,28 +264,28 @@ void UAttributesComponent::ApplyInstantNumericEffect(const FName& AttributeName,
 
 	if(HasAuthority())
 	{
-		Internal_ApplyInstantNumericEffect(Attribute, ModificationType, Magnitude);
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
 		return;
 	}
 
 	switch(ReplicationCondition)
 	{
 	case EEffectRepCond::LocalOnly:
-		Internal_ApplyInstantNumericEffect(Attribute, ModificationType, Magnitude);
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
 		break;
 	case EEffectRepCond::ServerOnly:
 		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Net_ApplyInstantNumericEffect)),
-			FInstantNumericEffectNetValue(Attribute, ModificationType, Magnitude));
+			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Context));
 		break;
 	case EEffectRepCond::LocalPredicted:
 		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Net_ApplyInstantNumericEffect)),
-			FInstantNumericEffectNetValue(Attribute, ModificationType, Magnitude));
-		Internal_ApplyInstantNumericEffect(Attribute, ModificationType, Magnitude);
+			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Context));
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
 		break;
 	}
 }
 
-void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const EEffectModType ModType, const float Magnitude)
+void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, FPolyStructHandle& Context)
 {
 	checkf(Attribute.IsValid(), TEXT("Attribute parameter is invalid on %s"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
 	float NewValue = Attribute->GetValue();
@@ -305,10 +304,19 @@ void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHa
 		break;
 	}
 
-	CallPreModifyAttribute(Attribute, FPolyStructHandle(), NewValue);
-	const_cast<FAttributeHandle&>(Attribute)->SetValue(NewValue);
+	CallPreModifyAttribute(Attribute, nullptr, FPolyStructHandle(), NewValue);
+	//const_cast<FAttributeHandle&>(Attribute)->SetValue(NewValue);
+	SetAttributeValue(const_cast<FAttributeHandle&>(Attribute), NewValue, FAttributeModContext(nullptr, Context));
 }
 
+void UAttributesComponent::SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FAttributeModContext& ModContext)
+{
+	if(!Attribute.IsValid() || Attribute->GetValue() == NewValue) return;
+	if(HasAuthority() && ModContext.HasData() && (Attribute.GetUProperty()->PropertyFlags & CPF_Net))
+		LatestAttributeModContext.FindOrAdd(Attribute) = ModContext;// Cache mod context for attribute to broadcast on replicated
+	
+	Attribute->SetValue(NewValue, ModContext);
+}
 
 
 

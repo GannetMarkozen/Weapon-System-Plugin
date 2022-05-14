@@ -14,6 +14,9 @@
 #include "AttributesComponent.generated.h"
 
 
+class UAttributeEffect;
+class UAttributeEffectCalculation;
+
 USTRUCT()
 struct WEAPONSYSTEMPLUGIN_API FEffectNetPredKey
 {
@@ -58,18 +61,16 @@ struct WEAPONSYSTEMPLUGIN_API FActiveEffect
 	
 	FActiveEffect() = default;
 	FActiveEffect(const FActiveEffect& Other)
-		: Effect(Other.Effect), Context(Other.Context) { checkf(Effect, TEXT("Effect is invalid")); }
-	FActiveEffect(const TSubclassOf<class UAttributeEffect> Effect, const FPolyStructHandle& Context)
-		: Effect(Effect), Context(Context) { checkf(Effect, TEXT("Effect is invalid")); }
+		: Effect(Other.Effect), Magnitude(Other.Magnitude), Context(Other.Context) { checkf(Effect, TEXT("Effect is invalid")); }
+	FActiveEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const FPolyStructHandle& Context)
+		: Effect(Effect), Magnitude(Magnitude), Context(Context) { checkf(Effect, TEXT("Effect is invalid")); }
 
 	FORCEINLINE TSubclassOf<class UAttributeEffect> GetEffect() const { return Effect; }
 	FORCEINLINE const FPolyStructHandle& GetContext() const { return Context; }
 
-	// Used for cancelling inherited effects on failed
-	TArray<FEffectNetPredKey> InheritedEffectKeys;
-	
 protected:
-	TSubclassOf<class UAttributeEffect> Effect;
+	TSubclassOf<UAttributeEffect> Effect;
+	float Magnitude;
 	FPolyStructHandle Context;
 	
 public:
@@ -111,24 +112,70 @@ struct TStructOpsTypeTraits<FAttributeValuePairs> : TStructOpsTypeTraitsBase2<FA
 };
 
 USTRUCT()
+struct WEAPONSYSTEMPLUGIN_API FServerLocalPredictedNetParams
+{
+	GENERATED_BODY()
+
+	FServerLocalPredictedNetParams() = default;
+	FServerLocalPredictedNetParams(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey)
+		: Effect(Effect), Magnitude(Magnitude), Instigator(Instigator), Context(Context), PredictionKey(PredictionKey) {}
+	
+	UPROPERTY() TSubclassOf<UAttributeEffect> Effect;
+	UPROPERTY() float Magnitude;
+	UPROPERTY() AActor* Instigator;
+	UPROPERTY() FPolyStructHandle Context;
+	UPROPERTY() FEffectNetPredKey PredictionKey;
+};
+
+USTRUCT()
+struct WEAPONSYSTEMPLUGIN_API FLocalPredictionResultNetParams
+{
+	GENERATED_BODY()
+
+	FLocalPredictionResultNetParams() = default;
+	FLocalPredictionResultNetParams(const TSubclassOf<UAttributeEffect> Effect, AActor* Instigator, const FEffectNetPredKey PredictionKey)
+		: Effect(Effect), Instigator(Instigator), PredictionKey(PredictionKey) {}
+
+	UPROPERTY() TSubclassOf<UAttributeEffect> Effect;
+	UPROPERTY() AActor* Instigator;
+	UPROPERTY() FEffectNetPredKey PredictionKey;
+};
+
+USTRUCT()
+struct WEAPONSYSTEMPLUGIN_API FServerApplyEffectNetParams
+{
+	GENERATED_BODY()
+
+	FServerApplyEffectNetParams() = default;
+	FServerApplyEffectNetParams(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, AActor* Instigator, const FPolyStructHandle& Context)
+		: Effect(Effect), Magnitude(Magnitude), Instigator(Instigator), Context(Context) {}
+
+	UPROPERTY() TSubclassOf<UAttributeEffect> Effect;
+	UPROPERTY() float Magnitude;
+	UPROPERTY() AActor* Instigator;
+	UPROPERTY() FPolyStructHandle Context;
+};
+
+USTRUCT()
 struct WEAPONSYSTEMPLUGIN_API FInstantNumericEffectNetValue
 {
 	GENERATED_BODY()
 
 	FInstantNumericEffectNetValue() = default;
-	FInstantNumericEffectNetValue(const FAttributeHandle& Attribute, const EEffectModType ModType, const float Value)
-		: Attribute(Attribute), ModType(ModType), Value(Value) {}
+	FInstantNumericEffectNetValue(const FAttributeHandle& Attribute, const float Value, const EEffectModType ModType, const FPolyStructHandle& Context)
+		: Attribute(Attribute), Value(Value), ModType(ModType), Context(Context) {}
 
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 	{
-		Attribute.NetSerialize(Ar, Map, bOutSuccess);
-		Ar << ModType << Value;
+		Ar << Attribute << Value << ModType;
+		Context.NetSerialize(Ar, Map, bOutSuccess);
 		return true;
 	}
 	
 	FAttributeHandle Attribute;
-	EEffectModType ModType;
 	float Value = 0.f;
+	EEffectModType ModType;
+	FPolyStructHandle Context;
 };
 
 template<>
@@ -152,6 +199,7 @@ class WEAPONSYSTEMPLUGIN_API UAttributesComponent : public UActorComponent
 public:
 	UAttributesComponent();
 	friend class UAttributeEffect;
+	friend struct FAttribute;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -163,23 +211,23 @@ protected:
 
 	TArray<TSharedPtr<FActiveEffect>> ActiveEffects;
 	TMap<FEffectNetPredKey, TWeakPtr<FActiveEffect>> LocalPredictedEffects;
+	TMap<FAttributeHandle, FAttributeModContext> LatestAttributeModContext;// @TODO Element removal method in FAttribute doesn't cover every case :/
 
 public:
 	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags.
 	// Bind delegate to listen for specific tag count changes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Configurations")
 	FAggregateGameplayTagContainer OwnedTags;
-	//FAggregateTagContainerNotify OwnedTags;
 	
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE bool HasAuthority() const { return GetOwner() && GetOwner()->HasAuthority(); }
 
 	UFUNCTION(BlueprintPure, Category = "Effect")
-	void GetAllActiveEffects(TArray<TSubclassOf<class UAttributeEffect>>& OutEffects) const
+	void GetAllActiveEffects(TArray<TSubclassOf<UAttributeEffect>>& OutEffects) const
 	{
 		for(const TSharedPtr<FActiveEffect>& ActiveEffectPtr : ActiveEffects)
 			if(ActiveEffectPtr.IsValid() && ActiveEffectPtr->Effect.Get())
-				OutEffects.Add(ActiveEffectPtr->Effect); 
+				OutEffects.Add(ActiveEffectPtr->Effect);
 	}
 
 	// Finds the attribute by name. If none exists this will return an invalid handle
@@ -188,59 +236,57 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	void BindAllAttributesChanged(const FAttributeValueChangedUniDelegate& Delegate);
+
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag"), Category = "Tags")
+	FORCEINLINE void BindTagCountChanged(const FGameplayTag& Tag, const FAggregateDynamicDelegate& Delegate) const { UAggregateGameplayTagContainerUtils::BindTagCountChanged(OwnedTags, Tag, Delegate); }
+
+	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "Target"), Category = "Tags")
+	FORCEINLINE void UnbindAllTagCountChanged(UObject* Target) const { UAggregateGameplayTagContainerUtils::UnbindAll(OwnedTags, Target); }
+
+	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "Target", AutoCreateRefTerm = "Tag"), Category = "Tags")
+	FORCEINLINE void UnbindTagCountChanged(UObject* Target, const FGameplayTag& Tag) const { UAggregateGameplayTagContainerUtils::Unbind(OwnedTags, Tag, Target); }
 	
 	
 	// Attempts to apply the effect with optional context for custom calculations
 	UFUNCTION(BlueprintCallable, Meta = (DefaultToSelf = "Instigator", AutoCreateRefTerm = "Context"), Category = "Effect")
-	bool TryApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, UPARAM(ref) FPolyStructHandle& Context)
-	{
-		return Internal_TryApplyEffect(Effect, Instigator, Context);
-	}
+	bool TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, UPARAM(ref) FPolyStructHandle& Context);
 
 	// Apply a basic numeric value effect. Less flexibility but more convenient for simple non-latent Attribute modifications. Local-Prediction simply
-	// applies the effect locally and server-side. No checking so not recommended
-	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "AttributeName", DefaultToSelf = "Instigator"), Category = "Effect")
-	void ApplyInstantNumericEffect(const FName& AttributeName, const class AActor* Instigator, const EEffectRepCond ReplicationCondition = EEffectRepCond::ServerOnly,
-		const EEffectModType ModificationType = EEffectModType::Additive, const float Magnitude = 0.f);
+	// applies the effect locally and server-side. Local-Predicted effect requires an Instigator. No checking so not recommended.
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "AttributeName,Context", DefaultToSelf = "Instigator"), Category = "Effect")
+	void ApplyInstantNumericEffect(const FName& AttributeName, const float Magnitude, const EEffectModType ModificationType, const EEffectRepCond ReplicationCondition,
+		UPARAM(meta=(DisplayName="Optional Instigator")) const AActor* Instigator, UPARAM(ref,meta=(DisplayName="Optional Context")) FPolyStructHandle& Context);
 
 	// Remove all active effects from Class. Should take the Effect's Replication Condition into account when calling this
 	UFUNCTION(BlueprintCallable, Category = "Effect")
-	int32 RemoveActiveEffectsByClass(const TSubclassOf<class UAttributeEffect> Class, const bool bIncludeChildren = true);
-
-	// IGameplayTagAssetInterface begin
-	/*virtual void GetTags_Implementation(FAggregateTagContainer& OutTags) const override { OutTags = (FAggregateTagContainer&)OwnedTags; }
-	virtual int32 GetTagCount_Implementation(const FGameplayTag& Tag, const bool bExact = false) const override { return OwnedTags.GetTagCount(Tag, bExact); }
-	virtual bool HasTag_Implementation(const FGameplayTag& Tag, const bool bExact = false) const override { return OwnedTags.HasTag(Tag, bExact); }
-	virtual bool HasAny_Implementation(const FGameplayTagContainer& Tags, const bool bExact = false) const override { return OwnedTags.HasAny(Tags, bExact); }*/
-	// IGameplayTagAssetInterface end
+	int32 RemoveActiveEffectsByClass(const TSubclassOf<UAttributeEffect> Class, const bool bIncludeChildren = true);
 
 protected:
-	bool Internal_TryApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
-	virtual void Internal_ApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
+	virtual void Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context);
 	virtual void Internal_RemoveActiveEffect(const int32 Index, const EEffectRemovalReason Reason = EEffectRemovalReason::LifespanEnd);
 
 	UFUNCTION()
-	virtual void Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const EEffectModType ModType, const float Magnitude);
+	virtual void Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, FPolyStructHandle& Context);
 
 	UFUNCTION()
-	FORCEINLINE void Net_ApplyInstantNumericEffect(const FInstantNumericEffectNetValue& Value) { Internal_ApplyInstantNumericEffect(Value.Attribute, Value.ModType, Value.Value); }
+	FORCEINLINE void Net_ApplyInstantNumericEffect(const FInstantNumericEffectNetValue& Value) { Internal_ApplyInstantNumericEffect(Value.Attribute, Value.Value, Value.ModType, (FPolyStructHandle&)Value.Context); }
 	
 	UFUNCTION(Server, Reliable)
-	void Server_ApplyEffect(UClass* Effect, const class AActor* Instigator, const FPolyStructHandle& Context);
-	virtual void Server_ApplyEffect_Implementation(UClass* Effect, const class AActor* Instigator, const FPolyStructHandle& Context) { Internal_ApplyEffect(Effect, Instigator, (FPolyStructHandle&)Context); }
+	void Server_ApplyEffect(UClass* Effect, const float Magnitude, const AActor* Instigator, const FPolyStructHandle& Context);
+	virtual void Server_ApplyEffect_Implementation(UClass* Effect, const float Magnitude, const AActor* Instigator, const FPolyStructHandle& Context) { Internal_ApplyEffect(Effect, Magnitude, Instigator, (FPolyStructHandle&)Context); }
 
-	virtual void LocalPredicted_ApplyEffect(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, FPolyStructHandle& Context);
-
-	UFUNCTION(Server, Reliable)
-	void Server_ApplyEffect_LocalPredicted(UClass* Effect, const class AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey);
-
-	UFUNCTION(Client, Reliable)
-	void Client_ApplyEffect_LocalPredicted_Success(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
-	virtual void Client_ApplyEffect_LocalPredicted_Success_Implementation(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
+	virtual void LocalPredicted_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context);
+	
+	UFUNCTION()
+	void Server_ApplyEffect_LocalPredicted(UClass* Effect, const float Magnitude, const AActor* Instigator, const FPolyStructHandle& Context, const FEffectNetPredKey PredictionKey);
 
 	UFUNCTION(Client, Reliable)
-	void Client_ApplyEffect_LocalPredicted_Fail(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
-	virtual void Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const class AActor* Instigator, const FEffectNetPredKey PredictionKey);
+	void Client_ApplyEffect_LocalPredicted_Success(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey);
+	virtual void Client_ApplyEffect_LocalPredicted_Success_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey);
+
+	UFUNCTION(Client, Reliable)
+	void Client_ApplyEffect_LocalPredicted_Fail(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey);
+	virtual void Client_ApplyEffect_LocalPredicted_Fail_Implementation(UClass* Effect, const AActor* Instigator, const FEffectNetPredKey PredictionKey);
 
 public:
 	// Will update the client's value for the specified Attribute
@@ -258,19 +304,22 @@ protected:
 	UFUNCTION(Client, Reliable)
 	void Client_SyncAttributes(const FAttributeValuePairs& AttributeValues);
 
-	// Called before modifying an attribute with the given OutValue. This is where clamping should occur
-	virtual void PreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, float& InOutValue) const {}
+	// Called before modifying an attribute with the given OutValue. This is where clamping should occur.
+	// Effect may be invalid if called from Apply Instant Numeric Effect
+	virtual void PreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, float& InOutValue) const {}
 
 	// Called before modifying an attribute with the given OutValue. This is where clamping should occur
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Pre Modify Attribute"), Category = "Attributes")
-	void BP_PreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, const float InValue, float& OutValue) const;
+	void BP_PreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, const float InValue, float& OutValue) const;
 
 	// Calls both BP and C++ implementations of PreModifyAttribute
-	FORCEINLINE void CallPreModifyAttribute(const FAttributeHandle& Attribute, const FPolyStructHandle& Context, float& InOutValue) const
+	FORCEINLINE void CallPreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, float& InOutValue) const
 	{
-		PreModifyAttribute(Attribute, Context, InOutValue);
-		BP_PreModifyAttribute(Attribute, Context, InOutValue, InOutValue);
+		PreModifyAttribute(Attribute, Effect, Context, InOutValue);
+		BP_PreModifyAttribute(Attribute, Effect, Context, InOutValue, InOutValue);
 	}
+
+	void SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FAttributeModContext& ModContext);
 };
 
 

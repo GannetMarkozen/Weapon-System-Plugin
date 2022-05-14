@@ -1,6 +1,6 @@
-"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp"
+"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp"
 /I .
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source\PolyStructUncooked\Private"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStructUncooked\Private"
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Slate
 /I Runtime
 /I Runtime\Slate\Public
@@ -260,11 +260,11 @@
 /I Editor\SceneOutliner\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CurveEditor
 /I Editor\CurveEditor\Public
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStruct"
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source"
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source\PolyStruct\Public"
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStructUncooked"
-/I "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Source\PolyStructUncooked\Public"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStruct"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStruct\Public"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\PolyStructUncooked"
+/I "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Source\PolyStructUncooked\Public"
 /I ThirdParty\mimalloc\include
 /I ThirdParty\LibTiff\Source\Win64
 /I ThirdParty\LibTiff\Source
@@ -285,12 +285,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/FI"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h"
-/FI"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Definitions.PolyStructUncooked.h"
-/Yu"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h"
-/Fp"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Intermediate\Build\Win64\WeaponSystemExampleEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h.pch"
-/Fo"C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp.obj"
-/sourceDependencies "C:\Users\azart\Documents\Unreal Projects\WeaponSystemExample\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp.json"
+/FI"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h"
+/FI"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Definitions.PolyStructUncooked.h"
+/Yu"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h"
+/Fp"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Intermediate\Build\Win64\AnimeShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h.pch"
+/Fo"C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp.obj"
+/sourceDependencies "C:\Users\azart\Documents\Unreal Projects\AnimeShooter\Plugins\WeaponSystemPlugin\Intermediate\Build\Win64\UnrealEditor\Development\PolyStructUncooked\Module.PolyStructUncooked.cpp.json"
 /Zc:inline
 /nologo
 /Oi

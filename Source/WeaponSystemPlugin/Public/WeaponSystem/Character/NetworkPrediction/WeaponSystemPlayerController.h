@@ -15,6 +15,7 @@
  *	local net connection through the designated Net Owner.
  *	NOTE: Very finnicky. Can't seem to copy "plain-old-data" values. Works well-enough...
  */
+/*
 USTRUCT()
 struct WEAPONSYSTEMPLUGIN_API FNetParams
 {
@@ -82,7 +83,7 @@ struct TStructOpsTypeTraits<FNetParams> : TStructOpsTypeTraitsBase2<FNetParams>
 		WithNetSerializer = true,
 	};
 }; 
-
+*/
 
 enum ENetAuthority
 {
@@ -104,51 +105,62 @@ public:
 	UFUNCTION(BlueprintPure, Meta = (DisplayName = "Get Owning Player Controller"))
 	static AWeaponSystemPlayerController* StaticGetOwningPlayerController(AActor* Target);
 
-	void CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams, const ENetAuthority Authority = Server, const ENetReliability Reliability = Reliable);
+	void CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams, const ENetAuthority Authority = Server, const ENetReliability Reliability = Reliable);
 
 	// Calls RPC's to Server if Client and Client if Server
-	FORCEINLINE void CallRemoteFunctionOnObjectInferred(UObject* Target, const FNetParams& NetParams, const ENetReliability Reliability = Reliable)
+	FORCEINLINE void CallRemoteFunctionOnObjectInferred(UObject* Target, UFunction* Function, const FPolyStruct& NetParams, const ENetReliability Reliability = Reliable)
 	{
-		CallRemoteFunctionOnObject(Target, NetParams, HasAuthority() ? Client : Server, Reliability);
+		CallRemoteFunctionOnObject(Target, Function, NetParams, HasAuthority() ? Client : Server, Reliability);
 	}
 
-	template<typename... Args>
-	FORCEINLINE static void StaticCallRemoteFunctionOnObject(AActor* NetOwner, UObject* Target, UFunction* Function, const Args&... Params)
+	static void StaticCallRemoteFunctionOnObject(AActor* NetOwner, UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 	{
 		if(auto* Controller = StaticGetOwningPlayerController(NetOwner))
-			Controller->CallRemoteFunctionOnObjectInferred(Target, FNetParams::Make<Args...>(Function, Params...));
+			Controller->CallRemoteFunctionOnObjectInferred(Target, Function, NetParams);
+	}
+	
+	template<typename T, typename... Args>
+	static void StaticCallRemoteFunctionOnObject(AActor* NetOwner, UObject* Target, UFunction* Function, const Args&... NetParams)
+	{
+		StaticCallRemoteFunctionOnObject(NetOwner, Target, Function, FPolyStruct::Make<T, Args...>(NetParams...));
+	}
+
+	template<typename T>
+	static void StaticCallRemoteFunctionOnObject(AActor* NetOwner, UObject* Target, UFunction* Function, const T& NetParams)
+	{
+		StaticCallRemoteFunctionOnObject(NetOwner, Target, Function, FPolyStruct::Make<T>(NetParams));
 	}
 
 protected:
 	UFUNCTION(Server, Reliable)
-	void Server_Reliable_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams);
-	FORCEINLINE void Server_Reliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, const FNetParams& NetParams)
+	void Server_Reliable_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams);
+	FORCEINLINE void Server_Reliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 	{
-		Remote_CallRemoteFunctionOnObject(Target, NetParams);
+		Remote_CallRemoteFunctionOnObject(Target, Function, NetParams);
 	}
 
 	UFUNCTION(Server, Unreliable)
-	void Server_Unreliable_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams);
-	FORCEINLINE void Server_Unreliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, const FNetParams& NetParams)
+	void Server_Unreliable_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams);
+	FORCEINLINE void Server_Unreliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 	{
-		Remote_CallRemoteFunctionOnObject(Target, NetParams);
+		Remote_CallRemoteFunctionOnObject(Target, Function, NetParams);
 	}
 
 	UFUNCTION(Client, Reliable)
-	void Client_Reliable_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams);
-	FORCEINLINE void Client_Reliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, const FNetParams& NetParams)
+	void Client_Reliable_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams);
+	FORCEINLINE void Client_Reliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 	{
-		Remote_CallRemoteFunctionOnObject(Target, NetParams);
+		Remote_CallRemoteFunctionOnObject(Target, Function, NetParams);
 	}
 
 	UFUNCTION(Client, Unreliable)
-	void Client_Unreliable_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams);
-	FORCEINLINE void Client_Unreliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, const FNetParams& NetParams)
+	void Client_Unreliable_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams);
+	FORCEINLINE void Client_Unreliable_CallRemoteFunctionOnObject_Implementation(UObject* Target, UFunction* Function, const FPolyStruct& NetParams)
 	{
-		Remote_CallRemoteFunctionOnObject(Target, NetParams);
+		Remote_CallRemoteFunctionOnObject(Target, Function, NetParams);
 	}
 
-	virtual void Remote_CallRemoteFunctionOnObject(UObject* Target, const FNetParams& NetParams);
+	virtual void Remote_CallRemoteFunctionOnObject(UObject* Target, UFunction* Function, const FPolyStruct& NetParams);
 };
 
 

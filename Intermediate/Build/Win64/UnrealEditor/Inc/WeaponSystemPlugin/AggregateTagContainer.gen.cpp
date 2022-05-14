@@ -135,7 +135,10 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
+		{ "Comment", "/*\n *\x09""A gameplay tag container with an associated tag count. Adding tags will add to the tag count within the container.\n *\x09There is an \"exact tag count\" and an \"aggregate tag count\". The exact tag count refers to the actual number of an\n *\x09""exact tag within the container whereas the aggregate tag count refers to the overall count of exact tags and\n *\x09""derived tags within the container. Like if there was 1 Item.Key and 1 Item.SoupCan, the aggregate tag count for\n *\x09Item would be 2, whereas the exact tag count would be 0 because there are no tags explicitly named Item. But there\n *\x09would be 1 exact tag for either Item.Key or Item.SoupCan. Comes built-in with a delegate for broadcasting specific\n *\x09tag-count changes. Net Serializable.\n */" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ShortTooltip", "Gameplay tag container with a count associated with each gameplay tag" },
+		{ "ToolTip", "*     A gameplay tag container with an associated tag count. Adding tags will add to the tag count within the container.\n*     There is an \"exact tag count\" and an \"aggregate tag count\". The exact tag count refers to the actual number of an\n*     exact tag within the container whereas the aggregate tag count refers to the overall count of exact tags and\n*     derived tags within the container. Like if there was 1 Item.Key and 1 Item.SoupCan, the aggregate tag count for\n*     Item would be 2, whereas the exact tag count would be 0 because there are no tags explicitly named Item. But there\n*     would be 1 exact tag for either Item.Key or Item.SoupCan. Comes built-in with a delegate for broadcasting specific\n*     tag-count changes. Net Serializable." },
 	};
 #endif
 	void* Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewStructOps()
@@ -157,6 +160,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_Inner = { "AggregateTagCount", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
 		{ "Category", "AggregateGameplayTagContainer" },
 		{ "Comment", "// All exact and parent tags with aggregated tag counts.\n// Cached for increased search speed. Not editable\n" },
 		{ "DisplayName", "Aggregate Gameplay Tag Count" },
@@ -164,7 +168,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "ToolTip", "All exact and parent tags with aggregated tag counts.\nCached for increased search speed. Not editable" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount = { "AggregateTagCount", nullptr, (EPropertyFlags)0x0020080000022001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAggregateGameplayTagContainer, AggregateTagCount), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_MetaData)) }; // 1448319351
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount = { "AggregateTagCount", nullptr, (EPropertyFlags)0x0020080000022015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAggregateGameplayTagContainer, AggregateTagCount), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_AggregateTagCount_MetaData)) }; // 1448319351
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_TagCount_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewProp_TagCount,
@@ -222,7 +226,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateDynamicDelegate_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAggregateDynamicDelegate_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -317,6 +321,50 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		UAggregateGameplayTagContainerUtils::BindTagCountChanged(Z_Param_Out_Container,Z_Param_Out_Tag,FAggregateDynamicDelegate(Z_Param_Out_Delegate));
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execEmpty)
+	{
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::Empty(Z_Param_Out_Container);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execRemoveTagsExactAll)
+	{
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
+		P_GET_STRUCT_REF(FGameplayTagContainer,Z_Param_Out_Tags);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::RemoveTagsExactAll(Z_Param_Out_Container,Z_Param_Out_Tags);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execRemoveTagsAll)
+	{
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
+		P_GET_STRUCT_REF(FGameplayTagContainer,Z_Param_Out_Tags);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::RemoveTagsAll(Z_Param_Out_Container,Z_Param_Out_Tags);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execRemoveTagExactAll)
+	{
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
+		P_GET_STRUCT_REF(FGameplayTag,Z_Param_Out_Tag);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::RemoveTagExactAll(Z_Param_Out_Container,Z_Param_Out_Tag);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execRemoveTagAll)
+	{
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
+		P_GET_STRUCT_REF(FGameplayTag,Z_Param_Out_Tag);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::RemoveTagAll(Z_Param_Out_Container,Z_Param_Out_Tag);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execRemoveTagsExact)
 	{
 		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
@@ -365,6 +413,15 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		UAggregateGameplayTagContainerUtils::AddTag(Z_Param_Out_Container,Z_Param_Out_Tag,Z_Param_Count);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execMakeAggregateGameplayTagContainer)
+	{
+		P_GET_TARRAY_REF(FAggregateGameplayTagValue,Z_Param_Out_Values);
+		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_OutContainer);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UAggregateGameplayTagContainerUtils::MakeAggregateGameplayTagContainer(Z_Param_Out_Values,Z_Param_Out_OutContainer);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UAggregateGameplayTagContainerUtils::execConv_AggregateGameplayTagContainerToGameplayTagContainer)
 	{
 		P_GET_STRUCT_REF(FAggregateGameplayTagContainer,Z_Param_Out_Container);
@@ -398,14 +455,20 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 			{ "BindTagCountChanged", &UAggregateGameplayTagContainerUtils::execBindTagCountChanged },
 			{ "Conv_AggregateGameplayTagContainerToGameplayTagContainer", &UAggregateGameplayTagContainerUtils::execConv_AggregateGameplayTagContainerToGameplayTagContainer },
 			{ "Conv_AggregateGameplayTagContainerToString", &UAggregateGameplayTagContainerUtils::execConv_AggregateGameplayTagContainerToString },
+			{ "Empty", &UAggregateGameplayTagContainerUtils::execEmpty },
 			{ "GetAggregateTagCountDebugString", &UAggregateGameplayTagContainerUtils::execGetAggregateTagCountDebugString },
 			{ "GetAggregateTagValues", &UAggregateGameplayTagContainerUtils::execGetAggregateTagValues },
 			{ "GetExactTagValues", &UAggregateGameplayTagContainerUtils::execGetExactTagValues },
 			{ "GetTagCount", &UAggregateGameplayTagContainerUtils::execGetTagCount },
 			{ "GetTagCountExact", &UAggregateGameplayTagContainerUtils::execGetTagCountExact },
+			{ "MakeAggregateGameplayTagContainer", &UAggregateGameplayTagContainerUtils::execMakeAggregateGameplayTagContainer },
 			{ "RemoveTag", &UAggregateGameplayTagContainerUtils::execRemoveTag },
+			{ "RemoveTagAll", &UAggregateGameplayTagContainerUtils::execRemoveTagAll },
 			{ "RemoveTagExact", &UAggregateGameplayTagContainerUtils::execRemoveTagExact },
+			{ "RemoveTagExactAll", &UAggregateGameplayTagContainerUtils::execRemoveTagExactAll },
+			{ "RemoveTagsAll", &UAggregateGameplayTagContainerUtils::execRemoveTagsAll },
 			{ "RemoveTagsExact", &UAggregateGameplayTagContainerUtils::execRemoveTagsExact },
+			{ "RemoveTagsExactAll", &UAggregateGameplayTagContainerUtils::execRemoveTagsExactAll },
 			{ "Unbind", &UAggregateGameplayTagContainerUtils::execUnbind },
 			{ "UnbindAll", &UAggregateGameplayTagContainerUtils::execUnbindAll },
 		};
@@ -434,7 +497,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AddTag_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventAddTag_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AddTag_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventAddTag_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AddTag_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -491,7 +554,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventAppendTags_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventAppendTags_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags_Statics::NewProp_Tags_Inner = { "Tags", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags_Statics::NewProp_Tags_MetaData[] = {
@@ -552,7 +615,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventBindTagCountChanged_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventBindTagCountChanged_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -564,7 +627,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventBindTagCountChanged_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate_MetaData)) }; // 3232896818
+	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventBindTagCountChanged_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AggregateDynamicDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Delegate_MetaData)) }; // 13607744
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Container,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged_Statics::NewProp_Tag,
@@ -612,7 +675,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToGameplayTagContainer_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToGameplayTagContainer_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container_MetaData)) }; // 3960791148
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToGameplayTagContainer_Parms, ReturnValue), Z_Construct_UScriptStruct_FGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 506667518
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer_Statics::NewProp_Container,
@@ -660,7 +723,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToString_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToString_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container_MetaData)) }; // 3960791148
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventConv_AggregateGameplayTagContainerToString_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString_Statics::NewProp_Container,
@@ -687,6 +750,41 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventEmpty_Parms
+		{
+			FAggregateGameplayTagContainer Container;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Container;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventEmpty_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::NewProp_Container,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Removes all tags from the container\n" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Removes all tags from the container" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "Empty", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::AggregateGameplayTagContainerUtils_eventEmpty_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics
 	{
 		struct AggregateGameplayTagContainerUtils_eventGetAggregateTagCountDebugString_Parms
@@ -710,7 +808,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagCountDebugString_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagCountDebugString_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container_MetaData)) }; // 3960791148
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagCountDebugString_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString_Statics::NewProp_Container,
@@ -758,7 +856,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagValues_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagValues_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_Container_MetaData)) }; // 3960791148
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_OutValues_Inner = { "OutValues", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::NewProp_OutValues = { "OutValues", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetAggregateTagValues_Parms, OutValues), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues_Statics::PropPointers[] = {
@@ -806,7 +904,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetExactTagValues_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetExactTagValues_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_Container_MetaData)) }; // 3960791148
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_OutValues_Inner = { "OutValues", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::NewProp_OutValues = { "OutValues", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetExactTagValues_Parms, OutValues), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues_Statics::PropPointers[] = {
@@ -858,7 +956,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetTagCount_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetTagCount_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -918,7 +1016,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetTagCountExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventGetTagCountExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -950,6 +1048,56 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventMakeAggregateGameplayTagContainer_Parms
+		{
+			TArray<FAggregateGameplayTagValue> Values;
+			FAggregateGameplayTagContainer OutContainer;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Values_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Values_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Values;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_OutContainer;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values_Inner = { "Values", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values = { "Values", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventMakeAggregateGameplayTagContainer_Parms, Values), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values_MetaData)) }; // 1448319351
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_OutContainer = { "OutContainer", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventMakeAggregateGameplayTagContainer_Parms, OutContainer), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_Values,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::NewProp_OutContainer,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "DisplayName", "Make AggregateGameplayTagContainer" },
+		{ "Keywords", "aggregate,gameplay,tag,container" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "MakeAggregateGameplayTagContainer", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::AggregateGameplayTagContainerUtils_eventMakeAggregateGameplayTagContainer_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag_Statics
 	{
 		struct AggregateGameplayTagContainerUtils_eventRemoveTag_Parms
@@ -973,7 +1121,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTag_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTag_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1011,6 +1159,55 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventRemoveTagAll_Parms
+		{
+			FAggregateGameplayTagContainer Container;
+			FGameplayTag Tag;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Container;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tag_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Tag;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Tag_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Tag = { "Tag", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagAll_Parms, Tag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Tag_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Tag_MetaData)) }; // 802167388
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Container,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::NewProp_Tag,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Tag" },
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Remove all of the specified tag and it's derived tags\n" },
+		{ "DisplayName", "Remove Tag (all)" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Remove all of the specified tag and it's derived tags" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "RemoveTagAll", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::AggregateGameplayTagContainerUtils_eventRemoveTagAll_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact_Statics
 	{
 		struct AggregateGameplayTagContainerUtils_eventRemoveTagExact_Parms
@@ -1034,7 +1231,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1072,6 +1269,104 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventRemoveTagExactAll_Parms
+		{
+			FAggregateGameplayTagContainer Container;
+			FGameplayTag Tag;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Container;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tag_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Tag;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagExactAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Tag_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Tag = { "Tag", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagExactAll_Parms, Tag), Z_Construct_UScriptStruct_FGameplayTag, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Tag_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Tag_MetaData)) }; // 802167388
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Container,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::NewProp_Tag,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Tag" },
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Remove all of the specified tag\n" },
+		{ "DisplayName", "Remove Tag Exact (all)" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Remove all of the specified tag" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "RemoveTagExactAll", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::AggregateGameplayTagContainerUtils_eventRemoveTagExactAll_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventRemoveTagsAll_Parms
+		{
+			FAggregateGameplayTagContainer Container;
+			FGameplayTagContainer Tags;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Container;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tags_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Tags;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Tags_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Tags = { "Tags", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsAll_Parms, Tags), Z_Construct_UScriptStruct_FGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Tags_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Tags_MetaData)) }; // 506667518
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Container,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::NewProp_Tags,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Tags" },
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Remove all of the specified tags and their derived tags\n" },
+		{ "DisplayName", "Remove Tags (all)" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Remove all of the specified tags and their derived tags" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "RemoveTagsAll", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::AggregateGameplayTagContainerUtils_eventRemoveTagsAll_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics
 	{
 		struct AggregateGameplayTagContainerUtils_eventRemoveTagsExact_Parms
@@ -1091,7 +1386,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsExact_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::NewProp_Tags_Inner = { "Tags", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FAggregateGameplayTagValue, METADATA_PARAMS(nullptr, 0) }; // 1448319351
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::NewProp_Tags_MetaData[] = {
@@ -1108,7 +1403,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::Function_MetaDataParams[] = {
 		{ "AutoCreateRefTerm", "Tags" },
 		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Remove the specified number of exact tags\n" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Remove the specified number of exact tags" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "RemoveTagsExact", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::AggregateGameplayTagContainerUtils_eventRemoveTagsExact_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::Function_MetaDataParams)) };
@@ -1118,6 +1415,55 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics
+	{
+		struct AggregateGameplayTagContainerUtils_eventRemoveTagsExactAll_Parms
+		{
+			FAggregateGameplayTagContainer Container;
+			FGameplayTagContainer Tags;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Container;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Tags_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Tags;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsExactAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(nullptr, 0) }; // 3960791148
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Tags_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Tags = { "Tags", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventRemoveTagsExactAll_Parms, Tags), Z_Construct_UScriptStruct_FGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Tags_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Tags_MetaData)) }; // 506667518
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Container,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::NewProp_Tags,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::Function_MetaDataParams[] = {
+		{ "AutoCreateRefTerm", "Tags" },
+		{ "Category", "Weapon System Function Library|Aggregate Container" },
+		{ "Comment", "// Remove all of the specified tags\n" },
+		{ "DisplayName", "Remove Tags Exact (all)" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/AggregateTagContainer.h" },
+		{ "ToolTip", "Remove all of the specified tags" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAggregateGameplayTagContainerUtils, nullptr, "RemoveTagsExactAll", nullptr, nullptr, sizeof(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::AggregateGameplayTagContainerUtils_eventRemoveTagsExactAll_Parms), Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1152,7 +1498,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventUnbind_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventUnbind_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind_Statics::NewProp_Tag_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1214,7 +1560,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventUnbindAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container_MetaData)) }; // 3689531436
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container = { "Container", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AggregateGameplayTagContainerUtils_eventUnbindAll_Parms, Container), Z_Construct_UScriptStruct_FAggregateGameplayTagContainer, METADATA_PARAMS(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Container_MetaData)) }; // 3960791148
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll_Statics::NewProp_Target_MetaData[] = {
 		{ "NativeConst", "" },
@@ -1262,21 +1608,27 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAggregateGameplayTagContainerUtils_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AddTag, "AddTag" }, // 1725684815
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags, "AppendTags" }, // 1917257762
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged, "BindTagCountChanged" }, // 2778605356
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer, "Conv_AggregateGameplayTagContainerToGameplayTagContainer" }, // 167429219
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString, "Conv_AggregateGameplayTagContainerToString" }, // 3222636449
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString, "GetAggregateTagCountDebugString" }, // 2682680060
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues, "GetAggregateTagValues" }, // 1416233038
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues, "GetExactTagValues" }, // 2179203120
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount, "GetTagCount" }, // 3745146852
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact, "GetTagCountExact" }, // 2991786858
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag, "RemoveTag" }, // 4199165365
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact, "RemoveTagExact" }, // 4056989213
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact, "RemoveTagsExact" }, // 4004867152
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind, "Unbind" }, // 3902300517
-		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll, "UnbindAll" }, // 2673019696
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AddTag, "AddTag" }, // 2576802580
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_AppendTags, "AppendTags" }, // 1916813292
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_BindTagCountChanged, "BindTagCountChanged" }, // 342675204
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToGameplayTagContainer, "Conv_AggregateGameplayTagContainerToGameplayTagContainer" }, // 1619413436
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Conv_AggregateGameplayTagContainerToString, "Conv_AggregateGameplayTagContainerToString" }, // 2639649180
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Empty, "Empty" }, // 4087679595
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagCountDebugString, "GetAggregateTagCountDebugString" }, // 110175944
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetAggregateTagValues, "GetAggregateTagValues" }, // 4063437020
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetExactTagValues, "GetExactTagValues" }, // 3608119495
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCount, "GetTagCount" }, // 3118919839
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_GetTagCountExact, "GetTagCountExact" }, // 1628400250
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_MakeAggregateGameplayTagContainer, "MakeAggregateGameplayTagContainer" }, // 3987966187
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTag, "RemoveTag" }, // 3915542134
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagAll, "RemoveTagAll" }, // 3624366508
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExact, "RemoveTagExact" }, // 1035048094
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagExactAll, "RemoveTagExactAll" }, // 671418332
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsAll, "RemoveTagsAll" }, // 389232987
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExact, "RemoveTagsExact" }, // 222376936
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_RemoveTagsExactAll, "RemoveTagsExactAll" }, // 2374441948
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_Unbind, "Unbind" }, // 2163027089
+		{ &Z_Construct_UFunction_UAggregateGameplayTagContainerUtils_UnbindAll, "UnbindAll" }, // 3582789757
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAggregateGameplayTagContainerUtils_Statics::Class_MetaDataParams[] = {
@@ -1316,20 +1668,20 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAggregateGameplay
 		return UAggregateGameplayTagContainerUtils::StaticClass();
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UAggregateGameplayTagContainerUtils);
-	struct Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics
+	struct Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics
 	{
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo[] = {
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo[] = {
 		{ FAggregateGameplayTagValue::StaticStruct, Z_Construct_UScriptStruct_FAggregateGameplayTagValue_Statics::NewStructOps, TEXT("AggregateGameplayTagValue"), &Z_Registration_Info_UScriptStruct_AggregateGameplayTagValue, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateGameplayTagValue), 1448319351U) },
-		{ FAggregateGameplayTagContainer::StaticStruct, Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewStructOps, TEXT("AggregateGameplayTagContainer"), &Z_Registration_Info_UScriptStruct_AggregateGameplayTagContainer, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateGameplayTagContainer), 3689531436U) },
+		{ FAggregateGameplayTagContainer::StaticStruct, Z_Construct_UScriptStruct_FAggregateGameplayTagContainer_Statics::NewStructOps, TEXT("AggregateGameplayTagContainer"), &Z_Registration_Info_UScriptStruct_AggregateGameplayTagContainer, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAggregateGameplayTagContainer), 3960791148U) },
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAggregateGameplayTagContainerUtils, UAggregateGameplayTagContainerUtils::StaticClass, TEXT("UAggregateGameplayTagContainerUtils"), &Z_Registration_Info_UClass_UAggregateGameplayTagContainerUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAggregateGameplayTagContainerUtils), 2079225639U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UAggregateGameplayTagContainerUtils, UAggregateGameplayTagContainerUtils::StaticClass, TEXT("UAggregateGameplayTagContainerUtils"), &Z_Registration_Info_UClass_UAggregateGameplayTagContainerUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAggregateGameplayTagContainerUtils), 4025075062U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_316219904(TEXT("/Script/WeaponSystemPlugin"),
-		Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo),
-		Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_WeaponSystemExample_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_3742924664(TEXT("/Script/WeaponSystemPlugin"),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ClassInfo),
+		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AggregateTagContainer_h_Statics::ScriptStructInfo),
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

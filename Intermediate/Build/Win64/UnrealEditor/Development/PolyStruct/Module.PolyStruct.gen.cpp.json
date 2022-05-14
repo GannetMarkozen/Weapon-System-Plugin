@@ -1,18 +1,18 @@
 {
     "Version": "1.1",
     "Data": {
-        "Source": "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\polystruct\\module.polystruct.gen.cpp",
+        "Source": "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\polystruct\\module.polystruct.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\intermediate\\build\\win64\\weaponsystemexampleeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "PCH": "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\intermediate\\build\\win64\\animeshootereditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\polystruct\\definitions.polystruct.h",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstruct.h",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.generated.h",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstructfunctionlibrary.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstructfunctionlibrary.h",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstructfunctionlibrary.generated.h",
-            "c:\\users\\azart\\documents\\unreal projects\\weaponsystemexample\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polystruct.init.gen.cpp"
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\polystruct\\definitions.polystruct.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstruct.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstruct.generated.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstructfunctionlibrary.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\polystruct\\public\\polymorphic\\polymorphicstructfunctionlibrary.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polymorphicstructfunctionlibrary.generated.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\polystruct\\polystruct.init.gen.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

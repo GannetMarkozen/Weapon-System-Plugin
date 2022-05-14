@@ -24,10 +24,11 @@ bool FPolyStruct::operator==(const FPolyStruct& Other) const
 {
 	if(!IsValid() && !Other.IsValid()) return true;// Both invalid
 	if(ScriptStruct != Other.ScriptStruct) return false;// Not the same type or one is invalid
-	if(ScriptStruct->GetCppStructOps()->HasIdentical())// Check data for validity
+	UScriptStruct::ICppStructOps* StructOps = ScriptStruct->GetCppStructOps();
+	if(StructOps && StructOps->HasIdentical())// Check data for validity
 	{
 		bool bOutIdentical;
-		ScriptStruct->GetCppStructOps()->Identical(GetMemory(), Other.GetMemory(), PPF_None, bOutIdentical);
+		StructOps->Identical(GetMemory(), Other.GetMemory(), PPF_None, bOutIdentical);
 		return bOutIdentical;
 	}
 	// Memory compare if no Has Identical
@@ -43,6 +44,7 @@ void FPolyStruct::SetStruct(const void* InStruct, const UScriptStruct* InScriptS
 	// Malloc memory based on structure size
 	ScriptStruct = (UScriptStruct*)InScriptStruct;
 	Memory = (uint8*)FMemory::Malloc(ScriptStruct->GetStructureSize());
+	ScriptStruct->InitializeStruct(Memory);// Necessary to not crash
 	ScriptStruct->CopyScriptStruct(Memory, InStruct);
 }
 
@@ -59,9 +61,10 @@ void FPolyStruct::SetStruct(const UScriptStruct* InScriptStruct)
 bool FPolyStruct::ExtractStruct(void* const OutStruct, const UScriptStruct* InScriptStruct) const
 {
 	if(!IsValid() || !IsA(InScriptStruct)) return false;
-	if(InScriptStruct->GetCppStructOps() && InScriptStruct->GetCppStructOps()->HasCopy())
+	UScriptStruct::ICppStructOps* StructOps = InScriptStruct->GetCppStructOps();
+	if(StructOps && StructOps->HasCopy())
 	{
-		InScriptStruct->GetCppStructOps()->Copy(OutStruct, Memory, 1);
+		StructOps->Copy(OutStruct, Memory, 1);
 	}
 	else
 	{
@@ -123,10 +126,11 @@ bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess
 	{
 		if(Ar.IsLoading())
 			SetStruct(Struct);// Set struct uninitialized
-		
-		if(Struct->UseNativeSerialization())
+
+		UScriptStruct::ICppStructOps* StructOps = Struct->GetCppStructOps();
+		if(StructOps && StructOps->HasNetSerializer())
 		{//	Native net serialize
-			Struct->GetCppStructOps()->NetSerialize(Ar, Map, bOutSuccess, Memory);
+			StructOps->NetSerialize(Ar, Map, bOutSuccess, Memory);
 		}
 		else
 		{
@@ -150,6 +154,13 @@ bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess
 	bOutSuccess = true;
 	return true;
 }
+
+void FPolyStruct::AddStructReferencedObjects(FReferenceCollector& Collector)
+{
+	if(!ScriptStruct) return;
+	Collector.AddReferencedObjects((const UScriptStruct*&)ScriptStruct, Memory);
+}
+
 
 
 
@@ -206,8 +217,8 @@ To* FPolyStructHandle::GetAny() const
 template <typename T>
 void FPolyStructHandle::CastStructs(TArray<T*>& Structs)
 {
-	for(FPolyStruct& PolyStruct : PolyStruct)
-		if(T* Struct = Cast<T>(PolyStruct))
+	for(TSharedPtr<FPolyStruct, ESPMode::ThreadSafe>& PolyStruct : PolyStructs)
+		if(T* Struct = Cast<T>(PolyStruct.Get()))
 			Structs.Add(Struct);
 }
 
@@ -233,11 +244,17 @@ FPolyStructHandle& FPolyStructHandle::operator=(const FPolyStructHandle& Other)
 	return *this;*/
 }
 
-
-void FPolyStruct::AddStructReferencedObjects(FReferenceCollector& Collector)
+FString FPolyStructHandle::ToString() const
 {
-	if(!ScriptStruct) return;
-	Collector.AddReferencedObjects((const UScriptStruct*&)ScriptStruct, Memory);
+	if(IsEmpty()) return FString("{}");
+	FString String = FString("{ ");
+	for(int32 i = 0; i < Num(); i++)
+	{
+		const TSharedPtr<FPolyStruct>& PolyStruct = PolyStructs[i];
+		String += PolyStruct.IsValid() ? PolyStruct->ToString() : FString("None");
+		if(i != Num()) String += FString(", ");
+	}
+	return String += FString(" }");
 }
 
 bool FPolyStructHandle::Serialize(FArchive& Ar)

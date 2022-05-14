@@ -175,6 +175,8 @@ bool FAggregateGameplayTagContainer::NetSerialize(FArchive& Ar, UPackageMap* Map
 	return bOutSuccess = true;
 }
 
+
+
 void FAggregateGameplayTagContainer::AppendTags(const FGameplayTagContainer& Tags, const int32 Count)
 {
 	if(Tags.IsEmpty() || Count <= 0) return;
@@ -302,7 +304,16 @@ void FAggregateGameplayTagContainer::RemoveTagsExact(const TArray<Value>& Tags)
 	BroadcastChanges(OldAggrTagCount);
 }
 
-
+void FAggregateGameplayTagContainer::Empty()
+{
+	if(IsEmpty()) return;
+	const auto OldAggrTagCount = AggregateTagCount;
+	
+	TagCount.Empty();
+	AggregateTagCount.Empty();
+	
+	BroadcastChanges(OldAggrTagCount);
+}
 
 
 void FAggregateGameplayTagContainer::BroadcastChanges(const TArray<Value>& OldAggregateTagCount) const
@@ -352,15 +363,23 @@ void FAggregateGameplayTagContainer::BroadcastChange(const FGameplayTag& Tag, co
 template<typename UserClass, bool bConst>
 void FAggregateGameplayTagContainer::BindUObject(const FGameplayTag& Tag, UserClass* Target, const TMemFunPtrType<bConst, UserClass, void(const ThisStruct&, const FGameplayTag&, int32, int32)> MemFuncPtr) const
 {
-	if(!Target || !MemFuncPtr) return;
+	if(!Tag.IsValid() || !Target || !MemFuncPtr) return;
 	Bindings.Add(Binding::MakeUObject(Tag, Target, MemFuncPtr));
 }
 
 void FAggregateGameplayTagContainer::BindUFunction(const FGameplayTag& Tag, UObject* Target, const FName& FuncName) const
 {
-	if(!Target || !FuncName.IsValid()) return;
+	if(!Tag.IsValid() || !Target || !FuncName.IsValid()) return;
 	Bindings.Add(Binding::MakeUFunction(Tag, Target, FuncName));
 }
+
+template<typename FunctorType, typename... Args>
+void FAggregateGameplayTagContainer::BindLambda(const FGameplayTag& Tag, FunctorType&& Lambda, Args... Vars) const
+{
+	if(!Tag.IsValid() || !Lambda) return;
+	Bindings.Add(Binding::MakeLambda(Tag, Lambda, Vars...));
+}
+
 
 void FAggregateGameplayTagContainer::UnbindAll(const UObject* Target) const
 {

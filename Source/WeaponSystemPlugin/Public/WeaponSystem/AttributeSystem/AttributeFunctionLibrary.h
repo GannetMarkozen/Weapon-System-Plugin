@@ -61,8 +61,11 @@ public:
 	static FORCEINLINE FName GetAttributeName(const FAttributeHandle& AttributeHandle) { return AttributeHandle.IsValid() ? AttributeHandle.GetUProperty()->GetFName() : NAME_None; }
 
 	// Manually sets the value of the attribute. Not recommended for complex calculations. Use Attribute System for complex calculations
-	UFUNCTION(BlueprintCallable, Category = "Weapon System Function Library|Attributes")
-	static void SetAttributeValue(UPARAM(ref) FAttributeHandle& AttributeHandle, const float NewValue) { if(AttributeHandle.IsValid()) AttributeHandle->SetValue(NewValue); }
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "OptionalContext"), Category = "Weapon System Function Library|Attributes")
+	static void SetAttributeValue(UPARAM(ref) FAttributeHandle& AttributeHandle, const float NewValue, UPARAM(ref) FPolyStructHandle& OptionalContext)
+	{
+		if(AttributeHandle.IsValid()) AttributeHandle->SetValue(NewValue, FAttributeModContext(nullptr, OptionalContext));
+	}
 
 	// Gets a copy of the attribute (not sure why this would be useful)
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attribute (a copy)", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Attributes")
@@ -108,11 +111,19 @@ public:
 
 	static FAttributeHandle GetAttributeHandle(class UObject* Target, const FName& AttributeName);
 
-	static FORCEINLINE bool TryApplyEffectToTarget(class UObject* Target, const class AActor* Instigator, const TSubclassOf<class UAttributeEffect> EffectClass, FPolyStructHandle& Context)
+	static FORCEINLINE bool TryApplyEffectToTarget(class UObject* Target, const TSubclassOf<class UAttributeEffect> EffectClass, const float Magnitude, const class AActor* Instigator, FPolyStructHandle& Context)
+	{
+		auto* AttrComp = GetAttributesComponent(Target);
+		return AttrComp && AttrComp->TryApplyEffect(EffectClass, Magnitude, Instigator, Context);
+	}
+	
+	static FORCEINLINE bool TryApplyInstantNumericEffectToTarget(UObject* Target, const FName& AttributeName, const float Magnitude,
+		const EEffectModType ModType, const EEffectRepCond RepCond, const AActor* OptionalInstigator, FPolyStructHandle& OptionalContext)
 	{
 		auto* AttrComp = GetAttributesComponent(Target);
 		if(!AttrComp) return false;
-		return AttrComp->TryApplyEffect(EffectClass, Instigator, Context);
+		AttrComp->ApplyInstantNumericEffect(AttributeName, Magnitude, ModType, RepCond, OptionalInstigator, OptionalContext);
+		return true;
 	}
 
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Get Attributes Component", ExpandEnumAsExecs = "OutPin"), Category = "Weapon System Function Library|Attributes")
@@ -141,10 +152,21 @@ public:
 		return Handle;
 	}
 
-	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Try Apply Effect To Target", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "Context"), Category = "Weapon System Function Library|Attributes")
-	static void BP_TryApplyEffectToTarget(const TSubclassOf<class UAttributeEffect> Effect, const class AActor* Instigator, class UObject* Target, UPARAM(ref) FPolyStructHandle& Context, EStructCastPin& OutPin)
+	// Searches the Target for an Attributes Component then calls Try Apply Effect on it
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Try Apply Effect To Target", ExpandEnumAsExecs = "OutPin", AutoCreateRefTerm = "Context",
+		DefaultToSelf = "Target", Keywords = "effect,apply,target,attribute"), Category = "Weapon System Function Library|Attributes")
+	static void BP_TryApplyEffectToTarget(class UObject* Target, const TSubclassOf<class UAttributeEffect> Effect, const float Magnitude, const class AActor* Instigator, UPARAM(ref) FPolyStructHandle& Context, EStructCastPin& OutPin)
 	{
-		OutPin = TryApplyEffectToTarget(Target, Instigator, Effect, Context) ? EStructCastPin::Success : EStructCastPin::Fail;
+		OutPin = TryApplyEffectToTarget(Target, Effect, Magnitude, Instigator, Context) ? EStructCastPin::Success : EStructCastPin::Fail;
+	}
+
+	// Searches the Target for an Attributes Component then calls Apply Instant Numeric Effect on it
+	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Try Apply Instant Numeric Effect To Target", ExpandEnumAsExecs = "OutPin",
+		AutoCreateRefTerm = "AttributeName,OptionalContext", DefaultToSelf = "Target", Keywords = "effect,apply,target,attribute"), Category = "Weapon System Function Library|Attributes")
+	static void BP_TryApplyInstantNumericEffectToTarget(UObject* Target, const FName& AttributeName, const float Magnitude, const EEffectModType ModificationType,
+		const EEffectRepCond ReplicationCondition, const AActor* OptionalInstigator, UPARAM(ref) FPolyStructHandle& OptionalContext, EStructCastPin& OutPin)
+	{
+		OutPin = TryApplyInstantNumericEffectToTarget(Target, AttributeName, Magnitude, ModificationType, ReplicationCondition, OptionalInstigator, OptionalContext) ? EStructCastPin::Success : EStructCastPin::Fail;
 	}
 
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")

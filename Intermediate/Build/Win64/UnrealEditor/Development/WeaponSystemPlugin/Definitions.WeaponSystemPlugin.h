@@ -55,8 +55,8 @@
 #define NDEBUG 1
 #define UE_BUILD_DEVELOPMENT 1
 #define UE_IS_ENGINE_MODULE 0
-#define UE_PROJECT_NAME WeaponSystemExample
-#define UE_TARGET_NAME WeaponSystemExampleEditor
+#define UE_PROJECT_NAME AnimeShooter
+#define UE_TARGET_NAME AnimeShooterEditor
 #define UE_MODULE_NAME "WeaponSystemPlugin"
 #define UE_PLUGIN_NAME "WeaponSystemPlugin"
 #define IMPLEMENT_ENCRYPTION_KEY_REGISTRATION() 

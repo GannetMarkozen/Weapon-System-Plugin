@@ -159,10 +159,8 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 	const FVector Difference = (Velocity - LastVelocity) * DeltaTime;
 	
 	VelocityTarget = UKismetMathLibrary::VInterpTo(VelocityTarget, Character->GetCharacterMovement()->Velocity, DeltaTime, VelocityInterpSpeed);
-	if(Difference.Z > 4.f)// Jumping / landing impulse
-	{
+	if(Difference.Z > 1.5f)// Jumping / landing impulse
 		VelocityTarget.Z += Difference.Z * 400.f * LandingImpactBobMultiplier;
-	}
 	
 	VelocityInterp = UKismetMathLibrary::VInterpTo(VelocityInterp, VelocityTarget, DeltaTime, 3.f);
 }
