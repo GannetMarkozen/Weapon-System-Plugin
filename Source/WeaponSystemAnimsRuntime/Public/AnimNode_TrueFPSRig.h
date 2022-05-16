@@ -31,25 +31,13 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_TrueFPSRig : public FAnimNode_Base
 	UPROPERTY(EditAnywhere, Category = "Bone References")
 	FBoneReference RightHand;
 
-	/*UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightLowerArm;
-
-	UPROPERTY(EditAnywhere, Category = "Right Arm")
-	FBoneReference RightUpperArm;*/
-	
 	UPROPERTY(EditAnywhere, Category = "Bone References")
 	FBoneReference LeftHand;
 
 	UPROPERTY(EditAnywhere, Category = "Bone References")
 	FBoneReference Head;
 
-	/*UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftLowerArm;
-	
-	UPROPERTY(EditAnywhere, Category = "Left Arm")
-	FBoneReference LeftUpperArm;*/
-
-	// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head).
+	// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)
 	UPROPERTY(EditAnywhere, Category = "Bone References")
 	FBoneReference StableBone;
 
@@ -227,6 +215,31 @@ private:
 		InOutValue = FMath::Clamp<T>(InOutValue, Range.GetLowerBound().IsClosed() ? Range.GetLowerBoundValue() : -INFINITY,
 			Range.GetUpperBound().IsClosed() ? Range.GetUpperBoundValue() : INFINITY);
 	}
+
+	static FTransform GetCSTransform(const FCompactPose& Pose, int32 BoneIndex)
+	{
+		FTransform BoneCSTransform = FTransform::Identity;
+		while(Pose.GetBones().IsValidIndex(BoneIndex))
+		{
+			BoneCSTransform *= Pose[FCompactPoseBoneIndex(BoneIndex)];
+			BoneIndex = Pose.GetBoneContainer().GetCompactPoseParentBoneArray()[BoneIndex].GetInt();
+		}
+		return BoneCSTransform;
+	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

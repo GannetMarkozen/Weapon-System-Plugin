@@ -64,6 +64,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (ClampMin = "0", DisplayName = "Effect Lifespan Duration", EditCondition = "EffectDurType == EEffectDuration::ForDuration"), Category = "Configurations")
 	float Lifespan = 5.f;
 
+	// The optional tag for representing this Effect to allow for searching for the tag
+	// within the Attributes Component
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
+	FGameplayTag EffectTag;
+
 	// Tags applied when this Effect is successfully applied
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations|Tags")
 	TArray<FAggregateGameplayTagValue> AppliedTags;
@@ -116,6 +121,7 @@ protected:
 	}
 
 public:
+	FORCEINLINE const FGameplayTag& GetEffectTag() const { return EffectTag; }
 	FORCEINLINE const TArray<FAttributeModParams>& GetAttributeModParams() const { return Modifiers; }
 	FORCEINLINE EEffectDuration GetDurationType() const { return EffectDurType; }
 	FORCEINLINE EEffectRepCond GetRepCond() const { return EffectRepCond; }

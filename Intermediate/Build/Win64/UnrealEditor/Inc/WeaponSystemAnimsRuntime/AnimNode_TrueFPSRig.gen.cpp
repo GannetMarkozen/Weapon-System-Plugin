@@ -218,9 +218,7 @@ template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FAnimNode_Tr
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData[] = {
 		{ "Category", "Bone References" },
-		{ "Comment", "/*UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n\x09""FBoneReference RightLowerArm;\n\n\x09UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n\x09""FBoneReference RightUpperArm;*/" },
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Right Arm\")\n       FBoneReference RightUpperArm;" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand = { "LeftHand", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, LeftHand), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_LeftHand_MetaData)) }; // 831728502
@@ -234,9 +232,9 @@ template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FAnimNode_Tr
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData[] = {
 		{ "Category", "Bone References" },
-		{ "Comment", "/*UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n\x09""FBoneReference LeftLowerArm;\n\x09\n\x09UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n\x09""FBoneReference LeftUpperArm;*/// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head).\n" },
+		{ "Comment", "// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)\n" },
 		{ "ModuleRelativePath", "Public/AnimNode_TrueFPSRig.h" },
-		{ "ToolTip", "UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftLowerArm;\n\n       UPROPERTY(EditAnywhere, Category = \"Left Arm\")\n       FBoneReference LeftUpperArm;// The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)." },
+		{ "ToolTip", "The bone that will remain rotationally-stable (usually pelvis / top spine bone / head)" },
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone = { "StableBone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAnimNode_TrueFPSRig, StableBone), Z_Construct_UScriptStruct_FBoneReference, METADATA_PARAMS(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewProp_StableBone_MetaData)) }; // 831728502
@@ -604,9 +602,9 @@ template<> WEAPONSYSTEMANIMSRUNTIME_API UScriptStruct* StaticStruct<FAnimNode_Tr
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo[] = {
-		{ FAnimNode_TrueFPSRig::StaticStruct, Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewStructOps, TEXT("AnimNode_TrueFPSRig"), &Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAnimNode_TrueFPSRig), 3680702963U) },
+		{ FAnimNode_TrueFPSRig::StaticStruct, Z_Construct_UScriptStruct_FAnimNode_TrueFPSRig_Statics::NewStructOps, TEXT("AnimNode_TrueFPSRig"), &Z_Registration_Info_UScriptStruct_AnimNode_TrueFPSRig, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAnimNode_TrueFPSRig), 2136183750U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_679731498(TEXT("/Script/WeaponSystemAnimsRuntime"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_2037511055(TEXT("/Script/WeaponSystemAnimsRuntime"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemAnimsRuntime_Public_AnimNode_TrueFPSRig_h_Statics::ScriptStructInfo),
 		nullptr, 0);

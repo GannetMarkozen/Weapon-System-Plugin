@@ -261,6 +261,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Effect")
 	int32 RemoveActiveEffectsByClass(const TSubclassOf<UAttributeEffect> Class, const bool bIncludeChildren = true);
 
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Tag"), Category = "Effect")
+	int32 RemoveActiveEffectsByTag(const FGameplayTag& Tag, const bool bExact = false);
+
+	UFUNCTION(BlueprintPure, Category = "Effect")
+	int32 GetActiveEffectCountByClass(const TSubclassOf<UAttributeEffect> Class, const bool bIncludeChildren = true) const;
+
+	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "Tag"), Category = "Effect")
+	int32 GetActiveEffectCountByTag(const FGameplayTag& Tag, const bool bExact = false) const;
+
 protected:
 	virtual void Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context);
 	virtual void Internal_RemoveActiveEffect(const int32 Index, const EEffectRemovalReason Reason = EEffectRemovalReason::LifespanEnd);
@@ -320,6 +329,9 @@ protected:
 	}
 
 	void SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FAttributeModContext& ModContext);
+public:
+	// ActiveEffect, Index
+	void ForEachActiveEffect(const TFunction<void(FActiveEffect&,int32)>& Functor) const;
 };
 
 

@@ -90,6 +90,8 @@ public:
 	FAggregateGameplayTagContainer() = default;
 	FAggregateGameplayTagContainer(const ThisStruct& Other) : TagCount(Other.TagCount), AggregateTagCount(Other.AggregateTagCount) {}
 	FAggregateGameplayTagContainer(ThisStruct&& Other) noexcept : TagCount(MoveTemp(Other.TagCount)), AggregateTagCount(MoveTemp(Other.AggregateTagCount)) {}
+	FAggregateGameplayTagContainer(const FGameplayTagContainer& Tags, const int32 Count = 1) { AppendTags(Tags, Count); }
+	FAggregateGameplayTagContainer(const TArray<Value>& Tags) { AppendTags(Tags); }
 
 	FORCEINLINE ThisStruct& operator=(const ThisStruct& Other) { TagCount = Other.TagCount; AggregateTagCount = Other.AggregateTagCount; return *this; }
 	FORCEINLINE bool operator==(const ThisStruct& Other) const { return TagCount == Other.TagCount; }

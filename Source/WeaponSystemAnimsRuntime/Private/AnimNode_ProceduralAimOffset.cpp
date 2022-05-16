@@ -3,6 +3,7 @@
 
 #include "AnimNode_ProceduralAimOffset.h"
 
+#include "WeaponSystemAnimUtils.h"
 #include "Animation/AnimInstanceProxy.h"
 #include "BoneControllers/AnimNode_Fabrik.h"
 
@@ -54,10 +55,13 @@ void FAnimNode_ProceduralAimOffset::Update_AnyThread(const FAnimationUpdateConte
 	ReferencePose.Update(Context);
 }
 
-FQuat FAnimNode_ProceduralAimOffset::GetAccumulativeOffsetInverse(const int32 BoneIndex, const FReferenceSkeleton& ReferenceSkeleton, const TArray<FTransform>& CurrentBoneTransforms, const TArray<FTransform>& ReferenceBoneTransforms)
+FQuat FAnimNode_ProceduralAimOffset::GetAccumulativeOffsetInverse(const int32 BoneIndex, const FCompactPose& BasePose, const FCompactPose& StablePose)
 {
-	FQuat AccumulativeOffsetInverse = FAnimationRuntime::GetComponentSpaceTransform(ReferenceSkeleton, ReferenceBoneTransforms, BoneIndex).GetRotation() *
-		FAnimationRuntime::GetComponentSpaceTransform(ReferenceSkeleton, CurrentBoneTransforms, BoneIndex).GetRotation().Inverse() * CurrentBoneTransforms[0].GetRotation();
+	//FQuat AccumulativeOffsetInverse = FAnimationRuntime::GetComponentSpaceTransform(ReferenceSkeleton, ReferenceBoneTransforms, BoneIndex).GetRotation() *
+	//	FAnimationRuntime::GetComponentSpaceTransform(ReferenceSkeleton, CurrentBoneTransforms, BoneIndex).GetRotation().Inverse() * CurrentBoneTransforms[0].GetRotation();
+	const FCompactPoseBoneIndex CompactBoneIndex = WSAnimUtils::SkeletonIndexToCompactPoseIndex(BasePose.GetBoneContainer(), FSkeletonPoseBoneIndex(BoneIndex));
+	FQuat AccumulativeOffsetInverse = WSAnimUtils::GetCSTransform(StablePose, CompactBoneIndex).GetRotation() *
+		WSAnimUtils::GetCSTransform(BasePose, CompactBoneIndex).GetRotation().Inverse() * BasePose.GetBones()[0].GetRotation();
 	
 	// Reverse twisting if exceeds 180 degrees
 	if(abs(AccumulativeOffsetInverse.GetAngle()) > PI)
@@ -104,7 +108,7 @@ void FAnimNode_ProceduralAimOffset::Evaluate_AnyThread(FPoseContext& Output)
 	if(abs(AccumulativeOffsetInverse.GetAngle()) > PI)
 		AccumulativeOffsetInverse *= FQuat(AccumulativeOffsetInverse.Vector(), -2 * PI);*/
 
-	const FQuat& AccumulativeOffsetInverse = GetAccumulativeOffsetInverse(SpineBoneParams[SpineBoneParams.Num() - 1].Bone.BoneIndex, RefSkel, CurrBoneTransforms, RefBoneTransforms);
+	const FQuat& AccumulativeOffsetInverse = GetAccumulativeOffsetInverse(SpineBoneParams[SpineBoneParams.Num() - 1].Bone.BoneIndex, Output.Pose, StablePoseContext.Pose);
 
 	// Cache spine offset inverses to be applied later so that
 	// the references to not get modified in the process of application

@@ -76,5 +76,5 @@ struct WEAPONSYSTEMANIMSRUNTIME_API FAnimNode_ProceduralAimOffset : public FAnim
 	// End of FAnimNode_Base interface
 
 	// Helper func
-	static FQuat GetAccumulativeOffsetInverse(const int32 BoneIndex, const FReferenceSkeleton& ReferenceSkeleton, const TArray<FTransform>& CurrentBoneTransforms, const TArray<FTransform>& ReferenceBoneTransforms);
+	static FQuat GetAccumulativeOffsetInverse(const int32 BoneIndex, const FCompactPose& BasePose, const FCompactPose& StablePose);
 };

@@ -16,9 +16,9 @@ struct FEffectNetPredKey;
 struct FPolyStructHandle;
 struct FInstantNumericEffectNetValue;
 enum class EEffectModType : uint8;
+struct FGameplayTag;
 class UAttributeEffect;
 enum class EEffectRepCond : uint8;
-struct FGameplayTag;
 #ifdef WEAPONSYSTEMPLUGIN_AttributesComponent_generated_h
 #error "AttributesComponent.generated.h already included, missing '#pragma once' in AttributesComponent.h"
 #endif
@@ -91,6 +91,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FInstantNum
 	DECLARE_FUNCTION(execServer_ApplyEffect); \
 	DECLARE_FUNCTION(execNet_ApplyInstantNumericEffect); \
 	DECLARE_FUNCTION(execInternal_ApplyInstantNumericEffect); \
+	DECLARE_FUNCTION(execGetActiveEffectCountByTag); \
+	DECLARE_FUNCTION(execGetActiveEffectCountByClass); \
+	DECLARE_FUNCTION(execRemoveActiveEffectsByTag); \
 	DECLARE_FUNCTION(execRemoveActiveEffectsByClass); \
 	DECLARE_FUNCTION(execApplyInstantNumericEffect); \
 	DECLARE_FUNCTION(execTryApplyEffect); \
@@ -117,6 +120,9 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FInstantNum
 	DECLARE_FUNCTION(execServer_ApplyEffect); \
 	DECLARE_FUNCTION(execNet_ApplyInstantNumericEffect); \
 	DECLARE_FUNCTION(execInternal_ApplyInstantNumericEffect); \
+	DECLARE_FUNCTION(execGetActiveEffectCountByTag); \
+	DECLARE_FUNCTION(execGetActiveEffectCountByClass); \
+	DECLARE_FUNCTION(execRemoveActiveEffectsByTag); \
 	DECLARE_FUNCTION(execRemoveActiveEffectsByClass); \
 	DECLARE_FUNCTION(execApplyInstantNumericEffect); \
 	DECLARE_FUNCTION(execTryApplyEffect); \

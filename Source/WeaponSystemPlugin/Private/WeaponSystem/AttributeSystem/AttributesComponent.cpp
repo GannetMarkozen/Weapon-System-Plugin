@@ -54,14 +54,53 @@ int32 UAttributesComponent::RemoveActiveEffectsByClass(const TSubclassOf<UAttrib
 {
 	if(!Class) return 0;
 	int32 NumRemoved = 0;
-	for(int32 i = 0; i < ActiveEffects.Num(); i++)
+	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
 	{
-		if(bIncludeChildren ? !ActiveEffects[i]->Effect->IsChildOf(Class) : ActiveEffects[i]->Effect != Class) continue;
+		if(bIncludeChildren ? !ActiveEffect.Effect->IsChildOf(Class) : ActiveEffect.Effect != Class) return;
 		Internal_RemoveActiveEffect(i, EEffectRemovalReason::ManualRemoval);
 		NumRemoved++;
-	}
+	});
+	return NumRemoved;
+} 
+
+int32 UAttributesComponent::RemoveActiveEffectsByTag(const FGameplayTag& Tag, const bool bExact)
+{
+	if(!Tag.IsValid()) return 0;
+	int32 NumRemoved = 0;
+	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
+	{
+		const FGameplayTag& EffectTag = ActiveEffect.Effect.GetDefaultObject()->GetEffectTag();
+		if(bExact ? !EffectTag.MatchesTagExact(Tag) : !EffectTag.MatchesTag(Tag)) return;
+		Internal_RemoveActiveEffect(i, EEffectRemovalReason::ManualRemoval);
+		NumRemoved++;
+	});
 	return NumRemoved;
 }
+
+int32 UAttributesComponent::GetActiveEffectCountByClass(const TSubclassOf<UAttributeEffect> Class, const bool bIncludeChildren) const
+{
+	int32 NumEffects = 0;
+	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
+	{
+		if(bIncludeChildren ? ActiveEffect.Effect->IsChildOf(Class) : ActiveEffect.Effect == Class) NumEffects++;
+	});
+	return NumEffects;
+}
+
+int32 UAttributesComponent::GetActiveEffectCountByTag(const FGameplayTag& Tag, const bool bExact) const
+{
+	int32 NumEffects = 0;
+	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
+	{
+		const FGameplayTag& EffectTag = ActiveEffect.Effect.GetDefaultObject()->GetEffectTag();
+		if(bExact ? EffectTag.MatchesTagExact(Tag) : EffectTag.MatchesTag(Tag)) NumEffects++;
+	});
+	return NumEffects;
+}
+
+
+
+
 
 
 bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
@@ -85,14 +124,14 @@ bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Ef
 	
 	switch(Effect.GetDefaultObject()->GetRepCond())
 	{
-	case EEffectRepCond::LocalOnly:
+	case EEffectRepCond::LocalOnly:// Apply effect locally
 		Internal_ApplyEffect(Effect, Magnitude, Instigator, Context);
 		break;
-	case EEffectRepCond::ServerOnly:
+	case EEffectRepCond::ServerOnly:// Call TryApplyEffect on the server
 		static UFunction* Function(FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Server_ApplyEffect)));
 		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, Function, FServerApplyEffectNetParams(Effect, Magnitude, (AActor*)Instigator, Context));
 		break;
-	case EEffectRepCond::LocalPredicted:
+	case EEffectRepCond::LocalPredicted:// Apply effect locally, apply effect on server, then send client result of net prediction
 		LocalPredicted_ApplyEffect(Effect, Magnitude, Instigator, Context);
 		break;
 	}
@@ -320,6 +359,13 @@ void UAttributesComponent::SetAttributeValue(FAttributeHandle& Attribute, const 
 
 
 
+
+void UAttributesComponent::ForEachActiveEffect(const TFunction<void(FActiveEffect&, int32)>& Functor) const
+{
+	for(int32 i = 0; i < ActiveEffects.Num(); i++)
+		if(FActiveEffect* ActiveEffect = ActiveEffects[i].Get())
+			Functor(*ActiveEffect, i);
+}
 
 
 
