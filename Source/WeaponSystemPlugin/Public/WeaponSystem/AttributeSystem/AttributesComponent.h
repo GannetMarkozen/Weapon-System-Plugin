@@ -61,17 +61,19 @@ struct WEAPONSYSTEMPLUGIN_API FActiveEffect
 	
 	FActiveEffect() = default;
 	FActiveEffect(const FActiveEffect& Other)
-		: Effect(Other.Effect), Magnitude(Other.Magnitude), Context(Other.Context) { checkf(Effect, TEXT("Effect is invalid")); }
-	FActiveEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const FPolyStructHandle& Context)
-		: Effect(Effect), Magnitude(Magnitude), Context(Context) { checkf(Effect, TEXT("Effect is invalid")); }
+		: Magnitude(Other.Magnitude), ModContext(Other.ModContext) { checkf(ModContext.EffectClass.Get() != nullptr, TEXT("Effect is invalid")); }
+	//FActiveEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const FPolyStructHandle& Context)
+	//	: Effect(Effect), Magnitude(Magnitude), Context(Context) { checkf(Effect, TEXT("Effect is invalid")); }
+	FActiveEffect(const float Magnitude, const FEffectModContext& ModContext)
+		: Magnitude(Magnitude), ModContext(ModContext) {}
 
-	FORCEINLINE TSubclassOf<class UAttributeEffect> GetEffect() const { return Effect; }
-	FORCEINLINE const FPolyStructHandle& GetContext() const { return Context; }
+	FORCEINLINE TSubclassOf<UAttributeEffect> GetEffect() const { return ModContext.EffectClass; }
+	FORCEINLINE const FEffectModContext& GetContext() const { return ModContext; }
 
 protected:
-	TSubclassOf<UAttributeEffect> Effect;
 	float Magnitude;
-	FPolyStructHandle Context;
+	FEffectModContext ModContext;
+
 	
 public:
 	FTimerHandle IntervalTimerHandle;
@@ -162,29 +164,14 @@ struct WEAPONSYSTEMPLUGIN_API FInstantNumericEffectNetValue
 	GENERATED_BODY()
 
 	FInstantNumericEffectNetValue() = default;
-	FInstantNumericEffectNetValue(const FAttributeHandle& Attribute, const float Value, const EEffectModType ModType, const FPolyStructHandle& Context)
-		: Attribute(Attribute), Value(Value), ModType(ModType), Context(Context) {}
-
-	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
-	{
-		Ar << Attribute << Value << ModType;
-		Context.NetSerialize(Ar, Map, bOutSuccess);
-		return true;
-	}
+	FInstantNumericEffectNetValue(const FAttributeHandle& Attribute, const float Value, const EEffectModType ModType, const AActor* Instigator, const FPolyStructHandle& Context)
+		: Attribute(Attribute), Value(Value), ModType(ModType), Instigator((AActor*)Instigator), Context(Context) {}
 	
-	FAttributeHandle Attribute;
-	float Value = 0.f;
-	EEffectModType ModType;
-	FPolyStructHandle Context;
-};
-
-template<>
-struct TStructOpsTypeTraits<FInstantNumericEffectNetValue> : TStructOpsTypeTraitsBase2<FInstantNumericEffectNetValue>
-{
-	enum
-	{
-		WithNetSerializer = true
-	};
+	UPROPERTY() FAttributeHandle Attribute;
+	UPROPERTY() float Value = 0.f;
+	UPROPERTY() EEffectModType ModType;
+	UPROPERTY() AActor* Instigator;
+	UPROPERTY() FPolyStructHandle Context;
 };
 
 
@@ -211,7 +198,7 @@ protected:
 
 	TArray<TSharedPtr<FActiveEffect>> ActiveEffects;
 	TMap<FEffectNetPredKey, TWeakPtr<FActiveEffect>> LocalPredictedEffects;
-	TMap<FAttributeHandle, FAttributeModContext> LatestAttributeModContext;// @TODO Element removal method in FAttribute doesn't cover every case :/
+	TMap<FAttributeHandle, FEffectModContext> LatestAttributeModContext;// @TODO Element removal method in FAttribute doesn't cover every case :/
 
 public:
 	// Gameplay Tag Container used for state calculations. Attribute Effects can modify these tags.
@@ -226,8 +213,8 @@ public:
 	void GetAllActiveEffects(TArray<TSubclassOf<UAttributeEffect>>& OutEffects) const
 	{
 		for(const TSharedPtr<FActiveEffect>& ActiveEffectPtr : ActiveEffects)
-			if(ActiveEffectPtr.IsValid() && ActiveEffectPtr->Effect.Get())
-				OutEffects.Add(ActiveEffectPtr->Effect);
+			if(ActiveEffectPtr.IsValid() && ActiveEffectPtr->GetEffect().Get())
+				OutEffects.Add(ActiveEffectPtr->GetEffect());
 	}
 
 	// Finds the attribute by name. If none exists this will return an invalid handle
@@ -275,10 +262,7 @@ protected:
 	virtual void Internal_RemoveActiveEffect(const int32 Index, const EEffectRemovalReason Reason = EEffectRemovalReason::LifespanEnd);
 
 	UFUNCTION()
-	virtual void Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, FPolyStructHandle& Context);
-
-	UFUNCTION()
-	FORCEINLINE void Net_ApplyInstantNumericEffect(const FInstantNumericEffectNetValue& Value) { Internal_ApplyInstantNumericEffect(Value.Attribute, Value.Value, Value.ModType, (FPolyStructHandle&)Value.Context); }
+	virtual void Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, const AActor* Instigator, FPolyStructHandle& Context);
 	
 	UFUNCTION(Server, Reliable)
 	void Server_ApplyEffect(UClass* Effect, const float Magnitude, const AActor* Instigator, const FPolyStructHandle& Context);
@@ -315,20 +299,20 @@ protected:
 
 	// Called before modifying an attribute with the given OutValue. This is where clamping should occur.
 	// Effect may be invalid if called from Apply Instant Numeric Effect
-	virtual void PreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, float& InOutValue) const {}
+	virtual void PreModifyAttribute(const FAttributeHandle& Attribute, const FEffectModContext& ModContext, float& InOutValue) const {}
 
 	// Called before modifying an attribute with the given OutValue. This is where clamping should occur
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Pre Modify Attribute"), Category = "Attributes")
-	void BP_PreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, const float InValue, float& OutValue) const;
+	void BP_PreModifyAttribute(const FAttributeHandle& Attribute, const FEffectModContext& ModContext, const float InValue, float& OutValue) const;
 
 	// Calls both BP and C++ implementations of PreModifyAttribute
-	FORCEINLINE void CallPreModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const FPolyStructHandle& Context, float& InOutValue) const
+	FORCEINLINE void CallPreModifyAttribute(const FAttributeHandle& Attribute, const FEffectModContext& ModContext, float& InOutValue) const
 	{
-		PreModifyAttribute(Attribute, Effect, Context, InOutValue);
-		BP_PreModifyAttribute(Attribute, Effect, Context, InOutValue, InOutValue);
+		PreModifyAttribute(Attribute, ModContext, InOutValue);
+		BP_PreModifyAttribute(Attribute, ModContext, InOutValue, InOutValue);
 	}
 
-	void SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FAttributeModContext& ModContext);
+	void SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FEffectModContext& ModContext);
 public:
 	// ActiveEffect, Index
 	void ForEachActiveEffect(const TFunction<void(FActiveEffect&,int32)>& Functor) const;

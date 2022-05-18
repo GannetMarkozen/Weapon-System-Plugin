@@ -29,16 +29,21 @@ protected:
 
 
 USTRUCT(BlueprintType)
-struct WEAPONSYSTEMPLUGIN_API FAttributeModContext
+struct WEAPONSYSTEMPLUGIN_API FEffectModContext
 {
 	GENERATED_BODY()
 
-	FAttributeModContext() = default;
-	FAttributeModContext(const TSubclassOf<UAttributeEffect> EffectClass, const FPolyStructHandle& Context)
-		: EffectClass(EffectClass), Context(Context) {}
+	FEffectModContext() = default;
+	FEffectModContext(const FEffectModContext& Other)
+		: EffectClass(Other.EffectClass), Instigator(Other.Instigator), Context(Other.Context) {}
+	FEffectModContext(const TSubclassOf<UAttributeEffect> EffectClass, AActor* Instigator, const FPolyStructHandle& Context)
+		: EffectClass(EffectClass), Instigator(Instigator), Context(Context) {}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UAttributeEffect> EffectClass = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Instigator;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FPolyStructHandle Context;	
@@ -46,7 +51,7 @@ struct WEAPONSYSTEMPLUGIN_API FAttributeModContext
 	bool HasData() const;
 	FORCEINLINE bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 	{
-		Ar << EffectClass;
+		Ar << EffectClass << Instigator;
 		return Context.NetSerialize(Ar, Map, bOutSuccess);
 	}
 };
@@ -122,8 +127,8 @@ struct TStructOpsTypeTraits<FAttributeHandle> : TStructOpsTypeTraitsBase2<FAttri
 
 //DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
 //DECLARE_DYNAMIC_DELEGATE_ThreeParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FAttributeModContext&, ModificationContext);
-DECLARE_DYNAMIC_DELEGATE_FourParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FAttributeModContext&, ModificationContext);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FAttributeValueChangedDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FEffectModContext&, ModificationContext);
+DECLARE_DYNAMIC_DELEGATE_FourParams(FAttributeValueChangedUniDelegate, float, NewValue, float, OldValue, UPARAM(ref) FAttributeHandle&, AttributeHandle, const FEffectModContext&, ModificationContext);
 
 USTRUCT(BlueprintType)
 struct WEAPONSYSTEMPLUGIN_API FAttribute
@@ -141,14 +146,14 @@ protected:
 	FAttributeHandle Handle;
 
 	// Manually broadcast the current state of the Attribute
-	FORCEINLINE void Broadcast(const float OldValue, const FAttributeModContext& ModContext) { OnAttributeChanged.Broadcast(Value, OldValue, Handle, ModContext); }
+	FORCEINLINE void Broadcast(const float OldValue, const FEffectModContext& ModContext) { OnAttributeChanged.Broadcast(Value, OldValue, Handle, ModContext); }
 	
 public:
 	// Called whenever the attribute changes
 	FAttributeValueChangedDelegate OnAttributeChanged;
 	
-	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { SetValue(Other.Value, FAttributeModContext()); Handle = Other.Handle; return *this; }
-	FORCEINLINE FAttribute& operator=(const float NewValue) { SetValue(NewValue, FAttributeModContext()); return *this; }
+	FORCEINLINE FAttribute& operator=(const FAttribute& Other) { SetValue(Other.Value, FEffectModContext()); Handle = Other.Handle; return *this; }
+	FORCEINLINE FAttribute& operator=(const float NewValue) { SetValue(NewValue, FEffectModContext()); return *this; }
 	FORCEINLINE bool operator==(const FAttribute& Other) const { return Handle == Other.Handle && Value == Other.Value; }
 	FORCEINLINE bool operator==(const FAttributeHandle& OtherHandle) const { return Handle == OtherHandle; }
 
@@ -163,7 +168,7 @@ public:
 	FORCEINLINE FProperty* GetUProperty() const { return Handle.IsValid() ? Handle.GetUProperty() : nullptr; }
 	
 	FORCEINLINE float GetValue() const { return Value; }
-	FORCEINLINE void SetValue(const float NewValue, const FAttributeModContext& ModContext = FAttributeModContext())
+	FORCEINLINE void SetValue(const float NewValue, const FEffectModContext& ModContext = FEffectModContext())
 	{
 		if(NewValue == Value) return;
 		const float OldValue = Value;

@@ -83,41 +83,41 @@ protected:
 	
 	// Whether or not this effect should be applied. Returns true by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect")
-	bool CanApplyEffect(const class UAttributesComponent* AttributesComponent, const float Magnitude, const FPolyStructHandle& Context) const;
-	virtual bool CanApplyEffect_Implementation( const class UAttributesComponent* AttributesComponent, const float Magnitude, const FPolyStructHandle& Context) const { return true; }
+	bool CanApplyEffect(const UAttributesComponent* AttributesComponent, const float Magnitude, const FEffectModContext& ModificationContext) const;
+	virtual bool CanApplyEffect_Implementation(const UAttributesComponent* AttributesComponent, const float Magnitude, const FEffectModContext& ModContext) const { return true; }
 
 	// Called everytime an attribute is to be modified. Consider the Effect Modifier Type when calculating the output.
 	// The context can be modified to maintain / alter state. Should generally not be overridden
 	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect")
-	void ModifyAttributes(UAttributesComponent* AttributesComponent, const float Magnitude, UPARAM(ref) FPolyStructHandle& Context) const;
-	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle& Context) const;
+	void ModifyAttributes(UAttributesComponent* AttributesComponent, const float Magnitude, const FEffectModContext& ModificationContext) const;
+	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, const FEffectModContext& ModContext) const;
 
 	// Called when this effect is applied
-	virtual void OnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const;
+	virtual void OnEffectApplied(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const;
 
 	// Called when this effect is applied
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Applied"), Category = "Effect")
-	void BP_OnEffectApplied(UAttributesComponent* AttributesComponent, UPARAM(ref) FPolyStructHandle& Context) const;
+	void BP_OnEffectApplied(UAttributesComponent* AttributesComponent, const FEffectModContext& ModificationContext) const;
 
 	// Calls the C++ and BP implementation of OnEffectApplied
-	FORCEINLINE void CallOnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+	FORCEINLINE void CallOnEffectApplied(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const
 	{
-		OnEffectApplied(AttributesComponent, Context);
-		BP_OnEffectApplied(AttributesComponent, Context);
+		OnEffectApplied(AttributesComponent, ModContext);
+		BP_OnEffectApplied(AttributesComponent, ModContext);
 	}
 
 	// Called when this effect is removed before being destroyed
-	virtual void OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
+	virtual void OnEffectRemoved(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext, const EEffectRemovalReason Reason) const;
 
 	// Called when this effect is removed before being destroyed
 	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "On Effect Removed"), Category = "Effect")
-	void BP_OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const;
+	void BP_OnEffectRemoved(UAttributesComponent* AttributesComponent, const FEffectModContext& ModificationContext, const EEffectRemovalReason Reason) const;
 
 	// Calls the C++ and BP implementation of OnEffectRemoved
-	FORCEINLINE void CallOnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+	FORCEINLINE void CallOnEffectRemoved(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext, const EEffectRemovalReason Reason) const
 	{
-		OnEffectRemoved(AttributesComponent, Context, Reason);
-		BP_OnEffectRemoved(AttributesComponent, Context, Reason);
+		OnEffectRemoved(AttributesComponent, ModContext, Reason);
+		BP_OnEffectRemoved(AttributesComponent, ModContext, Reason);
 	}
 
 public:

@@ -14,9 +14,10 @@ void EmptyLinkFunctionForGeneratedCodeAttribute() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent_NoRegister();
-	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeModContext();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FEffectModContext();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributeEffect_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	POLYSTRUCT_API UScriptStruct* Z_Construct_UScriptStruct_FPolyStructHandle();
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
 	WEAPONSYSTEMPLUGIN_API UFunction* Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature();
@@ -159,20 +160,20 @@ void EmptyLinkFunctionForGeneratedCodeAttribute() {}
 		}
 		return Parms.ReturnValue;
 	}
-	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AttributeModContext;
-class UScriptStruct* FAttributeModContext::StaticStruct()
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_EffectModContext;
+class UScriptStruct* FEffectModContext::StaticStruct()
 {
-	if (!Z_Registration_Info_UScriptStruct_AttributeModContext.OuterSingleton)
+	if (!Z_Registration_Info_UScriptStruct_EffectModContext.OuterSingleton)
 	{
-		Z_Registration_Info_UScriptStruct_AttributeModContext.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FAttributeModContext, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("AttributeModContext"));
+		Z_Registration_Info_UScriptStruct_EffectModContext.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FEffectModContext, Z_Construct_UPackage__Script_WeaponSystemPlugin(), TEXT("EffectModContext"));
 	}
-	return Z_Registration_Info_UScriptStruct_AttributeModContext.OuterSingleton;
+	return Z_Registration_Info_UScriptStruct_EffectModContext.OuterSingleton;
 }
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModContext>()
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FEffectModContext>()
 {
-	return FAttributeModContext::StaticStruct();
+	return FEffectModContext::StaticStruct();
 }
-	struct Z_Construct_UScriptStruct_FAttributeModContext_Statics
+	struct Z_Construct_UScriptStruct_FEffectModContext_Statics
 	{
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
@@ -183,6 +184,10 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModConte
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_EffectClass;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Instigator_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Instigator;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Context_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_Context;
@@ -190,53 +195,61 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeModConte
 		static const UECodeGen_Private::FStructParams ReturnStructParams;
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAttributeModContext_Statics::Struct_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FEffectModContext_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
 	};
 #endif
-	void* Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewStructOps()
+	void* Z_Construct_UScriptStruct_FEffectModContext_Statics::NewStructOps()
 	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FAttributeModContext>();
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FEffectModContext>();
 	}
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_EffectClass_MetaData[] = {
-		{ "Category", "AttributeModContext" },
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_EffectClass_MetaData[] = {
+		{ "Category", "EffectModContext" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
 	};
 #endif
-	const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_EffectClass = { "EffectClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAttributeModContext, EffectClass), Z_Construct_UClass_UAttributeEffect_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_EffectClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_EffectClass_MetaData)) };
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_EffectClass = { "EffectClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FEffectModContext, EffectClass), Z_Construct_UClass_UAttributeEffect_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_EffectClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_EffectClass_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_Context_MetaData[] = {
-		{ "Category", "AttributeModContext" },
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Instigator_MetaData[] = {
+		{ "Category", "EffectModContext" },
 		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FAttributeModContext, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_Context_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_Context_MetaData)) }; // 2519392893
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FAttributeModContext_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_EffectClass,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewProp_Context,
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Instigator = { "Instigator", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FEffectModContext, Instigator), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Instigator_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Instigator_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Context_MetaData[] = {
+		{ "Category", "EffectModContext" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/AttributeSystem/Attribute.h" },
 	};
-	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FAttributeModContext_Statics::ReturnStructParams = {
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FEffectModContext, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Context_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Context_MetaData)) }; // 2519392893
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FEffectModContext_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_EffectClass,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Instigator,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FEffectModContext_Statics::NewProp_Context,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FEffectModContext_Statics::ReturnStructParams = {
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 		nullptr,
 		&NewStructOps,
-		"AttributeModContext",
-		sizeof(FAttributeModContext),
-		alignof(FAttributeModContext),
-		Z_Construct_UScriptStruct_FAttributeModContext_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAttributeModContext_Statics::PropPointers),
+		"EffectModContext",
+		sizeof(FEffectModContext),
+		alignof(FEffectModContext),
+		Z_Construct_UScriptStruct_FEffectModContext_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FEffectModContext_Statics::PropPointers),
 		RF_Public|RF_Transient|RF_MarkAsNative,
 		EStructFlags(0x00000201),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FAttributeModContext_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FAttributeModContext_Statics::Struct_MetaDataParams))
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FEffectModContext_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FEffectModContext_Statics::Struct_MetaDataParams))
 	};
-	UScriptStruct* Z_Construct_UScriptStruct_FAttributeModContext()
+	UScriptStruct* Z_Construct_UScriptStruct_FEffectModContext()
 	{
-		if (!Z_Registration_Info_UScriptStruct_AttributeModContext.InnerSingleton)
+		if (!Z_Registration_Info_UScriptStruct_EffectModContext.InnerSingleton)
 		{
-			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_AttributeModContext.InnerSingleton, Z_Construct_UScriptStruct_FAttributeModContext_Statics::ReturnStructParams);
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_EffectModContext.InnerSingleton, Z_Construct_UScriptStruct_FEffectModContext_Statics::ReturnStructParams);
 		}
-		return Z_Registration_Info_UScriptStruct_AttributeModContext.InnerSingleton;
+		return Z_Registration_Info_UScriptStruct_EffectModContext.InnerSingleton;
 	}
 	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_AttributeHandle;
 class UScriptStruct* FAttributeHandle::StaticStruct()
@@ -315,7 +328,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeHandle>(
 			float NewValue;
 			float OldValue;
 			FAttributeHandle AttributeHandle;
-			FAttributeModContext ModificationContext;
+			FEffectModContext ModificationContext;
 		};
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_NewValue;
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_OldValue;
@@ -338,7 +351,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeHandle>(
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAttributeValueChangedDelegate_Parms, ModificationContext), Z_Construct_UScriptStruct_FAttributeModContext, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData)) }; // 2835743565
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAttributeValueChangedDelegate_Parms, ModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData)) }; // 2641440684
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_NewValue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedDelegate__DelegateSignature_Statics::NewProp_OldValue,
@@ -369,7 +382,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeHandle>(
 			float NewValue;
 			float OldValue;
 			FAttributeHandle AttributeHandle;
-			FAttributeModContext ModificationContext;
+			FEffectModContext ModificationContext;
 		};
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_NewValue;
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_OldValue;
@@ -392,7 +405,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttributeHandle>(
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAttributeValueChangedUniDelegate_Parms, ModificationContext), Z_Construct_UScriptStruct_FAttributeModContext, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData)) }; // 2835743565
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_WeaponSystemPlugin_eventAttributeValueChangedUniDelegate_Parms, ModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_ModificationContext_MetaData)) }; // 2641440684
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_NewValue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature_Statics::NewProp_OldValue,
@@ -505,14 +518,14 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<FAttribute>()
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo[] = {
-		{ FAttributeModContext::StaticStruct, Z_Construct_UScriptStruct_FAttributeModContext_Statics::NewStructOps, TEXT("AttributeModContext"), &Z_Registration_Info_UScriptStruct_AttributeModContext, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttributeModContext), 2835743565U) },
+		{ FEffectModContext::StaticStruct, Z_Construct_UScriptStruct_FEffectModContext_Statics::NewStructOps, TEXT("EffectModContext"), &Z_Registration_Info_UScriptStruct_EffectModContext, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FEffectModContext), 2641440684U) },
 		{ FAttributeHandle::StaticStruct, Z_Construct_UScriptStruct_FAttributeHandle_Statics::NewStructOps, TEXT("AttributeHandle"), &Z_Registration_Info_UScriptStruct_AttributeHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttributeHandle), 4070662230U) },
 		{ FAttribute::StaticStruct, Z_Construct_UScriptStruct_FAttribute_Statics::NewStructOps, TEXT("Attribute"), &Z_Registration_Info_UScriptStruct_Attribute, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAttribute), 3121471449U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UAttributesInterface, UAttributesInterface::StaticClass, TEXT("UAttributesInterface"), &Z_Registration_Info_UClass_UAttributesInterface, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributesInterface), 2123240458U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_1749851320(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_1880946969(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_Statics::ScriptStructInfo),
 		nullptr, 0);

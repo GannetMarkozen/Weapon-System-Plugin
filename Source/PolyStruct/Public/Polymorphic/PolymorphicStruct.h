@@ -82,7 +82,9 @@ struct POLYSTRUCT_API FPolyStruct
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
 	void AddStructReferencedObjects(class FReferenceCollector& Collector);
 
-protected:	
+protected:
+	static void NetSerializeStruct(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess, const UScriptStruct* Struct, void* const Memory);
+	
 	uint8* Memory = nullptr;
 	UScriptStruct* ScriptStruct = nullptr;
 };

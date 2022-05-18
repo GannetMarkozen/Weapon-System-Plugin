@@ -16,7 +16,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FAttributeHandle();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributeEffect_NoRegister();
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_UAttributesComponent_NoRegister();
-	POLYSTRUCT_API UScriptStruct* Z_Construct_UScriptStruct_FPolyStructHandle();
+	WEAPONSYSTEMPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FEffectModContext();
 	WEAPONSYSTEMPLUGIN_API UEnum* Z_Construct_UEnum_WeaponSystemPlugin_EEffectModType();
 // End Cross Module References
 	DEFINE_FUNCTION(UAttributeEffectCalculation::execModifyAttribute)
@@ -27,12 +27,12 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		P_GET_STRUCT_REF(FAttributeHandle,Z_Param_Out_Attribute);
 		P_GET_OBJECT(UAttributeEffect,Z_Param_Effect);
 		P_GET_OBJECT(UAttributesComponent,Z_Param_AttributesComponent);
-		P_GET_STRUCT_REF(FPolyStructHandle,Z_Param_Out_Context);
+		P_GET_STRUCT_REF(FEffectModContext,Z_Param_Out_ModificationContext);
 		P_GET_ENUM_REF(EEffectModType,Z_Param_Out_OutModificationType);
 		P_GET_PROPERTY_REF(FFloatProperty,Z_Param_Out_OutModificationValue);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->ModifyAttribute_Implementation(Z_Param_AttributeValue,Z_Param_CurrentModificationValue,Z_Param_Magnitude,Z_Param_Out_Attribute,Z_Param_Effect,Z_Param_AttributesComponent,Z_Param_Out_Context,(EEffectModType&)(Z_Param_Out_OutModificationType),Z_Param_Out_OutModificationValue);
+		P_THIS->ModifyAttribute_Implementation(Z_Param_AttributeValue,Z_Param_CurrentModificationValue,Z_Param_Magnitude,Z_Param_Out_Attribute,Z_Param_Effect,Z_Param_AttributesComponent,Z_Param_Out_ModificationContext,(EEffectModType&)(Z_Param_Out_OutModificationType),Z_Param_Out_OutModificationValue);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UAttributeEffectCalculation::execCanModifyAttribute)
@@ -40,25 +40,25 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		P_GET_STRUCT_REF(FAttributeHandle,Z_Param_Out_Attribute);
 		P_GET_OBJECT(UAttributeEffect,Z_Param_Effect);
 		P_GET_OBJECT(UAttributesComponent,Z_Param_AttributesComponent);
-		P_GET_STRUCT_REF(FPolyStructHandle,Z_Param_Out_Context);
+		P_GET_STRUCT_REF(FEffectModContext,Z_Param_Out_ModContext);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->CanModifyAttribute_Implementation(Z_Param_Out_Attribute,Z_Param_Effect,Z_Param_AttributesComponent,Z_Param_Out_Context);
+		*(bool*)Z_Param__Result=P_THIS->CanModifyAttribute_Implementation(Z_Param_Out_Attribute,Z_Param_Effect,Z_Param_AttributesComponent,Z_Param_Out_ModContext);
 		P_NATIVE_END;
 	}
 	static FName NAME_UAttributeEffectCalculation_CanModifyAttribute = FName(TEXT("CanModifyAttribute"));
-	bool UAttributeEffectCalculation::CanModifyAttribute(FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle const& Context) const
+	bool UAttributeEffectCalculation::CanModifyAttribute(FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FEffectModContext const& ModContext) const
 	{
 		AttributeEffectCalculation_eventCanModifyAttribute_Parms Parms;
 		Parms.Attribute=Attribute;
 		Parms.Effect=Effect;
 		Parms.AttributesComponent=AttributesComponent;
-		Parms.Context=Context;
+		Parms.ModContext=ModContext;
 		const_cast<UAttributeEffectCalculation*>(this)->ProcessEvent(FindFunctionChecked(NAME_UAttributeEffectCalculation_CanModifyAttribute),&Parms);
 		return !!Parms.ReturnValue;
 	}
 	static FName NAME_UAttributeEffectCalculation_ModifyAttribute = FName(TEXT("ModifyAttribute"));
-	void UAttributeEffectCalculation::ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const float Magnitude, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModificationValue) const
+	void UAttributeEffectCalculation::ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const float Magnitude, FAttributeHandle const& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, FEffectModContext const& ModificationContext, EEffectModType& OutModificationType, float& OutModificationValue) const
 	{
 		AttributeEffectCalculation_eventModifyAttribute_Parms Parms;
 		Parms.AttributeValue=AttributeValue;
@@ -67,11 +67,10 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		Parms.Attribute=Attribute;
 		Parms.Effect=Effect;
 		Parms.AttributesComponent=AttributesComponent;
-		Parms.Context=Context;
+		Parms.ModificationContext=ModificationContext;
 		Parms.OutModificationType=OutModificationType;
 		Parms.OutModificationValue=OutModificationValue;
 		const_cast<UAttributeEffectCalculation*>(this)->ProcessEvent(FindFunctionChecked(NAME_UAttributeEffectCalculation_ModifyAttribute),&Parms);
-		Context=Parms.Context;
 		OutModificationType=Parms.OutModificationType;
 		OutModificationValue=Parms.OutModificationValue;
 	}
@@ -99,9 +98,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_AttributesComponent;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Context_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ModContext_MetaData[];
 #endif
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Context;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ModContext;
 		static void NewProp_ReturnValue_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -130,11 +129,11 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_AttributesComponent = { "AttributesComponent", nullptr, (EPropertyFlags)0x0010000000080082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventCanModifyAttribute_Parms, AttributesComponent), Z_Construct_UClass_UAttributesComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_AttributesComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_AttributesComponent_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Context_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData[] = {
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventCanModifyAttribute_Parms, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Context_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Context_MetaData)) }; // 2519392893
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext = { "ModContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventCanModifyAttribute_Parms, ModContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData)) }; // 2641440684
 	void Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((AttributeEffectCalculation_eventCanModifyAttribute_Parms*)Obj)->ReturnValue = 1;
@@ -144,7 +143,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Attribute,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Effect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_AttributesComponent,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_Context,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ReturnValue,
 	};
 #if WITH_METADATA
@@ -191,7 +190,10 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_AttributesComponent_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_AttributesComponent;
-		static const UECodeGen_Private::FStructPropertyParams NewProp_Context;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ModificationContext_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ModificationContext;
 		static const UECodeGen_Private::FBytePropertyParams NewProp_OutModificationType_Underlying;
 		static const UECodeGen_Private::FEnumPropertyParams NewProp_OutModificationType;
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_OutModificationValue;
@@ -238,7 +240,12 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_AttributesComponent = { "AttributesComponent", nullptr, (EPropertyFlags)0x0010000000080082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, AttributesComponent), Z_Construct_UClass_UAttributesComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_AttributesComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_AttributesComponent_MetaData)) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, ModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData)) }; // 2641440684
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType = { "OutModificationType", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, OutModificationType), Z_Construct_UEnum_WeaponSystemPlugin_EEffectModType, METADATA_PARAMS(nullptr, 0) }; // 347396436
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationValue = { "OutModificationValue", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, OutModificationValue), METADATA_PARAMS(nullptr, 0) };
@@ -249,7 +256,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_Attribute,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_Effect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_AttributesComponent,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_Context,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationValue,
@@ -293,8 +300,8 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributeEffectCalculation_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute, "CanModifyAttribute" }, // 1622220125
-		{ &Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute, "ModifyAttribute" }, // 2998109072
+		{ &Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute, "CanModifyAttribute" }, // 3326523646
+		{ &Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute, "ModifyAttribute" }, // 3056398821
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributeEffectCalculation_Statics::Class_MetaDataParams[] = {
@@ -343,9 +350,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributeEffectCalculation, UAttributeEffectCalculation::StaticClass, TEXT("UAttributeEffectCalculation"), &Z_Registration_Info_UClass_UAttributeEffectCalculation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffectCalculation), 935613559U) },
+		{ Z_Construct_UClass_UAttributeEffectCalculation, UAttributeEffectCalculation::StaticClass, TEXT("UAttributeEffectCalculation"), &Z_Registration_Info_UClass_UAttributeEffectCalculation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffectCalculation), 2445980764U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_1337007614(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_1247188496(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

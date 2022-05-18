@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacter() {}
 	WEAPONSYSTEMPLUGIN_API UClass* Z_Construct_UClass_AShooterCharacterBase();
 	UPackage* Z_Construct_UPackage__Script_WeaponSystemPlugin();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UPhysicalAnimationComponent_NoRegister();
 // End Cross Module References
 	void ATrueFPSCharacter::StaticRegisterNativesATrueFPSCharacter()
 	{
@@ -33,6 +34,10 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacter() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ClientMesh_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ClientMesh;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PhysicalAnimation_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_PhysicalAnimation;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_HeadBoneName_MetaData[];
 #endif
@@ -64,6 +69,14 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_ClientMesh = { "ClientMesh", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacter, ClientMesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_ClientMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_ClientMesh_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_PhysicalAnimation_MetaData[] = {
+		{ "Category", "Components" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/WeaponSystem/Character/TrueFPSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_PhysicalAnimation = { "PhysicalAnimation", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacter, PhysicalAnimation), Z_Construct_UClass_UPhysicalAnimationComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_PhysicalAnimation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_PhysicalAnimation_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_HeadBoneName_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Character" },
@@ -76,6 +89,7 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacter() {}
 	const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_HeadBoneName = { "HeadBoneName", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ATrueFPSCharacter, HeadBoneName), METADATA_PARAMS(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_HeadBoneName_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_HeadBoneName_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATrueFPSCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_ClientMesh,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_PhysicalAnimation,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATrueFPSCharacter_Statics::NewProp_HeadBoneName,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ATrueFPSCharacter_Statics::StaticCppClassTypeInfo = {
@@ -114,9 +128,9 @@ void EmptyLinkFunctionForGeneratedCodeTrueFPSCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ATrueFPSCharacter, ATrueFPSCharacter::StaticClass, TEXT("ATrueFPSCharacter"), &Z_Registration_Info_UClass_ATrueFPSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATrueFPSCharacter), 2876347262U) },
+		{ Z_Construct_UClass_ATrueFPSCharacter, ATrueFPSCharacter::StaticClass, TEXT("ATrueFPSCharacter"), &Z_Registration_Info_UClass_ATrueFPSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATrueFPSCharacter), 3043919596U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacter_h_3061206146(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacter_h_1867632767(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_Character_TrueFPSCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

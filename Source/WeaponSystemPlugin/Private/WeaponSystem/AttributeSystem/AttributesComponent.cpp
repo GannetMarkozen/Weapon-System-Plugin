@@ -56,7 +56,7 @@ int32 UAttributesComponent::RemoveActiveEffectsByClass(const TSubclassOf<UAttrib
 	int32 NumRemoved = 0;
 	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
 	{
-		if(bIncludeChildren ? !ActiveEffect.Effect->IsChildOf(Class) : ActiveEffect.Effect != Class) return;
+		if(bIncludeChildren ? !ActiveEffect.GetEffect()->IsChildOf(Class) : ActiveEffect.GetEffect() != Class) return;
 		Internal_RemoveActiveEffect(i, EEffectRemovalReason::ManualRemoval);
 		NumRemoved++;
 	});
@@ -69,7 +69,7 @@ int32 UAttributesComponent::RemoveActiveEffectsByTag(const FGameplayTag& Tag, co
 	int32 NumRemoved = 0;
 	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
 	{
-		const FGameplayTag& EffectTag = ActiveEffect.Effect.GetDefaultObject()->GetEffectTag();
+		const FGameplayTag& EffectTag = ActiveEffect.GetEffect().GetDefaultObject()->GetEffectTag();
 		if(bExact ? !EffectTag.MatchesTagExact(Tag) : !EffectTag.MatchesTag(Tag)) return;
 		Internal_RemoveActiveEffect(i, EEffectRemovalReason::ManualRemoval);
 		NumRemoved++;
@@ -82,7 +82,7 @@ int32 UAttributesComponent::GetActiveEffectCountByClass(const TSubclassOf<UAttri
 	int32 NumEffects = 0;
 	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
 	{
-		if(bIncludeChildren ? ActiveEffect.Effect->IsChildOf(Class) : ActiveEffect.Effect == Class) NumEffects++;
+		if(bIncludeChildren ? ActiveEffect.GetEffect()->IsChildOf(Class) : ActiveEffect.GetEffect() == Class) NumEffects++;
 	});
 	return NumEffects;
 }
@@ -92,7 +92,7 @@ int32 UAttributesComponent::GetActiveEffectCountByTag(const FGameplayTag& Tag, c
 	int32 NumEffects = 0;
 	ForEachActiveEffect([&](const FActiveEffect& ActiveEffect, const int32 i)
 	{
-		const FGameplayTag& EffectTag = ActiveEffect.Effect.GetDefaultObject()->GetEffectTag();
+		const FGameplayTag& EffectTag = ActiveEffect.GetEffect().GetDefaultObject()->GetEffectTag();
 		if(bExact ? EffectTag.MatchesTagExact(Tag) : EffectTag.MatchesTag(Tag)) NumEffects++;
 	});
 	return NumEffects;
@@ -105,7 +105,7 @@ int32 UAttributesComponent::GetActiveEffectCountByTag(const FGameplayTag& Tag, c
 
 bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
 {
-	if(!Effect || !Effect.GetDefaultObject()->CanApplyEffect(this, Magnitude, Context)) return false;
+	if(!Effect || !Effect.GetDefaultObject()->CanApplyEffect(this, Magnitude, FEffectModContext(Effect, (AActor*)Instigator, Context))) return false;
 	
 #if WITH_EDITOR// Editor notification only
 	if(Effect.GetDefaultObject()->GetRepCond() == EEffectRepCond::LocalPredicted && !HasAuthority() && !AWeaponSystemPlayerController::StaticGetOwningPlayerController((AActor*)Instigator))
@@ -142,19 +142,21 @@ bool UAttributesComponent::TryApplyEffect(const TSubclassOf<UAttributeEffect> Ef
 void UAttributesComponent::Internal_ApplyEffect(const TSubclassOf<UAttributeEffect> Effect, const float Magnitude, const AActor* Instigator, FPolyStructHandle& Context)
 {
 	const UAttributeEffect* EffectDefObj = Effect.GetDefaultObject();
+	const FEffectModContext ModContext(Effect, (AActor*)Instigator, Context);
+	
 	if(EffectDefObj->GetDurationType() == EEffectDuration::Instant)// Instant-effect simply calls modify and other functions for it's "lifespan"
 	{
-		EffectDefObj->ModifyAttributes(this, Magnitude, Context);
+		EffectDefObj->ModifyAttributes(this, Magnitude, ModContext);
 	}
 	else// Latent-effect gets added to an array of active effects and calls modify every interval until removed via lifespan or manually
 	{
-		const TSharedPtr<FActiveEffect> ActiveEffect = MakeShared<FActiveEffect>(Effect, Magnitude, Context);
+		const TSharedPtr<FActiveEffect> ActiveEffect = MakeShared<FActiveEffect>(Magnitude, ModContext);
 		ActiveEffects.Add(ActiveEffect);
 
-		EffectDefObj->OnEffectApplied(this, ActiveEffect->Context);
-		EffectDefObj->ModifyAttributes(this, Magnitude, ActiveEffect->Context);// This where the value of the Attribute is modified
+		EffectDefObj->OnEffectApplied(this, ActiveEffect->ModContext);
+		EffectDefObj->ModifyAttributes(this, Magnitude, ActiveEffect->ModContext);// This where the value of the Attribute is modified
 
-		auto CallModifyAtIntervalLambda = [=](){ EffectDefObj->ModifyAttributes(this, ActiveEffect->Magnitude, ActiveEffect->Context); };
+		auto CallModifyAtIntervalLambda = [=](){ EffectDefObj->ModifyAttributes(this, ActiveEffect->Magnitude, ActiveEffect->ModContext); };
 
 		const float Interval = EffectDefObj->IntervalDuration;
 		GetWorld()->GetTimerManager().SetTimer(ActiveEffect->IntervalTimerHandle, CallModifyAtIntervalLambda, Interval, true);
@@ -178,8 +180,8 @@ void UAttributesComponent::Internal_RemoveActiveEffect(const int32 Index, const 
 	if(!ActiveEffects.IsValidIndex(Index)) return;
 	checkf(ActiveEffects[Index].IsValid() || ActiveEffects[Index]->GetEffect(), TEXT("Active Effect at %i is invalid???"), Index);
 
-	const FPolyStructHandle& Context = ActiveEffects[Index]->Context;
-	ActiveEffects[Index]->GetEffect().GetDefaultObject()->OnEffectRemoved(this, Context, Reason);
+	const FEffectModContext& ModContext = ActiveEffects[Index]->ModContext;
+	ActiveEffects[Index]->GetEffect().GetDefaultObject()->OnEffectRemoved(this, ModContext, Reason);
 
 	GetWorld()->GetTimerManager().ClearTimer(ActiveEffects[Index]->IntervalTimerHandle);
 	GetWorld()->GetTimerManager().ClearTimer(ActiveEffects[Index]->LifespanTimerHandle);
@@ -275,7 +277,7 @@ void UAttributesComponent::Client_SyncAttributes_Implementation(const FAttribute
 	{
 		checkf(Value.Get<0>().IsValid(), TEXT("Attribute is invalid on Client"));
 		//Value.Get<0>()->SetValue(Value.Get<1>());
-		SetAttributeValue(Value.Get<0>(), Value.Get<1>(), FAttributeModContext());
+		SetAttributeValue(Value.Get<0>(), Value.Get<1>(), FEffectModContext());
 	}
 }
 
@@ -303,28 +305,28 @@ void UAttributesComponent::ApplyInstantNumericEffect(const FName& AttributeName,
 
 	if(HasAuthority())
 	{
-		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Instigator, Context);
 		return;
 	}
 
 	switch(ReplicationCondition)
 	{
 	case EEffectRepCond::LocalOnly:
-		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Instigator, Context);
 		break;
 	case EEffectRepCond::ServerOnly:
-		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Net_ApplyInstantNumericEffect)),
-			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Context));
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Internal_ApplyInstantNumericEffect)),
+			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Instigator, Context));
 		break;
 	case EEffectRepCond::LocalPredicted:
-		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Net_ApplyInstantNumericEffect)),
-			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Context));
-		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Context);
+		AWeaponSystemPlayerController::StaticCallRemoteFunctionOnObject((AActor*)Instigator, this, FindFunction(GET_FUNCTION_NAME_CHECKED(ThisClass, Internal_ApplyInstantNumericEffect)),
+			FInstantNumericEffectNetValue(Attribute, Magnitude, ModificationType, Instigator, Context));
+		Internal_ApplyInstantNumericEffect(Attribute, Magnitude, ModificationType, Instigator, Context);
 		break;
 	}
 }
 
-void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, FPolyStructHandle& Context)
+void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHandle& Attribute, const float Magnitude, const EEffectModType ModType, const AActor* Instigator, FPolyStructHandle& Context)
 {
 	checkf(Attribute.IsValid(), TEXT("Attribute parameter is invalid on %s"), *FString(HasAuthority() ? "SERVER" : "CLIENT"));
 	float NewValue = Attribute->GetValue();
@@ -343,12 +345,14 @@ void UAttributesComponent::Internal_ApplyInstantNumericEffect(const FAttributeHa
 		break;
 	}
 
-	CallPreModifyAttribute(Attribute, nullptr, FPolyStructHandle(), NewValue);
+	const FEffectModContext ModContext(nullptr, (AActor*)Instigator, Context);
+	
+	CallPreModifyAttribute(Attribute, ModContext, NewValue);
 	//const_cast<FAttributeHandle&>(Attribute)->SetValue(NewValue);
-	SetAttributeValue(const_cast<FAttributeHandle&>(Attribute), NewValue, FAttributeModContext(nullptr, Context));
+	SetAttributeValue(const_cast<FAttributeHandle&>(Attribute), NewValue, ModContext);
 }
 
-void UAttributesComponent::SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FAttributeModContext& ModContext)
+void UAttributesComponent::SetAttributeValue(FAttributeHandle& Attribute, const float NewValue, const FEffectModContext& ModContext)
 {
 	if(!Attribute.IsValid() || Attribute->GetValue() == NewValue) return;
 	if(HasAuthority() && ModContext.HasData() && (Attribute.GetUProperty()->PropertyFlags & CPF_Net))

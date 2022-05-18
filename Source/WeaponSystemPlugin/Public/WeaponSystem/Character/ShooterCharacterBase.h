@@ -97,10 +97,6 @@ public:
 	class UCharacterInventoryComponent* Inventory;
 
 protected:
-	//UFUNCTION(BlueprintNativeEvent, Category = "Character")
-	//void SetupMesh();
-	//virtual void SetupMesh_Implementation();
-	
 	virtual void CurrentWeaponChanged(class AWeapon* CurrentWeapon, class AWeapon* OldWeapon);
 
 	// The name of the right hand socket. Can be the same name as the Weapon Socket
@@ -120,7 +116,7 @@ protected:
 	FName WeaponSocket = "hand_r";
 
 public:
-	const FORCEINLINE TArray<class AWeaponBase*>& GetWeapons() const { return Inventory->GetWeapons(); }
+	FORCEINLINE const TArray<AWeaponBase*>& GetWeapons() const { return Inventory->GetWeapons(); }
 	
 	UFUNCTION(BlueprintPure, Category = "Character")
 	FORCEINLINE class AWeaponBase* GetCurrentWeaponBase() const { return Inventory->GetCurrentWeapon(); }

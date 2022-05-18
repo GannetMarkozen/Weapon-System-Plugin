@@ -21,9 +21,33 @@ protected:
 	
 	// The third person mesh that you, as the client, can see
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	class USkeletalMeshComponent* ClientMesh;
+	USkeletalMeshComponent* ClientMesh;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPhysicalAnimationComponent* PhysicalAnimation;
 
 	// Bones above this bone name will be invisible locally. Meaning that this should either be the neck or head bone name
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true", DisplayAfter = "WeaponSocket"), Category = "Character")
 	FName HeadBoneName = "neck_01";
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

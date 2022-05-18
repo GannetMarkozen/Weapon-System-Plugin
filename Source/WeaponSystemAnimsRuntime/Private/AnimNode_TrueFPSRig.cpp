@@ -116,7 +116,7 @@ bool FAnimNode_TrueFPSRig::CanEvaluate() const
 		}
 	}
 			
-	return true;		
+	return true;
 }
 
 #define CS_TRANSFORM(BoneIndex) GetCSTransform(Output.Pose, BoneIndex)
@@ -126,17 +126,35 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 	BasePose.Evaluate(Output);
 	if(!CanEvaluate()) return;
 
+#define CHECK_VALID_BONE(BoneIndex) if(BoneIndex == INDEX_NONE) { UE_LOG(LogTemp, Error, TEXT("Bone Index %s is invalid"), *FString(#BoneIndex)); return; }
+
 	// Convert from Skeleton Index to Pose Index to account for LODs for some reason???
 	const FBoneContainer& BoneContainer = Output.Pose.GetBoneContainer();
 	const int32 RightUpperArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightUpperArmIndex).GetInt();
 	const int32 RightLowerArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightLowerArmIndex).GetInt();
 	const int32 RightHandPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightHand.BoneIndex).GetInt();
-	const int32 RightUpperArmParentPoseIndex = BoneContainer.GetCompactPoseParentBoneArray()[RightUpperArmPoseIndex].GetInt();
 	
 	const int32 LeftUpperArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftUpperArmIndex).GetInt();
 	const int32 LeftLowerArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftLowerArmIndex).GetInt();
 	const int32 LeftHandPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftHand.BoneIndex).GetInt();
+
+	const int32 HeadPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(Head.BoneIndex).GetInt();
+
+	CHECK_VALID_BONE(RightUpperArmPoseIndex);
+	CHECK_VALID_BONE(RightLowerArmPoseIndex);
+	CHECK_VALID_BONE(RightHandPoseIndex);
+	CHECK_VALID_BONE(LeftUpperArmPoseIndex);
+	CHECK_VALID_BONE(LeftLowerArmPoseIndex);
+	CHECK_VALID_BONE(LeftHandPoseIndex);
+	CHECK_VALID_BONE(HeadPoseIndex);
+
+	const int32 RightUpperArmParentPoseIndex = BoneContainer.GetCompactPoseParentBoneArray()[RightUpperArmPoseIndex].GetInt();
 	const int32 LeftUpperArmParentPoseIndex = BoneContainer.GetCompactPoseParentBoneArray()[LeftUpperArmPoseIndex].GetInt();
+
+	CHECK_VALID_BONE(RightUpperArmParentPoseIndex);
+	CHECK_VALID_BONE(LeftUpperArmParentPoseIndex);
+
+#undef CHECK_VALID_BONE
 
 #define RightLowerArmIndex RightLowerArmPoseIndex
 #define RightUpperArmIndex RightUpperArmPoseIndex
@@ -145,8 +163,6 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 #define LeftUpperArmIndex LeftUpperArmPoseIndex
 #define LeftHandIndex LeftHandPoseIndex
 #define HeadIndex HeadPoseIndex
-
-	const int32 HeadPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(Head.BoneIndex).GetInt();
 	
 	CameraRelativeRotation.Normalize();
 

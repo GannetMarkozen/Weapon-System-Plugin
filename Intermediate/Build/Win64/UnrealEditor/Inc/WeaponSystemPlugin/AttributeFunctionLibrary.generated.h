@@ -19,6 +19,7 @@ enum class EStructCastPin : uint8;
 class UAttributeEffect;
 class UAttributesComponent;
 enum class EValidity : uint8;
+struct FEffectModContext;
 #ifdef WEAPONSYSTEMPLUGIN_AttributeFunctionLibrary_generated_h
 #error "AttributeFunctionLibrary.generated.h already included, missing '#pragma once' in AttributeFunctionLibrary.h"
 #endif
@@ -44,6 +45,7 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execSetAttributeValue); \
 	DECLARE_FUNCTION(execGetAttributeName); \
 	DECLARE_FUNCTION(execGetAttributeValue); \
+	DECLARE_FUNCTION(execGetOwner); \
 	DECLARE_FUNCTION(execGetAttributeHandleFromAttribute); \
 	DECLARE_FUNCTION(execAttributeHandleEqualsNOT); \
 	DECLARE_FUNCTION(execAttributeHandleEquals); \
@@ -74,6 +76,7 @@ enum class EValidity : uint8;
 	DECLARE_FUNCTION(execSetAttributeValue); \
 	DECLARE_FUNCTION(execGetAttributeName); \
 	DECLARE_FUNCTION(execGetAttributeValue); \
+	DECLARE_FUNCTION(execGetOwner); \
 	DECLARE_FUNCTION(execGetAttributeHandleFromAttribute); \
 	DECLARE_FUNCTION(execAttributeHandleEqualsNOT); \
 	DECLARE_FUNCTION(execAttributeHandleEquals); \

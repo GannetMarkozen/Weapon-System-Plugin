@@ -10,7 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UAttributesComponent;
 struct FAttributeHandle;
-struct FPolyStructHandle;
+struct FEffectModContext;
 enum class EEffectRemovalReason : uint8;
 #ifdef WEAPONSYSTEMPLUGIN_AttributeEffect_generated_h
 #error "AttributeEffect.generated.h already included, missing '#pragma once' in AttributeEffect.h"
@@ -26,8 +26,8 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_39_SPARSE_DATA
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffect_h_39_RPC_WRAPPERS \
-	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle& Context) const; \
-	virtual bool CanApplyEffect_Implementation(const UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle const& Context) const; \
+	virtual void ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FEffectModContext const& ModificationContext) const; \
+	virtual bool CanApplyEffect_Implementation(const UAttributesComponent* AttributesComponent, const float Magnitude, FEffectModContext const& ModificationContext) const; \
  \
 	DECLARE_FUNCTION(execHasAllModAttributes); \
 	DECLARE_FUNCTION(execGetAllModAttributes); \
@@ -47,19 +47,19 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
 	struct AttributeEffect_eventBP_OnEffectApplied_Parms \
 	{ \
 		UAttributesComponent* AttributesComponent; \
-		FPolyStructHandle Context; \
+		FEffectModContext ModificationContext; \
 	}; \
 	struct AttributeEffect_eventBP_OnEffectRemoved_Parms \
 	{ \
 		UAttributesComponent* AttributesComponent; \
-		FPolyStructHandle Context; \
+		FEffectModContext ModificationContext; \
 		EEffectRemovalReason Reason; \
 	}; \
 	struct AttributeEffect_eventCanApplyEffect_Parms \
 	{ \
 		const UAttributesComponent* AttributesComponent; \
 		float Magnitude; \
-		FPolyStructHandle Context; \
+		FEffectModContext ModificationContext; \
 		bool ReturnValue; \
  \
 		/** Constructor, initializes return property only **/ \
@@ -72,7 +72,7 @@ template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeM
 	{ \
 		UAttributesComponent* AttributesComponent; \
 		float Magnitude; \
-		FPolyStructHandle Context; \
+		FEffectModContext ModificationContext; \
 	};
 
 

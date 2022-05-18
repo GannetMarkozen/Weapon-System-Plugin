@@ -7,7 +7,22 @@
 #include "WeaponSystemAnimInstance.generated.h"
 
 
+struct FHitReaction
+{
+	FHitReaction() = delete;
+	FHitReaction(UCurveFloat* Curve, const FVector& Direction, const float Magnitude, const float PlaySpeed = 1.f)
+		: Curve(Curve), Impulse(Direction * Magnitude), PlaySpeed(PlaySpeed)
+	{
+		check(Curve);
+		float Temp;
+		Curve->GetTimeRange(Position, Temp);
+	}
 
+	UCurveFloat* Curve;
+	FVector Impulse;
+	float PlaySpeed = 1.f;
+	float Position;
+};
 
 
 /**
@@ -61,8 +76,13 @@ protected:
 	virtual void UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
 
 	// Override to apply your own weapon offsets
-	UFUNCTION(BlueprintImplementableEvent, Meta = (DisplayName = "Update Offset Transform"), Category = "Anim")
+	UFUNCTION(BlueprintImplementableEvent, DisplayName = "Update Offset Transform", Category = "Anim")
 	void BP_UpdateOffsetTransform(const float DeltaTime, const FVector& InOffsetLocation, const FRotator& InOffsetRotation, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
+
+	virtual void UpdatePlacementTransform(const float DeltaTime, FVector& OutPlacementLocation, FRotator& OutPlacementRotation);
+
+	UFUNCTION(BlueprintImplementableEvent, DisplayName = "Update Placement Transform", Category = "Anim")
+	void BP_UpdatePlacementTransform(const float DeltaTime, const FVector& InPlacementLocation, const FRotator& InPlacementRotation, FVector& OutPlacementLocation, FRotator& OutPlacementRotation);
 	
 	virtual void UpdateTurnInPlace(const float DeltaTime);
 
@@ -133,16 +153,25 @@ public:
 	// Used for determining the pivot-point / orientation of this weapon.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|IK")
 	FTransform OriginRelativeTransform;
-	
+
+	// Applies an offset to the weapon transform
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|IK")
 	FTransform OffsetTransform;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|IK")
+	// Applies an offset to the weapon that doesn't affect aiming
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "Anim|IK")
+	FTransform PlacementTransform;
+
+	// A value between 0 and 1 that determines the amount we are aiming
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Meta = (ClampMin = "0", ClampMax = "1"), Category = "Anim|IK")
 	float AimingValue = 0.f;
 
+	// The multiplier for certain offsets. Larger scale means more exaggerated movements,
+	// thus a heavier appearance
 	UPROPERTY(BlueprintReadWrite, Category = "Anim|IK")
 	float CurrentWeightScale = 1.f;
 
+	// The current weapon's custom placement transform
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Anim|IK")
 	FTransform CurrentWeaponCustomOffsetTransform;
 
@@ -193,7 +222,7 @@ public:
 	FRotator CameraRotation = FRotator(0.f, 90.f, 0.f);
 
 	// Relative to the root
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim|IK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Anim|IK")
 	FRotator AimRotation;
 
 	// Camera's transform relative to the head
@@ -219,6 +248,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
 	class UCurveVector* MovementWeaponSwayCurve;
 
+	// The amount the weapon pitches towards the camera's pitch value. Should be a very small value or zero
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
+	float WeaponPitchTiltMultiplier = 0.f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configurations")
 	float AccumulativeRotationReturnInterpSpeed = 30.f;
 
@@ -234,4 +267,47 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
 	float LandingImpactBobMultiplier = 1.f;
+
+
+
+
+
+
+	// Hit Reactions
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Direction"), Category = "Anim")
+	void ApplyHitReaction(UCurveFloat* Curve, const FVector& Direction, const float Magnitude = 1.f, const float PlaySpeed = 1.f);
+
+	TArray<FHitReaction> HitReactions;
+private:
+	void HandleHitReaction(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

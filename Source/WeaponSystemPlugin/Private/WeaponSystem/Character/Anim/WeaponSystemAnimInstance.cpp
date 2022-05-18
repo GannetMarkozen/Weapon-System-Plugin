@@ -59,6 +59,13 @@ void UWeaponSystemAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	// Update the OffsetTransform with the updated offset location and rotation
 	OffsetTransform = Character->GetWeaponOffsetTransform() * FTransform(OutOffsetRotation, OutOffsetLocation);
 
+	FVector OutPlacementLocation = FVector::ZeroVector;
+	FRotator OutPlacementRotation = FRotator::ZeroRotator;
+	UpdatePlacementTransform(DeltaTime, OutPlacementLocation, OutPlacementRotation);
+	BP_UpdatePlacementTransform(DeltaTime, OutPlacementLocation, OutPlacementRotation, OutPlacementLocation, OutPlacementRotation);
+
+	PlacementTransform = CurrentWeaponCustomOffsetTransform * FTransform(OutPlacementRotation, OutPlacementLocation);
+
 	PostUpdateAnimation(DeltaTime);
 	BP_PostUpdateAnimation(DeltaTime);
 }
@@ -161,8 +168,9 @@ void UWeaponSystemAnimInstance::UpdateVariables(const float DeltaTime)
 	VelocityTarget = UKismetMathLibrary::VInterpTo(VelocityTarget, Character->GetCharacterMovement()->Velocity, DeltaTime, VelocityInterpSpeed);
 	if(Difference.Z > 1.5f)// Jumping / landing impulse
 		VelocityTarget.Z += Difference.Z * 400.f * LandingImpactBobMultiplier;
-	
-	VelocityInterp = UKismetMathLibrary::VInterpTo(VelocityInterp, VelocityTarget, DeltaTime, 3.f);
+
+	// 25% when fully aiming
+	VelocityInterp = UKismetMathLibrary::VInterpTo(VelocityInterp, VelocityTarget * (1.f - AimingValue * 0.75f), DeltaTime, 3.f);
 }
 
 void UWeaponSystemAnimInstance::UpdateOffsetTransform(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation)
@@ -205,6 +213,15 @@ void UWeaponSystemAnimInstance::UpdateOffsetTransform(const float DeltaTime, FVe
 		OutOffsetLocation += SwayOffset * 0.7f;
 		OutOffsetRotation += FRotator(SwayOffset.Z * 0.5f, SwayOffset.Y * 0.8f, SwayOffset.Y * 1.f);
 	}
+
+	// Hit reaction stuff
+	HandleHitReaction(DeltaTime, OutOffsetLocation, OutOffsetRotation);
+}
+
+void UWeaponSystemAnimInstance::UpdatePlacementTransform(const float DeltaTime, FVector& OutPlacementLocation, FRotator& OutPlacementRotation)
+{
+	OutPlacementRotation.Pitch = CameraRotation.Pitch * WeaponPitchTiltMultiplier;
+	OutPlacementLocation.Z = -CameraRotation.Pitch * (WeaponPitchTiltMultiplier / 3.f);
 }
 
 
@@ -311,6 +328,39 @@ void UWeaponSystemAnimInstance::OnCharacterLanded(AShooterCharacterBase* InChara
 
 
 
+
+
+void UWeaponSystemAnimInstance::ApplyHitReaction(UCurveFloat* Curve, const FVector& Direction, const float Magnitude, const float PlaySpeed)
+{
+	if(!Curve || Direction.Size() == 0 || Magnitude == 0) return;
+	HitReactions.Add(FHitReaction(Curve, Direction, Magnitude, PlaySpeed));
+}
+
+void UWeaponSystemAnimInstance::HandleHitReaction(const float DeltaTime, FVector& OutOffsetLocation, FRotator& OutOffsetRotation)
+{
+	for(int32 i = 0; i < HitReactions.Num(); i++)
+	{
+		const FVector& Impulse = HitReactions[i].Impulse;
+		const float Value = HitReactions[i].Curve->GetFloatValue(HitReactions[i].Position);
+
+		const FRotator Rot = FRotator(Impulse.X + Impulse.Z, 0.f, -Impulse.Y) * Value;
+		
+		AimRotation += Rot;
+		OutOffsetRotation += Rot.GetInverse();
+		OutOffsetLocation += -Impulse * Value;
+		
+		float Lifespan,Temp;
+		HitReactions[i].Curve->GetTimeRange(Temp, Lifespan);
+		float& Position = HitReactions[i].Position;
+		
+		if(Position >= Lifespan)
+		{
+			HitReactions.RemoveAt(i--);
+			continue;
+		}
+		Position = FMath::Min<float>(Lifespan, Position + DeltaTime * HitReactions[i].PlaySpeed);
+	}
+}
 
 
 

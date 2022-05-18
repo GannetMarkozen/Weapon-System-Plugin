@@ -7,6 +7,10 @@
 #include "WeaponSystem/ScriptBase.h"
 #include "AttributeEffectCalculation.generated.h"
 
+struct FAttributeHandle;
+struct FEffectModContext;
+class UAttributesComponent;
+
 /**
  *  The base-class for modifying an attribute's value from an Attribute Effect.
  *  Each calculation in the array modifies the Attribute sequentially.
@@ -22,23 +26,23 @@ class WEAPONSYSTEMPLUGIN_API UAttributeEffectCalculation : public UObject
 protected:
 	// Whether or not we should attempt to modify the attribute. True by default
 	UFUNCTION(BlueprintNativeEvent, Category = "Effect Calculation")
-	bool CanModifyAttribute(const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, const struct FPolyStructHandle& Context) const;
-	virtual bool CanModifyAttribute_Implementation(const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, const struct FPolyStructHandle& Context) const { return true; }
+	bool CanModifyAttribute(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const;
+	virtual bool CanModifyAttribute_Implementation(const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const { return true; }
 
 	// Called when modifying an attribute
 	UFUNCTION(BlueprintNativeEvent, Meta = (DisplayName = "Modify"), Category = "Effect Calculation")
-	void ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const float Magnitude, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
-		UPARAM(ref) struct FPolyStructHandle& Context, EEffectModType& OutModificationType, float& OutModificationValue) const;
+	void ModifyAttribute(const float AttributeValue, const float CurrentModificationValue, const float Magnitude, const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent,
+		const FEffectModContext& ModificationContext, EEffectModType& OutModificationType, float& OutModificationValue) const;
 
 	// Called when modifying an attribute
-	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, const float Magnitude, const struct FAttributeHandle& Attribute, const class UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent,
-		struct FPolyStructHandle& Context, EEffectModType& OutModType, float& OutModValue) const { OutModType = EEffectModType::None; }
+	virtual void ModifyAttribute_Implementation(const float AttributeValue, const float CurrentModValue, const float Magnitude, const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const UAttributesComponent* AttributesComponent,
+		const FEffectModContext& ModContext, EEffectModType& OutModType, float& OutModValue) const { OutModType = EEffectModType::None; }
 
 	// Calls ModifyAttributes and applies the ModValue and ModType to the InOutModValue parameter
-	FORCEINLINE void CallModify(float& InOutModValue, const float AttributeValue, const float Magnitude, const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, struct FPolyStructHandle& Context) const
+	FORCEINLINE void CallModify(float& InOutModValue, const float AttributeValue, const float Magnitude, const FAttributeHandle& Attribute, const UAttributeEffect* Effect, const class UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const
 	{
 		float ModifyValue; EEffectModType ModType;
-		ModifyAttribute(AttributeValue, InOutModValue, Magnitude, Attribute, Effect, AttributesComponent, Context, ModType, ModifyValue);
+		ModifyAttribute(AttributeValue, InOutModValue, Magnitude, Attribute, Effect, AttributesComponent, ModContext, ModType, ModifyValue);
 		switch(ModType)
 		{
 		case EEffectModType::Additive:

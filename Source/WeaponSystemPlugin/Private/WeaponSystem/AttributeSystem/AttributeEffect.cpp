@@ -29,7 +29,7 @@ bool UAttributeEffect::HasAllModAttributes(const UAttributesComponent* Attribute
 	return true;
 }
 
-void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, FPolyStructHandle& Context) const
+void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* AttributesComponent, const float Magnitude, const FEffectModContext& ModContext) const
 {
 	if(!AttributesComponent) return;
 	for(const FAttributeModParams& Modifier : Modifiers)
@@ -45,21 +45,21 @@ void UAttributeEffect::ModifyAttributes_Implementation(UAttributesComponent* Att
 		// Modify attributes value by each calculator
 		for(const UAttributeEffectCalculation* ModifierCalculation : Modifier.GetEffectCalculations())
 		{
-			if(!ModifierCalculation || !ModifierCalculation->CanModifyAttribute(Attribute, this, AttributesComponent, Context)) continue;
-			ModifierCalculation->CallModify(CurrentModValue, AttributeValue, Magnitude, Attribute, this, AttributesComponent, Context);// Modifies the NewValue
+			if(!ModifierCalculation || !ModifierCalculation->CanModifyAttribute(Attribute, this, AttributesComponent, ModContext)) continue;
+			ModifierCalculation->CallModify(CurrentModValue, AttributeValue, Magnitude, Attribute, this, AttributesComponent, ModContext);// Modifies the NewValue
 		}
 
 		// Call PreModifyAttribute before applying the final value
-		AttributesComponent->CallPreModifyAttribute(Attribute, this, Context, CurrentModValue);
+		AttributesComponent->CallPreModifyAttribute(Attribute, ModContext, CurrentModValue);
 		
 		// Set the new value
-		AttributesComponent->SetAttributeValue(Attribute, CurrentModValue, FAttributeModContext(GetClass(), Context));
+		AttributesComponent->SetAttributeValue(Attribute, CurrentModValue, ModContext);
 		//Attribute->SetValue(CurrentModValue);
 	}
 }
 
 // Default implementation
-void UAttributeEffect::OnEffectApplied(UAttributesComponent* AttributesComponent, FPolyStructHandle& Context) const
+void UAttributeEffect::OnEffectApplied(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext) const
 {
 	if(!AttributesComponent) return;
 	FAggregateGameplayTagContainer& Container = AttributesComponent->OwnedTags;
@@ -72,7 +72,7 @@ void UAttributeEffect::OnEffectApplied(UAttributesComponent* AttributesComponent
 }
 
 // Default implementation
-void UAttributeEffect::OnEffectRemoved(UAttributesComponent* AttributesComponent, const FPolyStructHandle& Context, const EEffectRemovalReason Reason) const
+void UAttributeEffect::OnEffectRemoved(UAttributesComponent* AttributesComponent, const FEffectModContext& ModContext, const EEffectRemovalReason Reason) const
 {
 	if(!AttributesComponent) return;
 	if(Reason != EEffectRemovalReason::NetPredSuccess)

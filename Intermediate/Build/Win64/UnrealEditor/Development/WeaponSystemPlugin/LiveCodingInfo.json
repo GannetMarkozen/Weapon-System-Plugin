@@ -52,10 +52,10 @@
 			"ForegripAttachment.gen.cpp.obj",
 			"Globals.gen.cpp.obj",
 			"HitscanScriptBase.gen.cpp.obj",
-			"Interfaces.gen.cpp.obj",
-			"InventoryComponent.gen.cpp.obj"
+			"Interfaces.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.3_of_5.cpp.obj": [
+			"InventoryComponent.gen.cpp.obj",
 			"PoseableHandComponent.gen.cpp.obj",
 			"ReplicatedObject.gen.cpp.obj",
 			"ScriptBase.gen.cpp.obj",
@@ -64,10 +64,10 @@
 			"SightsAttachment.gen.cpp.obj",
 			"TrueFPSCharacter.gen.cpp.obj",
 			"VisualizationSceneComponent.gen.cpp.obj",
-			"Weapon.gen.cpp.obj",
-			"WeaponAttachmentBase.gen.cpp.obj"
+			"Weapon.gen.cpp.obj"
 		],
 		"Module.WeaponSystemPlugin.gen.4_of_5.cpp.obj": [
+			"WeaponAttachmentBase.gen.cpp.obj",
 			"WeaponAttachmentPoint.gen.cpp.obj",
 			"WeaponBase.gen.cpp.obj",
 			"WeaponDropBase.gen.cpp.obj",

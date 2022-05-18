@@ -3,6 +3,7 @@
 
 #include "WeaponSystem/Character/TrueFPSCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "PhysicsEngine/PhysicsConstraintComponent.h"
 
 ATrueFPSCharacter::ATrueFPSCharacter()
 {
@@ -18,6 +19,8 @@ ATrueFPSCharacter::ATrueFPSCharacter()
 	ClientMesh->bVisibleInReflectionCaptures = false;
 	ClientMesh->SetCastShadow(false);
 	ClientMesh->SetupAttachment(GetMesh());
+
+	PhysicalAnimation = CreateDefaultSubobject<UPhysicalAnimationComponent>(TEXT("Physical Animation"));
 }
 
 void ATrueFPSCharacter::BeginPlay()
@@ -36,5 +39,22 @@ void ATrueFPSCharacter::BeginPlay()
 		ClientMesh = nullptr;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -8,7 +8,7 @@
 #include "WeaponSystem/AttributeSystem/AttributesComponent.h"
 
 
-bool FAttributeModContext::HasData() const
+bool FEffectModContext::HasData() const
 {
 	return EffectClass.Get() != nullptr && !Context.IsEmpty();
 }
@@ -55,7 +55,7 @@ bool FAttribute::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 	{
 		Ar << Value;
 
-		FAttributeModContext* ModContext = GetOwner() ? GetOwner()->LatestAttributeModContext.Find(Handle) : nullptr;
+		FEffectModContext* ModContext = GetOwner() ? GetOwner()->LatestAttributeModContext.Find(Handle) : nullptr;
 		
 		uint8 HasModContext = ModContext != nullptr;
 		Ar << HasModContext;
@@ -98,7 +98,7 @@ bool FAttribute::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
 		float NewValue; uint8 HasModContext;
 		Ar << NewValue << HasModContext;
 
-		FAttributeModContext ModContext;
+		FEffectModContext ModContext;
 		if(HasModContext)// Whether or not there is a valid mod context
 			ModContext.NetSerialize(Ar, Map, bOutSuccess);
 

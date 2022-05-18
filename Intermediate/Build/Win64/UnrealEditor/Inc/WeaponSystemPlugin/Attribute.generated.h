@@ -10,7 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UAttributesComponent;
 struct FAttributeHandle;
-struct FAttributeModContext;
+struct FEffectModContext;
 #ifdef WEAPONSYSTEMPLUGIN_Attribute_generated_h
 #error "Attribute.generated.h already included, missing '#pragma once' in Attribute.h"
 #endif
@@ -141,28 +141,28 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> WEAPONSYSTEMPLUGIN_API UClass* StaticClass<class UAttributesInterface>();
 
 #define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_34_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FAttributeModContext_Statics; \
+	friend struct Z_Construct_UScriptStruct_FEffectModContext_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
-template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeModContext>();
+template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FEffectModContext>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_64_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_69_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAttributeHandle_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> WEAPONSYSTEMPLUGIN_API UScriptStruct* StaticStruct<struct FAttributeHandle>();
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_125_DELEGATE \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_130_DELEGATE \
 struct _Script_WeaponSystemPlugin_eventAttributeValueChangedDelegate_Parms \
 { \
 	float NewValue; \
 	float OldValue; \
 	FAttributeHandle AttributeHandle; \
-	FAttributeModContext ModificationContext; \
+	FEffectModContext ModificationContext; \
 }; \
-static inline void FAttributeValueChangedDelegate_DelegateWrapper(const FMulticastScriptDelegate& AttributeValueChangedDelegate, float NewValue, float OldValue, FAttributeHandle& AttributeHandle, FAttributeModContext const& ModificationContext) \
+static inline void FAttributeValueChangedDelegate_DelegateWrapper(const FMulticastScriptDelegate& AttributeValueChangedDelegate, float NewValue, float OldValue, FAttributeHandle& AttributeHandle, FEffectModContext const& ModificationContext) \
 { \
 	_Script_WeaponSystemPlugin_eventAttributeValueChangedDelegate_Parms Parms; \
 	Parms.NewValue=NewValue; \
@@ -174,15 +174,15 @@ static inline void FAttributeValueChangedDelegate_DelegateWrapper(const FMultica
 }
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_126_DELEGATE \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_131_DELEGATE \
 struct _Script_WeaponSystemPlugin_eventAttributeValueChangedUniDelegate_Parms \
 { \
 	float NewValue; \
 	float OldValue; \
 	FAttributeHandle AttributeHandle; \
-	FAttributeModContext ModificationContext; \
+	FEffectModContext ModificationContext; \
 }; \
-static inline void FAttributeValueChangedUniDelegate_DelegateWrapper(const FScriptDelegate& AttributeValueChangedUniDelegate, float NewValue, float OldValue, FAttributeHandle& AttributeHandle, FAttributeModContext const& ModificationContext) \
+static inline void FAttributeValueChangedUniDelegate_DelegateWrapper(const FScriptDelegate& AttributeValueChangedUniDelegate, float NewValue, float OldValue, FAttributeHandle& AttributeHandle, FEffectModContext const& ModificationContext) \
 { \
 	_Script_WeaponSystemPlugin_eventAttributeValueChangedUniDelegate_Parms Parms; \
 	Parms.NewValue=NewValue; \
@@ -194,7 +194,7 @@ static inline void FAttributeValueChangedUniDelegate_DelegateWrapper(const FScri
 }
 
 
-#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_131_GENERATED_BODY \
+#define FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_Attribute_h_136_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAttribute_Statics; \
 	static class UScriptStruct* StaticStruct();
 

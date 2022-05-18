@@ -52,6 +52,9 @@ public:
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", DisplayName = "Get Attribute Handle From Attribute"), Category = "Weapon System Function Library|Attributes")
 	static UPARAM(ref) FAttributeHandle& GetAttributeHandleFromAttribute(UPARAM(ref) FAttribute& Attribute) { return Attribute.GetHandle(); }
 
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
+	static UAttributesComponent* GetOwner(const FAttributeHandle& AttributeHandle) { return AttributeHandle.GetOwner(); }
+
 	// Gets the value of the Attribute. 0 if invalid reference.
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE float GetAttributeValue(const FAttributeHandle& AttributeHandle) { return AttributeHandle.IsValid() ? AttributeHandle.Get()->GetValue() : 0.f; }
@@ -61,10 +64,10 @@ public:
 	static FORCEINLINE FName GetAttributeName(const FAttributeHandle& AttributeHandle) { return AttributeHandle.IsValid() ? AttributeHandle.GetUProperty()->GetFName() : NAME_None; }
 
 	// Manually sets the value of the attribute. Not recommended for complex calculations. Use Attribute System for complex calculations
-	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "OptionalContext"), Category = "Weapon System Function Library|Attributes")
-	static void SetAttributeValue(UPARAM(ref) FAttributeHandle& AttributeHandle, const float NewValue, UPARAM(ref) FPolyStructHandle& OptionalContext)
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "OptionalModificationContext"), Category = "Weapon System Function Library|Attributes")
+	static void SetAttributeValue(UPARAM(ref) FAttributeHandle& AttributeHandle, const float NewValue, const FEffectModContext& OptionalModificationContext)
 	{
-		if(AttributeHandle.IsValid()) AttributeHandle->SetValue(NewValue, FAttributeModContext(nullptr, OptionalContext));
+		if(AttributeHandle.IsValid()) AttributeHandle->SetValue(NewValue, OptionalModificationContext);
 	}
 
 	// Gets a copy of the attribute (not sure why this would be useful)
@@ -172,7 +175,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE bool HasAttributesComponent(const class UObject* Target) { return GetAttributesComponent((UObject*)Target) != nullptr; }
 
-	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "AttributeName"), Category = "Weapon System Function Libarary|Attributes")
+	UFUNCTION(BlueprintPure, Meta = (AutoCreateRefTerm = "AttributeName"), Category = "Weapon System Function Library|Attributes")
 	static FORCEINLINE bool HasAttribute(const class UObject* Target, const FName& AttributeName) { return GetAttributeHandle((UObject*)Target, AttributeName).IsValid(); }
 
 	UFUNCTION(BlueprintCallable, Meta = (DisplayName = "Unbind All Attribute Changed", DefaultToSelf = "Target"), Category = "Weapon System Function Library|Attributes")

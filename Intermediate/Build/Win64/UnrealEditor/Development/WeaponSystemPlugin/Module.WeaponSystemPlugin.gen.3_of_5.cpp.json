@@ -6,6 +6,9 @@
         "PCH": "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\intermediate\\build\\win64\\animeshootereditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\development\\weaponsystemplugin\\definitions.weaponsystemplugin.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\inventorycomponent.gen.cpp",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\inventorycomponent.h",
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\inventorycomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\poseablehandcomponent.gen.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\private\\weaponsystem\\weapons\\attachments\\poseablehandcomponent.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weaponsystemfunctionlibrary.h",
@@ -180,8 +183,6 @@
             "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\rootmotionsource.generated.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\character.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\characterinventorycomponent.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\inventories\\inventorycomponent.h",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\inventorycomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\characterinventorycomponent.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\shootercharacterbase.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\weapons\\weaponbase.h",
@@ -210,8 +211,7 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemplugin\\public\\weaponsystem\\character\\truefpscharacter.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\truefpscharacter.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\visualizationscenecomponent.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weapon.gen.cpp",
-            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weaponattachmentbase.gen.cpp"
+            "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemplugin\\weapon.gen.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
