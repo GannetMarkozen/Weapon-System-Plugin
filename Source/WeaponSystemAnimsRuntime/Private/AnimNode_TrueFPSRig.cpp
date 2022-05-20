@@ -7,6 +7,7 @@
 #include "AnimNode_TrueFPSRig.h"
 #include "Animation/AnimInstanceProxy.h"
 #include "AnimationCore/Public/TwoBoneIK.h"
+#include "BoneControllers/AnimNode_TwoBoneIK.h"
 
 FAnimNode_TrueFPSRig::FAnimNode_TrueFPSRig()
 {
@@ -49,6 +50,7 @@ void FAnimNode_TrueFPSRig::Initialize_AnyThread(const FAnimationInitializeContex
 
 	const FReferenceSkeleton& RefSkel = RequiredBones.GetReferenceSkeleton();
 	
+	if(!RightHand.IsValidToEvaluate() || !LeftHand.IsValidToEvaluate()) return;
 	RightLowerArmIndex = RefSkel.GetParentIndex(RightHand.BoneIndex);
 	if(RightLowerArmIndex != INDEX_NONE) RightUpperArmIndex = RefSkel.GetParentIndex(RightLowerArmIndex);
 
@@ -82,7 +84,7 @@ void FAnimNode_TrueFPSRig::Update_AnyThread(const FAnimationUpdateContext& Conte
 
 bool FAnimNode_TrueFPSRig::CanEvaluate() const
 {
-	if(FMath::IsNearlyZero(Alpha))
+	if(!FAnimWeight::IsRelevant(Alpha))
 		return false;
 	
 	/*if(!RightHand.IsValidToEvaluate() || !RightLowerArm.IsValidToEvaluate() || !RightUpperArm.IsValidToEvaluate() ||
@@ -130,6 +132,14 @@ void FAnimNode_TrueFPSRig::Evaluate_AnyThread(FPoseContext& Output)
 
 	// Convert from Skeleton Index to Pose Index to account for LODs for some reason???
 	const FBoneContainer& BoneContainer = Output.Pose.GetBoneContainer();
+	/*const int32 RightUpperArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightUpperArmIndex).GetInt();
+	const int32 RightLowerArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightLowerArmIndex).GetInt();
+	const int32 RightHandPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightHand.BoneIndex).GetInt();
+	
+	const int32 LeftUpperArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftUpperArmIndex).GetInt();
+	const int32 LeftLowerArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftLowerArmIndex).GetInt();
+	const int32 LeftHandPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(LeftHand.BoneIndex).GetInt();*/
+
 	const int32 RightUpperArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightUpperArmIndex).GetInt();
 	const int32 RightLowerArmPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightLowerArmIndex).GetInt();
 	const int32 RightHandPoseIndex = BoneContainer.GetCompactPoseIndexFromSkeletonIndex(RightHand.BoneIndex).GetInt();

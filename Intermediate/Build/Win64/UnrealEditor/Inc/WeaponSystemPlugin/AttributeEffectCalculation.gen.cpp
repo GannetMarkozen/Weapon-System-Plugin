@@ -133,7 +133,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext = { "ModContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventCanModifyAttribute_Parms, ModContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData)) }; // 2641440684
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext = { "ModContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventCanModifyAttribute_Parms, ModContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ModContext_MetaData)) }; // 3878031127
 	void Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((AttributeEffectCalculation_eventCanModifyAttribute_Parms*)Obj)->ReturnValue = 1;
@@ -245,7 +245,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, ModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData)) }; // 2641440684
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext = { "ModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, ModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_ModificationContext_MetaData)) }; // 3878031127
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationType = { "OutModificationType", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, OutModificationType), Z_Construct_UEnum_WeaponSystemPlugin_EEffectModType, METADATA_PARAMS(nullptr, 0) }; // 347396436
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute_Statics::NewProp_OutModificationValue = { "OutModificationValue", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeEffectCalculation_eventModifyAttribute_Parms, OutModificationValue), METADATA_PARAMS(nullptr, 0) };
@@ -300,8 +300,8 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_WeaponSystemPlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributeEffectCalculation_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute, "CanModifyAttribute" }, // 3326523646
-		{ &Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute, "ModifyAttribute" }, // 3056398821
+		{ &Z_Construct_UFunction_UAttributeEffectCalculation_CanModifyAttribute, "CanModifyAttribute" }, // 2701368483
+		{ &Z_Construct_UFunction_UAttributeEffectCalculation_ModifyAttribute, "ModifyAttribute" }, // 1197625873
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UAttributeEffectCalculation_Statics::Class_MetaDataParams[] = {
@@ -350,9 +350,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributeEffectCalculation() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributeEffectCalculation, UAttributeEffectCalculation::StaticClass, TEXT("UAttributeEffectCalculation"), &Z_Registration_Info_UClass_UAttributeEffectCalculation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffectCalculation), 2445980764U) },
+		{ Z_Construct_UClass_UAttributeEffectCalculation, UAttributeEffectCalculation::StaticClass, TEXT("UAttributeEffectCalculation"), &Z_Registration_Info_UClass_UAttributeEffectCalculation, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeEffectCalculation), 3350412839U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_1247188496(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_2024506627(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeEffectCalculation_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

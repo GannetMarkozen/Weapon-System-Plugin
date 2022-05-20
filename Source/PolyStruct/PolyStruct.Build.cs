@@ -34,6 +34,7 @@ public class PolyStruct : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"JsonUtilities"
 				// ... add private dependencies that you statically link with here ...	
 			}
 		);

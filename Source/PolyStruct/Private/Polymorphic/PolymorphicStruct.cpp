@@ -3,6 +3,7 @@
 
 #include "Polymorphic/PolymorphicStruct.h"
 
+#include "JsonObjectConverter.h"
 
 
 FPolyStruct::FPolyStruct(const FPolyStruct& Other)
@@ -34,6 +35,23 @@ bool FPolyStruct::operator==(const FPolyStruct& Other) const
 	// Memory compare if no Has Identical
 	return FMemory::Memcmp(Memory, Other.Memory, GetSize()) == 0;
 }
+
+FString FPolyStruct::ToJsonString() const
+{
+	if(!IsValid()) return TEXT("None");
+	FString OutString;
+	FJsonObjectConverter::UStructToJsonObjectString(ScriptStruct, Memory, OutString);
+	return OutString;
+}
+
+FString FPolyStruct::ToValueString() const
+{
+	if(!IsValid()) return TEXT("None");
+	FString String(ScriptStruct->GetName());
+	return String += TEXT(":\n") + ToJsonString();
+}
+
+
 
 void FPolyStruct::SetStruct(const void* InStruct, const UScriptStruct* InScriptStruct)
 {
@@ -138,7 +156,6 @@ bool FPolyStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess
 		Empty();
 	}
 	
-	bOutSuccess = true;
 	return true;
 }
 
@@ -169,7 +186,7 @@ void FPolyStruct::NetSerializeStruct(FArchive& Ar, UPackageMap* Map, bool& bOutS
 			if(Ar.IsLoading())
 				Array.Resize(ArrNum);
 			
-			if(ArrProp->Inner->PropertyFlags & CPF_RepSkip) return;
+			if(ArrProp->Inner->PropertyFlags & CPF_RepSkip) continue;
 			if(const auto* InnerStructProp = CastField<FStructProperty>(ArrProp->Inner))
 			{
 				for(uint32 i = 0; i < ArrNum; i++)
@@ -286,6 +303,16 @@ FPolyStructHandle& FPolyStructHandle::operator=(const FPolyStructHandle& Other)
 	return *this;*/
 }
 
+FPolyStructHandle FPolyStructHandle::MakeCopy() const
+{
+	FPolyStructHandle Copy;
+	Copy.PolyStructs.SetNum(Num());
+	for(int32 i = 0; i < Num(); i++)
+		if(PolyStructs[i].IsValid())
+			Copy.PolyStructs[i] = MakeShared<FPolyStruct>((*this)[i]);
+	return Copy;
+}
+
 FString FPolyStructHandle::ToString() const
 {
 	if(IsEmpty()) return FString("{}");
@@ -294,7 +321,7 @@ FString FPolyStructHandle::ToString() const
 	{
 		const TSharedPtr<FPolyStruct>& PolyStruct = PolyStructs[i];
 		String += PolyStruct.IsValid() ? PolyStruct->ToString() : FString("None");
-		if(i != Num()) String += FString(", ");
+		if(i != Num() - 1) String += FString(", ");
 	}
 	return String += FString(" }");
 }
@@ -369,9 +396,107 @@ bool FPolyStructHandle::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutS
 			PolyStructs[i].Reset();
 		}
 	}
-	bOutSuccess = true;
-	return true;
+	return bOutSuccess = true;
 }
+
+
+bool FPolyStructHandle::NetDeltaSerialize(const FNetDeltaSerializeInfo& DeltaParams)
+{
+	UPackageMap* Map = DeltaParams.Map;
+	bool bOutSuccess = false;
+	if(!Map || !DeltaParams.Writer && !DeltaParams.Reader) return false;
+	FArchive& Ar = DeltaParams.Writer ? *(FArchive*)DeltaParams.Writer : *(FArchive*)DeltaParams.Reader;
+
+	if(Ar.IsSaving())
+	{
+		if(DeltaParams.NewState && !DeltaParams.OldState)
+		{
+			*DeltaParams.NewState = MakeShared<FPolyStructHandleDeltaState>(*this);
+			return false;
+		}
+
+		// Old state of this. If differs there has been a change
+		const FPolyStructHandle& OldHandle = reinterpret_cast<FPolyStructHandleDeltaState*>(DeltaParams.OldState)->Handle;
+
+		// Check for changes and add changes to array
+		struct FPolyStructChange { int32 Index; FPolyStruct PolyStruct; };
+		TArray<FPolyStructChange> Changes;
+		for(int32 i = 0; i < Num(); i++)
+		{// If changed. Add to array
+			if(OldHandle.IsValidIndex(i) && PolyStructs[i].IsValid() == OldHandle.PolyStructs[i].IsValid() && (*this)[i] == OldHandle[i]) continue;
+			Changes.Add({ i, PolyStructs[i].IsValid() ? (*this)[i] : FPolyStruct() });
+		}
+
+		// Only net serialize changed items
+		if(!Changes.IsEmpty() || Num() != OldHandle.Num())
+		{
+			int32 ArrNum = Num();
+			Ar << ArrNum;// Serialize array size
+			
+			int32 NumChanges = Changes.Num();
+			Ar << NumChanges;// Serialize num changes
+
+			// Serialize each index and it's corresponding change
+			for(FPolyStructChange& Change : Changes)
+			{
+				Ar << Change.Index;
+				Change.PolyStruct.NetSerialize(Ar, Map, bOutSuccess);
+			}
+
+			// Update OldState
+			*DeltaParams.NewState = MakeShared<FPolyStructHandleDeltaState>(*this);
+			bOutSuccess = true;
+		}
+	}
+	else if(Ar.IsLoading())
+	{
+		int32 ArrNum, NumChanges;
+		Ar << ArrNum << NumChanges;
+
+		// Set the array num to the replicated value
+		PolyStructs.SetNum(ArrNum);
+
+		// For each change, get the index and it's
+		// corresponding change and update the value at index
+		for(int32 i = 0; i < NumChanges; i++)
+		{
+			int32 Index;
+			Ar << Index;// Serialize PolyStruct at index
+			
+			FPolyStruct& PolyStruct = PolyStructs[Index].IsValid() ? (*this)[Index] : *(PolyStructs[Index] = MakeShared<FPolyStruct>()).Get();
+			PolyStruct.NetSerialize(Ar, Map, bOutSuccess);
+		}
+		bOutSuccess = true;
+	}
+	
+	return bOutSuccess;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

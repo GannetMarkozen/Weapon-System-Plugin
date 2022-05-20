@@ -192,19 +192,19 @@ public:
 	static FORCEINLINE void IsValidWithExecs(const FPolyStruct& PolyStruct, EStructCastPin& OutPin) { OutPin = PolyStruct.IsValid() ? EStructCastPin::Success : EStructCastPin::Fail; }
 
 	// Whether the Polymorphic Struct's data is this type
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "IS A"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE bool IsA(const FPolyStruct& PolyStruct, const UScriptStruct* StructType) { return PolyStruct.IsA(StructType); }
 
 	// Whether the Polymorphic Struct's data is this type
 	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "IS A", ExpandEnumAsExecs = "OutPin", DisplayName = "Is A (execs)"), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE void IsAWithExecs(const FPolyStruct& PolyStruct, const UScriptStruct* StructType, EStructCastPin& OutPin) { OutPin = PolyStruct.IsA(StructType) ? EStructCastPin::Success : EStructCastPin::Fail; }
 	
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "TYPE"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE UScriptStruct* GetType(const FPolyStruct& PolyStruct) { return PolyStruct.GetScriptStruct(); }
 
 	// Gets the total size of the struct the Polymorphic Struct contains. 0 if uninitialized
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "SIZE"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE int32 GetStructSize(const FPolyStruct& PolyStruct) { return PolyStruct.GetSize(); }
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE int32 GetSize(const FPolyStruct& PolyStruct) { return PolyStruct.GetSize(); }
 
 	// Returns whether the types are the same
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "=="), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -217,6 +217,9 @@ public:
 	// Implicit conversion to a Poly Struct Handle that adds this poly struct to the array
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "->", BlueprintAutocast), Category = "Weapon System Function Library|Polymorphic Struct")
 	static FORCEINLINE FPolyStructHandle Conv_PolyStructToPolyStructHandle(const FPolyStruct& PolyStruct) { return FPolyStructHandle(PolyStruct); }
+
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
+	static void ToJsonString(const FPolyStruct& PolyStruct, FString& OutString) { OutString = PolyStruct.ToJsonString(); }
 	
 	/*
 	 *
@@ -407,8 +410,8 @@ public:
 		P_NATIVE_END
 	}
 
-	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "REMOVE ITEM"), Category = "Weapon System Function Library|Polymorphic Struct")
-	static FORCEINLINE void RemoveItem(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32 Index) { if(PolyStructHandle.IsValidIndex(Index)) PolyStructHandle.PolyStructs.RemoveAt(Index, 1, true); }
+	UFUNCTION(BlueprintCallable, Meta = (CompactNodeTitle = "REMOVE"), Category = "Weapon System Function Library|Polymorphic Struct")
+	static FORCEINLINE void RemoveItem(UPARAM(ref) FPolyStructHandle& PolyStructHandle, const int32 Index) { if(PolyStructHandle.IsValidIndex(Index)) PolyStructHandle.PolyStructs.RemoveAt(Index); }
 
 	// Gets a copy of the Poly Struct at the given index (if it is a valid index)
 	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "GET"), Category = "Weapon System Function Library|Polymorphic Struct")
@@ -438,7 +441,7 @@ public:
 	}
 
 	// Converts Poly Struct Handle to array of Poly Structs. Use sparingly to avoid copying
-	UFUNCTION(BlueprintPure, Meta = (CompactNodeTitle = "ARRAY"), Category = "Weapon System Function Library|Polymorphic Struct")
+	UFUNCTION(BlueprintPure, Category = "Weapon System Function Library|Polymorphic Struct")
 	static void ToArray(const FPolyStructHandle& PolyStructHandle, TArray<FPolyStruct>& OutPolyStructs)
 	{
 		for(const TSharedPtr<FPolyStruct>& Ptr : PolyStructHandle.PolyStructs) if(Ptr.IsValid()) OutPolyStructs.Add(*Ptr.Get());

@@ -514,7 +514,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBindAttributeChangedFromAttribute_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate_MetaData)) }; // 2001919238
+	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBindAttributeChangedFromAttribute_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate_MetaData)) }; // 3876571378
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Attribute,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute_Statics::NewProp_Delegate,
@@ -614,7 +614,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBindAttributeChangedFromHandle_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate_MetaData)) }; // 2001919238
+	const UECodeGen_Private::FDelegatePropertyParams Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate = { "Delegate", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Delegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBindAttributeChangedFromHandle_Parms, Delegate), Z_Construct_UDelegateFunction_WeaponSystemPlugin_AttributeValueChangedUniDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate_MetaData)) }; // 3876571378
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Handle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle_Statics::NewProp_Delegate,
@@ -922,7 +922,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_Instigator = { "Instigator", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyEffectToTarget_Parms, Instigator), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_Instigator_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_Instigator_MetaData)) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyEffectToTarget_Parms, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_Context = { "Context", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyEffectToTarget_Parms, Context), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 84488860
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_OutPin_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::NewProp_OutPin = { "OutPin", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyEffectToTarget_Parms, OutPin), Z_Construct_UEnum_PolyStruct_EStructCastPin, METADATA_PARAMS(nullptr, 0) }; // 2027713322
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget_Statics::PropPointers[] = {
@@ -1035,7 +1035,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OptionalInstigator = { "OptionalInstigator", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyInstantNumericEffectToTarget_Parms, OptionalInstigator), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OptionalInstigator_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OptionalInstigator_MetaData)) };
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OptionalContext = { "OptionalContext", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyInstantNumericEffectToTarget_Parms, OptionalContext), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 2519392893
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OptionalContext = { "OptionalContext", nullptr, (EPropertyFlags)0x0010000008000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyInstantNumericEffectToTarget_Parms, OptionalContext), Z_Construct_UScriptStruct_FPolyStructHandle, METADATA_PARAMS(nullptr, 0) }; // 84488860
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OutPin_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::NewProp_OutPin = { "OutPin", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventBP_TryApplyInstantNumericEffectToTarget_Parms, OutPin), Z_Construct_UEnum_PolyStruct_EStructCastPin, METADATA_PARAMS(nullptr, 0) }; // 2027713322
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget_Statics::PropPointers[] = {
@@ -1754,7 +1754,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext = { "OptionalModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventSetAttributeValue_Parms, OptionalModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext_MetaData)) }; // 2641440684
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext = { "OptionalModificationContext", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AttributeUtils_eventSetAttributeValue_Parms, OptionalModificationContext), Z_Construct_UScriptStruct_FEffectModContext, METADATA_PARAMS(Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_OptionalModificationContext_MetaData)) }; // 3878031127
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_AttributeHandle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAttributeUtils_SetAttributeValue_Statics::NewProp_NewValue,
@@ -1879,15 +1879,15 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_UAttributeUtils_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAttributeUtils_AttributeHandleEquals, "AttributeHandleEquals" }, // 2315473319
 		{ &Z_Construct_UFunction_UAttributeUtils_AttributeHandleEqualsNOT, "AttributeHandleEqualsNOT" }, // 2160161741
-		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute, "BindAttributeChangedFromAttribute" }, // 573424443
+		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttribute, "BindAttributeChangedFromAttribute" }, // 3071202528
 		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromAttributeByName, "BindAttributeChangedFromAttributeByName" }, // 2502357778
-		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle, "BindAttributeChangedFromHandle" }, // 3278961157
+		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandle, "BindAttributeChangedFromHandle" }, // 977485851
 		{ &Z_Construct_UFunction_UAttributeUtils_BindAttributeChangedFromHandleByName, "BindAttributeChangedFromHandleByName" }, // 3874328347
 		{ &Z_Construct_UFunction_UAttributeUtils_BP_GetAttributeComponentAs, "BP_GetAttributeComponentAs" }, // 3052049304
 		{ &Z_Construct_UFunction_UAttributeUtils_BP_GetAttributeHandle, "BP_GetAttributeHandle" }, // 3298545948
 		{ &Z_Construct_UFunction_UAttributeUtils_BP_GetAttributesComponent, "BP_GetAttributesComponent" }, // 551704239
-		{ &Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget, "BP_TryApplyEffectToTarget" }, // 591579907
-		{ &Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget, "BP_TryApplyInstantNumericEffectToTarget" }, // 227954870
+		{ &Z_Construct_UFunction_UAttributeUtils_BP_TryApplyEffectToTarget, "BP_TryApplyEffectToTarget" }, // 2449862949
+		{ &Z_Construct_UFunction_UAttributeUtils_BP_TryApplyInstantNumericEffectToTarget, "BP_TryApplyInstantNumericEffectToTarget" }, // 3647092011
 		{ &Z_Construct_UFunction_UAttributeUtils_Conv_AttributeHandleToAttribute, "Conv_AttributeHandleToAttribute" }, // 619971413
 		{ &Z_Construct_UFunction_UAttributeUtils_Conv_AttributeHandleToName, "Conv_AttributeHandleToName" }, // 3935383721
 		{ &Z_Construct_UFunction_UAttributeUtils_Conv_AttributeHandleToString, "Conv_AttributeHandleToString" }, // 3960148474
@@ -1901,7 +1901,7 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 		{ &Z_Construct_UFunction_UAttributeUtils_GetOwner, "GetOwner" }, // 3662534086
 		{ &Z_Construct_UFunction_UAttributeUtils_HasAttribute, "HasAttribute" }, // 3572121610
 		{ &Z_Construct_UFunction_UAttributeUtils_HasAttributesComponent, "HasAttributesComponent" }, // 456525012
-		{ &Z_Construct_UFunction_UAttributeUtils_SetAttributeValue, "SetAttributeValue" }, // 3672253842
+		{ &Z_Construct_UFunction_UAttributeUtils_SetAttributeValue, "SetAttributeValue" }, // 3471111021
 		{ &Z_Construct_UFunction_UAttributeUtils_UnbindAllAttributeChanged, "UnbindAllAttributeChanged" }, // 1382479062
 		{ &Z_Construct_UFunction_UAttributeUtils_UnbindAllAttributeChangedFromHandle, "UnbindAllAttributeChangedFromHandle" }, // 2678879648
 	};
@@ -1951,9 +1951,9 @@ void EmptyLinkFunctionForGeneratedCodeAttributeFunctionLibrary() {}
 		{ EValidity_StaticEnum, TEXT("EValidity"), &Z_Registration_Info_UEnum_EValidity, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 624064621U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UAttributeUtils, UAttributeUtils::StaticClass, TEXT("UAttributeUtils"), &Z_Registration_Info_UClass_UAttributeUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeUtils), 2165689537U) },
+		{ Z_Construct_UClass_UAttributeUtils, UAttributeUtils::StaticClass, TEXT("UAttributeUtils"), &Z_Registration_Info_UClass_UAttributeUtils, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAttributeUtils), 2655957671U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_2879237547(TEXT("/Script/WeaponSystemPlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_1768602166(TEXT("/Script/WeaponSystemPlugin"),
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_AnimeShooter_Plugins_WeaponSystemPlugin_Source_WeaponSystemPlugin_Public_WeaponSystem_AttributeSystem_AttributeFunctionLibrary_h_Statics::EnumInfo));

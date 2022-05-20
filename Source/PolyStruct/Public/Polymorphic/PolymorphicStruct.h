@@ -75,6 +75,9 @@ struct POLYSTRUCT_API FPolyStruct
 	template<typename To>
 	FORCEINLINE const To* Get() const { return IsA<To>() ? (To*)Memory : nullptr; }
 
+	FString ToJsonString() const;
+	FString ToValueString() const;
+
 	// Empties data from struct and
 	void Empty();
 
@@ -107,11 +110,10 @@ struct TStructOpsTypeTraits<FPolyStruct> : TStructOpsTypeTraitsBase2<FPolyStruct
 
 
 /*
- * An array of Poly Structs being passed around by-reference via Shared Pointers.
- * Avoids copying when being passed around (including Blueprints). Supports net serialization.
- * Warning: Does not fully support dynamic replication fully (will not always update unless
- * array size is changed or pointer is reassigned. It's preferable to use a standard
- * array of Poly Structs in that case anyways, which will update properly)
+ * An array of Poly Structs being passed around by-reference via Shared Pointer.
+ * Avoids copying when being passed around. Supports net serialization
+ * and has optimizations for delta serialization so this is preferable to use over a
+ * standard array of Poly Structs
  */
 USTRUCT(BlueprintType, Meta = (DisplayName = "Polymorphic Struct Handle"))
 struct POLYSTRUCT_API FPolyStructHandle
@@ -134,6 +136,8 @@ struct POLYSTRUCT_API FPolyStructHandle
 
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStruct& PolyStruct) { Add(PolyStruct); return *this; }
 	FORCEINLINE FPolyStructHandle& operator+=(const FPolyStructHandle& Other) { Append(Other); return *this; }
+	
+	FPolyStructHandle MakeCopy() const;
 
 	FString ToString() const;
 	FORCEINLINE int32 Num() const { return PolyStructs.Num(); }
@@ -180,6 +184,7 @@ struct POLYSTRUCT_API FPolyStructHandle
 
 	bool Serialize(FArchive& Ar);
 	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
+	bool NetDeltaSerialize(const FNetDeltaSerializeInfo& DeltaParams);
 
 	// Poly structs being held by shared ptr to allow pass-by-reference in Blueprints
 	TArray<TSharedPtr<FPolyStruct>> PolyStructs;
@@ -192,10 +197,37 @@ struct TStructOpsTypeTraits<FPolyStructHandle> : TStructOpsTypeTraitsBase2<FPoly
 	{
 		WithCopy = true,
 		WithSerializer = true,
-		WithNetSerializer = true,
+		WithNetSerializer = false,
+		WithNetDeltaSerializer = true,
 		WithIdenticalViaEquality = true,
 	};
 };
+
+struct FPolyStructHandleDeltaState : public INetDeltaBaseState
+{
+	FPolyStructHandleDeltaState() = delete;
+	FPolyStructHandleDeltaState(const FPolyStructHandle& InHandle)
+	{
+		Handle.PolyStructs.SetNum(InHandle.Num());
+		for(int32 i = 0; i < InHandle.Num(); i++)
+		{
+			if(!InHandle.PolyStructs[i].IsValid()) continue;
+			FPolyStruct& PolyStruct = Handle.PolyStructs[i].IsValid() ? Handle[i] : *(Handle.PolyStructs[i] = MakeShared<FPolyStruct>()).Get();
+			PolyStruct = InHandle[i];
+		}
+	}
+	
+	FORCEINLINE virtual bool IsStateEqual(INetDeltaBaseState* OtherState) override
+	{
+		 return Handle == reinterpret_cast<FPolyStructHandleDeltaState*>(OtherState)->Handle;
+	}
+	
+	FORCEINLINE static FPolyStructHandle& GetHandle(INetDeltaBaseState* BaseState) { return reinterpret_cast<FPolyStructHandleDeltaState*>(BaseState)->Handle; }
+	FORCEINLINE static FPolyStructHandle& GetHandle(const FNetDeltaSerializeInfo& DeltaParams) { return GetHandle(DeltaParams.OldState); }
+	
+	FPolyStructHandle Handle;
+};
+
 
 
 

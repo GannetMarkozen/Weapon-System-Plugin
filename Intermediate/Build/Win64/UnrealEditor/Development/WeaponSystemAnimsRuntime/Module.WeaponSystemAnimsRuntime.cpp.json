@@ -81,6 +81,10 @@
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemanimsruntime\\private\\animnode_truefpsrig.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemanimsruntime\\public\\animnode_truefpsrig.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\weaponsystemanimsruntime\\animnode_truefpsrig.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\animgraphruntime\\public\\bonecontrollers\\animnode_twoboneik.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\animationcore\\public\\commonanimtypes.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\animationcore\\commonanimtypes.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\animgraphruntime\\animnode_twoboneik.generated.h",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemanimsruntime\\private\\weaponsystemanimsruntime.cpp",
             "c:\\users\\azart\\documents\\unreal projects\\animeshooter\\plugins\\weaponsystemplugin\\source\\weaponsystemanimsruntime\\public\\weaponsystemanimsruntime.h"
         ],
