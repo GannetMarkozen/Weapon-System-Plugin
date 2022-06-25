@@ -1,0 +1,29 @@
+#Unreal generated folders 
+Binaries/
+/Build/
+/DerivedDataCache/
+Intermediate/
+/Saved/
+
+#Unreal lighting builds
+*_BuiltData.uasset
+
+#Various IDE project files and folders
+.vs/
+.vscode/
+*.code-workspace
+*.xcodeproj
+*.xcworkspace
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.opendb
+*.pdb
+*.lib
+*.user
+*.iml
+.idea/
+Thumbs.db
